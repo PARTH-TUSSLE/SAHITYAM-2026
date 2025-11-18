@@ -113,6 +113,112 @@ export default function GateAnimation({
             className="absolute right-12 bottom-16 w-20 h-20 border-4 border-purple-400/50 rounded-full opacity-50 animate-pulse"
             style={{ animationDelay: "1s" }}
           ></div>
+
+          {/* Additional Mandala - Top Left */}
+          <div className="absolute right-48 top-24">
+            <div className="relative w-24 h-24 animate-spin-slow">
+              <div className="absolute inset-0 border-3 border-orange-300/50 rounded-full"></div>
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-16 h-1 bg-gradient-to-r from-yellow-300 to-transparent rounded-full"
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                    transform: `rotate(${i * 45}deg)`,
+                    transformOrigin: "left center",
+                  }}
+                >
+                  <div className="absolute right-0 w-3 h-3 bg-orange-400 rounded-full border border-white"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Additional Mandala - Bottom Right */}
+          <div className="absolute right-48 bottom-24">
+            <div className="relative w-24 h-24 animate-spin-reverse">
+              <div className="absolute inset-0 border-3 border-pink-300/50 rounded-full"></div>
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-16 h-1 bg-gradient-to-r from-pink-300 to-transparent rounded-full"
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                    transform: `rotate(${i * 45}deg)`,
+                    transformOrigin: "left center",
+                  }}
+                >
+                  <div className="absolute right-0 w-3 h-3 bg-pink-400 rounded-full border border-white"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Lotus Pattern - Top */}
+          <div className="absolute right-1/4 top-16 opacity-60">
+            <svg
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
+              className="animate-pulse"
+            >
+              <circle cx="30" cy="30" r="8" fill="#FCD34D" opacity="0.8" />
+              {[...Array(12)].map((_, i) => (
+                <ellipse
+                  key={i}
+                  cx="30"
+                  cy="30"
+                  rx="20"
+                  ry="8"
+                  fill="#FB923C"
+                  opacity="0.6"
+                  transform={`rotate(${i * 30} 30 30)`}
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Lotus Pattern - Bottom */}
+          <div className="absolute right-1/4 bottom-16 opacity-60">
+            <svg
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
+              className="animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <circle cx="30" cy="30" r="8" fill="#F472B6" opacity="0.8" />
+              {[...Array(12)].map((_, i) => (
+                <ellipse
+                  key={i}
+                  cx="30"
+                  cy="30"
+                  rx="20"
+                  ry="8"
+                  fill="#A78BFA"
+                  opacity="0.6"
+                  transform={`rotate(${i * 30} 30 30)`}
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Geometric Patterns */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-12 h-12 border-2 border-yellow-300/40 rotate-45 animate-pulse"
+              style={{
+                right: `${20 + (i % 3) * 25}%`,
+                top: `${25 + Math.floor(i / 3) * 50}%`,
+                animationDelay: `${i * 0.2}s`,
+              }}
+            >
+              <div className="absolute inset-2 border-2 border-orange-300/30"></div>
+            </div>
+          ))}
         </div>
 
         {/* SAHITYAM text - Left half */}
@@ -216,6 +322,112 @@ export default function GateAnimation({
             className="absolute left-12 bottom-16 w-20 h-20 border-4 border-purple-400/50 rounded-full opacity-50 animate-pulse"
             style={{ animationDelay: "1s" }}
           ></div>
+
+          {/* Additional Mandala - Top Right */}
+          <div className="absolute left-48 top-24">
+            <div className="relative w-24 h-24 animate-spin-slow">
+              <div className="absolute inset-0 border-3 border-orange-300/50 rounded-full"></div>
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-16 h-1 bg-gradient-to-l from-yellow-300 to-transparent rounded-full"
+                  style={{
+                    right: "50%",
+                    top: "50%",
+                    transform: `rotate(${i * 45}deg)`,
+                    transformOrigin: "right center",
+                  }}
+                >
+                  <div className="absolute left-0 w-3 h-3 bg-orange-400 rounded-full border border-white"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Additional Mandala - Bottom Left */}
+          <div className="absolute left-48 bottom-24">
+            <div className="relative w-24 h-24 animate-spin-reverse">
+              <div className="absolute inset-0 border-3 border-pink-300/50 rounded-full"></div>
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-16 h-1 bg-gradient-to-l from-pink-300 to-transparent rounded-full"
+                  style={{
+                    right: "50%",
+                    top: "50%",
+                    transform: `rotate(${i * 45}deg)`,
+                    transformOrigin: "right center",
+                  }}
+                >
+                  <div className="absolute left-0 w-3 h-3 bg-pink-400 rounded-full border border-white"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Lotus Pattern - Top */}
+          <div className="absolute left-1/4 top-16 opacity-60">
+            <svg
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
+              className="animate-pulse"
+            >
+              <circle cx="30" cy="30" r="8" fill="#FCD34D" opacity="0.8" />
+              {[...Array(12)].map((_, i) => (
+                <ellipse
+                  key={i}
+                  cx="30"
+                  cy="30"
+                  rx="20"
+                  ry="8"
+                  fill="#FB923C"
+                  opacity="0.6"
+                  transform={`rotate(${i * 30} 30 30)`}
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Lotus Pattern - Bottom */}
+          <div className="absolute left-1/4 bottom-16 opacity-60">
+            <svg
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
+              className="animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <circle cx="30" cy="30" r="8" fill="#F472B6" opacity="0.8" />
+              {[...Array(12)].map((_, i) => (
+                <ellipse
+                  key={i}
+                  cx="30"
+                  cy="30"
+                  rx="20"
+                  ry="8"
+                  fill="#A78BFA"
+                  opacity="0.6"
+                  transform={`rotate(${i * 30} 30 30)`}
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Geometric Patterns */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-12 h-12 border-2 border-yellow-300/40 rotate-45 animate-pulse"
+              style={{
+                left: `${20 + (i % 3) * 25}%`,
+                top: `${25 + Math.floor(i / 3) * 50}%`,
+                animationDelay: `${i * 0.2}s`,
+              }}
+            >
+              <div className="absolute inset-2 border-2 border-orange-300/30"></div>
+            </div>
+          ))}
         </div>
 
         {/* SAHITYAM text - Right half */}
