@@ -1,0 +1,170 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+interface TimeUnit {
+  value: number;
+  label: string;
+}
+
+export default function Countdown() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const targetDate = new Date("2026-02-03T00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+      });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex gap-4 md:gap-6 items-center justify-center">
+      <FlipCard value={timeLeft.days} label="days" />
+      <FlipCard value={timeLeft.hours} label="hours" />
+      <FlipCard value={timeLeft.minutes} label="min" />
+      <FlipCard value={timeLeft.seconds} label="sec" />
+    </div>
+  );
+}
+
+function FlipCard({ value, label }: { value: number; label: string }) {
+  const [currentValue, setCurrentValue] = useState(value);
+  const [nextValue, setNextValue] = useState(value);
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  useEffect(() => {
+    if (value !== currentValue) {
+      setNextValue(value);
+      setIsFlipping(true);
+
+      const timer = setTimeout(() => {
+        setCurrentValue(value);
+        setIsFlipping(false);
+      }, 800);
+
+      return () => clearTimeout(timer);
+    }
+  }, [value, currentValue]);
+
+  const displayCurrent = String(currentValue).padStart(2, "0");
+  const displayNext = String(nextValue).padStart(2, "0");
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <div
+        className="relative w-20 h-24 md:w-28 md:h-32"
+        style={{ perspective: "1000px" }}
+      >
+        {/* Static bottom half showing current number */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-black rounded-b-2xl overflow-hidden shadow-2xl">
+          <div
+            className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
+            style={{
+              top: "-100%",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {displayCurrent}
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+        </div>
+
+        {/* Static top half showing current number */}
+        <div className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-2xl overflow-hidden shadow-2xl">
+          <div
+            className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
+            style={{
+              top: "0",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {displayCurrent}
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-800"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+
+        {/* Flipping top half */}
+        {isFlipping && (
+          <div
+            className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-2xl overflow-hidden shadow-2xl"
+            style={{
+              transformOrigin: "bottom",
+              animation: "flipTop 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)",
+              backfaceVisibility: "hidden",
+              transformStyle: "preserve-3d",
+              zIndex: 10,
+            }}
+          >
+            <div
+              className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
+              style={{
+                top: "0",
+                fontVariantNumeric: "tabular-nums",
+              }}
+            >
+              {displayCurrent}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-800"></div>
+          </div>
+        )}
+
+        {/* Flipping bottom half */}
+        {isFlipping && (
+          <div
+            className="absolute bottom-0 left-0 right-0 h-1/2 bg-black rounded-b-2xl overflow-hidden shadow-2xl"
+            style={{
+              transformOrigin: "top",
+              animation:
+                "flipBottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)",
+              backfaceVisibility: "hidden",
+              transformStyle: "preserve-3d",
+              zIndex: 5,
+            }}
+          >
+            <div
+              className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
+              style={{
+                top: "-100%",
+                fontVariantNumeric: "tabular-nums",
+              }}
+            >
+              {displayNext}
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+          </div>
+        )}
+      </div>
+
+      <span className="text-xs md:text-sm font-medium text-black uppercase tracking-wider">
+        {label}
+      </span>
+    </div>
+  );
+}
