@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 interface TimelineEvent {
   id: number;
@@ -347,6 +348,7 @@ function Schedule() {
           }}
         ></div>
       </div>
+      <Footer />
     </>
   );
 }

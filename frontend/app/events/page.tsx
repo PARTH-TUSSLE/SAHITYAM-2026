@@ -1,6 +1,7 @@
 import React from "react";
 import ChromaCard from "../../components/ChromaCard";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 function Events() {
   const events = [
@@ -97,6 +98,7 @@ function Events() {
           }}
         ></div>
       </div>
+      <Footer />
     </>
   );
 }

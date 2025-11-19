@@ -18,6 +18,16 @@
   scrollbar-width: none;
 }
 
+/* Hide scrollbar globally */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Smooth Modal Animations */
 @keyframes fadeIn {
   from {
