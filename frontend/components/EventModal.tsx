@@ -29,18 +29,30 @@ export default function EventModal({
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
+
+      // Hide navbar when modal is open
+      const navbar = document.querySelector("nav");
+      if (navbar) {
+        navbar.classList.add("hidden");
+      }
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
+
+      // Show navbar when modal closes
+      const navbar = document.querySelector("nav");
+      if (navbar) {
+        navbar.classList.remove("hidden");
+      }
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"

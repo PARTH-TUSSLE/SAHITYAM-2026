@@ -1,0 +1,344 @@
+"use client";
+
+import React, { useState } from "react";
+import Navbar from "@/components/Navbar";
+
+interface TimelineEvent {
+  id: number;
+  time: string;
+  title: string;
+  description: string;
+  venue: string;
+  category: "cultural" | "literary" | "workshop" | "competition";
+}
+
+const scheduleData: { [key: string]: TimelineEvent[] } = {
+  "Day 1 - February 3rd": [
+    {
+      id: 1,
+      time: "09:00 AM",
+      title: "Opening Ceremony",
+      description:
+        "Grand inauguration of SAHITYAM 2026 with cultural performances",
+      venue: "Main Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 2,
+      time: "11:00 AM",
+      title: "Poetry Recitation",
+      description:
+        "Express your thoughts through poetry in Hindi, English, and regional languages",
+      venue: "Hall A",
+      category: "literary",
+    },
+    {
+      id: 3,
+      time: "02:00 PM",
+      title: "Creative Writing Workshop",
+      description: "Learn the art of storytelling from renowned authors",
+      venue: "Conference Room 1",
+      category: "workshop",
+    },
+    {
+      id: 4,
+      time: "04:30 PM",
+      title: "Classical Dance Performance",
+      description:
+        "Mesmerizing performances of Bharatanatyam, Kathak, and Odissi",
+      venue: "Open Air Theatre",
+      category: "cultural",
+    },
+  ],
+  "Day 2 - February 4th": [
+    {
+      id: 5,
+      time: "10:00 AM",
+      title: "Debate Competition",
+      description: "Engage in intellectual discussions on contemporary topics",
+      venue: "Debate Hall",
+      category: "competition",
+    },
+    {
+      id: 6,
+      time: "12:00 PM",
+      title: "Art Exhibition",
+      description: "Showcase of paintings, sculptures, and digital art",
+      venue: "Gallery Wing",
+      category: "cultural",
+    },
+    {
+      id: 7,
+      time: "02:30 PM",
+      title: "Short Story Competition",
+      description: "Craft compelling narratives within word limits",
+      venue: "Hall B",
+      category: "competition",
+    },
+    {
+      id: 8,
+      time: "05:00 PM",
+      title: "Musical Evening",
+      description: "Classical and fusion music performances",
+      venue: "Main Stage",
+      category: "cultural",
+    },
+  ],
+  "Day 3 - February 5th": [
+    {
+      id: 9,
+      time: "09:30 AM",
+      title: "Panel Discussion",
+      description: "Literature in the Digital Age - featuring eminent writers",
+      venue: "Conference Hall",
+      category: "literary",
+    },
+    {
+      id: 10,
+      time: "11:30 AM",
+      title: "Theatre Workshop",
+      description: "Interactive session on acting and stage presence",
+      venue: "Drama Studio",
+      category: "workshop",
+    },
+    {
+      id: 11,
+      time: "02:00 PM",
+      title: "Grand Finale",
+      description: "Prize distribution and cultural extravaganza",
+      venue: "Main Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 12,
+      time: "04:00 PM",
+      title: "Closing Ceremony",
+      description: "Farewell and vote of thanks",
+      venue: "Main Auditorium",
+      category: "cultural",
+    },
+  ],
+};
+
+const categoryColors = {
+  cultural: "from-orange-500 to-red-500",
+  literary: "from-amber-500 to-orange-500",
+  workshop: "from-yellow-500 to-amber-500",
+  competition: "from-red-600 to-orange-600",
+};
+
+function Schedule() {
+  const [selectedDay, setSelectedDay] = useState("Day 1 - February 3rd");
+
+  return (
+    <>
+      <Navbar />
+      <div className="min-h-screen w-full relative overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-100 to-amber-200 animate-gradient-shift">
+          {/* Animated circles */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-orange-300/30 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl animate-float-delayed"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-200/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 py-24 px-6 md:px-12 lg:px-20">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
+                Event Schedule
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 font-medium">
+                February 3rd - 5th, 2026
+              </p>
+            </div>
+
+            {/* Day Selector */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {Object.keys(scheduleData).map((day, index) => (
+                <button
+                  key={day}
+                  onClick={() => setSelectedDay(day)}
+                  className={`px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 ${
+                    selectedDay === day
+                      ? "bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg"
+                      : "bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white"
+                  }`}
+                  style={{
+                    animation: `fade-in 0.5s ease-out ${index * 0.1}s both`,
+                  }}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
+
+            {/* Timeline */}
+            <div className="max-w-6xl mx-auto px-4">
+              <div className="relative pb-20">
+                {/* Vertical line - centered */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-red-400 to-amber-400"></div>
+
+                {/* Timeline events */}
+                <div className="relative">
+                  {scheduleData[selectedDay].map((event, index) => (
+                    <div
+                      key={event.id}
+                      className="relative mb-16"
+                      style={{
+                        opacity: 0,
+                        animation: `fade-in 0.8s ease-out ${
+                          index * 0.2
+                        }s forwards`,
+                      }}
+                    >
+                      {/* Timeline dot - always centered */}
+                      <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-12 w-6 h-6 rounded-full bg-gradient-to-r from-red-500 to-orange-500 shadow-lg z-10 border-4 border-amber-50">
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-orange-500 animate-ping opacity-75"></div>
+                      </div>
+
+                      {/* Event card - positioned left or right */}
+                      <div
+                        className={`${
+                          index % 2 === 0
+                            ? "mr-auto pr-[calc(50%+2rem)] text-right"
+                            : "ml-auto pl-[calc(50%+2rem)] text-left"
+                        }`}
+                      >
+                        <div
+                          className={`bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-orange-200/50 relative ${
+                            index % 2 === 0 ? "slide-in-left" : "slide-in-right"
+                          }`}
+                          style={{
+                            animation:
+                              index % 2 === 0
+                                ? `slideInLeft 0.8s ease-out ${
+                                    index * 0.2
+                                  }s forwards`
+                                : `slideInRight 0.8s ease-out ${
+                                    index * 0.2
+                                  }s forwards`,
+                          }}
+                        >
+                          {/* Color bar indicator */}
+                          <div
+                            className={`absolute ${
+                              index % 2 === 0
+                                ? "right-0 rounded-l-full"
+                                : "left-0 rounded-r-full"
+                            } top-1/2 -translate-y-1/2 h-16 w-2 bg-gradient-to-b ${
+                              categoryColors[event.category]
+                            }`}
+                          ></div>
+
+                          {/* Time badge */}
+                          <div
+                            className={`flex ${
+                              index % 2 === 0 ? "justify-end" : "justify-start"
+                            } mb-4`}
+                          >
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg">
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                              </svg>
+                              <span className="text-lg font-black">
+                                {event.time}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Category badge */}
+                          <div
+                            className={`flex ${
+                              index % 2 === 0 ? "justify-end" : "justify-start"
+                            } mb-3`}
+                          >
+                            <span
+                              className={`px-4 py-1.5 text-xs font-bold uppercase rounded-full bg-gradient-to-r ${
+                                categoryColors[event.category]
+                              } text-white shadow-md`}
+                            >
+                              {event.category}
+                            </span>
+                          </div>
+
+                          {/* Title */}
+                          <h3
+                            className={`text-2xl font-black text-gray-900 mb-3 ${
+                              index % 2 === 0 ? "text-right" : "text-left"
+                            }`}
+                          >
+                            {event.title}
+                          </h3>
+
+                          {/* Description */}
+                          <p
+                            className={`text-gray-700 mb-4 leading-relaxed ${
+                              index % 2 === 0 ? "text-right" : "text-left"
+                            }`}
+                          >
+                            {event.description}
+                          </p>
+
+                          {/* Venue */}
+                          <div
+                            className={`flex items-center gap-2 text-sm text-gray-600 font-medium ${
+                              index % 2 === 0 ? "justify-end" : "justify-start"
+                            }`}
+                          >
+                            <svg
+                              className="w-5 h-5 text-orange-500"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                            </svg>
+                            <span className="font-bold">{event.venue}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-5 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
+    </>
+  );
+}
+
+export default Schedule;

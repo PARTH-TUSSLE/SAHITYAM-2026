@@ -19,9 +19,9 @@ function Navbar() {
 
   const navItems = [
     { name: "Events", href: "events" },
-    { name: "Schedule", href: "#schedule" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Contact", href: "#contact" },
+    { name: "Schedule", href: "schedule" },
+    { name: "Gallery", href: "gallery" },
+    { name: "Contact", href: "contact" },
   ];
 
   return (
