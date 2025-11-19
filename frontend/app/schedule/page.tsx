@@ -178,15 +178,15 @@ function Schedule() {
             {/* Timeline */}
             <div className="max-w-6xl mx-auto px-4">
               <div className="relative pb-20">
-                {/* Vertical line - centered */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-red-400 to-amber-400"></div>
+                {/* Vertical line - centered on desktop, left on mobile */}
+                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-red-400 to-amber-400"></div>
 
                 {/* Timeline events */}
                 <div className="relative">
                   {scheduleData[selectedDay].map((event, index) => (
                     <div
                       key={event.id}
-                      className="relative mb-16"
+                      className="relative mb-12 md:mb-16"
                       style={{
                         opacity: 0,
                         animation: `fade-in 0.8s ease-out ${
@@ -194,21 +194,21 @@ function Schedule() {
                         }s forwards`,
                       }}
                     >
-                      {/* Timeline dot - always centered */}
-                      <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-12 w-6 h-6 rounded-full bg-gradient-to-r from-red-500 to-orange-500 shadow-lg z-10 border-4 border-amber-50">
+                      {/* Timeline dot - left on mobile, centered on desktop */}
+                      <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 top-6 md:top-12 w-6 h-6 rounded-full bg-gradient-to-r from-red-500 to-orange-500 shadow-lg z-10 border-4 border-amber-50">
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-orange-500 animate-ping opacity-75"></div>
                       </div>
 
-                      {/* Event card - positioned left or right */}
+                      {/* Event card - single column on mobile, alternating on desktop */}
                       <div
-                        className={`${
+                        className={`ml-20 md:ml-0 ${
                           index % 2 === 0
-                            ? "mr-auto pr-[calc(50%+2rem)] text-right"
-                            : "ml-auto pl-[calc(50%+2rem)] text-left"
+                            ? "md:mr-auto md:pr-[calc(50%+2rem)] md:text-right"
+                            : "md:ml-auto md:pl-[calc(50%+2rem)] md:text-left"
                         }`}
                       >
                         <div
-                          className={`bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-orange-200/50 relative ${
+                          className={`bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-orange-200/50 relative ${
                             index % 2 === 0 ? "slide-in-left" : "slide-in-right"
                           }`}
                           style={{
@@ -226,9 +226,9 @@ function Schedule() {
                           <div
                             className={`absolute ${
                               index % 2 === 0
-                                ? "right-0 rounded-l-full"
+                                ? "md:right-0 left-0 md:rounded-l-full rounded-r-full"
                                 : "left-0 rounded-r-full"
-                            } top-1/2 -translate-y-1/2 h-16 w-2 bg-gradient-to-b ${
+                            } top-1/2 -translate-y-1/2 h-12 md:h-16 w-2 bg-gradient-to-b ${
                               categoryColors[event.category]
                             }`}
                           ></div>
@@ -236,12 +236,14 @@ function Schedule() {
                           {/* Time badge */}
                           <div
                             className={`flex ${
-                              index % 2 === 0 ? "justify-end" : "justify-start"
-                            } mb-4`}
+                              index % 2 === 0
+                                ? "justify-start md:justify-end"
+                                : "justify-start"
+                            } mb-3 md:mb-4`}
                           >
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg">
+                            <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg">
                               <svg
-                                className="w-4 h-4"
+                                className="w-3 h-3 md:w-4 md:h-4"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -253,7 +255,7 @@ function Schedule() {
                                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                               </svg>
-                              <span className="text-lg font-black">
+                              <span className="text-base md:text-lg font-black">
                                 {event.time}
                               </span>
                             </div>
@@ -262,11 +264,13 @@ function Schedule() {
                           {/* Category badge */}
                           <div
                             className={`flex ${
-                              index % 2 === 0 ? "justify-end" : "justify-start"
-                            } mb-3`}
+                              index % 2 === 0
+                                ? "justify-start md:justify-end"
+                                : "justify-start"
+                            } mb-2 md:mb-3`}
                           >
                             <span
-                              className={`px-4 py-1.5 text-xs font-bold uppercase rounded-full bg-gradient-to-r ${
+                              className={`px-3 md:px-4 py-1 md:py-1.5 text-xs font-bold uppercase rounded-full bg-gradient-to-r ${
                                 categoryColors[event.category]
                               } text-white shadow-md`}
                             >
@@ -276,8 +280,10 @@ function Schedule() {
 
                           {/* Title */}
                           <h3
-                            className={`text-2xl font-black text-gray-900 mb-3 ${
-                              index % 2 === 0 ? "text-right" : "text-left"
+                            className={`text-xl md:text-2xl font-black text-gray-900 mb-2 md:mb-3 ${
+                              index % 2 === 0
+                                ? "text-left md:text-right"
+                                : "text-left"
                             }`}
                           >
                             {event.title}
@@ -285,8 +291,10 @@ function Schedule() {
 
                           {/* Description */}
                           <p
-                            className={`text-gray-700 mb-4 leading-relaxed ${
-                              index % 2 === 0 ? "text-right" : "text-left"
+                            className={`text-sm md:text-base text-gray-700 mb-3 md:mb-4 leading-relaxed ${
+                              index % 2 === 0
+                                ? "text-left md:text-right"
+                                : "text-left"
                             }`}
                           >
                             {event.description}
@@ -294,12 +302,14 @@ function Schedule() {
 
                           {/* Venue */}
                           <div
-                            className={`flex items-center gap-2 text-sm text-gray-600 font-medium ${
-                              index % 2 === 0 ? "justify-end" : "justify-start"
+                            className={`flex items-center gap-2 text-xs md:text-sm text-gray-600 font-medium ${
+                              index % 2 === 0
+                                ? "justify-start md:justify-end"
+                                : "justify-start"
                             }`}
                           >
                             <svg
-                              className="w-5 h-5 text-orange-500"
+                              className="w-4 h-4 md:w-5 md:h-5 text-orange-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
