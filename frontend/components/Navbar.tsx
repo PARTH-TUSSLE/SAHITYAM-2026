@@ -130,8 +130,8 @@ function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-in slide-in-from-top duration-200">
-            <div className="flex flex-col space-y-2">
+          <div className="md:hidden mt-4 pb-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg animate-in slide-in-from-top duration-200">
+            <div className="flex flex-col space-y-2 p-2">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
