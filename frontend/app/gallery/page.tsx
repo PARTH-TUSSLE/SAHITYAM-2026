@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Footer from "@/components/Footer";
@@ -103,6 +103,23 @@ const galleryImages: GalleryImage[] = [
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
+  // Hide navbar and footer when lightbox is open
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+      const navbar = document.querySelector("nav");
+      const footer = document.querySelector("footer");
+      if (navbar) navbar.classList.add("hidden");
+      if (footer) footer.classList.add("hidden");
+    } else {
+      document.body.style.overflow = "unset";
+      const navbar = document.querySelector("nav");
+      const footer = document.querySelector("footer");
+      if (navbar) navbar.classList.remove("hidden");
+      if (footer) footer.classList.remove("hidden");
+    }
+  }, [selectedImage]);
+
   return (
     <>
       <Navbar />
@@ -110,7 +127,7 @@ function Gallery() {
         {/* Animated circles */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-orange-300/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-200/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-yellow-200/20 rounded-full blur-3xl animate-pulse-slow"></div>
 
         {/* Content */}
         <div className="relative z-10 py-24">

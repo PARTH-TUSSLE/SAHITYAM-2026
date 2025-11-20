@@ -30,10 +30,14 @@ export default function EventModal({
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
 
-      // Hide navbar when modal is open
+      // Hide navbar and footer when modal is open
       const navbar = document.querySelector("nav");
+      const footer = document.querySelector("footer");
       if (navbar) {
         navbar.classList.add("hidden");
+      }
+      if (footer) {
+        footer.classList.add("hidden");
       }
     }
 
@@ -41,10 +45,14 @@ export default function EventModal({
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
 
-      // Show navbar when modal closes
+      // Show navbar and footer when modal closes
       const navbar = document.querySelector("nav");
+      const footer = document.querySelector("footer");
       if (navbar) {
         navbar.classList.remove("hidden");
+      }
+      if (footer) {
+        footer.classList.remove("hidden");
       }
     };
   }, [isOpen, onClose]);
