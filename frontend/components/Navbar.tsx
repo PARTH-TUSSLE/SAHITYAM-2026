@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,26 +63,40 @@ function Navbar() {
 
           {/* Navigation Items */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="relative px-6 py-2 text-gray-700 font-medium text-base transition-colors duration-300 hover:text-gray-900 group"
-                onMouseEnter={() => setHoveredItem(item.name)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <span className="relative z-10">{item.name}</span>
-
-                {/* Hover underline */}
-                <div
-                  className={`absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 ${
-                    hoveredItem === item.name
-                      ? "w-3/4 -translate-x-1/2"
-                      : "w-0 -translate-x-1/2"
+            {navItems.map((item) => {
+              const isActive = pathname === `/${item.href}`;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`relative px-6 py-2 font-medium text-base transition-colors duration-300 group ${
+                    isActive
+                      ? "text-orange-600"
+                      : "text-gray-700 hover:text-gray-900"
                   }`}
-                ></div>
-              </Link>
-            ))}
+                  onMouseEnter={() => setHoveredItem(item.name)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  <span className="relative z-10">{item.name}</span>
+
+                  {/* Active indicator - solid bar */}
+                  {isActive && (
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
+                  )}
+
+                  {/* Hover underline */}
+                  {!isActive && (
+                    <div
+                      className={`absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 ${
+                        hoveredItem === item.name
+                          ? "w-3/4 -translate-x-1/2"
+                          : "w-0 -translate-x-1/2"
+                      }`}
+                    ></div>
+                  )}
+                </Link>
+              );
+            })}
 
             {/* Register Button */}
             <Link
@@ -132,16 +148,23 @@ function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg animate-in slide-in-from-top duration-200">
             <div className="flex flex-col space-y-2 p-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = pathname === `/${item.href}`;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`px-4 py-3 font-medium rounded-lg transition-colors duration-200 ${
+                      isActive
+                        ? "bg-orange-100 text-orange-600"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
               <Link
                 href="#register"
                 className="px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg text-center shadow-lg hover:shadow-xl transition-all duration-300"
