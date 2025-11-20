@@ -7,6 +7,8 @@ import BlurText from "@/components/BlurText";
 import Countdown from "../components/Countdown";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SponsorScroll from "@/components/SponsorScroll";
+import PanelistsGrid from "@/components/PanelistsGrid";
 
 export default function Home() {
   const [showGate, setShowGate] = useState(true);
@@ -124,17 +126,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Second Section */}
-        <div className="min-h-screen w-full relative">
-          {/* Content - Ready for your additions */}
-          <div className="relative z-10 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
-            {showContent && (
-              <div className="max-w-6xl w-full">
-                {/* Your content will go here */}
-              </div>
-            )}
-          </div>
-        </div>
+        {/* Second Section - Panelists */}
+        {showContent && <PanelistsGrid />}
+
+        {/* Sponsors Section */}
+        {showContent && <SponsorScroll />}
       </div>
       <Footer />
     </>
