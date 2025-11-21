@@ -1,287 +1,222 @@
 "use client";
 
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-export default function GateAnimation({
-  onComplete,
-}: {
-  onComplete: () => void;
-}) {
-  const leftDoorControls = useAnimation();
-  const rightDoorControls = useAnimation();
-  const centerLightControls = useAnimation();
+export default function GateAnimation() {
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const sequence = async () => {
-      // Wait a moment
-      await new Promise((resolve) => setTimeout(resolve, 600));
-
-      // Open doors and trigger center light simultaneously
-      await Promise.all([
-        leftDoorControls.start("open"),
-        rightDoorControls.start("open"),
-        centerLightControls.start("burst"),
-      ]);
-
-      // Wait for animation to complete
-      await new Promise((resolve) => setTimeout(resolve, 400));
-      onComplete();
-    };
-
-    sequence();
-  }, [onComplete, leftDoorControls, rightDoorControls, centerLightControls]);
-
-  const doorVariants = {
-    closed: {
-      rotateY: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-      },
-    },
-    open: {
-      rotateY: 90,
-      transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 15,
-        mass: 1.2,
-      },
-    },
-  };
-
-  const textVariants = {
-    initial: {
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      filter: "blur(8px)",
-      transition: {
-        duration: 0.6,
-        ease: "easeIn",
-      },
-    },
-  };
-
-  const centerLightVariants = {
-    hidden: {
-      scaleY: 0,
-      opacity: 0,
-    },
-    burst: {
-      scaleY: 1,
-      opacity: [0, 1, 0.8, 0],
-      transition: {
-        duration: 1.2,
-        ease: "easeOut",
-        times: [0, 0.3, 0.7, 1],
-      },
-    },
-  };
-
-  const decorativeVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+    const timer = setTimeout(() => setIsComplete(true), 2800);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-gradient-to-br from-slate-900 via-orange-950/40 to-slate-900">
-      
-      {/* Subtle floating books */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
-        {[...Array(6)].map((_, i) => (
+    <motion.div
+      animate={
+        isComplete ? { opacity: 0, pointerEvents: "none" } : { opacity: 1 }
+      }
+      transition={{ duration: 0.6, delay: 0 }}
+      className="fixed inset-0 z-[100] bg-black overflow-hidden"
+    >
+      {/* Animated Background Gradient */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0 bg-gradient-to-b from-amber-900 via-black to-slate-900"
+      />
+
+      {/* Radial Glow */}
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1.5, opacity: 0.3 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500 rounded-full blur-3xl"
+      />
+
+      {/* Left Gate - Ornate */}
+      <motion.div
+        initial={{ x: 0, opacity: 1 }}
+        animate={{ x: "-100%", opacity: 0 }}
+        transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
+        className="absolute left-0 top-0 h-full w-1/2 bg-gradient-to-r from-black via-amber-950 to-transparent origin-right"
+        style={{
+          boxShadow: "inset -40px 0 80px rgba(0, 0, 0, 0.9)",
+        }}
+      >
+        {/* Ornate Pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <svg className="w-full h-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient
+                id="ornateLeft"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#b45309" />
+                <stop offset="100%" stopColor="#1f1f1f" />
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#ornateLeft)" />
+            <g stroke="#d97706" strokeWidth="2" opacity="0.5">
+              <line x1="0" y1="0" x2="100%" y2="100%" />
+              <line x1="100%" y1="0" x2="0" y2="100%" />
+            </g>
+          </svg>
+        </div>
+      </motion.div>
+
+      {/* Right Gate - Ornate */}
+      <motion.div
+        initial={{ x: 0, opacity: 1 }}
+        animate={{ x: "100%", opacity: 0 }}
+        transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
+        className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-black via-amber-950 to-transparent origin-left"
+        style={{
+          boxShadow: "inset 40px 0 80px rgba(0, 0, 0, 0.9)",
+        }}
+      >
+        {/* Ornate Pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <svg className="w-full h-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient
+                id="ornateRight"
+                x1="100%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#b45309" />
+                <stop offset="100%" stopColor="#1f1f1f" />
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#ornateRight)" />
+            <g stroke="#d97706" strokeWidth="2" opacity="0.5">
+              <line x1="0" y1="0" x2="100%" y2="100%" />
+              <line x1="100%" y1="0" x2="0" y2="100%" />
+            </g>
+          </svg>
+        </div>
+      </motion.div>
+
+      {/* Center Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+        {/* Top Decorative Line */}
+        <motion.div
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: 200, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mb-12"
+        />
+
+        {/* Sahityam Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+          className="text-center mb-4"
+        >
+          <h1 className="text-7xl md:text-8xl font-serif font-bold bg-clip-text text-transparent bg-gradient-to-b from-amber-200 via-amber-100 to-amber-300 drop-shadow-lg">
+            Sahityam
+          </h1>
+          <p className="text-amber-400/70 text-lg tracking-[0.3em] mt-2 font-light">
+            LITERARY EXCELLENCE
+          </p>
+        </motion.div>
+
+        {/* 2026 Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="text-5xl font-bold text-amber-300/60 mb-8"
+        >
+          2026
+        </motion.div>
+
+        {/* Animated Decorative Elements */}
+        <motion.div className="flex gap-8 mb-12">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 + i * 0.15 }}
+              className="w-2 h-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-200"
+            />
+          ))}
+        </motion.div>
+
+        {/* Glowing Underline */}
+        <motion.div
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: 150, opacity: 1 }}
+          transition={{ duration: 1.2, delay: 1.5 }}
+          className="h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent"
+        />
+
+        {/* Orbiting Elements */}
+        <div className="absolute w-80 h-80 mt-20">
           <motion.div
-            key={i}
-            className="absolute text-6xl"
-            style={{
-              left: `${15 + i * 15}%`,
-              top: `${20 + (i % 3) * 25}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 5, 0],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
           >
-            📖
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-amber-400 rounded-full" />
           </motion.div>
-        ))}
+        </div>
+
+        <div className="absolute w-96 h-96 mt-20">
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
+          >
+            <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 w-2 h-2 bg-amber-300 rounded-full" />
+          </motion.div>
+        </div>
+
+        {/* Decorative Circles */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.2 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="absolute w-72 h-72 rounded-full border-2 border-amber-400"
+        />
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.1 }}
+          transition={{ duration: 1.8, delay: 0.7 }}
+          className="absolute w-96 h-96 rounded-full border border-amber-300"
+        />
       </div>
 
-      {/* Left Door */}
-      <motion.div
-        className="absolute inset-y-0 left-0 w-1/2 origin-left"
-        style={{
-          background: "linear-gradient(135deg, #2d1810 0%, #1a0f08 100%)",
-          boxShadow: "inset -40px 0 80px rgba(0,0,0,0.5)",
-        }}
-        variants={doorVariants}
-        initial="closed"
-        animate={leftDoorControls}
-      >
-        <div className="relative h-full w-full flex flex-col items-end justify-center pr-32 gap-6">
-          {/* Simple vertical bars */}
-          <div className="absolute right-12 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-orange-500/40 to-transparent" />
-          <div className="absolute right-16 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange-500/30 to-transparent" />
-
-          {/* Simple handle */}
-          <div className="absolute right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-orange-600 to-orange-800 shadow-2xl" />
-
-          {/* SAHI Text */}
-          <motion.div
-            variants={textVariants}
-            initial="initial"
-            animate={leftDoorControls}
-          >
-            <div
-              className="text-8xl font-black tracking-widest"
-              style={{
-                background: "linear-gradient(135deg, #fb923c 0%, #fdba74 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              SAHI
-            </div>
-          </motion.div>
-
-          {/* Year */}
-          <motion.div
-            variants={decorativeVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-3xl font-bold text-orange-400/80 tracking-wider"
-          >
-            2026
-          </motion.div>
-
-          {/* Decorative line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-32 h-px bg-gradient-to-r from-orange-500 to-transparent"
-          />
-
-          {/* Literary quote icon */}
-          <motion.div
-            variants={decorativeVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.3 }}
-            className="text-4xl text-orange-400/60"
-          >
-            ✒️
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Right Door */}
-      <motion.div
-        className="absolute inset-y-0 right-0 w-1/2 origin-right"
-        style={{
-          background: "linear-gradient(225deg, #2d1810 0%, #1a0f08 100%)",
-          boxShadow: "inset 40px 0 80px rgba(0,0,0,0.5)",
-        }}
-        variants={doorVariants}
-        initial="closed"
-        animate={rightDoorControls}
-      >
-        <div className="relative h-full w-full flex flex-col items-start justify-center pl-32 gap-6">
-          {/* Simple vertical bars */}
-          <div className="absolute left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-orange-500/40 to-transparent" />
-          <div className="absolute left-16 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange-500/30 to-transparent" />
-
-          {/* Simple handle */}
-          <div className="absolute left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-orange-600 to-orange-800 shadow-2xl" />
-
-          {/* TYAM Text */}
-          <motion.div
-            variants={textVariants}
-            initial="initial"
-            animate={rightDoorControls}
-          >
-            <div
-              className="text-8xl font-black tracking-widest"
-              style={{
-                background: "linear-gradient(135deg, #fb923c 0%, #fdba74 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              TYAM
-            </div>
-          </motion.div>
-
-          {/* Subtitle */}
-          <motion.div
-            variants={decorativeVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-xl font-semibold text-orange-400/70 tracking-wide"
-          >
-            Literature Festival
-          </motion.div>
-
-          {/* Decorative line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-32 h-px bg-gradient-to-l from-orange-500 to-transparent"
-          />
-
-          {/* Book icon */}
-          <motion.div
-            variants={decorativeVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.3 }}
-            className="text-4xl text-orange-400/60"
-          >
-            📚
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Center Light Burst */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        variants={centerLightVariants}
-        initial="hidden"
-        animate={centerLightControls}
-      >
-        <div
-          className="w-1 h-full"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent 0%, #fb923c 50%, transparent 100%)",
-            boxShadow: "0 0 80px rgba(251,146,60,0.8)",
+      {/* Particle Effect */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={`particle-${i}`}
+          initial={{
+            x: Math.cos((i / 8) * Math.PI * 2) * 20,
+            y: Math.sin((i / 8) * Math.PI * 2) * 20,
+            opacity: 0,
           }}
+          animate={{
+            x: Math.cos((i / 8) * Math.PI * 2) * 200,
+            y: Math.sin((i / 8) * Math.PI * 2) * 200,
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 2.5,
+            delay: 1.2,
+            ease: "easeOut",
+          }}
+          className="absolute left-1/2 top-1/2 w-1 h-1 bg-amber-300 rounded-full"
         />
-      </motion.div>
-    </div>
+      ))}
+    </motion.div>
   );
 }
