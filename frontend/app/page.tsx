@@ -16,10 +16,7 @@ export default function Home() {
 
   const handleGateComplete = () => {
     setShowGate(false);
-    // Delay content appearance slightly for smooth transition
-    setTimeout(() => {
-      setShowContent(true);
-    }, 10);
+    setShowContent(true);
   };
 
   return (
