@@ -1,16 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
 function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { isAuthenticated, user, logout } = useAuth();
+  const profileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +23,26 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close profile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileMenuOpen(false);
+      }
+    };
+
+    if (isProfileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProfileMenuOpen]);
 
   const navItems = [
     { name: "Events", href: "events" },
@@ -121,42 +144,108 @@ function Navbar() {
 
             {/* Auth Buttons */}
             {isAuthenticated ? (
-              <div className="flex items-center gap-3 ml-6">
-                {/* User Name */}
-                <span className="text-sm font-semibold text-gray-700 hidden lg:block">
-                  {user?.name}
-                </span>
-
-                {/* Profile Button */}
-                <Link
-                  href="/profile"
-                  className="px-5 py-2.5 text-sm font-semibold text-orange-600 hover:text-orange-700 border-2 border-orange-500 rounded-full hover:bg-orange-50 transition-all duration-300"
-                >
-                  Profile
-                </Link>
-
-                {/* Logout Button */}
+              <div className="relative ml-6" ref={profileMenuRef}>
+                {/* Profile Avatar Button */}
                 <button
-                  onClick={logout}
-                  className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-red-500/30 hover:shadow-red-500/50"
+                  onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                  className="relative w-11 h-11 rounded-full bg-gradient-to-br from-orange-500 via-red-500 to-orange-600 flex items-center justify-center text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border-2 border-white/50 group"
                 >
-                  Logout
+                  <span className="relative z-10">
+                    {user?.name.charAt(0).toUpperCase()}
+                  </span>
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-400 to-red-500 blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
                 </button>
+
+                {/* Dropdown Menu */}
+                {isProfileMenuOpen && (
+                  <div className="absolute right-0 mt-3 w-56 bg-white backdrop-blur-xl rounded-2xl shadow-2xl shadow-orange-200/50 border border-orange-200/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-[1000]">
+                    {/* User Info Section */}
+                    <div className="px-4 py-4 bg-gradient-to-br from-orange-50 to-red-50 border-b border-orange-200/50">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-base">
+                          {user?.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold text-gray-900 truncate">
+                            {user?.name}
+                          </p>
+                          <p className="text-xs text-gray-600 truncate">
+                            {user?.email}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Menu Items */}
+                    <div className="py-2">
+                      <button
+                        onClick={() => {
+                          setIsProfileMenuOpen(false);
+                          router.push("/profile");
+                        }}
+                        className="w-full px-4 py-3 flex items-center gap-3 text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 hover:text-orange-600 transition-all duration-200 group"
+                      >
+                        <svg
+                          className="w-5 h-5 text-gray-500 group-hover:text-orange-600 transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          />
+                        </svg>
+                        <span className="font-semibold text-sm">Profile</span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setIsProfileMenuOpen(false);
+                          logout();
+                        }}
+                        className="w-full px-4 py-3 flex items-center gap-3 text-red-600 hover:bg-red-50 transition-all duration-200 group"
+                      >
+                        <svg
+                          className="w-5 h-5 text-red-500 group-hover:text-red-600 transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                          />
+                        </svg>
+                        <span className="font-semibold text-sm">Logout</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="flex items-center gap-3 ml-6">
-                {/* Login Button */}
+                {/* Login Button - Outlined Style */}
                 <Link
                   href="/login"
-                  className="px-6 py-2.5 text-sm font-semibold text-orange-600 hover:text-orange-700 border-2 border-orange-500 rounded-full hover:bg-orange-50 transition-all duration-300"
+                  className="relative px-6 py-2.5 text-sm font-bold text-orange-600 border-2 border-orange-500 rounded-full overflow-hidden group transition-all duration-300 hover:scale-105"
                 >
-                  Login
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                    Login
+                  </span>
+                  {/* Slide-in background on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </Link>
 
-                {/* Register Button */}
+                {/* Register Button - Filled Style */}
                 <Link
                   href="/register"
-                  className="relative px-8 py-3 bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white font-bold rounded-full overflow-hidden group shadow-xl shadow-red-500/40 hover:shadow-2xl hover:shadow-red-500/60 transition-all duration-500 hover:scale-105"
+                  className="relative px-7 py-2.5 bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white text-sm font-bold rounded-full overflow-hidden group shadow-lg shadow-red-500/40 hover:shadow-xl hover:shadow-red-500/60 transition-all duration-300 hover:scale-105"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     Register Now
@@ -174,15 +263,8 @@ function Navbar() {
                       />
                     </svg>
                   </span>
-
                   {/* Animated shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 skew-x-12"></div>
-
-                  {/* Pulsing glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-700 opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></div>
-
-                  {/* Border highlight */}
-                  <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 skew-x-12"></div>
                 </Link>
               </div>
             )}

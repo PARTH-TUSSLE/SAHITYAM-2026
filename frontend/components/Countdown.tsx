@@ -54,26 +54,27 @@ export default function Countdown() {
 }
 
 function FlipCard({ value, label }: { value: number; label: string }) {
-  const [currentValue, setCurrentValue] = useState(value);
-  const [nextValue, setNextValue] = useState(value);
+  const [displayValue, setDisplayValue] = useState(value);
+  const [previousValue, setPreviousValue] = useState(value);
   const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
-    if (value !== currentValue) {
-      setNextValue(value);
+    if (value !== displayValue) {
+      setPreviousValue(displayValue);
       setIsFlipping(true);
 
+      // Update to new value at halfway point
       const timer = setTimeout(() => {
-        setCurrentValue(value);
+        setDisplayValue(value);
         setIsFlipping(false);
-      }, 800);
+      }, 300);
 
       return () => clearTimeout(timer);
     }
-  }, [value, currentValue]);
+  }, [value, displayValue]);
 
-  const displayCurrent = String(currentValue).padStart(2, "0");
-  const displayNext = String(nextValue).padStart(2, "0");
+  const currentDisplay = String(displayValue).padStart(2, "0");
+  const previousDisplay = String(previousValue).padStart(2, "0");
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -81,22 +82,11 @@ function FlipCard({ value, label }: { value: number; label: string }) {
         className="relative w-20 h-24 md:w-28 md:h-32"
         style={{ perspective: "1000px" }}
       >
-        {/* Static bottom half showing current number */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-black rounded-b-2xl overflow-hidden shadow-2xl">
-          <div
-            className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
-            style={{
-              top: "-100%",
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
-            {displayCurrent}
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
-        </div>
-
-        {/* Static top half showing current number */}
-        <div className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-2xl overflow-hidden shadow-2xl">
+        {/* Static top half - shows current value */}
+        <div
+          className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-2xl overflow-hidden shadow-2xl"
+          style={{ zIndex: 1 }}
+        >
           <div
             className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
             style={{
@@ -104,22 +94,38 @@ function FlipCard({ value, label }: { value: number; label: string }) {
               fontVariantNumeric: "tabular-nums",
             }}
           >
-            {displayCurrent}
+            {currentDisplay}
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-800"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Flipping top half */}
+        {/* Static bottom half - shows current value */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-1/2 bg-black rounded-b-2xl overflow-hidden shadow-2xl"
+          style={{ zIndex: 1 }}
+        >
+          <div
+            className="absolute w-full h-[200%] flex items-center justify-center text-5xl md:text-7xl font-bold text-white"
+            style={{
+              top: "-100%",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {currentDisplay}
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+        </div>
+
+        {/* Flipping top half - shows previous value and flips down */}
         {isFlipping && (
           <div
             className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-2xl overflow-hidden shadow-2xl"
             style={{
-              transformOrigin: "bottom",
-              animation: "flipTop 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)",
-              backfaceVisibility: "hidden",
-              transformStyle: "preserve-3d",
-              zIndex: 10,
+              transformOrigin: "bottom center",
+              animation:
+                "flipDown 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards",
+              zIndex: 3,
             }}
           >
             <div
@@ -129,23 +135,21 @@ function FlipCard({ value, label }: { value: number; label: string }) {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {displayCurrent}
+              {previousDisplay}
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-800"></div>
           </div>
         )}
 
-        {/* Flipping bottom half */}
+        {/* Flipping bottom half - shows new value and flips up into position */}
         {isFlipping && (
           <div
             className="absolute bottom-0 left-0 right-0 h-1/2 bg-black rounded-b-2xl overflow-hidden shadow-2xl"
             style={{
-              transformOrigin: "top",
+              transformOrigin: "top center",
               animation:
-                "flipBottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)",
-              backfaceVisibility: "hidden",
-              transformStyle: "preserve-3d",
-              zIndex: 5,
+                "flipUp 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards",
+              zIndex: 2,
             }}
           >
             <div
@@ -155,7 +159,7 @@ function FlipCard({ value, label }: { value: number; label: string }) {
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              {displayNext}
+              {currentDisplay}
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
           </div>

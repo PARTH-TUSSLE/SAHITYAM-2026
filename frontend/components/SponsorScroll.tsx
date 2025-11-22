@@ -56,10 +56,10 @@ export default function SponsorScroll() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-red-600 via-orange-600 to-red-700 bg-clip-text text-transparent mb-4">
             Our Sponsors
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mx-auto"></div>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mx-auto shadow-lg shadow-red-300/50"></div>
         </div>
 
         {/* Infinite Scroll Container */}

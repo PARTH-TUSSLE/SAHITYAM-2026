@@ -51,7 +51,7 @@ export default function Home() {
             ></div>
 
             {/* First Section */}
-            <div className="min-h-screen w-full relative">
+            <div className="min-h-screen w-full relative pt-10">
               {/* Content */}
               <div className="relative z-10 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
                 {showContent && (
@@ -59,27 +59,21 @@ export default function Home() {
                     {/* Main heading with enhanced styling */}
                     <div className="text-center space-y-3">
                       <div className="inline-block">
-                        <BlurText
-                          text="Kala aur Sahit ka Sangam"
-                          delay={50}
-                          animateBy="words"
-                          direction="top"
-                          className="text-5xl md:text-6xl lg:text-7xl font-black text-black leading-tight"
-                        />
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 bg-clip-text text-transparent leading-tight animate-fade-in">
+                          Kala aur Sahit ka Sangam
+                        </h1>
                         {/* Decorative underline */}
-                        <div className="h-2 w-28 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mt-2 animate-slide-in mx-auto"></div>
+                        <div className="h-2 w-28 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mt-2 animate-slide-in mx-auto shadow-lg shadow-orange-300/50"></div>
                       </div>
                     </div>
 
                     {/* Description with better styling */}
                     <div className="max-w-3xl text-center mx-auto">
-                      <BlurText
-                        text="Welcome to SAHITYAM 2026, where art and literature converge. Join us from 3rd to 5th February 2026 for an unforgettable celebration of creativity."
-                        delay={50}
-                        animateBy="words"
-                        direction="top"
-                        className="text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed font-medium"
-                      />
+                      <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-semibold animate-fade-in">
+                        Welcome to SAHITYAM 2026, where art and literature
+                        converge. Join us from 3rd to 5th February 2026 for an
+                        unforgettable celebration of creativity.
+                      </p>
                     </div>
 
                     {/* Countdown Timer with enhanced container */}
@@ -141,16 +135,16 @@ export default function Home() {
                     </div>
 
                     {/* Decorative elements */}
-                    <div className="flex gap-8 mt-8 justify-center opacity-60">
+                    <div className="flex gap-8 mt-8 justify-center">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-bold text-red-600">
                           Live Event
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-bold text-green-600">
                           Registration Open
                         </span>
                       </div>
