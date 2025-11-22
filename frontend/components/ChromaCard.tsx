@@ -15,6 +15,7 @@ interface ChromaCardProps {
   onRegister?: (eventId: string) => void;
   onUnregister?: (eventId: string) => void;
   isAuthenticated?: boolean;
+  isLoading?: boolean;
 }
 
 export default function ChromaCard({
@@ -34,6 +35,7 @@ export default function ChromaCard({
   onRegister,
   onUnregister,
   isAuthenticated = false,
+  isLoading = false,
 }: ChromaCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -124,36 +126,64 @@ export default function ChromaCard({
                       e.stopPropagation();
                       handleRegisterClick();
                     }}
+                    disabled={isLoading}
                     className={`relative flex-1 px-4 py-2.5 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm ${
                       isRegistered
                         ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
                         : "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-                    }`}
+                    } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2">
-                      {isRegistered ? "Unregister" : "Register"}
-                      <svg
-                        className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:rotate-12"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        {isRegistered ? (
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        ) : (
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.5}
-                            d="M5 13l4 4L19 7"
-                          />
-                        )}
-                      </svg>
+                      {isLoading ? (
+                        <>
+                          <svg
+                            className="animate-spin h-3.5 w-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                          Loading...
+                        </>
+                      ) : (
+                        <>
+                          {isRegistered ? "Unregister" : "Register"}
+                          <svg
+                            className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:rotate-12"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            {isRegistered ? (
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2.5}
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            ) : (
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2.5}
+                                d="M5 13l4 4L19 7"
+                              />
+                            )}
+                          </svg>
+                        </>
+                      )}
                     </span>
                     <div
                       className={`absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 ${
@@ -214,6 +244,7 @@ export default function ChromaCard({
         onRegister={onRegister}
         onUnregister={onUnregister}
         isAuthenticated={isAuthenticated}
+        isLoading={isLoading}
       />
     </div>
   );

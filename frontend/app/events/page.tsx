@@ -27,6 +27,7 @@ function Events() {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [loadingEventId, setLoadingEventId] = useState<string | null>(null);
   const { isAuthenticated } = useAuth();
 
   const fetchEvents = async () => {
@@ -71,15 +72,19 @@ function Events() {
 
   const handleRegister = async (eventId: string) => {
     try {
+      setLoadingEventId(eventId);
       await apiClient.post("/registrations", { eventId });
       setRegisteredEventIds((prev) => new Set([...prev, eventId]));
     } catch (err: any) {
       alert(err.response?.data?.error || "Registration failed");
+    } finally {
+      setLoadingEventId(null);
     }
   };
 
   const handleUnregister = async (eventId: string) => {
     try {
+      setLoadingEventId(eventId);
       await apiClient.delete(`/registrations/${eventId}`);
       setRegisteredEventIds((prev) => {
         const newSet = new Set(prev);
@@ -88,6 +93,8 @@ function Events() {
       });
     } catch (err: any) {
       alert(err.response?.data?.error || "Unregistration failed");
+    } finally {
+      setLoadingEventId(null);
     }
   };
 
@@ -172,6 +179,7 @@ function Events() {
                     onRegister={handleRegister}
                     onUnregister={handleUnregister}
                     isAuthenticated={isAuthenticated}
+                    isLoading={loadingEventId === event.id}
                   />
                 ))}
               </div>
