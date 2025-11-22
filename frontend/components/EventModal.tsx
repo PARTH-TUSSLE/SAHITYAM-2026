@@ -10,6 +10,11 @@ interface EventModalProps {
   image: string;
   description: string;
   rules: string[];
+  eventId: string;
+  isRegistered?: boolean;
+  onRegister?: (eventId: string) => void;
+  onUnregister?: (eventId: string) => void;
+  isAuthenticated?: boolean;
 }
 
 export default function EventModal({
@@ -19,6 +24,11 @@ export default function EventModal({
   image,
   description,
   rules,
+  eventId,
+  isRegistered = false,
+  onRegister,
+  onUnregister,
+  isAuthenticated = false,
 }: EventModalProps) {
   // Close modal on Escape key
   useEffect(() => {
@@ -61,7 +71,7 @@ export default function EventModal({
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
-      {/* Backdrop */}
+      {/* Backdrop - separate layer */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
@@ -72,7 +82,7 @@ export default function EventModal({
 
       {/* Modal */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden z-10"
         style={{
           animation:
             "modalSlideIn 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
@@ -80,7 +90,10 @@ export default function EventModal({
       >
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
           className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
           aria-label="Close modal"
         >
@@ -147,9 +160,36 @@ export default function EventModal({
 
             {/* Register Button */}
             <div className="mt-8 pt-6 border-t border-gray-200">
-              <button className="w-full px-6 py-4 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95">
-                Register for this Event
-              </button>
+              {isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    if (isRegistered && onUnregister) {
+                      onUnregister(eventId);
+                    } else if (!isRegistered && onRegister) {
+                      onRegister(eventId);
+                    }
+                    onClose();
+                  }}
+                  className={`w-full px-6 py-4 font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95 ${
+                    isRegistered
+                      ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
+                      : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white"
+                  }`}
+                >
+                  {isRegistered
+                    ? "Unregister from this Event"
+                    : "Register for this Event"}
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
+                >
+                  Login to Register
+                </button>
+              )}
             </div>
           </div>
         </div>

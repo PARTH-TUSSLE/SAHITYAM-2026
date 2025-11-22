@@ -96,17 +96,47 @@ export default function Home() {
                     {/* Call to action buttons */}
                     <div className="flex flex-wrap gap-4 justify-center mt-8">
                       <a
-                        href="#events"
+                        href="/events"
                         className="group relative px-7 py-3.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden text-sm md:text-base"
                       >
-                        <span className="relative z-10">Explore Events</span>
+                        <span className="relative z-10 flex items-center gap-2">
+                          <span>Explore Events</span>
+                          <svg
+                            className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2.5}
+                              d="M13 7l5 5m0 0l-5 5m5-5H6"
+                            />
+                          </svg>
+                        </span>
                         <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </a>
                       <a
-                        href="#schedule"
+                        href="/schedule"
                         className="group px-7 py-3.5 bg-white/80 backdrop-blur-sm text-gray-900 font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-gray-900/10 hover:border-gray-900/30 text-sm md:text-base"
                       >
-                        View Schedule
+                        <span className="flex items-center gap-2">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2.5}
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <span>View Schedule</span>
+                        </span>
                       </a>
                     </div>
 

@@ -1,187 +1,95 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import ChromaCard from "../../components/ChromaCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import apiClient from "@/lib/api";
+import { useAuth } from "@/contexts/AuthContext";
+
+interface Event {
+  id: string;
+  title: string;
+  subtitle: string | null;
+  description: string;
+  image: string;
+  rules: string[];
+}
+
+interface Registration {
+  eventId: string;
+}
 
 function Events() {
-  const events = [
-    {
-      id: 1,
-      image:
-        "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=800&h=600&fit=crop",
-      title: "Youth Parliament",
-      subtitle: "Debate and parliamentary proceedings",
-      description:
-        "Engage in structured parliamentary debates and experience the workings of a democratic institution. Develop public speaking and critical thinking skills.",
-      rules: [
-        "Teams must consist of 5-7 members",
-        "Debates will follow parliamentary procedure",
-        "Time limits will be strictly enforced",
-        "All participants must maintain decorum",
-        "Topics will be announced one week prior",
-      ],
-    },
-    {
-      id: 2,
-      image:
-        "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&h=600&fit=crop",
-      title: "Debate Competition",
-      subtitle: "Articulate your arguments",
-      description:
-        "Test your oratory and argumentation skills in this competitive debate format. Present compelling arguments on contemporary topics.",
-      rules: [
-        "Individual or pair format available",
-        "Each speaker gets 5 minutes",
-        "Rebuttal time: 2 minutes",
-        "Topics announced 2 days before",
-        "Judging based on content, delivery, and rebuttal",
-      ],
-    },
-    {
-      id: 3,
-      image:
-        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
-      title: "Treasure Hunt (3 Days)",
-      subtitle: "Adventure across campus",
-      description:
-        "A thrilling three-day treasure hunt with clues, puzzles, and challenges spread across the campus. Test your problem-solving and teamwork skills.",
-      rules: [
-        "Teams of 3-5 members required",
-        "Event spans across 3 days",
-        "Follow all campus safety guidelines",
-        "No use of external help or internet",
-        "Final treasure location revealed on Day 3",
-      ],
-    },
-    {
-      id: 4,
-      image:
-        "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=600&fit=crop",
-      title: "Literature Quiz",
-      subtitle: "Test your literary knowledge",
-      description:
-        "Challenge yourself with questions spanning classic to contemporary literature, poetry, authors, and literary movements from around the world.",
-      rules: [
-        "Teams of 2-3 members",
-        "Multiple rounds: prelims, semi-finals, and finals",
-        "Questions cover global literature",
-        "Rapid-fire and buzzer rounds included",
-        "Use of mobile phones strictly prohibited",
-      ],
-    },
-    {
-      id: 5,
-      image:
-        "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop",
-      title: "Turncoat Competition",
-      subtitle: "Master both sides of the argument",
-      description:
-        "A unique debate format where participants must argue for and against the same topic. Showcases adaptability and comprehensive understanding.",
-      rules: [
-        "Individual competition",
-        "Must argue both FOR and AGAINST",
-        "2 minutes per side",
-        "No repetition of points allowed",
-        "Switch happens at judges' signal",
-      ],
-    },
-    {
-      id: 6,
-      image:
-        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&h=600&fit=crop",
-      title: "Poster Making",
-      subtitle: "Visual storytelling and design",
-      description:
-        "Create impactful posters on literary themes or social issues. Combine artistic skills with meaningful messaging.",
-      rules: [
-        "Individual competition",
-        "Theme announced on the day",
-        "2 hours time limit",
-        "Materials provided by organizers",
-        "Digital or hand-drawn submissions accepted",
-      ],
-    },
-    {
-      id: 7,
-      image:
-        "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=600&fit=crop",
-      title: "Open Mic",
-      subtitle: "Express yourself freely",
-      description:
-        "An open platform for poetry, storytelling, stand-up comedy, or any form of verbal expression. Share your voice with the audience.",
-      rules: [
-        "Individual performers",
-        "5 minutes per performance",
-        "Any language permitted",
-        "Original content encouraged",
-        "Sign up on first-come basis",
-      ],
-    },
-    {
-      id: 8,
-      image:
-        "https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&h=600&fit=crop",
-      title: "Solo Dance",
-      subtitle: "Individual expression through movement",
-      description:
-        "Showcase your dancing prowess in this solo performance competition. Any dance style welcome - classical, contemporary, hip-hop, or folk.",
-      rules: [
-        "Solo performance only",
-        "Performance duration: 3-5 minutes",
-        "Any dance form permitted",
-        "Own music arrangement required",
-        "Props allowed with prior approval",
-      ],
-    },
-    {
-      id: 9,
-      image:
-        "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&h=600&fit=crop",
-      title: "Crew Dance (Western/Traditional)",
-      subtitle: "Team choreography showcase",
-      description:
-        "Group dance competition featuring Western or Traditional styles. Demonstrate coordination, creativity, and synchronization.",
-      rules: [
-        "Team size: 6-15 members",
-        "Duration: 5-8 minutes",
-        "Choose Western or Traditional category",
-        "Costumes and props permitted",
-        "Judged on synchronization, creativity, and energy",
-      ],
-    },
-    {
-      id: 10,
-      image:
-        "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=600&fit=crop",
-      title: "Fashion Show",
-      subtitle: "Style meets creativity",
-      description:
-        "Walk the ramp and showcase creative fashion concepts. From traditional to avant-garde, express your style statement.",
-      rules: [
-        "Teams of 8-12 models",
-        "Theme-based presentation required",
-        "Duration: 8-10 minutes",
-        "Own costume arrangements",
-        "Background music and props allowed",
-      ],
-    },
-    {
-      id: 11,
-      image:
-        "https://images.unsplash.com/photo-1588466585717-f8041aec7875?w=800&h=600&fit=crop",
-      title: "Skit/Mime",
-      subtitle: "Silent storytelling",
-      description:
-        "Perform a skit or mime act conveying powerful messages through expressions and actions. Master the art of non-verbal communication.",
-      rules: [
-        "Teams of 4-8 members",
-        "Duration: 5-7 minutes",
-        "Minimal or no dialogue for mime",
-        "Props and costumes allowed",
-        "Theme should have social relevance",
-      ],
-    },
-  ];
+  const [events, setEvents] = useState<Event[]>([]);
+  const [registeredEventIds, setRegisteredEventIds] = useState<Set<string>>(
+    new Set()
+  );
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { isAuthenticated } = useAuth();
+
+  const fetchEvents = async () => {
+    try {
+      const response = await apiClient.get("/events");
+      setEvents(response.data);
+    } catch (err: any) {
+      console.error("Error fetching events:", err);
+      throw err;
+    }
+  };
+
+  const fetchUserRegistrations = async () => {
+    try {
+      const response = await apiClient.get("/registrations/my-registrations");
+      const registrations: Registration[] = response.data;
+      const eventIds = new Set(registrations.map((reg) => reg.eventId));
+      setRegisteredEventIds(eventIds);
+    } catch (err: any) {
+      console.error("Error fetching registrations:", err);
+      // Don't throw - user might not be authenticated
+    }
+  };
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        await fetchEvents();
+        if (isAuthenticated) {
+          await fetchUserRegistrations();
+        }
+      } catch (err: any) {
+        setError(err.response?.data?.error || "Failed to load events");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [isAuthenticated]);
+
+  const handleRegister = async (eventId: string) => {
+    try {
+      await apiClient.post("/registrations", { eventId });
+      setRegisteredEventIds((prev) => new Set([...prev, eventId]));
+    } catch (err: any) {
+      alert(err.response?.data?.error || "Registration failed");
+    }
+  };
+
+  const handleUnregister = async (eventId: string) => {
+    try {
+      await apiClient.delete(`/registrations/${eventId}`);
+      setRegisteredEventIds((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(eventId);
+        return newSet;
+      });
+    } catch (err: any) {
+      alert(err.response?.data?.error || "Unregistration failed");
+    }
+  };
 
   return (
     <>
@@ -211,16 +119,63 @@ function Events() {
             </div>
 
             {/* Events Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {events.map((event) => (
-                <ChromaCard
-                  key={event.id}
-                  image={event.image}
-                  title={event.title}
-                  subtitle={event.subtitle}
-                />
-              ))}
-            </div>
+            {loading ? (
+              <div className="flex justify-center items-center py-20">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+              </div>
+            ) : error ? (
+              <div className="text-center py-20">
+                <div className="bg-red-50 border border-red-200 text-red-600 rounded-lg p-6 max-w-md mx-auto">
+                  <svg
+                    className="w-12 h-12 mx-auto mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <p className="font-semibold text-lg mb-2">
+                    Failed to Load Events
+                  </p>
+                  <p className="text-sm">{error}</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                  >
+                    Retry
+                  </button>
+                </div>
+              </div>
+            ) : events.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-gray-600 text-lg">
+                  No events available at the moment.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {events.map((event) => (
+                  <ChromaCard
+                    key={event.id}
+                    eventId={event.id}
+                    image={event.image}
+                    title={event.title}
+                    subtitle={event.subtitle || ""}
+                    description={event.description}
+                    rules={event.rules}
+                    isRegistered={registeredEventIds.has(event.id)}
+                    onRegister={handleRegister}
+                    onUnregister={handleUnregister}
+                    isAuthenticated={isAuthenticated}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

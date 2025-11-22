@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 
 function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated, user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,20 +30,27 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/80 backdrop-blur-md border-gray-300 shadow-sm"
-          : "bg-transparent border-gray-400/50"
+          ? "bg-gradient-to-r from-amber-50/95 via-white/95 to-orange-50/95 backdrop-blur-xl border-b border-orange-200/50 shadow-lg shadow-orange-100/50"
+          : "bg-gradient-to-r from-amber-50/60 via-white/60 to-orange-50/60 backdrop-blur-sm border-b border-orange-200/30"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-lg">
+              {/* Outer glow ring */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl blur-md opacity-0 group-hover:opacity-60 transition-all duration-500 scale-110"></div>
+
+              {/* Main icon container */}
+              <div className="relative w-12 h-12 bg-gradient-to-br from-orange-500 via-red-500 to-red-600 rounded-xl flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl shadow-red-500/30">
+                {/* Inner shine */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent rounded-xl opacity-60"></div>
+
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-7 h-7 text-white relative z-10 drop-shadow-lg"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -49,48 +58,60 @@ function Navbar() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                   />
                 </svg>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
             </div>
-            <span className="text-2xl font-bold text-gray-900 tracking-tight transition-colors duration-300 group-hover:text-red-600">
-              SAHITYAM 2026
-            </span>
+
+            <div className="flex flex-col">
+              <span className="text-2xl font-black bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 bg-clip-text text-transparent tracking-tight transition-all duration-300 group-hover:scale-105">
+                SAHITYAM 2026
+              </span>
+              <span className="text-[10px] font-semibold text-orange-500/70 tracking-widest uppercase -mt-1">
+                Literature Festival
+              </span>
+            </div>
           </Link>
 
           {/* Navigation Items */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = pathname === `/${item.href}`;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative px-6 py-2 font-medium text-base transition-colors duration-300 group ${
+                  className={`relative px-5 py-2.5 font-semibold text-sm transition-all duration-300 group rounded-lg ${
                     isActive
                       ? "text-orange-600"
-                      : "text-gray-700 hover:text-gray-900"
+                      : "text-gray-700 hover:text-orange-600"
                   }`}
                   onMouseEnter={() => setHoveredItem(item.name)}
                   onMouseLeave={() => setHoveredItem(null)}
                 >
+                  {/* Background glow on hover */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                      isActive ? "opacity-50" : ""
+                    }`}
+                  ></div>
+
                   <span className="relative z-10">{item.name}</span>
 
-                  {/* Active indicator - solid bar */}
+                  {/* Active indicator - enhanced */}
                   {isActive && (
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 rounded-full shadow-lg shadow-orange-500/50"></div>
                   )}
 
-                  {/* Hover underline */}
+                  {/* Hover underline - animated gradient */}
                   {!isActive && (
                     <div
-                      className={`absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 ${
+                      className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 rounded-full transition-all duration-300 shadow-lg shadow-orange-400/40 ${
                         hoveredItem === item.name
-                          ? "w-3/4 -translate-x-1/2"
-                          : "w-0 -translate-x-1/2"
+                          ? "w-4/5 -translate-x-1/2 opacity-100"
+                          : "w-0 -translate-x-1/2 opacity-0"
                       }`}
                     ></div>
                   )}
@@ -98,29 +119,83 @@ function Navbar() {
               );
             })}
 
-            {/* Register Button */}
-            <Link
-              href="#register"
-              className="relative ml-4 px-8 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-full overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <span className="relative z-10">Register Now</span>
+            {/* Auth Buttons */}
+            {isAuthenticated ? (
+              <div className="flex items-center gap-3 ml-6">
+                {/* User Name */}
+                <span className="text-sm font-semibold text-gray-700 hidden lg:block">
+                  {user?.name}
+                </span>
 
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                {/* Profile Button */}
+                <Link
+                  href="/profile"
+                  className="px-5 py-2.5 text-sm font-semibold text-orange-600 hover:text-orange-700 border-2 border-orange-500 rounded-full hover:bg-orange-50 transition-all duration-300"
+                >
+                  Profile
+                </Link>
 
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-red-600 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
-            </Link>
+                {/* Logout Button */}
+                <button
+                  onClick={logout}
+                  className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-red-500/30 hover:shadow-red-500/50"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3 ml-6">
+                {/* Login Button */}
+                <Link
+                  href="/login"
+                  className="px-6 py-2.5 text-sm font-semibold text-orange-600 hover:text-orange-700 border-2 border-orange-500 rounded-full hover:bg-orange-50 transition-all duration-300"
+                >
+                  Login
+                </Link>
+
+                {/* Register Button */}
+                <Link
+                  href="/register"
+                  className="relative px-8 py-3 bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white font-bold rounded-full overflow-hidden group shadow-xl shadow-red-500/40 hover:shadow-2xl hover:shadow-red-500/60 transition-all duration-500 hover:scale-105"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Register Now
+                    <svg
+                      className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                  </span>
+
+                  {/* Animated shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 skew-x-12"></div>
+
+                  {/* Pulsing glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-700 opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></div>
+
+                  {/* Border highlight */}
+                  <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+            className="md:hidden p-2.5 rounded-xl bg-gradient-to-br from-orange-100 to-red-100 hover:from-orange-200 hover:to-red-200 transition-all duration-300 shadow-md hover:shadow-lg"
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg
-              className="w-6 h-6 text-gray-700"
+              className="w-6 h-6 text-orange-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -129,14 +204,14 @@ function Navbar() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   d="M6 18L18 6M6 6l12 12"
                 />
               ) : (
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               )}
@@ -146,18 +221,18 @@ function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg animate-in slide-in-from-top duration-200">
-            <div className="flex flex-col space-y-2 p-2">
+          <div className="md:hidden mt-4 pb-4 bg-gradient-to-br from-white/98 to-orange-50/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-orange-200/50 animate-in slide-in-from-top duration-300 border border-orange-200/50">
+            <div className="flex flex-col space-y-2 p-3">
               {navItems.map((item) => {
                 const isActive = pathname === `/${item.href}`;
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`px-4 py-3 font-medium rounded-lg transition-colors duration-200 ${
+                    className={`px-5 py-3.5 font-semibold rounded-xl transition-all duration-300 ${
                       isActive
-                        ? "bg-orange-100 text-orange-600"
-                        : "text-gray-700 hover:bg-gray-100"
+                        ? "bg-gradient-to-r from-orange-100 to-red-100 text-orange-600 shadow-md shadow-orange-200/50"
+                        : "text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 hover:text-orange-600"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -165,13 +240,45 @@ function Navbar() {
                   </Link>
                 );
               })}
-              <Link
-                href="#register"
-                className="px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg text-center shadow-lg hover:shadow-xl transition-all duration-300"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Register Now
-              </Link>
+
+              {/* Auth Buttons in Mobile Menu */}
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    href="/profile"
+                    className="px-5 py-3.5 font-semibold text-center rounded-xl bg-gradient-to-r from-orange-100 to-red-100 text-orange-600 hover:from-orange-200 hover:to-red-200 transition-all duration-300"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="px-5 py-3.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl text-center shadow-xl shadow-red-500/40 hover:shadow-2xl hover:shadow-red-500/60 transition-all duration-300"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-5 py-3.5 font-semibold text-center rounded-xl border-2 border-orange-500 text-orange-600 hover:bg-orange-50 transition-all duration-300"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="px-5 py-3.5 bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white font-bold rounded-xl text-center shadow-xl shadow-red-500/40 hover:shadow-2xl hover:shadow-red-500/60 transition-all duration-300 hover:scale-[1.02] border-2 border-white/20"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Register Now
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}
