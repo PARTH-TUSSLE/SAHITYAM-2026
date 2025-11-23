@@ -93,15 +93,15 @@ export default function ChromaCard({
               )}
 
               {/* Action Buttons */}
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-center">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsModalOpen(true);
                   }}
-                  className="relative flex-1 px-4 py-2.5 bg-white/95 backdrop-blur-sm border-2 border-white/50 hover:border-orange-400 text-gray-700 hover:text-orange-600 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 overflow-hidden group/btn text-sm"
+                  className="relative px-6 py-3 bg-white/95 backdrop-blur-sm border-2 border-white/50 hover:border-orange-400 text-gray-700 hover:text-orange-600 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 overflow-hidden group/btn text-sm"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
+                  <span className="relative z-10 flex items-center justify-center gap-1.5">
                     See More
                     <svg
                       className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1"
@@ -127,13 +127,13 @@ export default function ChromaCard({
                       handleRegisterClick();
                     }}
                     disabled={isLoading}
-                    className={`relative flex-1 px-4 py-2.5 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm ${
+                    className={`relative px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm ${
                       isRegistered
                         ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
                         : "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
                     } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
+                    <span className="relative z-10 flex items-center justify-center gap-1.5">
                       {isLoading ? (
                         <>
                           <svg
@@ -199,9 +199,9 @@ export default function ChromaCard({
                       e.stopPropagation();
                       window.location.href = "/login";
                     }}
-                    className="relative flex-1 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm"
+                    className="relative px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm"
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
+                    <span className="relative z-10 flex items-center justify-center gap-1.5">
                       Login to Register
                       <svg
                         className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1"
