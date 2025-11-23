@@ -49,12 +49,13 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         name: true,
         username: true,
         email: true,
+        role: true,
         createdAt: true,
       },
     });
 
     // Generate token
-    const token = generateToken(user.id);
+    const token = generateToken(user.id, user.role);
 
     res.status(201).json({ user, token });
   } catch (error) {
@@ -92,7 +93,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Generate token
-    const token = generateToken(user.id);
+    const token = generateToken(user.id, user.role);
 
     res.json({
       user: {
@@ -100,6 +101,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         name: user.name,
         username: user.username,
         email: user.email,
+        role: user.role,
       },
       token,
     });
@@ -123,6 +125,7 @@ export const getProfile = async (
         name: true,
         username: true,
         email: true,
+        role: true,
         createdAt: true,
         registrations: {
           include: {

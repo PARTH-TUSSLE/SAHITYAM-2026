@@ -51,6 +51,12 @@ function Navbar() {
     { name: "Contact", href: "contact" },
   ];
 
+  // Add Admin Dashboard to nav items if user is admin
+  const allNavItems =
+    user?.role === "ADMIN"
+      ? [...navItems, { name: "Admin Dashboard", href: "admin" }]
+      : navItems;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -100,7 +106,7 @@ function Navbar() {
 
           {/* Navigation Items */}
           <div className="hidden md:flex items-center gap-2">
-            {navItems.map((item) => {
+            {allNavItems.map((item) => {
               const isActive = pathname === `/${item.href}`;
               return (
                 <Link
@@ -305,7 +311,7 @@ function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 bg-gradient-to-br from-white/98 to-orange-50/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-orange-200/50 animate-in slide-in-from-top duration-300 border border-orange-200/50">
             <div className="flex flex-col space-y-2 p-3">
-              {navItems.map((item) => {
+              {allNavItems.map((item) => {
                 const isActive = pathname === `/${item.href}`;
                 return (
                   <Link

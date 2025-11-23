@@ -3,6 +3,7 @@ import { verifyToken } from "../utils/jwt";
 
 export interface AuthRequest extends Request {
   userId?: string;
+  userRole?: string;
 }
 
 export const authMiddleware = (
@@ -26,8 +27,25 @@ export const authMiddleware = (
     }
 
     req.userId = decoded.userId;
+    req.userRole = decoded.role;
     next();
   } catch (error) {
     res.status(401).json({ error: "Authentication failed" });
+  }
+};
+
+export const adminMiddleware = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+): void => {
+  try {
+    if (req.userRole !== "ADMIN") {
+      res.status(403).json({ error: "Admin access required" });
+      return;
+    }
+    next();
+  } catch (error) {
+    res.status(403).json({ error: "Access forbidden" });
   }
 };
