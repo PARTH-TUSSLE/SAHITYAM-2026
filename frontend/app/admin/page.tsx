@@ -12,6 +12,7 @@ interface User {
   name: string;
   username: string;
   email: string;
+  mobileNumber?: string;
   createdAt: string;
 }
 
@@ -377,6 +378,14 @@ export default function AdminDashboard() {
                             <p className="text-sm text-gray-600">
                               @{registration.user.username}
                             </p>
+                            {registration.user.mobileNumber && (
+                              <p className="text-sm text-gray-700 font-semibold">
+                                <span className="font-semibold mr-1">
+                                  Mobile:
+                                </span>
+                                {registration.user.mobileNumber}
+                              </p>
+                            )}
                             <p className="text-sm text-gray-500">
                               {registration.user.email}
                             </p>

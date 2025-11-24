@@ -149,6 +149,27 @@ export default function ProfilePage() {
                       </svg>
                       {user?.email}
                     </span>
+                    {user?.mobileNumber && (
+                      <>
+                        <span className="hidden md:block text-gray-300">•</span>
+                        <span className="flex items-center gap-1">
+                          <svg
+                            className="w-4 h-4 text-gray-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                            />
+                          </svg>
+                          {user.mobileNumber}
+                        </span>
+                      </>
+                    )}
                   </div>
 
                   {/* Stats */}
