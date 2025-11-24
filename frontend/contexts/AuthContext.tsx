@@ -25,7 +25,8 @@ interface AuthContextType {
     name: string,
     username: string,
     email: string,
-    password: string
+    password: string,
+    mobileNumber: string
   ) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
@@ -66,7 +67,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     name: string,
     username: string,
     email: string,
-    password: string
+    password: string,
+    mobileNumber: string
   ): Promise<void> => {
     try {
       const response = await apiClient.post("/auth/register", {
@@ -74,6 +76,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         username,
         email,
         password,
+        mobileNumber,
       });
       const { user: userData, token } = response.data;
 

@@ -14,7 +14,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, mobileNumber } = req.body;
 
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
@@ -43,12 +43,14 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         username,
         email,
         password: hashedPassword,
+        mobileNumber,
       },
       select: {
         id: true,
         name: true,
         username: true,
         email: true,
+        mobileNumber: true,
         role: true,
         createdAt: true,
       },
