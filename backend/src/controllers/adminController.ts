@@ -8,27 +8,57 @@ export const getAllEventRegistrations = async (
   res: Response
 ): Promise<void> => {
   try {
-    const events = await prisma.event.findMany({
-      include: {
-        registrations: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                username: true,
-                email: true,
-                mobileNumber: true,
-                createdAt: true,
+    let events;
+    try {
+      // Try including mobileNumber (works when Prisma schema/client is up-to-date)
+      events = await prisma.event.findMany({
+        include: {
+          registrations: {
+            include: {
+              user: {
+                select: {
+                  id: true,
+                  name: true,
+                  username: true,
+                  email: true,
+                  mobileNumber: true,
+                  createdAt: true,
+                },
               },
             },
           },
         },
-      },
-      orderBy: {
-        title: "asc",
-      },
-    });
+        orderBy: {
+          title: "asc",
+        },
+      });
+    } catch (err) {
+      // If selecting mobileNumber causes an error (client/schema mismatch), retry without it
+      console.warn(
+        "adminController: failed to include mobileNumber, retrying without it",
+        err
+      );
+      events = await prisma.event.findMany({
+        include: {
+          registrations: {
+            include: {
+              user: {
+                select: {
+                  id: true,
+                  name: true,
+                  username: true,
+                  email: true,
+                  createdAt: true,
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          title: "asc",
+        },
+      });
+    }
 
     // Transform data to include registration count
     const eventsWithStats = events.map((event) => ({
@@ -50,28 +80,57 @@ export const getEventRegistrations = async (
   try {
     const { eventId } = req.params;
 
-    const event = await prisma.event.findUnique({
-      where: { id: eventId },
-      include: {
-        registrations: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                username: true,
-                email: true,
-                mobileNumber: true,
-                createdAt: true,
+    let event;
+    try {
+      event = await prisma.event.findUnique({
+        where: { id: eventId },
+        include: {
+          registrations: {
+            include: {
+              user: {
+                select: {
+                  id: true,
+                  name: true,
+                  username: true,
+                  email: true,
+                  mobileNumber: true,
+                  createdAt: true,
+                },
               },
             },
-          },
-          orderBy: {
-            createdAt: "desc",
+            orderBy: {
+              createdAt: "desc",
+            },
           },
         },
-      },
-    });
+      });
+    } catch (err) {
+      console.warn(
+        "adminController.getEventRegistrations: failed to include mobileNumber, retrying without it",
+        err
+      );
+      event = await prisma.event.findUnique({
+        where: { id: eventId },
+        include: {
+          registrations: {
+            include: {
+              user: {
+                select: {
+                  id: true,
+                  name: true,
+                  username: true,
+                  email: true,
+                  createdAt: true,
+                },
+              },
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
+        },
+      });
+    }
 
     if (!event) {
       res.status(404).json({ error: "Event not found" });
