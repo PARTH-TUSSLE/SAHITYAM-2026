@@ -24,7 +24,10 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased font-sans overflow-x-hidden`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        
+        <AuthProvider>
+          <div className="relative z-10">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

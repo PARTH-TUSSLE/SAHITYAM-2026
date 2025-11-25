@@ -1,20 +1,18 @@
+// components/HomePage.tsx
 "use client";
-
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import GateAnimation from "../components/GateAnimation";
-import BlurText from "@/components/BlurText";
-import Countdown from "../components/Countdown";
+import BackgroundElements from "../components/ui/BackgroundElements";
+import GateAnimation from "@/components/GateAnimation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SponsorScroll from "@/components/SponsorScroll";
 import PanelistsGrid from "@/components/PanelistsGrid";
+import Countdown from "@/components/Countdown";
 
-export default function Home() {
+export default function HomePage() {
   const [showGate, setShowGate] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
-  // Hide gate and show content after animation completes
   useEffect(() => {
     const gateTimer = setTimeout(() => setShowGate(false), 3400);
     const contentTimer = setTimeout(() => setShowContent(true), 3400);
@@ -27,140 +25,114 @@ export default function Home() {
   return (
     <>
       {showGate && <GateAnimation />}
-
       {showContent && (
         <>
           <Navbar />
+          <BackgroundElements />
+          <div className="w-full relative min-h-screen text-gray-800">
+            {/* Hero Section */}
+            <div className="relative z-10 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
+              <div className="max-w-6xl w-full space-y-8 text-center animate-fade-in">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent leading-tight">
+                  Kala aur Sahit ka Sangam
+                </h1>
+                <div className="h-2 w-28 bg-gradient-to-r from-pink-500 to-red-400 rounded-full mt-2 mx-auto"></div>
+                <p className="text-lg md:text-xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto">
+                  Welcome to SAHITYAM 2026, where art and literature converge.
+                  Join us from 3rd to 5th February 2026 for an unforgettable
+                  celebration of creativity.
+                </p>
 
-          {/* Unified Background Container */}
-          <div className="w-full relative">
-            {/* Animated gradient background - Fixed to cover entire page */}
-            <div className="fixed inset-0 bg-gradient-to-br from-amber-50 via-orange-100 to-amber-200 animate-gradient-shift -z-10">
-              {/* Animated circles */}
-              <div className="absolute top-20 left-10 w-72 h-72 bg-orange-300/30 rounded-full blur-3xl animate-float"></div>
-              <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl animate-float-delayed"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-yellow-200/20 rounded-full blur-3xl animate-pulse-slow"></div>
-            </div>
-
-            {/* Decorative pattern overlay - Fixed */}
-            <div
-              className="fixed inset-0 opacity-5 pointer-events-none -z-10"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}
-            ></div>
-
-            {/* First Section */}
-            <div className="min-h-screen w-full relative pt-10">
-              {/* Content */}
-              <div className="relative z-10 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
-                {showContent && (
-                  <div className="max-w-6xl w-full space-y-6 animate-fade-in">
-                    {/* Main heading with enhanced styling */}
-                    <div className="text-center space-y-3">
-                      <div className="inline-block">
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 bg-clip-text text-transparent leading-tight animate-fade-in">
-                          Kala aur Sahit ka Sangam
-                        </h1>
-                        {/* Decorative underline */}
-                        <div className="h-2 w-28 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mt-2 animate-slide-in mx-auto shadow-lg shadow-orange-300/50"></div>
-                      </div>
-                    </div>
-
-                    {/* Description with better styling */}
-                    <div className="max-w-3xl text-center mx-auto">
-                      <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-semibold animate-fade-in">
-                        Welcome to SAHITYAM 2026, where art and literature
-                        converge. Join us from 3rd to 5th February 2026 for an
-                        unforgettable celebration of creativity.
-                      </p>
-                    </div>
-
-                    {/* Countdown Timer with enhanced container */}
-                    <div className="flex justify-center mt-8">
-                      <div className="relative">
-                        {/* Glow effect behind countdown */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-amber-400/20 blur-2xl rounded-3xl"></div>
-                        <div className="relative bg-white/40 backdrop-blur-sm rounded-3xl p-5 shadow-2xl border border-white/50">
-                          <Countdown />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Call to action buttons */}
-                    <div className="flex flex-wrap gap-4 justify-center mt-8">
-                      <a
-                        href="/events"
-                        className="group relative px-7 py-3.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden text-sm md:text-base"
-                      >
-                        <span className="relative z-10 flex items-center gap-2">
-                          <span>Explore Events</span>
-                          <svg
-                            className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2.5}
-                              d="M13 7l5 5m0 0l-5 5m5-5H6"
-                            />
-                          </svg>
-                        </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </a>
-                      <a
-                        href="/schedule"
-                        className="group px-7 py-3.5 bg-white/80 backdrop-blur-sm text-gray-900 font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-gray-900/10 hover:border-gray-900/30 text-sm md:text-base"
-                      >
-                        <span className="flex items-center gap-2">
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2.5}
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                          <span>View Schedule</span>
-                        </span>
-                      </a>
-                    </div>
-
-                    {/* Decorative elements */}
-                    <div className="flex gap-8 mt-8 justify-center">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
-                        <span className="text-sm font-bold text-red-600">
-                          Live Event
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-sm font-bold text-green-600">
-                          Registration Open
-                        </span>
-                      </div>
-                    </div>
+                {/* Countdown Section */}
+                <div className="flex justify-center mt-8">
+                  <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-5 shadow-2xl border border-pink-200">
+                    <Countdown />
                   </div>
-                )}
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-wrap gap-4 justify-center mt-8">
+                  <a
+                    href="/events"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-red-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      <span>Explore Events</span>
+                      <svg
+                        className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                  <a
+                    href="/schedule"
+                    className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-800 font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-pink-200 hover:border-pink-300"
+                  >
+                    <span className="flex items-center gap-2">
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <span>View Schedule</span>
+                    </span>
+                  </a>
+                </div>
+
+                {/* Status Indicators */}
+                <div className="flex gap-8 mt-8 justify-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                    <span className="text-sm font-bold text-red-600">
+                      Live Event
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span className="text-sm font-bold text-green-600">
+                      Registration Open
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Second Section - Panelists */}
-            {showContent && <PanelistsGrid />}
+            {/* Panelists Section */}
+            <div className="relative z-10 py-20 px-6 md:px-12 lg:px-20">
+              <div className="max-w-6xl mx-auto text-center space-y-12">
+                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent">
+                  Meet Our Panelists
+                </h2>
+                <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+                  Distinguished artists, scholars, and cultural icons who will
+                  guide and inspire at SAHITYAM 2026.
+                </p>
+                <PanelistsGrid />
+              </div>
+            </div>
 
             {/* Sponsors Section */}
-            {showContent && <SponsorScroll />}
+            <div className="relative z-10 py-10">
+              <SponsorScroll />
+            </div>
           </div>
-
           <Footer />
         </>
       )}
