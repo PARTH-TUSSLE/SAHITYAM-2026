@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import BackgroundElements from "@/components/ui/BackgroundElements";
 
 interface GalleryImage {
   id: number;
@@ -123,9 +124,9 @@ function Gallery() {
   return (
     <>
       <Navbar />
+      <BackgroundElements />
       <div className="min-h-screen w-full relative overflow-hidden ">
         {/* Animated circles */}
-        
 
         {/* Content */}
         <div className="relative z-10 py-24">
@@ -162,7 +163,7 @@ function Gallery() {
                     {/* Content */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <div className="mb-3 flex items-center gap-2">
-                        <span className="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-full text-xs font-bold">
+                        <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-xs font-bold">
                           {image.year}
                         </span>
                         <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
@@ -197,7 +198,7 @@ function Gallery() {
                     </div>
 
                     {/* Border Glow */}
-                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-orange-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
+                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-pink-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
                   </div>
                 ))}
               </div>
@@ -225,7 +226,7 @@ function Gallery() {
 
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <div className="mb-3 flex items-center gap-2">
-                        <span className="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-full text-xs font-bold">
+                        <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-xs font-bold">
                           {image.year}
                         </span>
                         <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
@@ -259,7 +260,7 @@ function Gallery() {
                       </div>
                     </div>
 
-                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-orange-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
+                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-pink-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
                   </div>
                 ))}
               </div>
@@ -285,7 +286,7 @@ function Gallery() {
 
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <div className="mb-3 flex items-center gap-2">
-                          <span className="px-3 py-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-full text-xs font-bold">
+                          <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-xs font-bold">
                             {image.year}
                           </span>
                           <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
@@ -340,7 +341,7 @@ function Gallery() {
             }}
           >
             <button
-              className="absolute top-6 right-6 text-white hover:text-orange-500 transition-colors duration-300 z-10"
+              className="absolute top-6 right-6 text-white hover:text-pink-500 transition-colors duration-300 z-10"
               onClick={() => setSelectedImage(null)}
             >
               <svg
@@ -383,7 +384,7 @@ function Gallery() {
                   <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-bold">
                     {selectedImage.category}
                   </span>
-                  <span className="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 rounded-full text-sm font-bold">
+                  <span className="px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-sm font-bold">
                     {selectedImage.year}
                   </span>
                 </div>

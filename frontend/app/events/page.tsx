@@ -102,10 +102,9 @@ function Events() {
   return (
     <>
       <Navbar />
-      <BackgroundElements/>
+      <BackgroundElements />
       <div className="min-h-screen w-full relative overflow-hidden">
         {/* Animated gradient background */}
-        
 
         {/* Content */}
         <div className="relative z-10 py-24 px-6 md:px-12 lg:px-20">
@@ -115,7 +114,7 @@ function Events() {
               <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
                 Our Events
               </h1>
-              <div className="h-2 w-32 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mx-auto mb-6"></div>
+              <div className="h-2 w-32 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-6"></div>
               <p className="text-xl text-gray-700 max-w-2xl mx-auto">
                 Experience the convergence of art and literature through our
                 diverse events
@@ -125,11 +124,11 @@ function Events() {
             {/* Events Grid */}
             {loading ? (
               <div className="flex justify-center items-center py-20">
-                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
               </div>
             ) : error ? (
               <div className="text-center py-20">
-                <div className="bg-red-50 border border-red-200 text-red-600 rounded-lg p-6 max-w-md mx-auto">
+                <div className="bg-pink-50 border border-pink-200 text-pink-600 rounded-lg p-6 max-w-md mx-auto">
                   <svg
                     className="w-12 h-12 mx-auto mb-4"
                     fill="none"
@@ -149,7 +148,7 @@ function Events() {
                   <p className="text-sm">{error}</p>
                   <button
                     onClick={() => window.location.reload()}
-                    className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                    className="mt-4 px-6 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors"
                   >
                     Retry
                   </button>

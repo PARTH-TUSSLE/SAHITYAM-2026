@@ -36,7 +36,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
       {/* Animated Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-amber-50 via-orange-100 to-amber-200 animate-gradient-shift -z-10">
+      <div className="fixed inset-0 bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 animate-gradient-shift -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-orange-300/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl animate-float-delayed"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-yellow-200/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -51,13 +51,13 @@ export default function LoginPage() {
         className="w-full max-w-md relative z-10"
       >
         {/* Decorative Glow */}
-        <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-red-500 rounded-3xl blur-2xl opacity-20"></div>
+        <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 to-pink-500 rounded-3xl blur-2xl opacity-20"></div>
 
         <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-10 border border-white/50">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-block mb-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-orange-300/50">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-pink-300/50">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -73,10 +73,10 @@ export default function LoginPage() {
                 </svg>
               </div>
             </div>
-            <h1 className="text-4xl font-black bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 bg-clip-text text-transparent mb-2">
+            <h1 className="text-4xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-2">
               Welcome Back
             </h1>
-            <div className="h-1 w-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mx-auto mb-3"></div>
+            <div className="h-1 w-16 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-3"></div>
             <p className="text-gray-700 font-medium">
               Login to your SAHITYAM account
             </p>
@@ -171,7 +171,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="relative w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-orange-300/50 hover:shadow-xl hover:shadow-orange-400/60 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
+              className="relative w-full bg-gradient-to-r from-pink-500 to-pink-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-pink-300/50 hover:shadow-xl hover:shadow-pink-400/60 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {loading ? "Logging in..." : "Login to SAHITYAM"}

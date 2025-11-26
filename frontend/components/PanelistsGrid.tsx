@@ -73,10 +73,10 @@ export default function PanelistsGrid() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-orange-600 via-red-600 to-orange-700 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-4">
             Meet Our Panelists
           </h2>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mx-auto mb-4 shadow-lg shadow-orange-300/50"></div>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-4 shadow-lg shadow-pink-300/50"></div>
           <p className="text-lg text-gray-700 font-semibold max-w-2xl mx-auto">
             Distinguished artists, scholars, and cultural icons who will guide
             and inspire at SAHITYAM 2026
@@ -104,13 +104,13 @@ export default function PanelistsGrid() {
                   <h3 className="text-white font-bold text-base md:text-lg mb-1">
                     {panelist.name}
                   </h3>
-                  <p className="text-orange-300 text-xs md:text-sm font-medium">
+                  <p className="text-pink-300 text-xs md:text-sm font-medium">
                     {panelist.role}
                   </p>
                 </div>
 
                 {/* Subtle border glow on hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-orange-400/40 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-pink-400/40 transition-all duration-300"></div>
               </div>
             </div>
           ))}

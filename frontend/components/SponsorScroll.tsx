@@ -56,17 +56,17 @@ export default function SponsorScroll() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-red-600 via-orange-600 to-red-700 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-4">
             Our Sponsors
           </h2>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-red-500 to-orange-500 rounded-full mx-auto shadow-lg shadow-red-300/50"></div>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto shadow-lg shadow-pink-300/50"></div>
         </div>
 
         {/* Infinite Scroll Container */}
         <div className="relative overflow-hidden py-4 pb-12">
           {/* Gradient overlays for fade effect - more subtle */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-amber-50 via-amber-50/50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-amber-50 via-amber-50/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-pink-50 via-pink-50/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-pink-50 via-pink-50/50 to-transparent z-10 pointer-events-none"></div>
 
           {/* Scrolling content with animation */}
           <div className="flex animate-scroll-left hover:pause">

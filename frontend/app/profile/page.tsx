@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import apiClient from "@/lib/api";
+import BackgroundElements from "@/components/ui/BackgroundElements";
 
 interface Registration {
   id: string;
@@ -68,7 +69,7 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
       </div>
     );
   }
@@ -80,9 +81,9 @@ export default function ProfilePage() {
   return (
     <>
       <Navbar />
+      <BackgroundElements />
       <div className="min-h-screen relative overflow-hidden pt-20 pb-12">
         {/* Animated Background */}
-        
 
         {/* Decorative Pattern */}
         {/* Decorative pattern overlay removed */}
@@ -165,8 +166,8 @@ export default function ProfilePage() {
 
                   {/* Stats */}
                   <div className="flex flex-wrap gap-3 justify-center md:justify-start mt-4">
-                    <div className="bg-orange-50 rounded-lg px-4 py-2 border border-orange-200">
-                      <div className="text-lg font-bold text-orange-600">
+                    <div className="bg-pink-50 rounded-lg px-4 py-2 border border-pink-200">
+                      <div className="text-lg font-bold text-pink-600">
                         {registrations.length}
                       </div>
                       <div className="text-xs text-gray-600">Events</div>
@@ -193,17 +194,17 @@ export default function ProfilePage() {
               {loadingRegistrations ? (
                 <div className="flex justify-center py-12">
                   <div className="relative">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 to-red-500 blur-lg opacity-50 animate-pulse"></div>
-                    <div className="relative animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500"></div>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 to-pink-500 blur-lg opacity-50 animate-pulse"></div>
+                    <div className="relative animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
                   </div>
                 </div>
               ) : registrations.length === 0 ? (
                 <div className="text-center py-16 relative">
                   <div className="inline-block mb-6 relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
-                    <div className="relative w-24 h-24 mx-auto bg-gradient-to-br from-orange-100 to-red-100 rounded-3xl flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-pink-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                    <div className="relative w-24 h-24 mx-auto bg-gradient-to-br from-pink-100 to-pink-100 rounded-3xl flex items-center justify-center">
                       <svg
-                        className="w-12 h-12 text-orange-600"
+                        className="w-12 h-12 text-pink-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -225,7 +226,7 @@ export default function ProfilePage() {
                   </p>
                   <button
                     onClick={() => router.push("/events")}
-                    className="relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl shadow-lg shadow-orange-300/50 hover:shadow-xl hover:shadow-orange-400/60 transition-all transform hover:scale-105 overflow-hidden group"
+                    className="relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-pink-500 text-white font-bold rounded-xl shadow-lg shadow-pink-300/50 hover:shadow-xl hover:shadow-pink-400/60 transition-all transform hover:scale-105 overflow-hidden group"
                   >
                     <span className="relative z-10">Browse Events</span>
                     <svg
@@ -249,7 +250,7 @@ export default function ProfilePage() {
                   {registrations.map((registration) => (
                     <div key={registration.id} className="group relative">
                       {/* Card Glow Effect */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                      <div className="absolute -inset-1 bg-gradient-to-r from-pink-400 to-pink-400 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
 
                       <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
                         <div className="relative h-48 overflow-hidden">
@@ -292,7 +293,7 @@ export default function ProfilePage() {
                           <div className="flex items-center justify-between gap-3">
                             <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
                               <svg
-                                className="w-4 h-4 text-orange-500"
+                                className="w-4 h-4 text-pink-500"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -314,7 +315,7 @@ export default function ProfilePage() {
                               disabled={
                                 unregisteringEventId === registration.eventId
                               }
-                              className={`relative px-5 py-2.5 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-sm font-bold rounded-lg transition-all flex items-center gap-2 shadow-md hover:shadow-lg overflow-hidden group ${
+                              className={`relative px-5 py-2.5 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white text-sm font-bold rounded-lg transition-all flex items-center gap-2 shadow-md hover:shadow-lg overflow-hidden group ${
                                 unregisteringEventId === registration.eventId
                                   ? "opacity-70 cursor-not-allowed"
                                   : ""

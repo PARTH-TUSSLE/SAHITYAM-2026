@@ -13,7 +13,7 @@ function Footer() {
           {/* Logo and About Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
                 <svg
                   className="w-7 h-7 text-white"
                   fill="none"
@@ -38,7 +38,7 @@ function Footer() {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
               >
                 <svg
                   className="w-5 h-5"
@@ -50,7 +50,7 @@ function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
               >
                 <svg
                   className="w-5 h-5"
@@ -62,7 +62,7 @@ function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
               >
                 <svg
                   className="w-5 h-5"
@@ -89,7 +89,7 @@ function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
+            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-400">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -143,7 +143,7 @@ function Footer() {
 
           {/* Event Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
+            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-400">
               Event Info
             </h3>
             <ul className="space-y-3">
@@ -222,7 +222,7 @@ function Footer() {
 
           {/* Newsletter */}
           <div className="space-y-4">
-            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
+            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-400">
               Stay Updated
             </h3>
             <p className="text-gray-400 text-sm">
@@ -234,7 +234,7 @@ function Footer() {
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors text-sm"
               />
-              <button className="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm">
+              <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-500 rounded-lg font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -258,7 +258,7 @@ function Footer() {
           <div className="flex flex-col items-center gap-3 mb-6">
             <p className="text-gray-400 text-sm">Designed & Developed by</p>
             <div className="flex items-center gap-4">
-              <h4 className="text-lg font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+              <h4 className="text-lg font-bold bg-gradient-to-r from-pink-500 to-pink-500 bg-clip-text text-transparent">
                 Parth Gartan
               </h4>
               <div className="flex gap-2">
@@ -266,7 +266,7 @@ function Footer() {
                   href="https://github.com/PARTH-TUSSLE"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
                   title="GitHub"
                 >
                   <svg
@@ -281,7 +281,7 @@ function Footer() {
                   href="https://linkedin.com/in/parth-gartan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
                   title="LinkedIn"
                 >
                   <svg
@@ -296,7 +296,7 @@ function Footer() {
                   href="https://twitter.com/parth-gartan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:to-pink-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
                   title="Twitter"
                 >
                   <svg

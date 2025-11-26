@@ -130,7 +130,7 @@ export default function EventModal({
             {/* Description Section */}
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 rounded-full"></div>
+                <div className="w-1 h-8 bg-gradient-to-b from-pink-500 to-pink-500 rounded-full"></div>
                 <h3 className="text-2xl font-bold text-gray-900">
                   Description
                 </h3>
@@ -143,13 +143,13 @@ export default function EventModal({
             {/* Rules Section */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 rounded-full"></div>
+                <div className="w-1 h-8 bg-gradient-to-b from-pink-500 to-pink-500 rounded-full"></div>
                 <h3 className="text-2xl font-bold text-gray-900">Rules</h3>
               </div>
               <ul className="space-y-3">
                 {rules.map((rule, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-red-500 to-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-0.5">
+                    <span className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-pink-500 to-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-0.5">
                       {index + 1}
                     </span>
                     <span className="text-gray-700 leading-relaxed flex-1">
@@ -175,8 +175,8 @@ export default function EventModal({
                   disabled={isLoading}
                   className={`w-full px-6 py-4 font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 ${
                     isRegistered
-                      ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
-                      : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white"
+                      ? "bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
+                      : "bg-gradient-to-r from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600 text-white"
                   } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
                 >
                   {isLoading ? (
@@ -213,7 +213,7 @@ export default function EventModal({
                   onClick={() => {
                     window.location.href = "/login";
                   }}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
+                  className="w-full px-6 py-4 bg-gradient-to-r from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
                 >
                   Login to Register
                 </button>

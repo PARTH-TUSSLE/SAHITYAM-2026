@@ -402,10 +402,10 @@ export default function HomePage() {
             {/* Hero Section */}
             <div className="relative z-20 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
               <div className="max-w-6xl w-full space-y-8 text-center animate-fade-in">
-                <h1 className="text-5xl pt-20 md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent leading-tight">
+                <h1 className="text-5xl pt-20 md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent leading-tight">
                   Kala aur Sahit ka Sangam
                 </h1>
-                <div className="h-2 w-28 bg-gradient-to-r from-pink-500 to-red-400 rounded-full mt-2 mx-auto"></div>
+                <div className="h-2 w-28 bg-gradient-to-r from-pink-500 to-pink-400 rounded-full mt-2 mx-auto"></div>
                 <p className="text-lg md:text-xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto">
                   Welcome to SAHITYAM 2026, where art and literature converge.
                   Join us from 3rd to 5th February 2026 for an unforgettable
@@ -423,7 +423,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap gap-4 justify-center mt-8">
                   <a
                     href="/events"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-red-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       <span>Explore Events</span>
@@ -468,8 +468,8 @@ export default function HomePage() {
                 {/* Status Indicators */}
                 <div className="flex gap-8 mt-8 justify-center">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
-                    <span className="text-sm font-bold text-red-600">
+                    <div className="w-3 h-3 bg-pink-500 rounded-full animate-ping"></div>
+                    <span className="text-sm font-bold text-pink-600">
                       Live Event
                     </span>
                   </div>
@@ -486,7 +486,7 @@ export default function HomePage() {
             {/* Panelists Section */}
             <div className="relative z-20 py-20 px-6 md:px-12 lg:px-20">
               <div className="max-w-6xl mx-auto text-center space-y-12">
-                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
                   Meet Our Panelists
                 </h2>
                 <p className="text-lg text-gray-700 max-w-3xl mx-auto">

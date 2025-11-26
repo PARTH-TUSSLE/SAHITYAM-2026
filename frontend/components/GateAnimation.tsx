@@ -24,7 +24,7 @@ export default function GateAnimation() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
-        className="absolute inset-0 bg-gradient-to-b from-amber-900 via-black to-slate-900"
+        className="absolute inset-0 bg-gradient-to-b from-pink-900 via-black to-slate-900"
       />
 
       {/* Radial Glow */}
@@ -32,7 +32,7 @@ export default function GateAnimation() {
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1.5, opacity: 0.3 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500 rounded-full blur-3xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500 rounded-full blur-3xl"
       />
 
       {/* Left Gate - Ornate */}
@@ -40,7 +40,7 @@ export default function GateAnimation() {
         initial={{ x: 0, opacity: 1 }}
         animate={{ x: "-100%", opacity: 0 }}
         transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
-        className="absolute left-0 top-0 h-full w-1/2 bg-gradient-to-r from-black via-amber-950 to-transparent origin-right"
+        className="absolute left-0 top-0 h-full w-1/2 bg-gradient-to-r from-black via-pink-950 to-transparent origin-right"
         style={{
           boxShadow: "inset -40px 0 80px rgba(0, 0, 0, 0.9)",
         }}
@@ -74,7 +74,7 @@ export default function GateAnimation() {
         initial={{ x: 0, opacity: 1 }}
         animate={{ x: "100%", opacity: 0 }}
         transition={{ duration: 1.2, delay: 1.2, ease: "easeInOut" }}
-        className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-black via-amber-950 to-transparent origin-left"
+        className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-black via-pink-950 to-transparent origin-left"
         style={{
           boxShadow: "inset 40px 0 80px rgba(0, 0, 0, 0.9)",
         }}
@@ -110,7 +110,7 @@ export default function GateAnimation() {
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 200, opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mb-12"
+          className="h-1 bg-gradient-to-r from-transparent via-pink-400 to-transparent mb-12"
         />
 
         {/* Sahityam Title */}
@@ -120,10 +120,10 @@ export default function GateAnimation() {
           transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
           className="text-center mb-4"
         >
-          <h1 className="text-7xl md:text-8xl font-serif font-bold bg-clip-text text-transparent bg-gradient-to-b from-amber-200 via-amber-100 to-amber-300 drop-shadow-lg">
+          <h1 className="text-7xl md:text-8xl font-serif font-bold bg-clip-text text-transparent bg-gradient-to-b from-pink-200 via-pink-100 to-pink-300 drop-shadow-lg">
             Sahityam
           </h1>
-          <p className="text-amber-400/70 text-lg tracking-[0.3em] mt-2 font-light">
+          <p className="text-pink-400/70 text-lg tracking-[0.3em] mt-2 font-light">
             LITERARY EXCELLENCE
           </p>
         </motion.div>
@@ -133,7 +133,7 @@ export default function GateAnimation() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="text-5xl font-bold text-amber-300/60 mb-8"
+          className="text-5xl font-bold text-pink-300/60 mb-8"
         >
           2026
         </motion.div>
@@ -146,7 +146,7 @@ export default function GateAnimation() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 + i * 0.15 }}
-              className="w-2 h-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-200"
+              className="w-2 h-2 rounded-full bg-gradient-to-r from-pink-400 to-pink-200"
             />
           ))}
         </motion.div>
@@ -156,7 +156,7 @@ export default function GateAnimation() {
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 150, opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.5 }}
-          className="h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent"
+          className="h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent"
         />
 
         {/* Orbiting Elements */}
@@ -166,7 +166,7 @@ export default function GateAnimation() {
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0"
           >
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-amber-400 rounded-full" />
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-pink-400 rounded-full" />
           </motion.div>
         </div>
 
@@ -176,7 +176,7 @@ export default function GateAnimation() {
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0"
           >
-            <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 w-2 h-2 bg-amber-300 rounded-full" />
+            <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 w-2 h-2 bg-pink-300 rounded-full" />
           </motion.div>
         </div>
 
@@ -185,13 +185,13 @@ export default function GateAnimation() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.2 }}
           transition={{ duration: 1.5, delay: 0.5 }}
-          className="absolute w-72 h-72 rounded-full border-2 border-amber-400"
+          className="absolute w-72 h-72 rounded-full border-2 border-pink-400"
         />
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.1 }}
           transition={{ duration: 1.8, delay: 0.7 }}
-          className="absolute w-96 h-96 rounded-full border border-amber-300"
+          className="absolute w-96 h-96 rounded-full border border-pink-300"
         />
       </div>
 
@@ -214,7 +214,7 @@ export default function GateAnimation() {
             delay: 1.2,
             ease: "easeOut",
           }}
-          className="absolute left-1/2 top-1/2 w-1 h-1 bg-amber-300 rounded-full"
+          className="absolute left-1/2 top-1/2 w-1 h-1 bg-pink-300 rounded-full"
         />
       ))}
     </motion.div>
