@@ -82,19 +82,10 @@ export default function ProfilePage() {
       <Navbar />
       <div className="min-h-screen relative overflow-hidden pt-20 pb-12">
         {/* Animated Background */}
-        <div className="fixed inset-0 bg-gradient-to-br from-amber-50 via-orange-100 to-amber-200 animate-gradient-shift -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-orange-300/30 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl animate-float-delayed"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-yellow-200/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        </div>
+        
 
         {/* Decorative Pattern */}
-        <div
-          className="fixed inset-0 opacity-5 pointer-events-none -z-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
+        {/* Decorative pattern overlay removed */}
 
         <div className="max-w-6xl mx-auto px-6 py-8 relative z-10">
           {/* Profile Header */}
@@ -103,7 +94,7 @@ export default function ProfilePage() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-md">
+                  <div className="w-20 h-20 bg-gradient-to-br from-white to-pink-400 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-md">
                     {user?.name.charAt(0).toUpperCase()}
                   </div>
                   {/* Verified Badge */}

@@ -45,7 +45,7 @@ const UltraSmoothRainbow = () => {
   ];
 
   return (
-    <div className="absolute w-full h-[300px] top-[calc(50%-90px)] left-0 overflow-visible pointer-events-none">
+    <div className="absolute w-full sm:h-[600px] h-[320px] sm:top-30 top-70 left-0 overflow-visible pointer-events-none">
       <svg
         viewBox="0 0 1400 180"
         className="w-full h-full"
@@ -86,7 +86,7 @@ export default function BackgroundElements() {
       <UltraSmoothRainbow />
 
       {/* Small decorative flowers */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {Array.from({ length: 40 }).map((_, i) => (
         <Flower
           key={i}
           left={`${Math.random() * 90 + 5}%`}

@@ -33,7 +33,7 @@ export default function HomePage() {
             {/* Hero Section */}
             <div className="relative z-10 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
               <div className="max-w-6xl w-full space-y-8 text-center animate-fade-in">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent leading-tight">
+                <h1 className="text-5xl pt-20 md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent leading-tight">
                   Kala aur Sahit ka Sangam
                 </h1>
                 <div className="h-2 w-28 bg-gradient-to-r from-pink-500 to-red-400 rounded-full mt-2 mx-auto"></div>
