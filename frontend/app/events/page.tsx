@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import apiClient from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
 import BackgroundElements from "@/components/ui/BackgroundElements";
+import PaymentModal, { PaymentData } from "@/components/PaymentModal";
 
 interface Event {
   id: string;
@@ -21,6 +22,8 @@ interface Registration {
   eventId: string;
 }
 
+const EVENT_FEE = 200; // Registration fee in rupees
+
 function Events() {
   const [events, setEvents] = useState<Event[]>([]);
   const [registeredEventIds, setRegisteredEventIds] = useState<Set<string>>(
@@ -29,6 +32,9 @@ function Events() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loadingEventId, setLoadingEventId] = useState<string | null>(null);
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [selectedEventForPayment, setSelectedEventForPayment] =
+    useState<Event | null>(null);
   const { isAuthenticated } = useAuth();
 
   const fetchEvents = async () => {
@@ -72,10 +78,48 @@ function Events() {
   }, [isAuthenticated]);
 
   const handleRegister = async (eventId: string) => {
+    // Find the event
+    const event = events.find((e) => e.id === eventId);
+    if (event) {
+      setSelectedEventForPayment(event);
+      setPaymentModalOpen(true);
+    }
+  };
+
+  const handlePaymentSubmit = async (paymentData: PaymentData) => {
+    if (!selectedEventForPayment) return;
+
     try {
-      setLoadingEventId(eventId);
-      await apiClient.post("/registrations", { eventId });
-      setRegisteredEventIds((prev) => new Set([...prev, eventId]));
+      setLoadingEventId(selectedEventForPayment.id);
+
+      // TODO: Backend integration
+      // In real implementation, you would send the payment data to the backend
+      // const formData = new FormData();
+      // formData.append('eventId', selectedEventForPayment.id);
+      // formData.append('name', paymentData.name);
+      // formData.append('email', paymentData.email);
+      // formData.append('mobileNumber', paymentData.mobileNumber);
+      // formData.append('transactionId', paymentData.transactionId);
+      // if (paymentData.paymentScreenshot) {
+      //   formData.append('paymentScreenshot', paymentData.paymentScreenshot);
+      // }
+      // await apiClient.post("/registrations/with-payment", formData, {
+      //   headers: { 'Content-Type': 'multipart/form-data' }
+      // });
+
+      // For now, simulate registration
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      setRegisteredEventIds(
+        (prev) => new Set([...prev, selectedEventForPayment.id])
+      );
+      setPaymentModalOpen(false);
+      setSelectedEventForPayment(null);
+
+      // Show success message
+      alert(
+        `Registration successful for ${selectedEventForPayment.title}! Your payment will be verified shortly.`
+      );
     } catch (err: any) {
       alert(err.response?.data?.error || "Registration failed");
     } finally {
@@ -185,6 +229,22 @@ function Events() {
 
         {/* Decorative pattern overlay removed per request */}
       </div>
+
+      {/* Payment Modal */}
+      {selectedEventForPayment && (
+        <PaymentModal
+          isOpen={paymentModalOpen}
+          onClose={() => {
+            setPaymentModalOpen(false);
+            setSelectedEventForPayment(null);
+          }}
+          eventTitle={selectedEventForPayment.title}
+          eventFee={EVENT_FEE}
+          onSubmit={handlePaymentSubmit}
+          isLoading={loadingEventId === selectedEventForPayment.id}
+        />
+      )}
+
       <Footer />
     </>
   );

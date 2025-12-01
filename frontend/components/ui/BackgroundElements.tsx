@@ -83,7 +83,7 @@ export default function BackgroundElements() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-festive">
       {/* Ultra-smooth rainbow */}
-      <UltraSmoothRainbow />
+      {/* <UltraSmoothRainbow /> */}
 
       {/* Small decorative flowers */}
       {Array.from({ length: 40 }).map((_, i) => (

@@ -63,6 +63,11 @@ export default function ChromaCard({
         {/* Decorative corner accent */}
         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-3xl z-10"></div>
 
+        {/* Fee Badge */}
+        <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full shadow-lg font-bold text-sm flex items-center gap-2">
+          ₹200
+        </div>
+
         {/* Inner Card */}
         <div className="relative overflow-hidden">
           {/* Image Container with overlaid content */}

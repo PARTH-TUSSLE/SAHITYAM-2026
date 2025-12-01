@@ -18,6 +18,16 @@
   scrollbar-width: none;
 }
 
+/* Hide scrollbar for scrollbar-hide class */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Hide scrollbar globally */
 html::-webkit-scrollbar {
   display: none;
@@ -614,41 +624,74 @@ html {
 
 /* Festive background */
 .bg-festive {
-  background: linear-gradient(135deg, #FFF0F5 0%, #FFD1DC 100%);
-  background-image:
-    radial-gradient(circle at 20% 30%, #FFB6C1 1px, transparent 1px),
-    radial-gradient(circle at 80% 20%, #FF69B4 1px, transparent 1px),
-    radial-gradient(circle at 40% 80%, #DB7093 1px, transparent 1px),
-    radial-gradient(circle at 90% 70%, #FF1493 1px, transparent 1px);
+  background: linear-gradient(135deg, #fff0f5 0%, #ffd1dc 100%);
+  background-image: radial-gradient(
+      circle at 20% 30%,
+      #ffb6c1 1px,
+      transparent 1px
+    ),
+    radial-gradient(circle at 80% 20%, #ff69b4 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, #db7093 1px, transparent 1px),
+    radial-gradient(circle at 90% 70%, #ff1493 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 /* Animations */
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(20px) rotate(180deg); }
-  100% { transform: translateY(0) rotate(360deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
 }
 
 @keyframes smoothColorFlow {
-  0% { stroke: #FF0000; }
-  20% { stroke: #FF7F00; }
-  30% { stroke: #FFBF00; }
-  50% { stroke: #BFFF00; }
-  70% { stroke: #00FF40; }
-  80% { stroke: #00FFFF; }
-  90% { stroke: #0040FF; }
-  100% { stroke: #FF0000; }
+  0% {
+    stroke: #ff0000;
+  }
+  20% {
+    stroke: #ff7f00;
+  }
+  30% {
+    stroke: #ffbf00;
+  }
+  50% {
+    stroke: #bfff00;
+  }
+  70% {
+    stroke: #00ff40;
+  }
+  80% {
+    stroke: #00ffff;
+  }
+  90% {
+    stroke: #0040ff;
+  }
+  100% {
+    stroke: #ff0000;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {
@@ -666,4 +709,3 @@ html {
 .animate-smooth-color {
   animation: smoothColorFlow 20s ease-in-out infinite;
 }
-

@@ -41,7 +41,9 @@ export default function AdminDashboard() {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [loadingData, setLoadingData] = useState(true);
+  const [loadingEventDetails, setLoadingEventDetails] = useState(false);
   const [activeTab, setActiveTab] = useState<"events" | "users">("events");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -75,12 +77,27 @@ export default function AdminDashboard() {
 
   const viewEventDetails = async (eventId: string) => {
     try {
+      setLoadingEventDetails(true);
+      setSearchQuery(""); // Reset search when opening new event details
       const response = await apiClient.get(`/admin/events/${eventId}`);
       setSelectedEvent(response.data);
     } catch (err) {
       console.error("Error fetching event details:", err);
+    } finally {
+      setLoadingEventDetails(false);
     }
   };
+
+  // Filter registrations based on search query
+  const filteredRegistrations =
+    selectedEvent?.registrations.filter((registration) => {
+      const query = searchQuery.toLowerCase();
+      const nameMatch = registration.user.name.toLowerCase().includes(query);
+      const mobileMatch = registration.user.mobileNumber
+        ?.toLowerCase()
+        .includes(query);
+      return nameMatch || mobileMatch;
+    }) || [];
 
   if (loading || loadingData) {
     return (
@@ -290,6 +307,51 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+      {/* Loading Modal for Event Details */}
+      {loadingEventDetails && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="relative">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-pink-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Loading Registration Details
+                </h3>
+                <p className="text-gray-600">
+                  Please wait while we fetch the registrations...
+                </p>
+              </div>
+              <div className="flex gap-2">
+                {[...Array(3)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-2 h-2 rounded-full bg-pink-500 animate-bounce"
+                    style={{ animationDelay: `${i * 150}ms` }}
+                  ></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Event Details Modal */}
       {selectedEvent && (
         <div
@@ -350,53 +412,136 @@ export default function AdminDashboard() {
                   </p>
                 </div>
               ) : (
-                <div className="space-y-4">
-                  {selectedEvent.registrations.map((registration) => (
-                    <div
-                      key={registration.id}
-                      className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                            {registration.user.name.charAt(0).toUpperCase()}
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-gray-900">
-                              {registration.user.name}
-                            </h4>
-                            <p className="text-sm text-gray-600">
-                              @{registration.user.username}
-                            </p>
-                            {registration.user.mobileNumber && (
-                              <p className="text-sm text-gray-700 font-semibold">
-                                <span className="font-semibold mr-1">
-                                  Mobile:
-                                </span>
-                                {registration.user.mobileNumber}
-                              </p>
-                            )}
-                            <p className="text-sm text-gray-500">
-                              {registration.user.email}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-xs text-gray-500">Registered on</p>
-                          <p className="text-sm font-medium text-gray-700">
-                            {new Date(
-                              registration.createdAt
-                            ).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                            })}
-                          </p>
-                        </div>
+                <>
+                  {/* Search Box */}
+                  <div className="mb-6">
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg
+                          className="w-5 h-5 text-gray-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
                       </div>
+                      <input
+                        type="text"
+                        placeholder="Search by name or mobile number..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:bg-white transition-all outline-none font-medium text-gray-900 placeholder-gray-500"
+                      />
+                      {searchQuery && (
+                        <button
+                          onClick={() => setSearchQuery("")}
+                          className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                        >
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      )}
                     </div>
-                  ))}
-                </div>
+                    {searchQuery && (
+                      <p className="mt-2 text-sm text-gray-600">
+                        Found {filteredRegistrations.length} result
+                        {filteredRegistrations.length !== 1 ? "s" : ""}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Registration List */}
+                  {filteredRegistrations.length === 0 ? (
+                    <div className="text-center py-12">
+                      <svg
+                        className="w-16 h-16 text-gray-300 mx-auto mb-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                      <p className="text-gray-600 font-medium mb-2">
+                        No results found
+                      </p>
+                      <p className="text-gray-500 text-sm">
+                        Try a different search term
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {filteredRegistrations.map((registration) => (
+                        <div
+                          key={registration.id}
+                          className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                {registration.user.name.charAt(0).toUpperCase()}
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-gray-900">
+                                  {registration.user.name}
+                                </h4>
+                                <p className="text-sm text-gray-600">
+                                  @{registration.user.username}
+                                </p>
+                                {registration.user.mobileNumber && (
+                                  <p className="text-sm text-gray-700 font-semibold">
+                                    <span className="font-semibold mr-1">
+                                      Mobile:
+                                    </span>
+                                    {registration.user.mobileNumber}
+                                  </p>
+                                )}
+                                <p className="text-sm text-gray-500">
+                                  {registration.user.email}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-xs text-gray-500">
+                                Registered on
+                              </p>
+                              <p className="text-sm font-medium text-gray-700">
+                                {new Date(
+                                  registration.createdAt
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "short",
+                                  day: "numeric",
+                                })}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
