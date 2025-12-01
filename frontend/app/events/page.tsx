@@ -35,7 +35,7 @@ function Events() {
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [selectedEventForPayment, setSelectedEventForPayment] =
     useState<Event | null>(null);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const fetchEvents = async () => {
     try {
@@ -92,23 +92,21 @@ function Events() {
     try {
       setLoadingEventId(selectedEventForPayment.id);
 
-      // TODO: Backend integration
-      // In real implementation, you would send the payment data to the backend
-      // const formData = new FormData();
-      // formData.append('eventId', selectedEventForPayment.id);
-      // formData.append('name', paymentData.name);
-      // formData.append('email', paymentData.email);
-      // formData.append('mobileNumber', paymentData.mobileNumber);
-      // formData.append('transactionId', paymentData.transactionId);
-      // if (paymentData.paymentScreenshot) {
-      //   formData.append('paymentScreenshot', paymentData.paymentScreenshot);
-      // }
-      // await apiClient.post("/registrations/with-payment", formData, {
-      //   headers: { 'Content-Type': 'multipart/form-data' }
-      // });
+      // Create FormData for multipart/form-data
+      const formData = new FormData();
+      formData.append("eventId", selectedEventForPayment.id);
+      formData.append("name", paymentData.name);
+      formData.append("email", paymentData.email);
+      formData.append("mobileNumber", paymentData.mobileNumber);
+      formData.append("transactionId", paymentData.transactionId);
+      if (paymentData.paymentScreenshot) {
+        formData.append("paymentScreenshot", paymentData.paymentScreenshot);
+      }
 
-      // For now, simulate registration
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Send to backend
+      await apiClient.post("/registrations/with-payment", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       setRegisteredEventIds(
         (prev) => new Set([...prev, selectedEventForPayment.id])
@@ -242,6 +240,8 @@ function Events() {
           eventFee={EVENT_FEE}
           onSubmit={handlePaymentSubmit}
           isLoading={loadingEventId === selectedEventForPayment.id}
+          userEmail={user?.email || ""}
+          userMobile={user?.mobileNumber || ""}
         />
       )}
 

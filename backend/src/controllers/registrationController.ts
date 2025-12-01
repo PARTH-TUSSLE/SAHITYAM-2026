@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { validationResult } from "express-validator";
-import { uploadToCloudinary, deleteFromCloudinary } from "../utils/cloudinaryUpload";
+import {
+  uploadToCloudinary,
+  deleteFromCloudinary,
+} from "../utils/cloudinaryUpload";
 
 const prisma = new PrismaClient();
 

@@ -52,6 +52,7 @@ npm install
 ```
 
 This will install:
+
 - `cloudinary` - Cloudinary SDK
 - `multer` - File upload middleware
 
@@ -67,6 +68,7 @@ npx prisma generate
 ## Step 6: Test the Setup
 
 1. Start your backend server:
+
    ```bash
    npm run dev
    ```
@@ -78,23 +80,29 @@ npx prisma generate
 ## Important Notes
 
 ### Free Tier Limits:
+
 - ✅ **25 GB** Storage
 - ✅ **25 GB** Bandwidth per month
 - ✅ **Unlimited** transformations
 - ✅ **Free** CDN included
 
 ### Storage Organization:
+
 Images will be stored in folders:
+
 - `sahityam-2026/payment-screenshots/` - Payment screenshots
 
 ### Image Optimization:
+
 Images are automatically:
+
 - Compressed for optimal size
 - Limited to max 1200x1200 pixels
 - Served in best format for each browser
 - Delivered via CDN for fast loading
 
 ### Security:
+
 - Never commit your `.env` file
 - Keep your API Secret private
 - API Secret is already in `.gitignore`
@@ -104,6 +112,7 @@ Images are automatically:
 Access your Cloudinary console at: [https://console.cloudinary.com/](https://console.cloudinary.com/)
 
 You can:
+
 - View all uploaded images
 - See storage usage
 - Monitor bandwidth
@@ -114,19 +123,23 @@ You can:
 ## Troubleshooting
 
 ### Error: "Must supply cloud_name"
+
 - Check if `CLOUDINARY_CLOUD_NAME` is set in `.env`
 - Restart your server after adding credentials
 
 ### Error: "Invalid API Key"
+
 - Verify your `CLOUDINARY_API_KEY` is correct
 - Make sure there are no extra spaces
 
 ### Error: "Upload failed"
+
 - Check your internet connection
 - Verify file size is under 5MB
 - Ensure file is an image (jpg, png, gif, webp)
 
 ### Can't find credentials?
+
 - Go to: https://console.cloudinary.com/settings/product_environments
 - Select your environment
 - Credentials will be shown there
@@ -140,12 +153,14 @@ POST /api/registrations/with-payment
 ```
 
 **Headers:**
+
 ```
 Authorization: Bearer <your-jwt-token>
 Content-Type: multipart/form-data
 ```
 
 **Body (form-data):**
+
 ```
 eventId: <event-id>
 transactionId: <upi-transaction-id>

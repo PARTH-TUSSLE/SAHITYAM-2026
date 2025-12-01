@@ -3,9 +3,11 @@
 ## 1️⃣ Get Cloudinary Credentials (5 minutes)
 
 ### Go to Cloudinary:
+
 🔗 **[https://cloudinary.com/](https://cloudinary.com/)**
 
 ### Sign Up / Login:
+
 - Click "Sign Up Free"
 - Use email or Google/GitHub
 - Verify email
@@ -14,7 +16,7 @@
 
 ```
 ✅ Cloud Name: _________________
-✅ API Key: _________________  
+✅ API Key: _________________
 ✅ API Secret: _________________ (click eye icon to reveal)
 ```
 
@@ -31,6 +33,7 @@ CLOUDINARY_API_SECRET="paste-your-api-secret"
 ```
 
 **Example:**
+
 ```env
 CLOUDINARY_CLOUD_NAME="dxyz1234"
 CLOUDINARY_API_KEY="123456789012345"
@@ -47,6 +50,7 @@ npm install
 ```
 
 This installs:
+
 - ✅ `cloudinary` - For uploading images
 - ✅ `multer` - For handling file uploads
 
@@ -72,22 +76,26 @@ npm run dev
 ## 📋 What Changed in Backend
 
 ### New Files Created:
+
 1. `src/config/cloudinary.ts` - Cloudinary configuration
 2. `src/config/multer.ts` - File upload handler
 3. `src/utils/cloudinaryUpload.ts` - Upload/delete functions
 
 ### Updated Files:
+
 1. `package.json` - Added cloudinary & multer
 2. `prisma/schema.prisma` - Added payment fields
 3. `src/controllers/registrationController.ts` - Added payment logic
 4. `src/routes/registrationRoutes.ts` - Added new endpoint
 
 ### New API Endpoint:
+
 ```
 POST /api/registrations/with-payment
 ```
 
 Accepts:
+
 - `eventId` - Event ID
 - `transactionId` - UPI transaction ID
 - `name` - User's name
@@ -96,6 +104,7 @@ Accepts:
 - `paymentScreenshot` - Image file
 
 ### Database Fields Added:
+
 - `transactionId` - UPI transaction ID
 - `paymentScreenshotUrl` - Cloudinary URL
 - `paymentScreenshotId` - For deletion
@@ -112,7 +121,7 @@ Accepts:
 ✅ **25 GB Bandwidth/month** - Fast delivery  
 ✅ **Unlimited Transformations** - Auto optimization  
 ✅ **Free CDN** - Global fast access  
-✅ **Auto Compression** - Saves bandwidth  
+✅ **Auto Compression** - Saves bandwidth
 
 ---
 
@@ -122,15 +131,15 @@ Update your frontend API call to send multipart/form-data:
 
 ```typescript
 const formData = new FormData();
-formData.append('eventId', selectedEvent.id);
-formData.append('name', paymentData.name);
-formData.append('email', paymentData.email);
-formData.append('mobileNumber', paymentData.mobileNumber);
-formData.append('transactionId', paymentData.transactionId);
-formData.append('paymentScreenshot', paymentData.paymentScreenshot);
+formData.append("eventId", selectedEvent.id);
+formData.append("name", paymentData.name);
+formData.append("email", paymentData.email);
+formData.append("mobileNumber", paymentData.mobileNumber);
+formData.append("transactionId", paymentData.transactionId);
+formData.append("paymentScreenshot", paymentData.paymentScreenshot);
 
 await apiClient.post("/registrations/with-payment", formData, {
-  headers: { 'Content-Type': 'multipart/form-data' }
+  headers: { "Content-Type": "multipart/form-data" },
 });
 ```
 

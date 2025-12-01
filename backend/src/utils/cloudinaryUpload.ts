@@ -56,9 +56,7 @@ export const uploadToCloudinary = (
  * @param publicId - Cloudinary public_id of the image
  * @returns Promise with deletion result
  */
-export const deleteFromCloudinary = async (
-  publicId: string
-): Promise<void> => {
+export const deleteFromCloudinary = async (publicId: string): Promise<void> => {
   try {
     await cloudinary.uploader.destroy(publicId);
   } catch (error) {

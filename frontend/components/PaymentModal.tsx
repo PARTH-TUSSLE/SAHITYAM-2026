@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -11,6 +11,8 @@ interface PaymentModalProps {
   eventFee: number;
   onSubmit: (paymentData: PaymentData) => void;
   isLoading?: boolean;
+  userEmail?: string;
+  userMobile?: string;
 }
 
 export interface PaymentData {
@@ -29,16 +31,29 @@ export default function PaymentModal({
   eventFee,
   onSubmit,
   isLoading = false,
+  userEmail = "",
+  userMobile = "",
 }: PaymentModalProps) {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    mobileNumber: "",
+    email: userEmail,
+    mobileNumber: userMobile,
     transactionId: "",
   });
   const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Update email and mobile when user data changes or modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setFormData((prev) => ({
+        ...prev,
+        email: userEmail,
+        mobileNumber: userMobile,
+      }));
+    }
+  }, [isOpen, userEmail, userMobile]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -251,17 +266,17 @@ export default function PaymentModal({
                     {/* Email */}
                     <div>
                       <label className="block text-sm font-bold text-gray-900 mb-2">
-                        Email Address *
+                        Email Address *{" "}
+                        <span className="text-gray-500 text-xs font-normal">
+                          (from your profile)
+                        </span>
                       </label>
                       <input
                         type="email"
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:bg-white transition-all outline-none font-medium"
+                        readOnly
+                        className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-xl outline-none font-medium text-gray-600 cursor-not-allowed"
                         placeholder="your@email.com"
-                        disabled={isLoading}
                       />
                       {errors.email && (
                         <p className="text-red-500 text-sm mt-1">
@@ -273,20 +288,17 @@ export default function PaymentModal({
                     {/* Mobile Number */}
                     <div>
                       <label className="block text-sm font-bold text-gray-900 mb-2">
-                        Mobile Number *
+                        Mobile Number *{" "}
+                        <span className="text-gray-500 text-xs font-normal">
+                          (from your profile)
+                        </span>
                       </label>
                       <input
                         type="tel"
                         value={formData.mobileNumber}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            mobileNumber: e.target.value,
-                          })
-                        }
-                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:bg-white transition-all outline-none font-medium"
-                        placeholder="10 digit mobile number"
-                        disabled={isLoading}
+                        readOnly
+                        className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-xl outline-none font-medium text-gray-700 cursor-not-allowed"
+                        placeholder={formData.mobileNumber ? "" : "Mobile number not found in profile"}
                       />
                       {errors.mobileNumber && (
                         <p className="text-red-500 text-sm mt-1">
