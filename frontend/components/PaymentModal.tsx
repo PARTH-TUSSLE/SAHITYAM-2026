@@ -298,7 +298,11 @@ export default function PaymentModal({
                         value={formData.mobileNumber}
                         readOnly
                         className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-xl outline-none font-medium text-gray-700 cursor-not-allowed"
-                        placeholder={formData.mobileNumber ? "" : "Mobile number not found in profile"}
+                        placeholder={
+                          formData.mobileNumber
+                            ? ""
+                            : "Mobile number not found in profile"
+                        }
                       />
                       {errors.mobileNumber && (
                         <p className="text-red-500 text-sm mt-1">

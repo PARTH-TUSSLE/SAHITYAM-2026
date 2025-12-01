@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import { deleteFromCloudinary } from "../utils/cloudinaryUpload";
 
 const prisma = new PrismaClient();
 
@@ -216,5 +217,101 @@ export const getUserById = async (
   } catch (error) {
     console.error("Get user by ID error:", error);
     res.status(500).json({ error: "Failed to fetch user" });
+  }
+};
+
+// Get all pending payment verifications
+export const getPendingPayments = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const pendingRegistrations = await prisma.registration.findMany({
+      where: {
+        paymentStatus: "PENDING",
+        paymentScreenshotUrl: {
+          not: null,
+        },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            email: true,
+            mobileNumber: true,
+            createdAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            title: true,
+            subtitle: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.json(pendingRegistrations);
+  } catch (error) {
+    console.error("Get pending payments error:", error);
+    res.status(500).json({ error: "Failed to fetch pending payments" });
+  }
+};
+
+// Verify payment
+export const verifyPayment = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { registrationId } = req.params;
+    const { verified } = req.body;
+
+    const registration = await prisma.registration.findUnique({
+      where: { id: registrationId },
+    });
+
+    if (!registration) {
+      res.status(404).json({ error: "Registration not found" });
+      return;
+    }
+
+    // Update payment status based on verification
+    const updatedRegistration = await prisma.registration.update({
+      where: { id: registrationId },
+      data: {
+        paymentVerified: verified,
+        paymentStatus: verified ? "VERIFIED" : "REJECTED",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
+      },
+    });
+
+    res.json({
+      message: verified ? "Payment verified successfully" : "Payment rejected",
+      registration: updatedRegistration,
+    });
+  } catch (error) {
+    console.error("Verify payment error:", error);
+    res.status(500).json({ error: "Failed to verify payment" });
   }
 };

@@ -5,6 +5,8 @@ import {
   getEventRegistrations,
   getAllUsers,
   getUserById,
+  getPendingPayments,
+  verifyPayment,
 } from "../controllers/adminController";
 
 const router = Router();
@@ -23,5 +25,11 @@ router.get("/users", getAllUsers);
 
 // Get specific user details
 router.get("/users/:userId", getUserById);
+
+// Get all pending payment verifications
+router.get("/pending-payments", getPendingPayments);
+
+// Verify or unverify a payment
+router.patch("/verify-payment/:registrationId", verifyPayment);
 
 export default router;

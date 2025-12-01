@@ -8,6 +8,7 @@ import apiClient from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
 import BackgroundElements from "@/components/ui/BackgroundElements";
 import PaymentModal, { PaymentData } from "@/components/PaymentModal";
+import SuccessModal from "@/components/SuccessModal";
 
 interface Event {
   id: string;
@@ -36,6 +37,17 @@ function Events() {
   const [selectedEventForPayment, setSelectedEventForPayment] =
     useState<Event | null>(null);
   const { isAuthenticated, user } = useAuth();
+  const [successModal, setSuccessModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    type: "success" | "error";
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    type: "success",
+  });
 
   const fetchEvents = async () => {
     try {
@@ -115,11 +127,21 @@ function Events() {
       setSelectedEventForPayment(null);
 
       // Show success message
-      alert(
-        `Registration successful for ${selectedEventForPayment.title}! Your payment will be verified shortly.`
-      );
+      setSuccessModal({
+        isOpen: true,
+        title: "Registration Successful!",
+        message: `Your registration for ${selectedEventForPayment.title} has been submitted. Your payment will be verified shortly and you'll be notified once approved.`,
+        type: "success",
+      });
     } catch (err: any) {
-      alert(err.response?.data?.error || "Registration failed");
+      setSuccessModal({
+        isOpen: true,
+        title: "Registration Failed",
+        message:
+          err.response?.data?.error ||
+          "Failed to submit registration. Please try again.",
+        type: "error",
+      });
     } finally {
       setLoadingEventId(null);
     }
@@ -244,6 +266,15 @@ function Events() {
           userMobile={user?.mobileNumber || ""}
         />
       )}
+
+      {/* Success Modal */}
+      <SuccessModal
+        isOpen={successModal.isOpen}
+        onClose={() => setSuccessModal({ ...successModal, isOpen: false })}
+        title={successModal.title}
+        message={successModal.message}
+        type={successModal.type}
+      />
 
       <Footer />
     </>

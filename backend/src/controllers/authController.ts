@@ -103,6 +103,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         name: user.name,
         username: user.username,
         email: user.email,
+        mobileNumber: user.mobileNumber,
         role: user.role,
       },
       token,
@@ -127,6 +128,7 @@ export const getProfile = async (
         name: true,
         username: true,
         email: true,
+        mobileNumber: true,
         role: true,
         createdAt: true,
         registrations: {

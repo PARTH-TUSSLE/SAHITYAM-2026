@@ -7,21 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
 model User {
   id            String         @id @default(cuid())
   name          String
   username      String         @unique
   email         String         @unique
   password      String
-  mobileNumber  String
-  role          Role           @default(USER)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  role          Role           @default(USER)
+  mobileNumber  String
   registrations Registration[]
 }
 
@@ -38,19 +33,31 @@ model Event {
 }
 
 model Registration {
-  id                    String   @id @default(cuid())
-  userId                String
-  eventId               String
-  transactionId         String?
-  paymentScreenshotUrl  String?
-  paymentScreenshotId   String?  // Cloudinary public_id for deletion
-  registrantName        String?  // Name from payment form
-  registrantEmail       String?  // Email from payment form
-  registrantMobile      String?  // Mobile from payment form
-  paymentVerified       Boolean  @default(false)
-  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event                 Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  createdAt             DateTime @default(now())
+  id                   String        @id @default(cuid())
+  userId               String
+  eventId              String
+  createdAt            DateTime      @default(now())
+  paymentScreenshotId  String?
+  paymentScreenshotUrl String?
+  paymentVerified      Boolean       @default(false)
+  paymentStatus        PaymentStatus @default(PENDING)
+  registrantEmail      String?
+  registrantMobile     String?
+  registrantName       String?
+  transactionId        String?
+  event                Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, eventId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PaymentStatus {
+  PENDING
+  VERIFIED
+  REJECTED
 }
