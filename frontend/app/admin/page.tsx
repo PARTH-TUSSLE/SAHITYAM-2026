@@ -163,11 +163,11 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-6 py-8 relative z-10">
           {/* Header */}
           <div className="mb-8">
-            <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-3">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -181,10 +181,10 @@ export default function AdminDashboard() {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent">
                     Admin Dashboard
                   </h1>
-                  <p className="text-gray-700 font-medium">
+                  <p className="text-sm sm:text-base text-gray-700 font-medium">
                     Manage events and view registrations
                   </p>
                 </div>
@@ -193,10 +193,10 @@ export default function AdminDashboard() {
               {/* Pending Payments Notification Button */}
               <button
                 onClick={() => setPendingPaymentsModalOpen(true)}
-                className="relative px-6 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg transition-all transform hover:scale-105 flex items-center gap-3 group"
+                className="relative px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 group w-full lg:w-auto"
               >
                 <svg
-                  className="w-6 h-6 group-hover:animate-bounce"
+                  className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -208,19 +208,20 @@ export default function AdminDashboard() {
                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                   />
                 </svg>
-                <span>
-                  Pending Payments
+                <span className="text-sm sm:text-base">
+                  <span className="hidden sm:inline">Pending Payments</span>
+                  <span className="sm:hidden">Payments</span>
                   {pendingPayments.length > 0 && (
-                    <span className="ml-2 px-2.5 py-0.5 bg-white text-pink-600 text-sm font-black rounded-full">
+                    <span className="ml-2 px-2 sm:px-2.5 py-0.5 bg-white text-pink-600 text-xs sm:text-sm font-black rounded-full">
                       {pendingPayments.length}
                     </span>
                   )}
                 </span>
                 {pendingPayments.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-pink-400 rounded-full animate-ping"></span>
+                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-pink-400 rounded-full animate-ping"></span>
                 )}
                 {pendingPayments.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-pink-400 rounded-full"></span>
+                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-pink-400 rounded-full"></span>
                 )}
               </button>
             </div>
@@ -338,22 +339,22 @@ export default function AdminDashboard() {
               {events.map((event) => (
                 <div
                   key={event.id}
-                  className="p-6 hover:bg-gray-50/50 transition-colors"
+                  className="p-4 sm:p-6 hover:bg-gray-50/50 transition-colors"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-900">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">
                         {event.title}
                       </h3>
                       {event.subtitle && (
-                        <p className="text-gray-600 text-sm mt-1">
+                        <p className="text-gray-600 text-xs sm:text-sm mt-1 line-clamp-2">
                           {event.subtitle}
                         </p>
                       )}
-                      <div className="flex items-center gap-4 mt-3">
+                      <div className="flex items-center gap-4 mt-2 sm:mt-3">
                         <div className="flex items-center gap-2">
                           <svg
-                            className="w-5 h-5 text-gray-500"
+                            className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 flex-shrink-0"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -365,7 +366,7 @@ export default function AdminDashboard() {
                               d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                             />
                           </svg>
-                          <span className="text-sm font-medium text-gray-700">
+                          <span className="text-xs sm:text-sm font-medium text-gray-700">
                             {event.registrationCount} registered
                           </span>
                         </div>
@@ -373,7 +374,7 @@ export default function AdminDashboard() {
                     </div>
                     <button
                       onClick={() => viewEventDetails(event.id)}
-                      className="px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-500 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-105"
+                      className="px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-500 text-white text-sm sm:text-base font-medium rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-105 whitespace-nowrap w-full sm:w-auto"
                     >
                       View Details
                     </button>
@@ -433,28 +434,28 @@ export default function AdminDashboard() {
       {/* Event Details Modal */}
       {selectedEvent && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={() => setSelectedEvent(null)}
         >
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">
+            <div className="p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between gap-3">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
                   {selectedEvent.title}
                 </h3>
-                <p className="text-gray-600 mt-1">
+                <p className="text-sm sm:text-base text-gray-600 mt-1">
                   {selectedEvent.registrations.length} registered users
                 </p>
               </div>
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors flex-shrink-0"
               >
                 <svg
-                  className="w-6 h-6 text-gray-600"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -569,42 +570,42 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                   ) : (
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {filteredRegistrations.map((registration) => (
                         <div
                           key={registration.id}
-                          className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors"
+                          className="bg-gray-50 rounded-xl p-3 sm:p-4 hover:bg-gray-100 transition-colors"
                         >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
                                 {registration.user.name.charAt(0).toUpperCase()}
                               </div>
-                              <div>
-                                <h4 className="font-bold text-gray-900">
+                              <div className="min-w-0 flex-1">
+                                <h4 className="font-bold text-sm sm:text-base text-gray-900 truncate">
                                   {registration.user.name}
                                 </h4>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-xs sm:text-sm text-gray-600">
                                   @{registration.user.username}
                                 </p>
                                 {registration.user.mobileNumber && (
-                                  <p className="text-sm text-gray-700 font-semibold">
+                                  <p className="text-xs sm:text-sm text-gray-700 mt-1">
                                     <span className="font-semibold mr-1">
                                       Mobile:
                                     </span>
                                     {registration.user.mobileNumber}
                                   </p>
                                 )}
-                                <p className="text-sm text-gray-500">
+                                <p className="text-xs sm:text-sm text-gray-500 truncate">
                                   {registration.user.email}
                                 </p>
                               </div>
                             </div>
-                            <div className="text-right">
+                            <div className="text-left sm:text-right">
                               <p className="text-xs text-gray-500">
                                 Registered on
                               </p>
-                              <p className="text-sm font-medium text-gray-700">
+                              <p className="text-xs sm:text-sm font-medium text-gray-700">
                                 {new Date(
                                   registration.createdAt
                                 ).toLocaleDateString("en-US", {

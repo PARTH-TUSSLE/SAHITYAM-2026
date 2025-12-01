@@ -69,20 +69,8 @@ const panelists: Panelist[] = [
 
 export default function PanelistsGrid() {
   return (
-    <div className="w-full py-12 relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-        {/* Section Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-4">
-            Meet Our Panelists
-          </h2>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-4 shadow-lg shadow-pink-300/50"></div>
-          <p className="text-lg text-gray-700 font-semibold max-w-2xl mx-auto">
-            Distinguished artists, scholars, and cultural icons who will guide
-            and inspire at SAHITYAM 2026
-          </p>
-        </div>
-
+    <div className="w-full relative">
+      <div className="max-w-7xl mx-auto">
         {/* Clean Grid Layout */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {panelists.map((panelist) => (

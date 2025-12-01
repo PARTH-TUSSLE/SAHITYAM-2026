@@ -115,7 +115,7 @@ export default function PendingPaymentsModal({
       <AnimatePresence>
         {isOpen && (
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
             onClick={onClose}
           >
             <motion.div
@@ -123,17 +123,17 @@ export default function PendingPaymentsModal({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.2 }}
-              className="bg-white rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+              className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-6xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-pink-50 to-pink-100">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-gray-900">
+              <div className="p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-pink-50 to-pink-100">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-gray-900 truncate">
                       Pending Payment Verifications
                     </h2>
-                    <p className="text-gray-600 mt-1">
+                    <p className="text-sm sm:text-base text-gray-600 mt-1">
                       {pendingPayments.length} payment
                       {pendingPayments.length !== 1 ? "s" : ""} awaiting
                       verification
@@ -141,10 +141,10 @@ export default function PendingPaymentsModal({
                   </div>
                   <button
                     onClick={onClose}
-                    className="w-10 h-10 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center transition-colors"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center transition-colors flex-shrink-0"
                   >
                     <svg
-                      className="w-6 h-6 text-gray-600"
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -161,12 +161,12 @@ export default function PendingPaymentsModal({
               </div>
 
               {/* Content */}
-              <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+              <div className="p-3 sm:p-4 lg:p-6 overflow-y-auto max-h-[calc(95vh-100px)] sm:max-h-[calc(90vh-120px)]">
                 {pendingPayments.length === 0 ? (
                   <div className="text-center py-12">
-                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg
-                        className="w-10 h-10 text-green-600"
+                        className="w-8 h-8 sm:w-10 sm:h-10 text-green-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -179,31 +179,31 @@ export default function PendingPaymentsModal({
                         />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
                       All Caught Up!
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600">
                       No pending payments to verify at the moment.
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
                     {pendingPayments.map((payment) => (
                       <div
                         key={payment.id}
-                        className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6 border-2 border-pink-200 hover:border-pink-300 transition-all"
+                        className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg sm:rounded-xl p-4 sm:p-6 border-2 border-pink-200 hover:border-pink-300 transition-all"
                       >
                         {/* Event Info */}
-                        <div className="mb-4 pb-4 border-b border-pink-200">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-bold text-gray-900 text-lg">
+                        <div className="mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-pink-200">
+                          <div className="flex items-start sm:items-center justify-between gap-2 mb-2">
+                            <h3 className="font-bold text-gray-900 text-base sm:text-lg flex-1 min-w-0">
                               {payment.event.title}
                             </h3>
-                            <span className="px-3 py-1 bg-pink-500 text-white text-xs font-bold rounded-full">
+                            <span className="px-2 sm:px-3 py-1 bg-pink-500 text-white text-xs font-bold rounded-full whitespace-nowrap">
                               PENDING
                             </span>
                           </div>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs sm:text-sm text-gray-600">
                             Registered on{" "}
                             {new Date(payment.createdAt).toLocaleDateString(
                               "en-US",
@@ -219,12 +219,12 @@ export default function PendingPaymentsModal({
                         </div>
 
                         {/* User Details */}
-                        <div className="space-y-3 mb-4">
+                        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
                           <div>
                             <p className="text-xs text-gray-500 font-medium mb-1">
                               User Name
                             </p>
-                            <p className="font-bold text-gray-900">
+                            <p className="font-bold text-sm sm:text-base text-gray-900 truncate">
                               {payment.registrantName || payment.user.name}
                             </p>
                           </div>
@@ -232,7 +232,7 @@ export default function PendingPaymentsModal({
                             <p className="text-xs text-gray-500 font-medium mb-1">
                               Email
                             </p>
-                            <p className="text-gray-700">
+                            <p className="text-xs sm:text-sm text-gray-700 break-all">
                               {payment.registrantEmail || payment.user.email}
                             </p>
                           </div>
@@ -240,7 +240,7 @@ export default function PendingPaymentsModal({
                             <p className="text-xs text-gray-500 font-medium mb-1">
                               Mobile
                             </p>
-                            <p className="font-semibold text-gray-900">
+                            <p className="font-semibold text-sm sm:text-base text-gray-900">
                               {payment.registrantMobile ||
                                 payment.user.mobileNumber ||
                                 "N/A"}
@@ -250,7 +250,7 @@ export default function PendingPaymentsModal({
                             <p className="text-xs text-gray-500 font-medium mb-1">
                               Transaction ID
                             </p>
-                            <p className="font-mono text-sm bg-white px-3 py-2 rounded-lg border border-pink-200">
+                            <p className="font-mono text-xs sm:text-sm bg-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-pink-200 break-all">
                               {payment.transactionId || "N/A"}
                             </p>
                           </div>
@@ -258,12 +258,12 @@ export default function PendingPaymentsModal({
 
                         {/* Payment Screenshot */}
                         {payment.paymentScreenshotUrl && (
-                          <div className="mb-4">
+                          <div className="mb-3 sm:mb-4">
                             <p className="text-xs text-gray-500 font-medium mb-2">
                               Payment Screenshot
                             </p>
                             <div
-                              className="relative h-48 bg-white rounded-lg overflow-hidden border-2 border-pink-200 cursor-pointer hover:border-pink-400 transition-colors group"
+                              className="relative h-40 sm:h-48 bg-white rounded-lg overflow-hidden border-2 border-pink-200 cursor-pointer hover:border-pink-400 transition-colors group"
                               onClick={() =>
                                 openImageModal(payment.paymentScreenshotUrl!)
                               }
@@ -279,7 +279,7 @@ export default function PendingPaymentsModal({
                               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                                 <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-full p-2">
                                   <svg
-                                    className="w-6 h-6 text-gray-900"
+                                    className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -298,13 +298,13 @@ export default function PendingPaymentsModal({
                         )}
 
                         {/* Actions */}
-                        <div className="flex gap-3">
+                        <div className="flex gap-2 sm:gap-3">
                           <button
                             onClick={() =>
                               handleVerifyPayment(payment.id, true)
                             }
                             disabled={verifying}
-                            className={`flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
+                            className={`flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
                               verifying && verifyingId === payment.id
                                 ? "opacity-50 cursor-not-allowed"
                                 : ""
@@ -312,13 +312,14 @@ export default function PendingPaymentsModal({
                           >
                             {verifying && verifyingId === payment.id ? (
                               <>
-                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                Verifying...
+                                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <span className="hidden sm:inline">Verifying...</span>
+                                <span className="sm:hidden">...</span>
                               </>
                             ) : (
                               <>
                                 <svg
-                                  className="w-5 h-5"
+                                  className="w-4 h-4 sm:w-5 sm:h-5"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
@@ -339,7 +340,7 @@ export default function PendingPaymentsModal({
                               handleVerifyPayment(payment.id, false)
                             }
                             disabled={verifying}
-                            className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-3 rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
+                            className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
                               verifying && verifyingId === payment.id
                                 ? "opacity-50 cursor-not-allowed"
                                 : ""
@@ -347,13 +348,14 @@ export default function PendingPaymentsModal({
                           >
                             {verifying && verifyingId === payment.id ? (
                               <>
-                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                Processing...
+                                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <span className="hidden sm:inline">Processing...</span>
+                                <span className="sm:hidden">...</span>
                               </>
                             ) : (
                               <>
                                 <svg
-                                  className="w-5 h-5"
+                                  className="w-4 h-4 sm:w-5 sm:h-5"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"

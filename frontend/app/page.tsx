@@ -400,35 +400,35 @@ export default function HomePage() {
 
           <div className="w-full relative min-h-screen text-gray-800">
             {/* Hero Section */}
-            <div className="relative z-20 h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 py-6">
-              <div className="max-w-6xl w-full space-y-8 text-center animate-fade-in">
-                <h1 className="text-5xl pt-20 md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent leading-tight">
+            <div className="relative z-20 h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-6">
+              <div className="max-w-6xl w-full space-y-4 sm:space-y-6 lg:space-y-8 text-center animate-fade-in">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl pt-16 sm:pt-20 font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent leading-tight">
                   Kala aur Sahit ka Sangam
                 </h1>
-                <div className="h-2 w-28 bg-gradient-to-r from-pink-500 to-pink-400 rounded-full mt-2 mx-auto"></div>
-                <p className="text-lg md:text-xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto">
+                <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 to-pink-400 rounded-full mt-1 sm:mt-2 mx-auto"></div>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto px-2">
                   Welcome to SAHITYAM 2026, where art and literature converge.
                   Join us from 3rd to 5th February 2026 for an unforgettable
                   celebration of creativity.
                 </p>
 
                 {/* Countdown Section */}
-                <div className="flex justify-center mt-8">
-                  <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-5 shadow-2xl border border-pink-200">
+                <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8">
+                  <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 shadow-2xl border border-pink-200">
                     <Countdown />
                   </div>
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-wrap gap-4 justify-center mt-8">
+                <div className="flex flex-wrap gap-3 sm:gap-4 justify-center mt-4 sm:mt-6 lg:mt-8">
                   <a
                     href="/events"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
+                    className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-pink-500 text-white text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       <span>Explore Events</span>
                       <svg
-                        className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                        className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -444,11 +444,11 @@ export default function HomePage() {
                   </a>
                   <a
                     href="/schedule"
-                    className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-800 font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-pink-200 hover:border-pink-300"
+                    className="group px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm text-gray-800 text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-pink-200 hover:border-pink-300"
                   >
                     <span className="flex items-center gap-2">
                       <svg
-                        className="w-5 h-5"
+                        className="w-4 h-4 sm:w-5 sm:h-5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -466,16 +466,16 @@ export default function HomePage() {
                 </div>
 
                 {/* Status Indicators */}
-                <div className="flex gap-8 mt-8 justify-center">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-pink-500 rounded-full animate-ping"></div>
-                    <span className="text-sm font-bold text-pink-600">
+                <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-6 lg:mt-8 justify-center">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-pink-500 rounded-full animate-ping"></div>
+                    <span className="text-sm sm:text-sm font-bold text-pink-600">
                       Live Event
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm font-bold text-green-600">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+                    <span className="text-sm sm:text-sm font-bold text-green-600">
                       Registration Open
                     </span>
                   </div>
@@ -484,12 +484,12 @@ export default function HomePage() {
             </div>
 
             {/* Panelists Section */}
-            <div className="relative z-20 py-20 px-6 md:px-12 lg:px-20">
-              <div className="max-w-6xl mx-auto text-center space-y-12">
-                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+            <div className="relative z-20 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20">
+              <div className="max-w-6xl mx-auto text-center space-y-6 sm:space-y-8 lg:space-y-12">
+                <h2 className="text-4xl sm:text-5xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
                   Meet Our Panelists
                 </h2>
-                <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   Distinguished artists, scholars, and cultural icons who will
                   guide and inspire at SAHITYAM 2026.
                 </p>
@@ -498,20 +498,20 @@ export default function HomePage() {
             </div>
 
             {/* Sponsors Section */}
-            <div className="relative z-20 py-10">
+            <div className="relative z-20 py-6 sm:py-8 lg:py-10">
               <SponsorScroll />
             </div>
 
             {/* Organised and Managed By Section */}
-            <div className="relative z-20 py-20 px-6 md:px-12 lg:px-20">
+            <div className="relative z-20 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20">
               <div className="max-w-6xl mx-auto">
                 {/* Section Header */}
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-4 p-4">
+                <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+                  <h2 className="text-4xl sm:text-5xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-3 sm:mb-4 p-2 sm:p-4">
                     Organised and Managed by
                   </h2>
-                  <div className="h-2 w-32 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-6"></div>
-                  <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-medium">
+                  <div className="h-1.5 sm:h-2 w-24 sm:w-32 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-4 sm:mb-6"></div>
+                  <p className="text-lg sm:text-xl md:text-xl text-gray-700 max-w-2xl mx-auto font-medium px-2">
                     Bringing SAHITYAM 2026 to life with dedication and passion
                   </p>
                 </div>
@@ -519,14 +519,14 @@ export default function HomePage() {
                 {/* Mind Benders Card */}
                 <div className="relative group">
                   {/* Decorative Glow */}
-                  <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 to-pink-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
 
-                  <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 border border-white/50 hover:shadow-pink-200 transition-all duration-300 hover:scale-[1.02]">
-                    <div className="flex flex-col items-center text-center space-y-6">
+                  <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 hover:shadow-pink-200 transition-all duration-300 hover:scale-[1.02]">
+                    <div className="flex flex-col items-center text-center space-y-4 sm:space-y-6">
                       {/* Club Logo/Icon */}
-                      <div className="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-pink-500 to-pink-600 rounded-3xl flex items-center justify-center shadow-lg shadow-pink-300/50 group-hover:shadow-xl group-hover:shadow-pink-400/60 transition-all duration-300">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg shadow-pink-300/50 group-hover:shadow-xl group-hover:shadow-pink-400/60 transition-all duration-300">
                         <svg
-                          className="w-12 h-12 md:w-16 md:h-16 text-white"
+                          className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -542,14 +542,14 @@ export default function HomePage() {
 
                       {/* Club Name */}
                       <div>
-                        <h3 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent mb-2">
+                        <h3 className="text-4xl sm:text-5xl md:text-5xl font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent mb-1.5 sm:mb-2">
                           Mind Benders
                         </h3>
-                        <div className="h-1 w-24 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-4"></div>
+                        <div className="h-0.5 sm:h-1 w-20 sm:w-24 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-3 sm:mb-4"></div>
                       </div>
 
                       {/* Description */}
-                      <p className="text-gray-700 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
+                      <p className="text-lg sm:text-xl md:text-xl leading-relaxed max-w-3xl font-medium px-2">
                         A passionate community of creative minds dedicated to
                         fostering artistic expression and literary excellence.
                         Mind Benders brings together innovators, artists, and
@@ -557,39 +557,39 @@ export default function HomePage() {
                       </p>
 
                       {/* Stats/Highlights */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl mt-8">
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 border border-pink-200">
-                          <div className="text-3xl md:text-4xl font-black text-pink-600 mb-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-3xl mt-6 sm:mt-8">
+                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-200">
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-600 mb-1 sm:mb-2">
                             5+
                           </div>
-                          <div className="text-gray-700 font-semibold">
+                          <div className="text-sm sm:text-base text-gray-700 font-semibold">
                             Years of Excellence
                           </div>
                         </div>
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 border border-pink-200">
-                          <div className="text-3xl md:text-4xl font-black text-pink-600 mb-2">
+                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-200">
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-600 mb-1 sm:mb-2">
                             50+
                           </div>
-                          <div className="text-gray-700 font-semibold">
+                          <div className="text-sm sm:text-base text-gray-700 font-semibold">
                             Events Organized
                           </div>
                         </div>
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 border border-pink-200">
-                          <div className="text-3xl md:text-4xl font-black text-pink-600 mb-2">
+                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-200">
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-600 mb-1 sm:mb-2">
                             1000+
                           </div>
-                          <div className="text-gray-700 font-semibold">
+                          <div className="text-sm sm:text-base text-gray-700 font-semibold">
                             Participants Reached
                           </div>
                         </div>
                       </div>
 
                       {/* Decorative Elements */}
-                      <div className="flex gap-2 mt-6">
+                      <div className="flex gap-1.5 sm:gap-2 mt-4 sm:mt-6">
                         {[...Array(5)].map((_, i) => (
                           <div
                             key={i}
-                            className="w-2 h-2 rounded-full bg-pink-400 animate-pulse"
+                            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-400 animate-pulse"
                             style={{ animationDelay: `${i * 200}ms` }}
                           ></div>
                         ))}
@@ -599,8 +599,8 @@ export default function HomePage() {
                 </div>
 
                 {/* Additional Info */}
-                <div className="text-center mt-12">
-                  <p className="text-gray-600 text-sm md:text-base italic">
+                <div className="text-center mt-8 sm:mt-12">
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base italic px-2">
                     "Creativity knows no bounds when minds come together"
                   </p>
                 </div>
