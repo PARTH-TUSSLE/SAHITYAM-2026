@@ -70,38 +70,51 @@ const panelists: Panelist[] = [
 export default function PanelistsGrid() {
   return (
     <div className="w-full relative">
-      <div className="max-w-7xl mx-auto">
-        {/* Clean Grid Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          {panelists.map((panelist) => (
-            <div key={panelist.id} className="group relative">
-              {/* Card */}
-              <div className="relative overflow-hidden rounded-2xl aspect-square transition-all duration-300 group-hover:scale-105">
-                {/* Image */}
-                <img
-                  src={panelist.image}
-                  alt={panelist.name}
-                  className="w-full h-full object-cover"
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Announcement Section */}
+        <div className="relative">
+          {/* Decorative Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 rounded-3xl blur-3xl opacity-50"></div>
+
+          {/* Content Card */}
+          <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-12 md:p-16 border-2 border-purple-200/50 ring-1 ring-purple-100/30 shadow-2xl shadow-purple-500/10">
+            {/* Icon */}
+            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-300/50 ring-2 ring-purple-200/30">
+              <svg
+                className="w-10 h-10 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
-
-                {/* Gradient Overlay - always visible but intensifies on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300"></div>
-
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-center transform transition-all duration-300">
-                  <h3 className="text-white font-bold text-base md:text-lg mb-1">
-                    {panelist.name}
-                  </h3>
-                  <p className="text-purple-300 text-xs md:text-sm font-medium">
-                    {panelist.role}
-                  </p>
-                </div>
-
-                {/* Subtle border glow on hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-purple-400/40 transition-all duration-300"></div>
-              </div>
+              </svg>
             </div>
-          ))}
+
+            {/* Title */}
+            <h3 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 text-center p-2">
+              Coming Soon
+            </h3>
+
+            {/* Message */}
+            <p className="text-lg md:text-xl text-gray-700 font-semibold text-center max-w-2xl mx-auto leading-relaxed">
+              The names of the panelists will be announced on{" "}
+              <span className="text-2xl md:text-3xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1 inline-block">
+                15th January
+              </span>
+            </p>
+
+            {/* Decorative Elements */}
+            <div className="flex justify-center gap-2 mt-8">
+              <div className="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse delay-100"></div>
+              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse delay-200"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
