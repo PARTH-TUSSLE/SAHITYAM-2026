@@ -64,7 +64,7 @@ export default function ChromaCard({
         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-3xl z-10"></div>
 
         {/* Fee Badge */}
-        <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full shadow-lg font-bold text-sm flex items-center gap-2">
+        <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-full shadow-lg shadow-purple-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
           ₹200
         </div>
 
@@ -135,7 +135,7 @@ export default function ChromaCard({
                     className={`relative px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm ${
                       isRegistered
                         ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
-                        : "bg-gradient-to-r from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600 text-white"
+                        : "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 ring-1 ring-white/20"
                     } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-1.5">
@@ -194,7 +194,7 @@ export default function ChromaCard({
                       className={`absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 ${
                         isRegistered
                           ? "bg-gradient-to-r from-red-600 to-red-700"
-                          : "bg-gradient-to-r from-pink-600 to-pink-600"
+                          : "bg-gradient-to-r from-pink-600 via-purple-700 to-indigo-700"
                       }`}
                     ></div>
                   </button>
@@ -204,7 +204,7 @@ export default function ChromaCard({
                       e.stopPropagation();
                       window.location.href = "/login";
                     }}
-                    className="relative px-6 py-3 bg-gradient-to-r from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm"
+                    className="relative px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-600/50 hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm ring-1 ring-white/20"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-1.5">
                       Login to Register
@@ -222,7 +222,7 @@ export default function ChromaCard({
                         />
                       </svg>
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-700 to-indigo-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 )}
               </div>

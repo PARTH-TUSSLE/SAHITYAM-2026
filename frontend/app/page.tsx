@@ -14,7 +14,7 @@ const PremiumBackground = () => {
   return (
     <>
       {/* Main background container */}
-      <div className="fixed inset-0 -z-30 overflow-hidden bg-white/90">
+      <div className="fixed inset-0 -z-30 overflow-hidden bg-gradient-to-br from-rose-50 via-purple-50 to-indigo-50">
         {/* Top decorative elements - elegant arcs */}
         <div className="absolute top-0 left-0 right-0 h-[300px] overflow-hidden">
           <svg viewBox="0 0 1440 300" className="w-full h-full">
@@ -38,8 +38,9 @@ const PremiumBackground = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#FFF0F5" />
-                <stop offset="100%" stopColor="#FFE4E1" />
+                <stop offset="0%" stopColor="#FFF5F7" />
+                <stop offset="50%" stopColor="#FDE8F0" />
+                <stop offset="100%" stopColor="#F3E8FF" />
               </linearGradient>
               <linearGradient
                 id="topRightGradient"
@@ -48,8 +49,9 @@ const PremiumBackground = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#E6E6FA" />
-                <stop offset="100%" stopColor="#FFF0F5" />
+                <stop offset="0%" stopColor="#EDE9FE" />
+                <stop offset="50%" stopColor="#FDE8F0" />
+                <stop offset="100%" stopColor="#FFF5F7" />
               </linearGradient>
             </defs>
           </svg>
@@ -77,13 +79,13 @@ const PremiumBackground = () => {
                 cy="20"
                 r="15"
                 fill="none"
-                stroke={i % 2 === 0 ? "#FFB6C1" : "#E6E6FA"}
+                stroke={i % 2 === 0 ? "#F8B4D9" : "#C4B5FD"}
                 strokeWidth="1.5"
                 opacity="0.6"
               />
               <path
-                d="M20,10 L22,15 L25,12 L23,18 L20,22 L17,18 L15,12 L18,15 Z"
-                fill={i % 2 === 0 ? "#FF69B4" : "#DDA0DD"}
+                d="M20,12 Q22,14 20,16 Q18,14 20,12 M24,16 Q26,18 24,20 Q22,18 24,16 M24,24 Q26,22 28,24 Q26,26 24,24 M20,28 Q22,26 24,28 Q22,30 20,28 M16,24 Q14,26 12,24 Q14,22 16,24 M12,16 Q14,18 12,20 Q10,18 12,16"
+                fill={i % 2 === 0 ? "#EC4899" : "#A78BFA"}
                 opacity="0.4"
               />
             </svg>
@@ -107,25 +109,33 @@ const PremiumBackground = () => {
               viewBox="0 0 40 40"
               className="w-full h-full animate-float-slow"
             >
+              <defs>
+                <filter id={`softGlow-${i}`}>
+                  <feGaussianBlur stdDeviation="0.5" />
+                </filter>
+              </defs>
               <path
                 d="M20,5 C25,10 35,10 30,15 C35,20 35,25 30,30 C35,35 25,35 20,30 C15,35 5,35 10,30 C5,25 5,20 10,15 C5,10 15,10 20,5 Z"
                 fill={
                   i % 3 === 0
-                    ? "rgba(255,182,193,0.2)"
+                    ? "rgba(251,207,232,0.25)"
                     : i % 3 === 1
-                    ? "rgba(221,160,221,0.2)"
-                    : "rgba(230,230,250,0.2)"
+                    ? "rgba(196,181,253,0.25)"
+                    : "rgba(224,242,254,0.25)"
                 }
                 stroke={
-                  i % 3 === 0 ? "#FFB6C1" : i % 3 === 1 ? "#DDA0DD" : "#E6E6FA"
+                  i % 3 === 0 ? "#F8B4D9" : i % 3 === 1 ? "#C4B5FD" : "#BAE6FD"
                 }
                 strokeWidth="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter={`url(#softGlow-${i})`}
               />
               <circle
                 cx="20"
                 cy="20"
                 r="3"
-                fill={i % 2 === 0 ? "#FF69B4" : "#9370DB"}
+                fill={i % 2 === 0 ? "#EC4899" : "#8B5CF6"}
                 opacity="0.3"
               />
             </svg>
@@ -153,8 +163,9 @@ const PremiumBackground = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="rgba(255,182,193,0.3)" />
-                <stop offset="100%" stopColor="rgba(255,105,180,0.3)" />
+                <stop offset="0%" stopColor="rgba(251,207,232,0.4)" />
+                <stop offset="50%" stopColor="rgba(236,72,153,0.3)" />
+                <stop offset="100%" stopColor="rgba(192,132,252,0.3)" />
               </linearGradient>
               <linearGradient
                 id="waveGradient2"
@@ -163,8 +174,9 @@ const PremiumBackground = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="rgba(230,230,250,0.2)" />
-                <stop offset="100%" stopColor="rgba(221,160,221,0.2)" />
+                <stop offset="0%" stopColor="rgba(196,181,253,0.3)" />
+                <stop offset="50%" stopColor="rgba(147,51,234,0.2)" />
+                <stop offset="100%" stopColor="rgba(219,234,254,0.3)" />
               </linearGradient>
             </defs>
           </svg>
@@ -173,16 +185,10 @@ const PremiumBackground = () => {
         {/* Large decorative elements - premium design */}
         <div className="absolute left-[5%] top-[15%] w-[150px] h-[200px] opacity-60 animate-float-premium">
           <svg viewBox="0 0 150 200" className="w-full h-full">
-            <path
-              d="M75,20 C100,50 120,100 120,150 C120,180 100,190 75,180 C50,190 30,180 30,150 C30,100 50,50 75,20"
-              fill="none"
-              stroke="url(#premiumGradient1)"
-              strokeWidth="2"
-            />
-            <circle cx="75" cy="80" r="20" fill="rgba(255,182,193,0.2)" />
-            <circle cx="50" cy="120" r="10" fill="rgba(255,105,180,0.3)" />
-            <circle cx="100" cy="140" r="12" fill="rgba(221,160,221,0.3)" />
             <defs>
+              <filter id="premiumBlur1">
+                <feGaussianBlur stdDeviation="1" />
+              </filter>
               <linearGradient
                 id="premiumGradient1"
                 x1="0%"
@@ -190,25 +196,32 @@ const PremiumBackground = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#FFB6C1" />
-                <stop offset="100%" stopColor="#FF69B4" />
+                <stop offset="0%" stopColor="#F8B4D9" />
+                <stop offset="50%" stopColor="#EC4899" />
+                <stop offset="100%" stopColor="#C084FC" />
               </linearGradient>
             </defs>
+            <path
+              d="M75,20 C100,50 120,100 120,150 C120,180 100,190 75,180 C50,190 30,180 30,150 C30,100 50,50 75,20"
+              fill="none"
+              stroke="url(#premiumGradient1)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#premiumBlur1)"
+            />
+            <circle cx="75" cy="80" r="20" fill="rgba(251,207,232,0.25)" />
+            <circle cx="50" cy="120" r="10" fill="rgba(236,72,153,0.35)" />
+            <circle cx="100" cy="140" r="12" fill="rgba(192,132,252,0.35)" />
           </svg>
         </div>
 
         <div className="absolute right-[5%] bottom-[20%] w-[150px] h-[200px] opacity-60 animate-float-premium-reverse">
           <svg viewBox="0 0 150 200" className="w-full h-full">
-            <path
-              d="M75,20 C100,70 120,120 120,170 C120,190 100,180 75,170 C50,180 30,190 30,170 C30,120 50,70 75,20"
-              fill="none"
-              stroke="url(#premiumGradient2)"
-              strokeWidth="2"
-            />
-            <circle cx="75" cy="100" r="20" fill="rgba(221,160,221,0.2)" />
-            <circle cx="50" cy="60" r="10" fill="rgba(230,230,250,0.3)" />
-            <circle cx="100" cy="150" r="12" fill="rgba(255,182,193,0.3)" />
             <defs>
+              <filter id="premiumBlur2">
+                <feGaussianBlur stdDeviation="1" />
+              </filter>
               <linearGradient
                 id="premiumGradient2"
                 x1="0%"
@@ -216,10 +229,23 @@ const PremiumBackground = () => {
                 x2="100%"
                 y2="100%"
               >
-                <stop offset="0%" stopColor="#E6E6FA" />
-                <stop offset="100%" stopColor="#DDA0DD" />
+                <stop offset="0%" stopColor="#C4B5FD" />
+                <stop offset="50%" stopColor="#8B5CF6" />
+                <stop offset="100%" stopColor="#6366F1" />
               </linearGradient>
             </defs>
+            <path
+              d="M75,20 C100,70 120,120 120,170 C120,190 100,180 75,170 C50,180 30,190 30,170 C30,120 50,70 75,20"
+              fill="none"
+              stroke="url(#premiumGradient2)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#premiumBlur2)"
+            />
+            <circle cx="75" cy="100" r="20" fill="rgba(196,181,253,0.25)" />
+            <circle cx="50" cy="60" r="10" fill="rgba(139,92,246,0.35)" />
+            <circle cx="100" cy="150" r="12" fill="rgba(224,242,254,0.35)" />
           </svg>
         </div>
 
@@ -241,14 +267,48 @@ const PremiumBackground = () => {
               viewBox="0 0 20 20"
               className="w-full h-full animate-twinkle-premium"
             >
-              <path
-                d="M10,2 L12,8 L18,9 L14,13 L15,18 L10,15 L5,18 L6,13 L2,9 L8,8 Z"
+              <defs>
+                <filter id={`starGlow-${i}`}>
+                  <feGaussianBlur stdDeviation="0.8" />
+                </filter>
+              </defs>
+              <circle
+                cx="10"
+                cy="10"
+                r="3"
                 fill={
                   i % 3 === 0
-                    ? "rgba(255,215,0,0.7)"
+                    ? "rgba(251,191,36,0.8)"
                     : i % 3 === 1
-                    ? "rgba(255,192,203,0.6)"
-                    : "rgba(221,160,221,0.6)"
+                    ? "rgba(236,72,153,0.7)"
+                    : "rgba(168,85,247,0.7)"
+                }
+                filter={`url(#starGlow-${i})`}
+              />
+              <ellipse
+                cx="10"
+                cy="10"
+                rx="7"
+                ry="2"
+                fill={
+                  i % 3 === 0
+                    ? "rgba(251,191,36,0.5)"
+                    : i % 3 === 1
+                    ? "rgba(236,72,153,0.4)"
+                    : "rgba(168,85,247,0.4)"
+                }
+              />
+              <ellipse
+                cx="10"
+                cy="10"
+                rx="2"
+                ry="7"
+                fill={
+                  i % 3 === 0
+                    ? "rgba(251,191,36,0.5)"
+                    : i % 3 === 1
+                    ? "rgba(236,72,153,0.4)"
+                    : "rgba(168,85,247,0.4)"
                 }
               />
             </svg>
@@ -402,10 +462,10 @@ export default function HomePage() {
             {/* Hero Section */}
             <div className="relative z-20 h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-6">
               <div className="max-w-6xl w-full space-y-4 sm:space-y-6 lg:space-y-8 text-center animate-fade-in">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl pt-16 sm:pt-20 font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl pt-16 sm:pt-20 font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
                   Kala aur Sahit ka Sangam
                 </h1>
-                <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 to-pink-400 rounded-full mt-1 sm:mt-2 mx-auto"></div>
+                <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mt-1 sm:mt-2 mx-auto shadow-lg shadow-purple-200"></div>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto px-2">
                   Welcome to SAHITYAM 2026, where art and literature converge.
                   Join us from 3rd to 5th February 2026 for an unforgettable
@@ -414,7 +474,7 @@ export default function HomePage() {
 
                 {/* Countdown Section */}
                 <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8">
-                  <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 shadow-2xl border border-pink-200">
+                  <div className="relative bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 shadow-2xl border border-purple-100 ring-1 ring-purple-200/50">
                     <Countdown />
                   </div>
                 </div>
@@ -423,7 +483,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap gap-3 sm:gap-4 justify-center mt-4 sm:mt-6 lg:mt-8">
                   <a
                     href="/events"
-                    className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-pink-500 text-white text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
+                    className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white text-base sm:text-base font-bold rounded-full shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-600/50 transition-all duration-300 hover:scale-105 overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       <span>Explore Events</span>
@@ -444,7 +504,7 @@ export default function HomePage() {
                   </a>
                   <a
                     href="/schedule"
-                    className="group px-6 sm:px-8 py-3 sm:py-4 bg-white/80 backdrop-blur-sm text-gray-800 text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-pink-200 hover:border-pink-300"
+                    className="group px-6 sm:px-8 py-3 sm:py-4 bg-white/90 backdrop-blur-md text-gray-800 text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-purple-200 hover:border-purple-300 ring-1 ring-purple-100/50"
                   >
                     <span className="flex items-center gap-2">
                       <svg
@@ -468,14 +528,14 @@ export default function HomePage() {
                 {/* Status Indicators */}
                 <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-6 lg:mt-8 justify-center">
                   <div className="flex items-center gap-1.5 sm:gap-2">
-                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-pink-500 rounded-full animate-ping"></div>
-                    <span className="text-sm sm:text-sm font-bold text-pink-600">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-ping"></div>
+                    <span className="text-sm sm:text-sm font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                       Live Event
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5 sm:gap-2">
-                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm sm:text-sm font-bold text-green-600">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+                    <span className="text-sm sm:text-sm font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                       Registration Open
                     </span>
                   </div>
@@ -486,7 +546,7 @@ export default function HomePage() {
             {/* Panelists Section */}
             <div className="relative z-20 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-12 lg:px-20">
               <div className="max-w-6xl mx-auto text-center space-y-6 sm:space-y-8 lg:space-y-12">
-                <h2 className="text-4xl sm:text-5xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+                <h2 className="text-4xl sm:text-5xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                   Meet Our Panelists
                 </h2>
                 <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto px-2">
@@ -507,10 +567,10 @@ export default function HomePage() {
               <div className="max-w-6xl mx-auto">
                 {/* Section Header */}
                 <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-                  <h2 className="text-4xl sm:text-5xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent mb-3 sm:mb-4 p-2 sm:p-4">
+                  <h2 className="text-4xl sm:text-5xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent mb-3 sm:mb-4 p-2 sm:p-4">
                     Organised and Managed by
                   </h2>
-                  <div className="h-1.5 sm:h-2 w-24 sm:w-32 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-4 sm:mb-6"></div>
+                  <div className="h-1.5 sm:h-2 w-24 sm:w-32 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto mb-4 sm:mb-6 shadow-lg shadow-purple-200"></div>
                   <p className="text-lg sm:text-xl md:text-xl text-gray-700 max-w-2xl mx-auto font-medium px-2">
                     Bringing SAHITYAM 2026 to life with dedication and passion
                   </p>
@@ -519,12 +579,12 @@ export default function HomePage() {
                 {/* Mind Benders Card */}
                 <div className="relative group">
                   {/* Decorative Glow */}
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
 
-                  <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 hover:shadow-pink-200 transition-all duration-300 hover:scale-[1.02]">
+                  <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-purple-100 ring-1 ring-purple-200/50 hover:shadow-purple-200 transition-all duration-300 hover:scale-[1.02]">
                     <div className="flex flex-col items-center text-center space-y-4 sm:space-y-6">
                       {/* Club Logo/Icon */}
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg shadow-pink-300/50 group-hover:shadow-xl group-hover:shadow-pink-400/60 transition-all duration-300">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/50">
                         <svg
                           className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 text-white"
                           fill="none"
@@ -542,10 +602,10 @@ export default function HomePage() {
 
                       {/* Club Name */}
                       <div>
-                        <h3 className="text-4xl sm:text-5xl md:text-5xl font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent mb-1.5 sm:mb-2">
+                        <h3 className="text-4xl sm:text-5xl md:text-5xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
                           Mind Benders
                         </h3>
-                        <div className="h-0.5 sm:h-1 w-20 sm:w-24 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-3 sm:mb-4"></div>
+                        <div className="h-0.5 sm:h-1 w-20 sm:w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto mb-3 sm:mb-4 shadow-md shadow-purple-200"></div>
                       </div>
 
                       {/* Description */}
@@ -558,24 +618,24 @@ export default function HomePage() {
 
                       {/* Stats/Highlights */}
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-3xl mt-6 sm:mt-8">
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-200">
-                          <div className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-600 mb-1 sm:mb-2">
+                        <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-200 shadow-md shadow-purple-100/50">
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                             5+
                           </div>
                           <div className="text-sm sm:text-base text-gray-700 font-semibold">
                             Years of Excellence
                           </div>
                         </div>
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-200">
-                          <div className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-600 mb-1 sm:mb-2">
+                        <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-200 shadow-md shadow-purple-100/50">
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                             50+
                           </div>
                           <div className="text-sm sm:text-base text-gray-700 font-semibold">
                             Events Organized
                           </div>
                         </div>
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-200">
-                          <div className="text-2xl sm:text-3xl md:text-4xl font-black text-pink-600 mb-1 sm:mb-2">
+                        <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-200 shadow-md shadow-purple-100/50">
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                             1000+
                           </div>
                           <div className="text-sm sm:text-base text-gray-700 font-semibold">
@@ -589,7 +649,7 @@ export default function HomePage() {
                         {[...Array(5)].map((_, i) => (
                           <div
                             key={i}
-                            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-400 animate-pulse"
+                            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 animate-pulse"
                             style={{ animationDelay: `${i * 200}ms` }}
                           ></div>
                         ))}

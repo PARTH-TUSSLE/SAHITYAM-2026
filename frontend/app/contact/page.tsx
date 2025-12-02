@@ -47,7 +47,7 @@ export default function Contact() {
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
               Get In Touch
             </h1>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 via-pink-500 to-pink-500 rounded-full mx-auto mb-6 shadow-lg shadow-pink-300/50"></div>
+            <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto mb-6 shadow-lg shadow-purple-300/50"></div>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
               Have questions about SAHITYAM 2026? We'd love to hear from you.
               Send us a message and we'll respond as soon as possible.
@@ -58,9 +58,9 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-stretch">
             {/* Email Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-pink-300 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-200/50 text-center h-full flex flex-col justify-center items-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-300/50 group-hover:shadow-xl group-hover:shadow-pink-400/60 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
+                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -78,7 +78,7 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Email</h3>
                 <a
                   href="mailto:contact@sahityam2026.com"
-                  className="text-pink-600 hover:text-pink-700 font-semibold text-base transition-colors inline-block break-words"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-base transition-colors inline-block break-words"
                 >
                   contact@sahityam2026.com
                 </a>
@@ -87,9 +87,9 @@ export default function Contact() {
 
             {/* Phone Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-pink-300 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-200/50 text-center h-full flex flex-col justify-center items-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-300/50 group-hover:shadow-xl group-hover:shadow-pink-400/60 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
+                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -107,7 +107,7 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Phone</h3>
                 <a
                   href="tel:+911234567890"
-                  className="text-pink-600 hover:text-pink-700 font-semibold text-base transition-colors inline-block"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-base transition-colors inline-block"
                 >
                   +91 123 456 7890
                 </a>
@@ -116,9 +116,9 @@ export default function Contact() {
 
             {/* Location Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-pink-300 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-200/50 text-center h-full flex flex-col justify-center items-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-300/50 group-hover:shadow-xl group-hover:shadow-pink-400/60 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
+                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
                   <svg
                     className="w-10 h-10 text-white"
                     fill="none"
@@ -175,7 +175,7 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-pink-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300"
                     placeholder="John Doe"
                     required
                   />
@@ -193,7 +193,7 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-pink-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300"
                     placeholder="john@example.com"
                     required
                   />
@@ -214,7 +214,7 @@ export default function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-pink-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300"
                     placeholder="+91 123 456 7890"
                   />
                 </div>
@@ -251,7 +251,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-pink-400 focus:bg-white outline-none transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300 resize-none ring-1 ring-transparent focus:ring-purple-200/50"
                   placeholder="Tell us more about your inquiry..."
                   required
                 ></textarea>
@@ -259,7 +259,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="group relative w-full md:w-auto px-12 py-4 bg-gradient-to-r from-pink-500 to-pink-500 text-white font-bold rounded-xl shadow-lg shadow-pink-300/50 hover:shadow-xl hover:shadow-pink-400/60 transition-all duration-300 hover:scale-[1.02] overflow-hidden"
+                className="group relative w-full md:w-auto px-12 py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden ring-1 ring-white/20"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Send Message
@@ -289,7 +289,7 @@ export default function Contact() {
               <div className="flex gap-5 justify-center">
                 <a
                   href="#"
-                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-pink-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-pink-200/50"
+                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-purple-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-purple-200/50"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <svg
@@ -302,7 +302,7 @@ export default function Contact() {
                 </a>
                 <a
                   href="#"
-                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-pink-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-pink-200/50"
+                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-purple-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-purple-200/50"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <svg
@@ -315,7 +315,7 @@ export default function Contact() {
                 </a>
                 <a
                   href="#"
-                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-pink-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-pink-200/50"
+                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-purple-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-purple-200/50"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <svg

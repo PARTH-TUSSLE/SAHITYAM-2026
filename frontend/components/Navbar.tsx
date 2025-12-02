@@ -61,8 +61,8 @@ function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-gradient-to-r from-pink-50/95 via-white/95 to-pink-50/95 backdrop-blur-xl border-b border-pink-200/50 shadow-lg shadow-pink-100/50"
-          : "bg-gradient-to-r from-pink-50/60 via-white/60 to-pink-50/60 backdrop-blur-sm border-b border-pink-200/30"
+          ? "bg-gradient-to-r from-rose-50/95 via-white/95 to-purple-50/95 backdrop-blur-xl border-b border-purple-200/50 shadow-lg shadow-purple-100/50"
+          : "bg-gradient-to-r from-rose-50/60 via-white/60 to-purple-50/60 backdrop-blur-sm border-b border-purple-200/30"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-3">
@@ -71,10 +71,10 @@ function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
               {/* Outer glow ring */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-500 rounded-xl blur-md opacity-0 group-hover:opacity-60 transition-all duration-500 scale-110"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 rounded-xl blur-md opacity-0 group-hover:opacity-60 transition-all duration-500 scale-110"></div>
 
               {/* Main icon container */}
-              <div className="relative w-12 h-12 bg-gradient-to-br from-pink-500 via-pink-500 to-pink-600 rounded-xl flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl shadow-pink-500/30">
+              <div className="relative w-12 h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl shadow-purple-500/30 ring-2 ring-purple-200/30">
                 {/* Inner shine */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent rounded-xl opacity-60"></div>
 
@@ -95,10 +95,10 @@ function Navbar() {
             </div>
 
             <div className="flex flex-col">
-              <span className="text-2xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent tracking-tight transition-all duration-300 group-hover:scale-105">
+              <span className="text-2xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent tracking-tight transition-all duration-300 group-hover:scale-105">
                 SAHITYAM 2026
               </span>
-              <span className="text-[10px] font-semibold text-pink-500/70 tracking-widest uppercase -mt-1">
+              <span className="text-[10px] font-semibold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent tracking-widest uppercase -mt-1">
                 Literature Festival
               </span>
             </div>
@@ -114,15 +114,15 @@ function Navbar() {
                   href={item.href}
                   className={`relative px-5 py-2.5 font-semibold text-sm transition-all duration-300 group rounded-lg ${
                     isActive
-                      ? "text-pink-600"
-                      : "text-gray-700 hover:text-pink-600"
+                      ? "text-purple-600"
+                      : "text-gray-700 hover:text-purple-600"
                   }`}
                   onMouseEnter={() => setHoveredItem(item.name)}
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   {/* Background glow on hover */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-r from-pink-100 to-pink-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                    className={`absolute inset-0 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                       isActive ? "opacity-50" : ""
                     }`}
                   ></div>
@@ -131,13 +131,13 @@ function Navbar() {
 
                   {/* Active indicator - enhanced */}
                   {isActive && (
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1 bg-gradient-to-r from-pink-500 via-pink-500 to-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full shadow-lg shadow-purple-500/50"></div>
                   )}
 
                   {/* Hover underline - animated gradient */}
                   {!isActive && (
                     <div
-                      className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r from-pink-400 via-pink-400 to-pink-400 rounded-full transition-all duration-300 shadow-lg shadow-pink-400/40 ${
+                      className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-full transition-all duration-300 shadow-lg shadow-purple-400/40 ${
                         hoveredItem === item.name
                           ? "w-4/5 -translate-x-1/2 opacity-100"
                           : "w-0 -translate-x-1/2 opacity-0"
@@ -154,22 +154,22 @@ function Navbar() {
                 {/* Profile Avatar Button */}
                 <button
                   onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                  className="relative w-11 h-11 rounded-full bg-gradient-to-br from-pink-100 via-pink-300 to-pink-500 flex items-center justify-center text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+                  className="relative w-11 h-11 rounded-full bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group ring-2 ring-purple-200/50"
                 >
                   <span className="relative z-10">
                     {user?.name.charAt(0).toUpperCase()}
                   </span>
                   {/* Glow effect */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-pink-200 to-pink-400 blur-sm opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-200 to-indigo-400 blur-sm opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
                 </button>
 
                 {/* Dropdown Menu */}
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 mt-3 w-56 bg-white backdrop-blur-xl rounded-2xl shadow-2xl shadow-pink-200/50 border border-pink-200/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-[1000]">
+                  <div className="absolute right-0 mt-3 w-56 bg-white backdrop-blur-xl rounded-2xl shadow-2xl shadow-purple-200/50 border border-purple-200/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-[1000]">
                     {/* User Info Section */}
-                    <div className="px-4 py-4 bg-gradient-to-br from-pink-50 to-pink-50 border-b border-pink-200/50">
+                    <div className="px-4 py-4 bg-gradient-to-br from-purple-50/50 to-pink-50/50 border-b border-purple-200/50">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-100 to-pink-400 flex items-center justify-center text-white font-bold text-base">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-base ring-2 ring-purple-200/50">
                           {user?.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -190,10 +190,10 @@ function Navbar() {
                           setIsProfileMenuOpen(false);
                           router.push("/profile");
                         }}
-                        className="w-full px-4 py-3 flex items-center gap-3 text-gray-700 hover:bg-gradient-to-r hover:from-pink-50 hover:to-pink-50 hover:text-pink-600 transition-all duration-200 group"
+                        className="w-full px-4 py-3 flex items-center gap-3 text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:text-purple-600 transition-all duration-200 group"
                       >
                         <svg
-                          className="w-5 h-5 text-gray-500 group-hover:text-pink-600 transition-colors"
+                          className="w-5 h-5 text-gray-500 group-hover:text-purple-600 transition-colors"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -213,10 +213,10 @@ function Navbar() {
                           setIsProfileMenuOpen(false);
                           logout();
                         }}
-                        className="w-full px-4 py-3 flex items-center gap-3 text-pink-600 hover:bg-pink-50 transition-all duration-200 group"
+                        className="w-full px-4 py-3 flex items-center gap-3 text-purple-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-200 group"
                       >
                         <svg
-                          className="w-5 h-5 text-pink-500 group-hover:text-pink-600 transition-colors"
+                          className="w-5 h-5 text-purple-500 group-hover:text-purple-600 transition-colors"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -239,19 +239,19 @@ function Navbar() {
                 {/* Login Button - Outlined Style */}
                 <Link
                   href="/login"
-                  className="relative px-6 py-2.5 text-sm font-bold text-pink-600 border-2 border-pink-500 rounded-full overflow-hidden group transition-all duration-300 hover:scale-105"
+                  className="relative px-6 py-2.5 text-sm font-bold text-purple-600 border-2 border-purple-500 rounded-full overflow-hidden group transition-all duration-300 hover:scale-105 ring-1 ring-purple-200/30"
                 >
                   <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
                     Login
                   </span>
                   {/* Slide-in background on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-pink-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </Link>
 
                 {/* Register Button - Filled Style */}
                 <Link
                   href="/register"
-                  className="relative px-7 py-2.5 bg-gradient-to-r from-pink-500 via-pink-500 to-pink-600 text-white text-sm font-bold rounded-full overflow-hidden group shadow-lg shadow-pink-500/40 hover:shadow-xl hover:shadow-pink-500/60 transition-all duration-300 hover:scale-105"
+                  className="relative px-7 py-2.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white text-sm font-bold rounded-full overflow-hidden group shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-105 ring-1 ring-purple-200/30"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     Register Now
@@ -278,12 +278,12 @@ function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2.5 rounded-xl bg-gradient-to-br from-pink-100 to-pink-100 hover:from-pink-200 hover:to-pink-200 transition-all duration-300 shadow-md hover:shadow-lg"
+            className="md:hidden p-2.5 rounded-xl bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 shadow-md hover:shadow-lg ring-1 ring-purple-200/30"
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg
-              className="w-6 h-6 text-pink-600"
+              className="w-6 h-6 text-purple-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -309,7 +309,7 @@ function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 bg-gradient-to-br from-white/98 to-pink-50/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-pink-200/50 animate-in slide-in-from-top duration-300 border border-pink-200/50">
+          <div className="md:hidden mt-4 pb-4 bg-gradient-to-br from-white/98 via-purple-50/95 to-pink-50/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-purple-200/50 animate-in slide-in-from-top duration-300 border border-purple-200/50">
             <div className="flex flex-col space-y-2 p-3">
               {allNavItems.map((item) => {
                 const isActive = pathname === `/${item.href}`;
@@ -319,8 +319,8 @@ function Navbar() {
                     href={item.href}
                     className={`px-5 py-3.5 font-semibold rounded-xl transition-all duration-300 ${
                       isActive
-                        ? "bg-gradient-to-r from-pink-100 to-pink-100 text-pink-600 shadow-md shadow-pink-200/50"
-                        : "text-gray-700 hover:bg-gradient-to-r hover:from-pink-50 hover:to-pink-50 hover:text-pink-600"
+                        ? "bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 text-purple-600 shadow-md shadow-purple-200/50 ring-1 ring-purple-200/30"
+                        : "text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:via-pink-50 hover:to-purple-50 hover:text-purple-600"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -334,7 +334,7 @@ function Navbar() {
                 <>
                   <Link
                     href="/profile"
-                    className="px-5 py-3.5 font-semibold text-center rounded-xl bg-gradient-to-r from-pink-100 to-pink-100 text-pink-600 hover:from-pink-200 hover:to-pink-200 transition-all duration-300"
+                    className="px-5 py-3.5 font-semibold text-center rounded-xl bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 text-purple-600 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 ring-1 ring-purple-200/30"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Profile
@@ -344,7 +344,7 @@ function Navbar() {
                       logout();
                       setIsMobileMenuOpen(false);
                     }}
-                    className="px-5 py-3.5 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold rounded-xl text-center shadow-xl shadow-pink-500/40 hover:shadow-2xl hover:shadow-pink-500/60 transition-all duration-300"
+                    className="px-5 py-3.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl text-center shadow-xl shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-500/60 transition-all duration-300 ring-1 ring-white/20"
                   >
                     Logout
                   </button>
@@ -353,14 +353,14 @@ function Navbar() {
                 <>
                   <Link
                     href="/login"
-                    className="px-5 py-3.5 font-semibold text-center rounded-xl border-2 border-pink-500 text-pink-600 hover:bg-pink-50 transition-all duration-300"
+                    className="px-5 py-3.5 font-semibold text-center rounded-xl border-2 border-purple-500 text-purple-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-300 ring-1 ring-purple-200/30"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Login
                   </Link>
                   <Link
                     href="/register"
-                    className="px-5 py-3.5 bg-gradient-to-r from-pink-500 via-pink-500 to-pink-600 text-white font-bold rounded-xl text-center shadow-xl shadow-pink-500/40 hover:shadow-2xl hover:shadow-pink-500/60 transition-all duration-300 hover:scale-[1.02] border-2 border-white/20"
+                    className="px-5 py-3.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl text-center shadow-xl shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-[1.02] border-2 border-white/20 ring-1 ring-white/30"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Register Now

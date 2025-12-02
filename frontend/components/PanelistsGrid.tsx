@@ -92,13 +92,13 @@ export default function PanelistsGrid() {
                   <h3 className="text-white font-bold text-base md:text-lg mb-1">
                     {panelist.name}
                   </h3>
-                  <p className="text-pink-300 text-xs md:text-sm font-medium">
+                  <p className="text-purple-300 text-xs md:text-sm font-medium">
                     {panelist.role}
                   </p>
                 </div>
 
                 {/* Subtle border glow on hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-pink-400/40 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-purple-400/40 transition-all duration-300"></div>
               </div>
             </div>
           ))}

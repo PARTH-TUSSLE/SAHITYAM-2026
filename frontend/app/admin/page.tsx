@@ -144,7 +144,7 @@ export default function AdminDashboard() {
   if (loading || loadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
       </div>
     );
   }
@@ -165,7 +165,7 @@ export default function AdminDashboard() {
           <div className="mb-8">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ring-2 ring-purple-200/50">
                   <svg
                     className="w-5 h-5 sm:w-6 sm:h-6 text-white"
                     fill="none"
@@ -181,7 +181,7 @@ export default function AdminDashboard() {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-pink-600 via-pink-600 to-pink-700 bg-clip-text text-transparent">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                     Admin Dashboard
                   </h1>
                   <p className="text-sm sm:text-base text-gray-700 font-medium">
@@ -193,7 +193,7 @@ export default function AdminDashboard() {
               {/* Pending Payments Notification Button */}
               <button
                 onClick={() => setPendingPaymentsModalOpen(true)}
-                className="relative px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 group w-full lg:w-auto"
+                className="relative px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/40 transition-all transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 group w-full lg:w-auto ring-1 ring-white/20"
               >
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce flex-shrink-0"
@@ -212,16 +212,16 @@ export default function AdminDashboard() {
                   <span className="hidden sm:inline">Pending Payments</span>
                   <span className="sm:hidden">Payments</span>
                   {pendingPayments.length > 0 && (
-                    <span className="ml-2 px-2 sm:px-2.5 py-0.5 bg-white text-pink-600 text-xs sm:text-sm font-black rounded-full">
+                    <span className="ml-2 px-2 sm:px-2.5 py-0.5 bg-white text-purple-600 text-xs sm:text-sm font-black rounded-full">
                       {pendingPayments.length}
                     </span>
                   )}
                 </span>
                 {pendingPayments.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-pink-400 rounded-full animate-ping"></span>
+                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-purple-400 rounded-full animate-ping"></span>
                 )}
                 {pendingPayments.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-pink-400 rounded-full"></span>
+                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-purple-400 rounded-full"></span>
                 )}
               </button>
             </div>
@@ -374,7 +374,7 @@ export default function AdminDashboard() {
                     </div>
                     <button
                       onClick={() => viewEventDetails(event.id)}
-                      className="px-4 py-2 bg-gradient-to-r from-pink-500 to-pink-500 text-white text-sm sm:text-base font-medium rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-105 whitespace-nowrap w-full sm:w-auto"
+                      className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white text-sm sm:text-base font-medium rounded-lg hover:shadow-lg hover:shadow-purple-500/40 transition-all duration-200 hover:scale-105 whitespace-nowrap w-full sm:w-auto ring-1 ring-white/20"
                     >
                       View Details
                     </button>
@@ -392,10 +392,10 @@ export default function AdminDashboard() {
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
             <div className="flex flex-col items-center space-y-4">
               <div className="relative">
-                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-pink-500"
+                    className="w-6 h-6 text-purple-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -421,7 +421,7 @@ export default function AdminDashboard() {
                 {[...Array(3)].map((_, i) => (
                   <div
                     key={i}
-                    className="w-2 h-2 rounded-full bg-pink-500 animate-bounce"
+                    className="w-2 h-2 rounded-full bg-purple-500 animate-bounce"
                     style={{ animationDelay: `${i * 150}ms` }}
                   ></div>
                 ))}
@@ -515,7 +515,7 @@ export default function AdminDashboard() {
                         placeholder="Search by name or mobile number..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:bg-white transition-all outline-none font-medium text-gray-900 placeholder-gray-500"
+                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium text-gray-900 placeholder-gray-500 ring-1 ring-transparent focus:ring-purple-200/50"
                       />
                       {searchQuery && (
                         <button
@@ -578,7 +578,7 @@ export default function AdminDashboard() {
                         >
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                             <div className="flex items-start sm:items-center gap-3 sm:gap-4">
-                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0 ring-2 ring-purple-200/50">
                                 {registration.user.name.charAt(0).toUpperCase()}
                               </div>
                               <div className="min-w-0 flex-1">

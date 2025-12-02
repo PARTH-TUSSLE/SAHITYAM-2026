@@ -178,7 +178,7 @@ function Events() {
               <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
                 Our Events
               </h1>
-              <div className="h-2 w-32 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mx-auto mb-6"></div>
+              <div className="h-2 w-32 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto mb-6 shadow-md shadow-purple-300/50"></div>
               <p className="text-xl text-gray-700 max-w-2xl mx-auto">
                 Experience the convergence of art and literature through our
                 diverse events
@@ -188,11 +188,11 @@ function Events() {
             {/* Events Grid */}
             {loading ? (
               <div className="flex justify-center items-center py-20">
-                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
               </div>
             ) : error ? (
               <div className="text-center py-20">
-                <div className="bg-pink-50 border border-pink-200 text-pink-600 rounded-lg p-6 max-w-md mx-auto">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 text-purple-600 rounded-lg p-6 max-w-md mx-auto ring-1 ring-purple-100/50">
                   <svg
                     className="w-12 h-12 mx-auto mb-4"
                     fill="none"
@@ -212,7 +212,7 @@ function Events() {
                   <p className="text-sm">{error}</p>
                   <button
                     onClick={() => window.location.reload()}
-                    className="mt-4 px-6 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors"
+                    className="mt-4 px-6 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/40 transition-all hover:scale-105"
                   >
                     Retry
                   </button>

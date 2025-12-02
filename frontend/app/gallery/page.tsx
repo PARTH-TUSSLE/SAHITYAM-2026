@@ -198,7 +198,7 @@ function Gallery() {
                     </div>
 
                     {/* Border Glow */}
-                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-pink-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
+                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-purple-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
                   </div>
                 ))}
               </div>
@@ -260,7 +260,7 @@ function Gallery() {
                       </div>
                     </div>
 
-                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-pink-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
+                    <div className="absolute inset-0 border-4 border-transparent group-hover:border-purple-400/50 rounded-2xl transition-all duration-500 pointer-events-none"></div>
                   </div>
                 ))}
               </div>
@@ -341,7 +341,7 @@ function Gallery() {
             }}
           >
             <button
-              className="absolute top-6 right-6 text-white hover:text-pink-500 transition-colors duration-300 z-10"
+              className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors duration-300 z-10"
               onClick={() => setSelectedImage(null)}
             >
               <svg

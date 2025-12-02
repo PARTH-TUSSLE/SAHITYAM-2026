@@ -134,7 +134,7 @@ export default function PaymentModal({
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {/* Header */}
-            <div className="relative p-6 border-b border-gray-200 bg-gradient-to-r from-pink-50 to-pink-100">
+            <div className="relative p-6 border-b border-gray-200 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50">
               <button
                 onClick={handleClose}
                 disabled={isLoading}
@@ -155,11 +155,11 @@ export default function PaymentModal({
                 </svg>
               </button>
               <div className="pr-12">
-                <h2 className="text-3xl font-black bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent pb-1">
+                <h2 className="text-3xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1">
                   Complete Registration
                 </h2>
                 <p className="text-gray-700 mt-2 font-medium">{eventTitle}</p>
-                <div className="mt-3 inline-block px-4 py-2 bg-pink-500 text-white rounded-full font-bold">
+                <div className="mt-3 inline-block px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-full font-bold shadow-md shadow-purple-300/50">
                   Registration Fee: ₹{eventFee}
                 </div>
               </div>
@@ -170,10 +170,10 @@ export default function PaymentModal({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* QR Code Section */}
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 border-2 border-pink-200">
+                  <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 rounded-2xl p-6 border-2 border-purple-200 ring-1 ring-purple-100/50">
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                       <svg
-                        className="w-6 h-6 text-pink-500"
+                        className="w-6 h-6 text-purple-500"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -188,7 +188,7 @@ export default function PaymentModal({
                       Scan QR Code to Pay
                     </h3>
                     <div className="bg-white rounded-xl p-4 flex items-center justify-center">
-                      <div className="relative w-64 h-64 bg-gray-100 rounded-xl flex items-center justify-center border-4 border-pink-200">
+                      <div className="relative w-64 h-64 bg-gray-100 rounded-xl flex items-center justify-center border-4 border-purple-200 ring-1 ring-purple-100/30">
                         {/* Placeholder for QR Code - Replace with actual QR code image */}
                         <div className="text-center">
                           <svg
@@ -219,19 +219,19 @@ export default function PaymentModal({
                     </div>
                     <div className="mt-4 space-y-2 text-sm text-gray-700">
                       <p className="flex items-start gap-2">
-                        <span className="text-pink-500 mt-1">•</span>
+                        <span className="text-purple-500 mt-1">•</span>
                         <span>Scan the QR code using any UPI app</span>
                       </p>
                       <p className="flex items-start gap-2">
-                        <span className="text-pink-500 mt-1">•</span>
+                        <span className="text-purple-500 mt-1">•</span>
                         <span>Pay ₹{eventFee} for registration</span>
                       </p>
                       <p className="flex items-start gap-2">
-                        <span className="text-pink-500 mt-1">•</span>
+                        <span className="text-purple-500 mt-1">•</span>
                         <span>Take a screenshot of successful payment</span>
                       </p>
                       <p className="flex items-start gap-2">
-                        <span className="text-pink-500 mt-1">•</span>
+                        <span className="text-purple-500 mt-1">•</span>
                         <span>Upload the screenshot below</span>
                       </p>
                     </div>
@@ -252,7 +252,7 @@ export default function PaymentModal({
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:bg-white transition-all outline-none font-medium"
+                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium ring-1 ring-transparent focus:ring-purple-200/50"
                         placeholder="Enter your full name"
                         disabled={isLoading}
                       />
@@ -325,7 +325,7 @@ export default function PaymentModal({
                             transactionId: e.target.value,
                           })
                         }
-                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:bg-white transition-all outline-none font-medium"
+                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium ring-1 ring-transparent focus:ring-purple-200/50"
                         placeholder="Enter transaction ID"
                         disabled={isLoading}
                       />
@@ -385,7 +385,7 @@ export default function PaymentModal({
 
                       {/* Preview */}
                       {previewUrl && (
-                        <div className="mt-4 relative w-full h-40 rounded-xl overflow-hidden border-2 border-pink-200">
+                        <div className="mt-4 relative w-full h-40 rounded-xl overflow-hidden border-2 border-purple-200 ring-1 ring-purple-100/30">
                           <Image
                             src={previewUrl}
                             alt="Payment screenshot preview"
@@ -400,7 +400,7 @@ export default function PaymentModal({
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full bg-gradient-to-r from-pink-500 to-pink-500 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                      className="w-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group ring-1 ring-white/20"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         {isLoading ? (

@@ -123,10 +123,10 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
 };
 
 const categoryColors = {
-  cultural: "from-pink-500 to-pink-500",
-  literary: "from-pink-500 to-pink-500",
+  cultural: "from-pink-500 via-purple-600 to-indigo-600",
+  literary: "from-pink-500 via-purple-600 to-indigo-600",
   workshop: "from-yellow-500 to-amber-500",
-  competition: "from-pink-600 to-pink-600",
+  competition: "from-pink-500 via-purple-600 to-indigo-600",
 };
 
 function Schedule() {
@@ -160,7 +160,7 @@ function Schedule() {
                   onClick={() => setSelectedDay(day)}
                   className={`px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 ${
                     selectedDay === day
-                      ? "bg-gradient-to-r from-pink-500 to-pink-500 text-white shadow-lg"
+                      ? "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/40"
                       : "bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white"
                   }`}
                   style={{
@@ -176,7 +176,7 @@ function Schedule() {
             <div className="max-w-6xl mx-auto px-4">
               <div className="relative pb-20">
                 {/* Vertical line - centered on desktop, left on mobile */}
-                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-400 via-pink-400 to-pink-400"></div>
+                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-500 via-purple-600 to-indigo-600"></div>
 
                 {/* Timeline events */}
                 <div className="relative">
@@ -192,8 +192,8 @@ function Schedule() {
                       }}
                     >
                       {/* Timeline dot - left on mobile, centered on desktop */}
-                      <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 top-6 md:top-12 w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 to-pink-500 shadow-lg z-10 border-4 border-pink-50">
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 to-pink-500 animate-ping opacity-75"></div>
+                      <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 top-6 md:top-12 w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 shadow-lg z-10 border-4 border-purple-50">
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 animate-ping opacity-75"></div>
                       </div>
 
                       {/* Event card - single column on mobile, alternating on desktop */}
@@ -205,7 +205,7 @@ function Schedule() {
                         }`}
                       >
                         <div
-                          className={`bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-pink-200/50 relative ${
+                          className={`bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-purple-200/50 relative ${
                             index % 2 === 0 ? "slide-in-left" : "slide-in-right"
                           }`}
                           style={{
@@ -306,7 +306,7 @@ function Schedule() {
                             }`}
                           >
                             <svg
-                              className="w-4 h-4 md:w-5 md:h-5 text-pink-500"
+                              className="w-4 h-4 md:w-5 md:h-5 text-purple-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
