@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import EventModal from "./EventModal";
 import PremiumSpinner from "./PremiumSpinner";
+import { ShareButton } from "./ShareButtons";
+import { getEventShareUrl, getShareDescription } from "@/lib/config";
 
 interface ChromaCardProps {
   eventId: string;
@@ -63,6 +65,18 @@ export default function ChromaCard({
       <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 border border-gray-200/50">
         {/* Decorative corner accent */}
         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-3xl z-10"></div>
+
+        {/* Share Button - top right */}
+        <div
+          className="absolute top-4 right-4 z-20"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ShareButton
+            url={getEventShareUrl(eventId)}
+            title={title}
+            description={getShareDescription(description)}
+          />
+        </div>
 
         {/* Fee Badge */}
         <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-full shadow-lg shadow-purple-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">

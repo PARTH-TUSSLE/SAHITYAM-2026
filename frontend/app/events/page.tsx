@@ -10,6 +10,8 @@ import BackgroundElements from "@/components/ui/BackgroundElements";
 import PaymentModal, { PaymentData } from "@/components/PaymentModal";
 import SuccessModal from "@/components/SuccessModal";
 import PremiumSpinner from "@/components/PremiumSpinner";
+import { ShareButtons } from "@/components/ShareButtons";
+import { getEventShareUrl, getShareDescription } from "@/lib/config";
 
 interface Event {
   id: string;
@@ -131,7 +133,7 @@ function Events() {
       setSuccessModal({
         isOpen: true,
         title: "Registration Successful!",
-        message: `Your registration for ${selectedEventForPayment.title} has been submitted. Your payment will be verified shortly and you'll be notified once approved.`,
+        message: `Your registration for ${selectedEventForPayment.title} has been submitted. Your payment will be verified shortly and you'll be notified once approved. Share this event with your friends!`,
         type: "success",
       });
     } catch (err: any) {
