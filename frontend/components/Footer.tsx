@@ -5,17 +5,17 @@ function Footer() {
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 sm:py-10 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 md:gap-8 mb-6 sm:mb-7 md:mb-8">
           {/* Logo and About Section */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg ring-1 ring-white/20">
+          <div className="space-y-3 sm:space-y-4 text-center md:text-left">
+            <div className="flex items-center gap-2 sm:gap-3 justify-center md:justify-start">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg ring-1 ring-white/20">
                 <svg
-                  className="w-7 h-7 text-white"
+                  className="w-6 h-6 sm:w-7 sm:h-7 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -28,20 +28,22 @@ function Footer() {
                   />
                 </svg>
               </div>
-              <span className="text-2xl font-black">SAHITYAM 2026</span>
+              <span className="text-xl sm:text-2xl font-black">
+                SAHITYAM 2026
+              </span>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
               Celebrating the convergence of art and literature. Join us for an
               unforgettable cultural experience from 5th - 6th Feb, 2026.
             </p>
             {/* Social Media Icons */}
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3 justify-center md:justify-start">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -50,10 +52,10 @@ function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -62,10 +64,10 @@ function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -74,10 +76,10 @@ function Footer() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -88,15 +90,15 @@ function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
+          <div className="space-y-3 sm:space-y-4 text-center md:text-left">
+            <h3 className="text-base sm:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
               Quick Links
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 sm:space-y-2 flex flex-col items-center md:items-start">
               <li>
                 <Link
                   href="/"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group text-xs sm:text-sm"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Home
@@ -105,7 +107,7 @@ function Footer() {
               <li>
                 <Link
                   href="/events"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group text-xs sm:text-sm"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Events
@@ -114,7 +116,7 @@ function Footer() {
               <li>
                 <Link
                   href="/schedule"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group text-xs sm:text-sm"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Schedule
@@ -123,7 +125,7 @@ function Footer() {
               <li>
                 <Link
                   href="/gallery"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group text-xs sm:text-sm"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Gallery
@@ -132,7 +134,7 @@ function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2 group text-xs sm:text-sm"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Contact
@@ -142,11 +144,11 @@ function Footer() {
           </div>
 
           {/* Event Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
+          <div className="space-y-3 sm:space-y-4 text-center md:text-left">
+            <h3 className="text-base sm:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
               Event Info
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3 flex flex-col items-center md:items-start">
               <li className="flex items-start gap-3 text-gray-400">
                 <svg
                   className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"
@@ -161,7 +163,7 @@ function Footer() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-sm">5th - 6th Feb, 2026</span>
+                <span className="text-xs sm:text-sm">5th - 6th Feb, 2026</span>
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <svg
@@ -183,11 +185,13 @@ function Footer() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <span className="text-sm">Main Campus Auditorium</span>
+                <span className="text-xs sm:text-sm">
+                  Main Campus Auditorium
+                </span>
               </li>
-              <li className="flex items-start gap-3 text-gray-400">
+              <li className="flex items-start gap-2 sm:gap-3 text-gray-400">
                 <svg
-                  className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 mt-0.5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -199,11 +203,11 @@ function Footer() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-sm">sahityam@event.com</span>
+                <span className="text-xs sm:text-sm">sahityam@event.com</span>
               </li>
-              <li className="flex items-start gap-3 text-gray-400">
+              <li className="flex items-start gap-2 sm:gap-3 text-gray-400">
                 <svg
-                  className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 mt-0.5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -215,28 +219,28 @@ function Footer() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                <span className="text-sm">+91 12345 67890</span>
+                <span className="text-xs sm:text-sm">+91 12345 67890</span>
               </li>
             </ul>
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
+          <div className="space-y-3 sm:space-y-4 text-center md:text-left">
+            <h3 className="text-base sm:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
               Stay Updated
             </h3>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-xs sm:text-sm">
               Subscribe to get the latest updates and announcements.
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-center md:justify-start">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 transition-colors text-sm ring-1 ring-white/10"
+                className="flex-1 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 transition-colors text-xs sm:text-sm ring-1 ring-white/10"
               />
-              <button className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 rounded-lg font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm ring-1 ring-white/20">
+              <button className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 rounded-lg font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-xs sm:text-sm ring-1 ring-white/20">
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -254,11 +258,13 @@ function Footer() {
         </div>
 
         {/* Developer Section */}
-        <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col items-center gap-3 mb-6">
-            <p className="text-gray-400 text-sm">Designed & Developed by</p>
-            <div className="flex items-center gap-4">
-              <h4 className="text-lg font-bold bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+        <div className="pt-6 sm:pt-7 md:pt-8 border-t border-white/10">
+          <div className="flex flex-col items-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
+            <p className="text-gray-400 text-xs sm:text-sm">
+              Designed & Developed by
+            </p>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <h4 className="text-base sm:text-lg font-bold bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 Parth Gartan
               </h4>
               <div className="flex gap-2">
@@ -266,11 +272,11 @@ function Footer() {
                   href="https://github.com/PARTH-TUSSLE"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
                   title="GitHub"
                 >
                   <svg
-                    className="w-4 h-4"
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -281,11 +287,11 @@ function Footer() {
                   href="https://linkedin.com/in/parth-gartan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
                   title="LinkedIn"
                 >
                   <svg
-                    className="w-4 h-4"
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -296,11 +302,11 @@ function Footer() {
                   href="https://twitter.com/parth-gartan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"
                   title="Twitter"
                 >
                   <svg
-                    className="w-4 h-4"
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -313,12 +319,12 @@ function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
+        <div className="pt-4 sm:pt-5 md:pt-6 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p className="text-gray-400 text-xs sm:text-sm">
               © 2026 SAHITYAM. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
               <a
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors duration-300"

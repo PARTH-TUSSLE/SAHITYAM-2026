@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundElements from "@/components/ui/BackgroundElements";
 import toast from "react-hot-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Contact() {
+  const { user, isAuthenticated } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +17,18 @@ export default function Contact() {
     message: "",
   });
 
+  // Pre-fill form data for logged-in users
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      setFormData((prev) => ({
+        ...prev,
+        name: user.name || "",
+        email: user.email || "",
+        phone: user.mobileNumber || "",
+      }));
+    }
+  }, [isAuthenticated, user]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,12 +36,21 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
+      // Prepare data - only send phone if it's not empty
+      const dataToSend = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+        ...(formData.phone.trim() && { phone: formData.phone.trim() }),
+      };
+
       const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       const data = await response.json();
@@ -38,21 +61,37 @@ export default function Contact() {
             "Message sent successfully! We'll get back to you soon.",
           {
             duration: 5000,
-            icon: "✉️",
           }
         );
-        // Clear form on success
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
+        // Clear only subject and message, keep user info for logged-in users
+        setFormData((prev) => ({
+          ...prev,
           subject: "",
           message: "",
-        });
+          // Clear all fields if not authenticated
+          ...((!isAuthenticated || !user) && {
+            name: "",
+            email: "",
+            phone: "",
+          }),
+        }));
       } else {
-        toast.error(data.error || "Failed to send message. Please try again.", {
-          duration: 5000,
-        });
+        // Show validation errors if any
+        if (data.details && Array.isArray(data.details)) {
+          const errorMessages = data.details
+            .map((err: any) => err.msg)
+            .join(", ");
+          toast.error(errorMessages, {
+            duration: 5000,
+          });
+        } else {
+          toast.error(
+            data.error || "Failed to send message. Please try again.",
+            {
+              duration: 5000,
+            }
+          );
+        }
       }
     } catch (error) {
       toast.error(
@@ -86,29 +125,29 @@ export default function Contact() {
       {/* Decorative pattern overlay removed */}
 
       {/* Main Content */}
-      <div className="min-h-screen pt-24 pb-16 relative">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
+      <div className="min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-3 sm:mb-4">
               Get In Touch
             </h1>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto mb-6 shadow-lg shadow-purple-300/50"></div>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            <div className="h-1 sm:h-1.5 w-20 sm:w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto mb-4 sm:mb-6 shadow-lg shadow-purple-300/50"></div>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed px-2">
               Have questions about SAHITYAM 2026? We'd love to hear from you.
               Send us a message and we'll respond as soon as possible.
             </p>
           </div>
 
           {/* Contact Info Cards - Modern 3D Style */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16 items-stretch">
             {/* Email Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
                   <svg
-                    className="w-10 h-10 text-white"
+                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -121,10 +160,12 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Email</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
+                  Email
+                </h3>
                 <a
                   href="mailto:contact@sahityam2026.com"
-                  className="text-purple-600 hover:text-purple-700 font-semibold text-base transition-colors inline-block break-words"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block break-words"
                 >
                   contact@sahityam2026.com
                 </a>
@@ -133,11 +174,11 @@ export default function Contact() {
 
             {/* Phone Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
                   <svg
-                    className="w-10 h-10 text-white"
+                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -150,10 +191,12 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Phone</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
+                  Phone
+                </h3>
                 <a
                   href="tel:+911234567890"
-                  className="text-purple-600 hover:text-purple-700 font-semibold text-base transition-colors inline-block"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block"
                 >
                   +91 123 456 7890
                 </a>
@@ -162,11 +205,11 @@ export default function Contact() {
 
             {/* Location Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
                   <svg
-                    className="w-10 h-10 text-white"
+                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -185,10 +228,10 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
                   Location
                 </h3>
-                <p className="text-gray-700 font-semibold text-base leading-relaxed">
+                <p className="text-gray-700 font-semibold text-sm sm:text-base leading-relaxed">
                   University Campus
                   <br />
                   New Delhi, India
@@ -199,19 +242,39 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="max-w-3xl mx-auto">
+            {isAuthenticated && user && (
+              <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-purple-50 border border-purple-200 rounded-lg sm:rounded-xl text-xs sm:text-sm text-purple-800">
+                <p className="flex items-center gap-1.5 sm:gap-2">
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Your details have been pre-filled from your profile.
+                </p>
+              </div>
+            )}
             <form
               onSubmit={handleSubmit}
-              className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-2xl shadow-pink-100/50"
+              className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-12 border border-gray-200 shadow-2xl shadow-pink-100/50"
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
                 Send us a Message
               </h2>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-bold text-gray-900 mb-2"
+                    className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2"
                   >
                     Full Name
                   </label>
@@ -221,7 +284,7 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-3 py-2.5 sm:px-4 sm:py-3.5 rounded-lg sm:rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300 text-sm sm:text-base"
                     placeholder="John Doe"
                     required
                   />
@@ -229,7 +292,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-bold text-gray-900 mb-2"
+                    className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2"
                   >
                     Email Address
                   </label>
@@ -239,18 +302,18 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-3 py-2.5 sm:px-4 sm:py-3.5 rounded-lg sm:rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300 text-sm sm:text-base"
                     placeholder="john@example.com"
                     required
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-bold text-gray-900 mb-2"
+                    className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2"
                   >
                     Phone Number
                   </label>
@@ -260,14 +323,14 @@ export default function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-3 py-2.5 sm:px-4 sm:py-3.5 rounded-lg sm:rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300 text-sm sm:text-base"
                     placeholder="+91 123 456 7890"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-bold text-gray-900 mb-2"
+                    className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2"
                   >
                     Subject
                   </label>
@@ -277,17 +340,17 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-orange-400 focus:bg-white outline-none transition-all duration-300"
+                    className="w-full px-3 py-2.5 sm:px-4 sm:py-3.5 rounded-lg sm:rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-orange-400 focus:bg-white outline-none transition-all duration-300 text-sm sm:text-base"
                     placeholder="Regarding SAHITYAM 2026"
                     required
                   />
                 </div>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <label
                   htmlFor="message"
-                  className="block text-sm font-bold text-gray-900 mb-2"
+                  className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2"
                 >
                   Message
                 </label>
@@ -297,7 +360,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3.5 rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300 resize-none ring-1 ring-transparent focus:ring-purple-200/50"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3.5 rounded-lg sm:rounded-xl bg-gray-50 border-2 border-gray-200 focus:border-purple-400 focus:bg-white outline-none transition-all duration-300 resize-none ring-1 ring-transparent focus:ring-purple-200/50 text-sm sm:text-base"
                   placeholder="Tell us more about your inquiry..."
                   required
                 ></textarea>
@@ -306,15 +369,15 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`group relative w-full md:w-auto px-12 py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden ring-1 ring-white/20 ${
+                className={`group relative w-full md:w-auto px-8 py-3 md:px-10 md:py-3.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold text-sm md:text-base rounded-xl shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden ring-1 ring-white/20 ${
                   isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
-                <span className="relative z-10 flex items-center justify-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-1.5 md:gap-2">
                   {isSubmitting ? (
                     <>
                       <svg
-                        className="animate-spin h-5 w-5"
+                        className="animate-spin h-4 w-4 md:h-5 md:w-5"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -339,7 +402,7 @@ export default function Contact() {
                     <>
                       Send Message
                       <svg
-                        className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                        className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

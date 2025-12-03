@@ -105,7 +105,7 @@ export const registerWithPayment = async (
         email,
         [registration.event.title],
         registration.id,
-        registration.event.registrationFee
+        200
       );
     } catch (emailError) {
       console.error(

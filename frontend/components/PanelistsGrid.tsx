@@ -70,18 +70,18 @@ const panelists: Panelist[] = [
 export default function PanelistsGrid() {
   return (
     <div className="w-full relative">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Announcement Section */}
         <div className="relative">
           {/* Decorative Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 rounded-3xl blur-3xl opacity-50"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl opacity-50"></div>
 
           {/* Content Card */}
-          <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-12 md:p-16 border-2 border-purple-200/50 ring-1 ring-purple-100/30 shadow-2xl shadow-purple-500/10">
+          <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 border-2 border-purple-200/50 ring-1 ring-purple-100/30 shadow-2xl shadow-purple-500/10">
             {/* Icon */}
-            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-300/50 ring-2 ring-purple-200/30">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-4 sm:mb-5 md:mb-6 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-purple-300/50 ring-2 ring-purple-200/30">
               <svg
-                className="w-10 h-10 text-white"
+                className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -96,23 +96,23 @@ export default function PanelistsGrid() {
             </div>
 
             {/* Title */}
-            <h3 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 text-center p-2">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:mb-4 text-center p-1 sm:p-2">
               Coming Soon
             </h3>
 
             {/* Message */}
-            <p className="text-lg md:text-xl text-gray-700 font-semibold text-center max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 font-semibold text-center max-w-2xl mx-auto leading-relaxed">
               The names of the panelists will be announced on{" "}
-              <span className="text-2xl md:text-3xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1 inline-block">
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1 inline-block">
                 15th January
               </span>
             </p>
 
             {/* Decorative Elements */}
-            <div className="flex justify-center gap-2 mt-8">
-              <div className="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></div>
-              <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse delay-100"></div>
-              <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse delay-200"></div>
+            <div className="flex justify-center gap-1.5 sm:gap-2 mt-5 sm:mt-6 md:mt-8">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-400 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-400 animate-pulse delay-100"></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-indigo-400 animate-pulse delay-200"></div>
             </div>
           </div>
         </div>

@@ -4,9 +4,21 @@ import React, { useEffect, useState } from "react";
 
 const LiteraryBackground = () => {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    // Check initial screen size
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+
+    // Update on resize
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Literary symbols and decorative elements
@@ -44,6 +56,15 @@ const LiteraryBackground = () => {
     "श",
   ];
 
+  // Reduce elements on mobile
+  const bookPageCount = isMobile ? 3 : 8;
+  const visibleSymbols = isMobile
+    ? literarySymbols.slice(0, 4)
+    : literarySymbols;
+  const visibleLetters = isMobile
+    ? floatingLetters.slice(0, 12)
+    : floatingLetters;
+
   if (!mounted) return null;
 
   return (
@@ -52,7 +73,7 @@ const LiteraryBackground = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-rose-50/80 via-purple-50/60 to-amber-50/80"></div>
 
       {/* Floating Book Pages */}
-      {[...Array(8)].map((_, i) => (
+      {[...Array(bookPageCount)].map((_, i) => (
         <div
           key={`page-${i}`}
           className="absolute animate-page-float opacity-30"
@@ -74,7 +95,7 @@ const LiteraryBackground = () => {
       ))}
 
       {/* Floating Literary Symbols */}
-      {literarySymbols.map((symbol, i) => (
+      {visibleSymbols.map((symbol, i) => (
         <div
           key={`symbol-${i}`}
           className="absolute animate-floating-letters text-2xl font-serif"
@@ -90,7 +111,7 @@ const LiteraryBackground = () => {
       ))}
 
       {/* Floating Letters forming SAHITYAM */}
-      {floatingLetters.map((letter, i) => (
+      {visibleLetters.map((letter, i) => (
         <div
           key={`letter-${i}`}
           className="absolute animate-floating-letters text-3xl font-bold opacity-10"

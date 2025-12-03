@@ -141,14 +141,14 @@ function Gallery() {
           </div>
 
           {/* Infinite Scroll Rows */}
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-8">
             {/* Row 1 - Left to Right */}
             <div className="relative overflow-hidden">
-              <div className="flex gap-6 animate-scroll-left">
+              <div className="flex gap-3 sm:gap-6 animate-scroll-left">
                 {[...galleryImages, ...galleryImages].map((image, index) => (
                   <div
                     key={`row1-${index}`}
-                    className="group relative flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:z-10"
+                    className="group relative flex-shrink-0 w-52 h-64 sm:w-80 sm:h-96 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:z-10"
                     onClick={() => setSelectedImage(image)}
                   >
                     <Image
@@ -161,16 +161,16 @@ function Gallery() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
                     {/* Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <div className="mb-3 flex items-center gap-2">
-                        <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-xs font-bold">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 text-white transform translate-y-2 sm:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <div className="mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+                        <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-[10px] sm:text-xs font-bold">
                           {image.year}
                         </span>
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
+                        <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] sm:text-xs font-bold">
                           {image.category}
                         </span>
                       </div>
-                      <h3 className="text-2xl font-black mb-2">
+                      <h3 className="text-base sm:text-2xl font-black mb-1 sm:mb-2">
                         {image.title}
                       </h3>
                       <div className="flex items-center gap-2 text-sm opacity-80">
@@ -206,14 +206,14 @@ function Gallery() {
 
             {/* Row 2 - Right to Left */}
             <div className="relative overflow-hidden">
-              <div className="flex gap-6 animate-scroll-right">
+              <div className="flex gap-3 sm:gap-6 animate-scroll-right">
                 {[
                   ...galleryImages.slice().reverse(),
                   ...galleryImages.slice().reverse(),
                 ].map((image, index) => (
                   <div
                     key={`row2-${index}`}
-                    className="group relative flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:z-10"
+                    className="group relative flex-shrink-0 w-52 h-64 sm:w-80 sm:h-96 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:z-10"
                     onClick={() => setSelectedImage(image)}
                   >
                     <Image
@@ -224,16 +224,16 @@ function Gallery() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <div className="mb-3 flex items-center gap-2">
-                        <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-xs font-bold">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 text-white transform translate-y-2 sm:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <div className="mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+                        <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-[10px] sm:text-xs font-bold">
                           {image.year}
                         </span>
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
+                        <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] sm:text-xs font-bold">
                           {image.category}
                         </span>
                       </div>
-                      <h3 className="text-2xl font-black mb-2">
+                      <h3 className="text-base sm:text-2xl font-black mb-1 sm:mb-2">
                         {image.title}
                       </h3>
                       <div className="flex items-center gap-2 text-sm opacity-80">
@@ -268,12 +268,12 @@ function Gallery() {
 
             {/* Row 3 - Left to Right (Slower) */}
             <div className="relative overflow-hidden">
-              <div className="flex gap-6 animate-scroll-left-slow">
+              <div className="flex gap-3 sm:gap-6 animate-scroll-left-slow">
                 {[...galleryImages.slice(3), ...galleryImages.slice(3)].map(
                   (image, index) => (
                     <div
                       key={`row3-${index}`}
-                      className="group relative flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:z-10"
+                      className="group relative flex-shrink-0 w-52 h-64 sm:w-80 sm:h-96 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:z-10"
                       onClick={() => setSelectedImage(image)}
                     >
                       <Image
@@ -284,16 +284,16 @@ function Gallery() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <div className="mb-3 flex items-center gap-2">
-                          <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-xs font-bold">
+                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 text-white transform translate-y-2 sm:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <div className="mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+                          <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full text-[10px] sm:text-xs font-bold">
                             {image.year}
                           </span>
-                          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
+                          <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] sm:text-xs font-bold">
                             {image.category}
                           </span>
                         </div>
-                        <h3 className="text-2xl font-black mb-2">
+                        <h3 className="text-base sm:text-2xl font-black mb-1 sm:mb-2">
                           {image.title}
                         </h3>
                         <div className="flex items-center gap-2 text-sm opacity-80">

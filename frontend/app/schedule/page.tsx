@@ -106,25 +106,25 @@ function Schedule() {
         {/* Animated gradient background */}
 
         {/* Content */}
-        <div className="relative z-10 py-24 px-6 md:px-12 lg:px-20">
+        <div className="relative z-10 py-20 sm:py-24 px-4 sm:px-6 md:px-12 lg:px-20">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-2 sm:mb-3 md:mb-4">
                 Event Schedule
               </h1>
-              <p className="text-lg md:text-xl text-gray-700 font-medium">
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 font-medium">
                 5th - 6th Feb, 2026
               </p>
             </div>
 
             {/* Day Selector */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12">
               {Object.keys(scheduleData).map((day, index) => (
                 <button
                   key={day}
                   onClick={() => setSelectedDay(day)}
-                  className={`px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 ${
+                  className={`px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
                     selectedDay === day
                       ? "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/40"
                       : "bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white border-2 border-purple-200"
@@ -139,17 +139,17 @@ function Schedule() {
             </div>
 
             {/* Timeline */}
-            <div className="max-w-6xl mx-auto px-4">
-              <div className="relative pb-20">
+            <div className="max-w-6xl mx-auto px-2 sm:px-4">
+              <div className="relative pb-12 sm:pb-16 md:pb-20">
                 {/* Vertical line - centered on desktop, left on mobile */}
-                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-500 via-purple-600 to-indigo-600"></div>
+                <div className="absolute left-6 sm:left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-pink-500 via-purple-600 to-indigo-600"></div>
 
                 {/* Timeline events */}
                 <div className="relative">
                   {scheduleData[selectedDay].map((event, index) => (
                     <div
                       key={event.id}
-                      className="relative mb-12 md:mb-16"
+                      className="relative mb-8 sm:mb-10 md:mb-12 lg:mb-16"
                       style={{
                         opacity: 0,
                         animation: `fade-in 0.8s ease-out ${
@@ -158,20 +158,20 @@ function Schedule() {
                       }}
                     >
                       {/* Timeline dot - left on mobile, centered on desktop */}
-                      <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 top-6 md:top-12 w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 shadow-lg z-10 border-4 border-purple-50">
+                      <div className="absolute left-6 sm:left-8 md:left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 top-4 sm:top-6 md:top-12 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 shadow-lg z-10 border-2 sm:border-3 md:border-4 border-purple-50">
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 animate-ping opacity-75"></div>
                       </div>
 
                       {/* Event card - single column on mobile, alternating on desktop */}
                       <div
-                        className={`ml-20 md:ml-0 ${
+                        className={`ml-14 sm:ml-16 md:ml-0 ${
                           index % 2 === 0
                             ? "md:mr-auto md:pr-[calc(50%+2rem)] md:text-right"
                             : "md:ml-auto md:pl-[calc(50%+2rem)] md:text-left"
                         }`}
                       >
                         <div
-                          className={`bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-purple-200/50 relative ${
+                          className={`bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-purple-200/50 sm:border-2 relative ${
                             index % 2 === 0 ? "slide-in-left" : "slide-in-right"
                           }`}
                           style={{
@@ -191,7 +191,7 @@ function Schedule() {
                               index % 2 === 0
                                 ? "md:right-0 left-0 md:rounded-l-full rounded-r-full"
                                 : "left-0 rounded-r-full"
-                            } top-1/2 -translate-y-1/2 h-12 md:h-16 w-2 bg-gradient-to-b ${
+                            } top-1/2 -translate-y-1/2 h-8 sm:h-10 md:h-12 lg:h-16 w-1 sm:w-1.5 md:w-2 bg-gradient-to-b ${
                               categoryColors[event.category]
                             }`}
                           ></div>
@@ -202,11 +202,11 @@ function Schedule() {
                               index % 2 === 0
                                 ? "justify-start md:justify-end"
                                 : "justify-start"
-                            } mb-3 md:mb-4`}
+                            } mb-2 sm:mb-3 md:mb-4`}
                           >
-                            <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-gradient-to-r from-pink-500 to-pink-500 text-white shadow-lg">
+                            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full bg-gradient-to-r from-pink-500 to-pink-500 text-white shadow-lg">
                               <svg
-                                className="w-3 h-3 md:w-4 md:h-4"
+                                className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -218,7 +218,7 @@ function Schedule() {
                                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                               </svg>
-                              <span className="text-base md:text-lg font-black">
+                              <span className="text-sm sm:text-base md:text-lg font-black">
                                 {event.time}
                               </span>
                             </div>
@@ -230,10 +230,10 @@ function Schedule() {
                               index % 2 === 0
                                 ? "justify-start md:justify-end"
                                 : "justify-start"
-                            } mb-2 md:mb-3`}
+                            } mb-2 sm:mb-2.5 md:mb-3`}
                           >
                             <span
-                              className={`px-3 md:px-4 py-1 md:py-1.5 text-xs font-bold uppercase rounded-full bg-gradient-to-r ${
+                              className={`px-2.5 sm:px-3 md:px-4 py-0.5 sm:py-1 md:py-1.5 text-[10px] sm:text-xs font-bold uppercase rounded-full bg-gradient-to-r ${
                                 categoryColors[event.category]
                               } text-white shadow-md`}
                             >
@@ -243,7 +243,7 @@ function Schedule() {
 
                           {/* Title */}
                           <h3
-                            className={`text-xl md:text-2xl font-black text-gray-900 mb-2 md:mb-3 ${
+                            className={`text-lg sm:text-xl md:text-2xl font-black text-gray-900 mb-1.5 sm:mb-2 md:mb-3 ${
                               index % 2 === 0
                                 ? "text-left md:text-right"
                                 : "text-left"
@@ -254,7 +254,7 @@ function Schedule() {
 
                           {/* Description */}
                           <p
-                            className={`text-sm md:text-base text-gray-700 mb-3 md:mb-4 leading-relaxed ${
+                            className={`text-xs sm:text-sm md:text-base text-gray-700 mb-2 sm:mb-3 md:mb-4 leading-relaxed ${
                               index % 2 === 0
                                 ? "text-left md:text-right"
                                 : "text-left"
@@ -265,14 +265,14 @@ function Schedule() {
 
                           {/* Venue */}
                           <div
-                            className={`flex items-center gap-2 text-xs md:text-sm text-gray-600 font-medium ${
+                            className={`flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs md:text-sm text-gray-600 font-medium ${
                               index % 2 === 0
                                 ? "justify-start md:justify-end"
                                 : "justify-start"
                             }`}
                           >
                             <svg
-                              className="w-4 h-4 md:w-5 md:h-5 text-purple-500"
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-purple-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"

@@ -37,7 +37,7 @@ export const contactValidation = [
     .normalizeEmail(),
 
   body("phone")
-    .optional()
+    .optional({ checkFalsy: true })
     .trim()
     .matches(/^[\d+\-() ]+$/)
     .withMessage("Invalid phone number format"),

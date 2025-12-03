@@ -26,12 +26,6 @@ export const authMiddleware = (
       return;
     }
 
-    // Check token expiration
-    if (decoded.exp && decoded.exp * 1000 < Date.now()) {
-      res.status(401).json({ error: "Token expired", code: "TOKEN_EXPIRED" });
-      return;
-    }
-
     req.userId = decoded.userId;
     req.userRole = decoded.role;
     next();
