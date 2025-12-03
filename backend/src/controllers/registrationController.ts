@@ -5,6 +5,7 @@ import {
   deleteFromCloudinary,
 } from "../utils/cloudinaryUpload";
 import prisma from "../lib/prisma";
+import { sendRegistrationConfirmation } from "../config/registrationEmail";
 
 // Register with payment screenshot
 export const registerWithPayment = async (
@@ -97,8 +98,26 @@ export const registerWithPayment = async (
       },
     });
 
+    // Send registration confirmation email
+    try {
+      await sendRegistrationConfirmation(
+        name,
+        email,
+        [registration.event.title],
+        registration.id,
+        registration.event.registrationFee
+      );
+    } catch (emailError) {
+      console.error(
+        "Failed to send registration confirmation email:",
+        emailError
+      );
+      // Continue even if email fails
+    }
+
     res.status(201).json({
-      message: "Registration successful! Payment will be verified shortly.",
+      message:
+        "Registration successful! Check your email for confirmation. Payment will be verified shortly.",
       registration,
     });
   } catch (error) {

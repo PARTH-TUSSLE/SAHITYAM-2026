@@ -26,10 +26,17 @@ export const authMiddleware = (
       return;
     }
 
+    // Check token expiration
+    if (decoded.exp && decoded.exp * 1000 < Date.now()) {
+      res.status(401).json({ error: "Token expired", code: "TOKEN_EXPIRED" });
+      return;
+    }
+
     req.userId = decoded.userId;
     req.userRole = decoded.role;
     next();
   } catch (error) {
+    console.error("Auth middleware error:", error);
     res.status(401).json({ error: "Authentication failed" });
   }
 };
@@ -40,12 +47,22 @@ export const adminMiddleware = (
   next: NextFunction
 ): void => {
   try {
+    // Ensure user is authenticated first
+    if (!req.userId || !req.userRole) {
+      res.status(401).json({ error: "Authentication required" });
+      return;
+    }
+
     if (req.userRole !== "ADMIN") {
-      res.status(403).json({ error: "Admin access required" });
+      res.status(403).json({
+        error: "Admin access required",
+        code: "INSUFFICIENT_PERMISSIONS",
+      });
       return;
     }
     next();
   } catch (error) {
+    console.error("Admin middleware error:", error);
     res.status(403).json({ error: "Access forbidden" });
   }
 };

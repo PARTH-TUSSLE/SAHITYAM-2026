@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { deleteFromCloudinary } from "../utils/cloudinaryUpload";
 import prisma from "../lib/prisma";
+import { sendPaymentVerificationEmail } from "../config/registrationEmail";
 
 export const getAllEventRegistrations = async (
   req: Request,
@@ -305,9 +306,21 @@ export const verifyPayment = async (
         },
       });
 
+      // Send rejection email
+      try {
+        await sendPaymentVerificationEmail(
+          rejectedRegistration.user.name,
+          rejectedRegistration.user.email,
+          [rejectedRegistration.event.title],
+          rejectedRegistration.id,
+          false
+        );
+      } catch (emailError) {
+        console.error("Failed to send rejection email:", emailError);
+      }
+
       res.json({
-        message:
-          "Payment rejected. User can see the rejection and re-register if needed.",
+        message: "Payment rejected. User has been notified via email.",
         registration: rejectedRegistration,
         rejected: true,
       });
@@ -338,8 +351,22 @@ export const verifyPayment = async (
       },
     });
 
+    // Send verification email
+    try {
+      await sendPaymentVerificationEmail(
+        updatedRegistration.user.name,
+        updatedRegistration.user.email,
+        [updatedRegistration.event.title],
+        updatedRegistration.id,
+        true
+      );
+    } catch (emailError) {
+      console.error("Failed to send verification email:", emailError);
+    }
+
     res.json({
-      message: "Payment verified successfully",
+      message:
+        "Payment verified successfully. User has been notified via email.",
       registration: updatedRegistration,
     });
   } catch (error) {
