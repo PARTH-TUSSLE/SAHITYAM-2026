@@ -8,6 +8,7 @@ import {
 import { authMiddleware } from "../middleware/auth";
 import { eventRegistrationValidation } from "../utils/validators";
 import upload from "../config/multer";
+import { registrationLimiter } from "../middleware/rateLimiter";
 
 const router = Router();
 
@@ -15,12 +16,19 @@ const router = Router();
 router.post(
   "/with-payment",
   authMiddleware,
+  registrationLimiter,
   upload.single("paymentScreenshot"),
   registerWithPayment
 );
 
 // Old route for direct registration (kept for backward compatibility)
-router.post("/", authMiddleware, eventRegistrationValidation, registerForEvent);
+router.post(
+  "/",
+  authMiddleware,
+  registrationLimiter,
+  eventRegistrationValidation,
+  registerForEvent
+);
 router.delete("/:eventId", authMiddleware, unregisterFromEvent);
 router.get("/my-registrations", authMiddleware, getUserRegistrations);
 

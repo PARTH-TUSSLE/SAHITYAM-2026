@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import EventModal from "./EventModal";
+import PremiumSpinner from "./PremiumSpinner";
 
 interface ChromaCardProps {
   eventId: string;
@@ -141,11 +142,8 @@ export default function ChromaCard({
                     <span className="relative z-10 flex items-center justify-center gap-1.5">
                       {isLoading ? (
                         <>
-                          <span className="relative inline-flex h-3.5 w-3.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-                            <span className="relative inline-flex rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent animate-spin"></span>
-                          </span>
-                          Loading...
+                          <PremiumSpinner size="sm" variant="inline" />
+                          <span className="text-xs">Loading...</span>
                         </>
                       ) : (
                         <>

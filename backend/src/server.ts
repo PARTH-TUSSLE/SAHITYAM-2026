@@ -1,21 +1,37 @@
+import dotenv from "dotenv";
+
+// Load environment variables FIRST before any other imports
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import registrationRoutes from "./routes/registrationRoutes";
 import adminRoutes from "./routes/adminRoutes";
 import { errorHandler } from "./middleware/errorHandler";
-
-dotenv.config();
+import { apiLimiter } from "./middleware/rateLimiter";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// CORS Configuration
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+app.use(
+  cors({
+    origin: FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Apply rate limiting to all API routes
+app.use("/api", apiLimiter);
 
 // Routes
 app.use("/api/auth", authRoutes);

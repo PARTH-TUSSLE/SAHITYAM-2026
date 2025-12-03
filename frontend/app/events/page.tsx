@@ -9,6 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import BackgroundElements from "@/components/ui/BackgroundElements";
 import PaymentModal, { PaymentData } from "@/components/PaymentModal";
 import SuccessModal from "@/components/SuccessModal";
+import PremiumSpinner from "@/components/PremiumSpinner";
 
 interface Event {
   id: string;
@@ -188,17 +189,7 @@ function Events() {
             {/* Events Grid */}
             {loading ? (
               <div className="flex justify-center items-center py-20">
-                <div className="relative">
-                  <div className="w-16 h-16 rounded-full border-4 border-purple-100 animate-pulse"></div>
-                  <div className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-t-purple-500 border-r-pink-500 animate-spin"></div>
-                  <div
-                    className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-b-indigo-500 animate-spin"
-                    style={{
-                      animationDirection: "reverse",
-                      animationDuration: "1s",
-                    }}
-                  ></div>
-                </div>
+                <PremiumSpinner size="xl" />
               </div>
             ) : error ? (
               <div className="text-center py-20">

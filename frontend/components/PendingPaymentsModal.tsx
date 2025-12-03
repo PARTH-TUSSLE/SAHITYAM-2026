@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import apiClient from "@/lib/api";
 import SuccessModal from "./SuccessModal";
+import PremiumSpinner from "./PremiumSpinner";
 
 interface User {
   id: string;
@@ -144,7 +145,7 @@ export default function PendingPaymentsModal({
       <AnimatePresence>
         {isOpen && (
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[55] flex items-center justify-center p-2 sm:p-3 lg:p-4"
             onClick={onClose}
           >
             <motion.div
@@ -238,7 +239,7 @@ export default function PendingPaymentsModal({
               </div>
 
               {/* Content */}
-              <div className="p-3 sm:p-4 lg:p-6 pb-6 sm:pb-8 overflow-y-auto max-h-[calc(95vh-100px)] sm:max-h-[calc(90vh-120px)]">
+              <div className="p-3 sm:p-4 lg:p-6 pb-12 sm:pb-16 lg:pb-20 overflow-y-auto max-h-[calc(95vh-100px)] sm:max-h-[calc(90vh-120px)]">
                 {filteredPayments.length === 0 ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -266,11 +267,11 @@ export default function PendingPaymentsModal({
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                     {filteredPayments.map((payment) => (
                       <div
                         key={payment.id}
-                        className="bg-linear-to-br from-purple-50 via-pink-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border-2 border-purple-200 hover:border-purple-300 transition-all ring-1 ring-purple-100/50"
+                        className="bg-linear-to-br from-purple-50 via-pink-50 to-purple-50 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 border-2 border-purple-200 hover:border-purple-300 transition-all ring-1 ring-purple-100/50"
                       >
                         {/* Event Info */}
                         <div className="mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-purple-200">
@@ -377,7 +378,7 @@ export default function PendingPaymentsModal({
                         )}
 
                         {/* Actions */}
-                        <div className="flex gap-2 sm:gap-3">
+                        <div className="flex gap-2 sm:gap-3 mt-4">
                           <button
                             onClick={() =>
                               handleVerifyPayment(payment.id, true)
@@ -391,10 +392,7 @@ export default function PendingPaymentsModal({
                           >
                             {verifying && verifyingId === payment.id ? (
                               <>
-                                <span className="relative inline-flex h-4 w-4 sm:h-5 sm:w-5">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-                                  <span className="relative inline-flex rounded-full h-full w-full border-2 border-white border-t-transparent animate-spin"></span>
-                                </span>
+                                <PremiumSpinner size="sm" variant="inline" />
                                 <span className="hidden sm:inline">
                                   Verifying...
                                 </span>
@@ -432,7 +430,7 @@ export default function PendingPaymentsModal({
                           >
                             {verifying && verifyingId === payment.id ? (
                               <>
-                                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <PremiumSpinner size="sm" variant="inline" />
                                 <span className="hidden sm:inline">
                                   Processing...
                                 </span>

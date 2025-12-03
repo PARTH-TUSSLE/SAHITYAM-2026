@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import { validationResult } from "express-validator";
 import {
   uploadToCloudinary,
   deleteFromCloudinary,
 } from "../utils/cloudinaryUpload";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma";
 
 // Register with payment screenshot
 export const registerWithPayment = async (
@@ -19,13 +17,36 @@ export const registerWithPayment = async (
     const file = req.file;
 
     // Validate required fields
-    if (!eventId || !transactionId || !name || !email || !mobileNumber) {
+    if (!eventId || !name || !email || !mobileNumber) {
       res.status(400).json({ error: "All fields are required" });
       return;
     }
 
     if (!file) {
       res.status(400).json({ error: "Payment screenshot is required" });
+      return;
+    }
+
+    // Validate file type and size
+    const allowedMimeTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+    ];
+    if (!allowedMimeTypes.includes(file.mimetype)) {
+      res.status(400).json({
+        error:
+          "Invalid file type. Only JPEG, PNG, GIF, and WebP images are allowed.",
+      });
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      res.status(400).json({
+        error: "File size too large. Maximum size is 5MB.",
+      });
       return;
     }
 
@@ -82,7 +103,30 @@ export const registerWithPayment = async (
     });
   } catch (error) {
     console.error("Registration with payment error:", error);
-    res.status(500).json({ error: "Registration failed" });
+
+    if (error instanceof Error) {
+      // Check for specific errors
+      if (error.message.includes("Cloudinary")) {
+        res.status(500).json({
+          error:
+            "Failed to upload payment screenshot. Please try again with a different image.",
+        });
+        return;
+      }
+      if (error.message.includes("Unique constraint")) {
+        res.status(400).json({
+          error: "You are already registered for this event.",
+        });
+        return;
+      }
+      res.status(500).json({
+        error: "Unable to complete registration. Please try again later.",
+      });
+    } else {
+      res.status(500).json({
+        error: "An unexpected error occurred during registration.",
+      });
+    }
   }
 };
 

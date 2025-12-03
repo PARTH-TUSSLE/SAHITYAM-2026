@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import PremiumSpinner from "./PremiumSpinner";
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -80,10 +81,8 @@ export default function PaymentModal({
       newErrors.email = "Invalid email format";
     if (!formData.mobileNumber.trim())
       newErrors.mobileNumber = "Mobile number is required";
-    else if (!/^\d{10}$/.test(formData.mobileNumber))
+    else if (!/\d{10}$/.test(formData.mobileNumber))
       newErrors.mobileNumber = "Invalid mobile number (10 digits required)";
-    if (!formData.transactionId.trim())
-      newErrors.transactionId = "Transaction ID is required";
     if (!paymentScreenshot)
       newErrors.screenshot = "Payment screenshot is required";
 
@@ -314,7 +313,7 @@ export default function PaymentModal({
                     {/* Transaction ID */}
                     <div>
                       <label className="block text-sm font-bold text-gray-900 mb-2">
-                        Transaction ID / UPI Reference Number *
+                        Transaction ID / UPI Reference Number (Optional)
                       </label>
                       <input
                         type="text"
@@ -405,11 +404,8 @@ export default function PaymentModal({
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         {isLoading ? (
                           <>
-                            <span className="relative inline-flex h-5 w-5">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-                              <span className="relative inline-flex rounded-full h-5 w-5 border-2 border-white border-t-transparent animate-spin"></span>
-                            </span>
-                            Processing...
+                            <PremiumSpinner size="sm" variant="inline" />
+                            <span>Processing...</span>
                           </>
                         ) : (
                           <>

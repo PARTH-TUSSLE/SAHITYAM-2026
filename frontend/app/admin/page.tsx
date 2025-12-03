@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import apiClient from "@/lib/api";
 import BackgroundElements from "@/components/ui/BackgroundElements";
 import PendingPaymentsModal from "@/components/PendingPaymentsModal";
+import PremiumSpinner from "@/components/PremiumSpinner";
 
 interface User {
   id: string;
@@ -52,6 +53,7 @@ interface PendingPayment {
   registrantEmail: string | null;
   registrantMobile: string | null;
   paymentVerified: boolean;
+  paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
   createdAt: string;
   user: User;
   event: {
@@ -144,14 +146,7 @@ export default function AdminDashboard() {
   if (loading || loadingData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="relative">
-          <div className="w-16 h-16 rounded-full border-4 border-purple-100 animate-pulse"></div>
-          <div className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-t-purple-500 border-r-pink-500 animate-spin"></div>
-          <div
-            className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-b-indigo-500 animate-spin"
-            style={{ animationDirection: "reverse", animationDuration: "1s" }}
-          ></div>
-        </div>
+        <PremiumSpinner size="xl" />
       </div>
     );
   }
@@ -235,20 +230,20 @@ export default function AdminDashboard() {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg border border-white/50">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">
+                  <p className="text-gray-600 text-xs sm:text-sm font-medium">
                     Total Events
                   </p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                     {events.length}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-blue-600"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -264,22 +259,22 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg border border-white/50">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">
+                  <p className="text-gray-600 text-xs sm:text-sm font-medium">
                     Total Registrations
                   </p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                     {events.reduce(
                       (sum, event) => sum + event.registrationCount,
                       0
                     )}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg sm:rounded-xl flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-green-600"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-green-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -295,13 +290,13 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50">
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg border border-white/50">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">
+                  <p className="text-gray-600 text-xs sm:text-sm font-medium">
                     Average per Event
                   </p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                     {events.length > 0
                       ? Math.round(
                           events.reduce(
@@ -312,9 +307,9 @@ export default function AdminDashboard() {
                       : 0}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg sm:rounded-xl flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-purple-600"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -332,12 +327,12 @@ export default function AdminDashboard() {
           </div>
 
           {/* Events List */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">
+          <div className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl shadow-lg border border-white/50 overflow-hidden">
+            <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-200">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
                 Event Registrations
               </h2>
-              <p className="text-gray-600 mt-1">
+              <p className="text-gray-600 text-xs sm:text-sm lg:text-base mt-1">
                 View all events and their registered users
               </p>
             </div>
@@ -346,9 +341,9 @@ export default function AdminDashboard() {
               {events.map((event) => (
                 <div
                   key={event.id}
-                  className="p-4 sm:p-6 hover:bg-gray-50/50 transition-colors"
+                  className="p-3 sm:p-4 lg:p-6 hover:bg-gray-50/50 transition-colors"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 lg:gap-4">
                     <div className="flex-1 min-w-0">
                       <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">
                         {event.title}
@@ -395,8 +390,8 @@ export default function AdminDashboard() {
 
       {/* Loading Modal for Event Details */}
       {loadingEventDetails && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 max-w-md w-full">
             <div className="flex flex-col items-center space-y-4">
               <div className="relative">
                 <div className="w-16 h-16 rounded-full border-4 border-purple-100 animate-pulse"></div>
@@ -425,10 +420,10 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2">
                   Loading Registration Details
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-xs sm:text-sm lg:text-base">
                   Please wait while we fetch the registrations...
                 </p>
               </div>
@@ -449,19 +444,19 @@ export default function AdminDashboard() {
       {/* Event Details Modal */}
       {selectedEvent && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-3 lg:p-4"
           onClick={() => setSelectedEvent(null)}
         >
           <div
-            className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between gap-3">
+            <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-200 flex items-center justify-between gap-2 sm:gap-3">
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
+                <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-gray-900 truncate">
                   {selectedEvent.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm lg:text-base text-gray-600 mt-1">
                   {selectedEvent.registrations.length} registered users
                 </p>
               </div>
@@ -485,7 +480,7 @@ export default function AdminDashboard() {
               </button>
             </div>
 
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="p-3 sm:p-4 lg:p-6 overflow-y-auto max-h-[calc(95vh-80px)] sm:max-h-[calc(90vh-120px)]">
               {selectedEvent.registrations.length === 0 ? (
                 <div className="text-center py-12">
                   <svg
@@ -508,7 +503,7 @@ export default function AdminDashboard() {
               ) : (
                 <>
                   {/* Search Box */}
-                  <div className="mb-6">
+                  <div className="mb-3 sm:mb-4 lg:mb-6">
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <svg
@@ -527,10 +522,10 @@ export default function AdminDashboard() {
                       </div>
                       <input
                         type="text"
-                        placeholder="Search by name or mobile number..."
+                        placeholder="Search by name or mobile..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium text-gray-900 placeholder-gray-500 ring-1 ring-transparent focus:ring-purple-200/50"
+                        className="w-full pl-10 sm:pl-12 pr-4 py-2 sm:py-2.5 lg:py-3 bg-gray-50 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium text-sm sm:text-base text-gray-900 placeholder-gray-500 ring-1 ring-transparent focus:ring-purple-200/50"
                       />
                       {searchQuery && (
                         <button
@@ -589,11 +584,11 @@ export default function AdminDashboard() {
                       {filteredRegistrations.map((registration) => (
                         <div
                           key={registration.id}
-                          className="bg-gray-50 rounded-xl p-3 sm:p-4 hover:bg-gray-100 transition-colors"
+                          className="bg-gray-50 rounded-lg sm:rounded-xl p-2.5 sm:p-3 lg:p-4 hover:bg-gray-100 transition-colors"
                         >
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                            <div className="flex items-start sm:items-center gap-3 sm:gap-4">
-                              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0 ring-2 ring-purple-200/50">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
+                            <div className="flex items-start sm:items-center gap-2 sm:gap-3 lg:gap-4">
+                              <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg flex-shrink-0 ring-2 ring-purple-200/50">
                                 {registration.user.name.charAt(0).toUpperCase()}
                               </div>
                               <div className="min-w-0 flex-1">

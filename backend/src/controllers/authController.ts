@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { validationResult } from "express-validator";
 import { generateToken } from "../utils/jwt";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -62,7 +60,25 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     res.status(201).json({ user, token });
   } catch (error) {
     console.error("Register error:", error);
-    res.status(500).json({ error: "Registration failed" });
+
+    // Provide specific error messages
+    if (error instanceof Error) {
+      // Check for specific Prisma errors
+      if (error.message.includes("Unique constraint")) {
+        res.status(400).json({
+          error:
+            "Email or username already exists. Please use different credentials.",
+        });
+        return;
+      }
+      res.status(500).json({
+        error: "Unable to complete registration. Please try again later.",
+      });
+    } else {
+      res.status(500).json({
+        error: "An unexpected error occurred during registration.",
+      });
+    }
   }
 };
 
@@ -110,7 +126,16 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
   } catch (error) {
     console.error("Login error:", error);
-    res.status(500).json({ error: "Login failed" });
+
+    if (error instanceof Error) {
+      res.status(500).json({
+        error: "Unable to process login request. Please try again later.",
+      });
+    } else {
+      res.status(500).json({
+        error: "An unexpected error occurred during login.",
+      });
+    }
   }
 };
 

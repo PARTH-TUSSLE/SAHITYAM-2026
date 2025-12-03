@@ -1,7 +1,14 @@
 import axios from "axios";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// Validate that API URL is set
+if (!API_BASE_URL) {
+  throw new Error(
+    "FATAL ERROR: NEXT_PUBLIC_API_URL environment variable is not set. " +
+      "Please create a .env.local file with NEXT_PUBLIC_API_URL=your_backend_url"
+  );
+}
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

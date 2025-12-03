@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import PremiumSpinner from "./PremiumSpinner";
 
 interface EventModalProps {
   isOpen: boolean;
@@ -181,11 +182,8 @@ export default function EventModal({
                 >
                   {isLoading ? (
                     <>
-                      <span className="relative inline-flex h-5 w-5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
-                        <span className="relative inline-flex rounded-full h-5 w-5 border-2 border-white border-t-transparent animate-spin"></span>
-                      </span>
-                      Loading...
+                      <PremiumSpinner size="sm" variant="inline" />
+                      <span>Loading...</span>
                     </>
                   ) : isRegistered ? (
                     "Unregister from this Event"

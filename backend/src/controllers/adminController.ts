@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import { deleteFromCloudinary } from "../utils/cloudinaryUpload";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma";
 
 export const getAllEventRegistrations = async (
   req: Request,
@@ -282,10 +280,14 @@ export const verifyPayment = async (
       return;
     }
 
-    // If payment is rejected, delete the registration (unregister the user)
+    // If payment is rejected, update status to REJECTED
     if (!verified) {
-      const deletedRegistration = await prisma.registration.delete({
+      const rejectedRegistration = await prisma.registration.update({
         where: { id: registrationId },
+        data: {
+          paymentVerified: false,
+          paymentStatus: "REJECTED",
+        },
         include: {
           user: {
             select: {
@@ -305,9 +307,9 @@ export const verifyPayment = async (
 
       res.json({
         message:
-          "Payment rejected and user has been unregistered from the event",
-        registration: deletedRegistration,
-        unregistered: true,
+          "Payment rejected. User can see the rejection and re-register if needed.",
+        registration: rejectedRegistration,
+        rejected: true,
       });
       return;
     }
