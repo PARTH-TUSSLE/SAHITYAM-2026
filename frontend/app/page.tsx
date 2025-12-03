@@ -7,6 +7,7 @@ import SponsorScroll from "@/components/SponsorScroll";
 import PanelistsGrid from "@/components/PanelistsGrid";
 import HomeClient, { CountdownWrapper } from "@/components/HomeClient";
 import PremiumBackground from "@/components/PremiumBackground";
+import LiteraryBackground from "@/components/LiteraryBackground";
 
 export const metadata: Metadata = {
   title: "SAHITYAM 2026 - Kala aur Sahit ka Sangam | Mind Benders",
@@ -33,6 +34,8 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <HomeClient>
+      {/* Literary background with floating elements */}
+      <LiteraryBackground />
       {/* Premium background */}
       <PremiumBackground />
 

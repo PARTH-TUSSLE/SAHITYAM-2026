@@ -719,3 +719,403 @@ html {
 .animate-smooth-color {
   animation: smoothColorFlow 20s ease-in-out infinite;
 }
+
+/* ===== PREMIUM LITERATURE-THEMED ANIMATIONS ===== */
+
+/* Ink Drop Effect */
+@keyframes inkDrop {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* Quill Writing Animation */
+@keyframes quillWrite {
+  0%,
+  100% {
+    transform: translateX(0) rotate(-25deg);
+  }
+  50% {
+    transform: translateX(15px) rotate(-20deg);
+  }
+}
+
+/* Page Turn Effect */
+@keyframes pageTurn {
+  0% {
+    transform: rotateY(0deg);
+    transform-origin: left;
+  }
+  50% {
+    transform: rotateY(-90deg);
+    transform-origin: left;
+  }
+  100% {
+    transform: rotateY(-180deg);
+    transform-origin: left;
+  }
+}
+
+/* Floating Letters */
+@keyframes floatingLetters {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(5deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-35px) translateX(-5px) rotate(-3deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-15px) translateX(15px) rotate(8deg);
+    opacity: 0.7;
+  }
+}
+
+/* Manuscript Reveal */
+@keyframes manuscriptReveal {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+/* Ornate Border Glow */
+@keyframes ornateGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3),
+      0 0 20px rgba(236, 72, 153, 0.2), inset 0 0 10px rgba(168, 85, 247, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5),
+      0 0 40px rgba(236, 72, 153, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.2);
+  }
+}
+
+/* Parchment Texture Wave */
+@keyframes parchmentWave {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Feather Float */
+@keyframes featherFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-30px) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+}
+
+/* Bookshelf Slide */
+@keyframes bookshelfSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Calligraphy Stroke */
+@keyframes calligraphyStroke {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Literary Shimmer */
+@keyframes literaryShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Vintage Fade */
+@keyframes vintageFade {
+  0% {
+    opacity: 0;
+    filter: sepia(100%) brightness(80%);
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    filter: sepia(20%) brightness(100%);
+    transform: scale(1);
+  }
+}
+
+/* Embossed Text */
+@keyframes embossedPulse {
+  0%,
+  100% {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
+      -1px -1px 2px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+      -2px -2px 4px rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Book Spine Reveal */
+@keyframes bookSpineReveal {
+  0% {
+    transform: rotateY(-90deg) translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0deg) translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Ink Splatter */
+@keyframes inkSplatter {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Golden Foil Effect */
+@keyframes goldenFoil {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.2);
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .animate-ink-drop {
+    animation: inkDrop 1.5s ease-out forwards;
+  }
+
+  .animate-quill-write {
+    animation: quillWrite 3s ease-in-out infinite;
+  }
+
+  .animate-page-turn {
+    animation: pageTurn 2s ease-in-out;
+  }
+
+  .animate-floating-letters {
+    animation: floatingLetters 8s ease-in-out infinite;
+  }
+
+  .animate-manuscript-reveal {
+    animation: manuscriptReveal 1.5s ease-out forwards;
+  }
+
+  .animate-ornate-glow {
+    animation: ornateGlow 3s ease-in-out infinite;
+  }
+
+  .animate-parchment-wave {
+    animation: parchmentWave 20s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-feather-float {
+    animation: featherFloat 6s ease-in-out infinite;
+  }
+
+  .animate-bookshelf-slide {
+    animation: bookshelfSlide 30s linear infinite;
+  }
+
+  .animate-calligraphy-stroke {
+    animation: calligraphyStroke 3s ease-out forwards;
+  }
+
+  .animate-literary-shimmer {
+    animation: literaryShimmer 3s linear infinite;
+  }
+
+  .animate-vintage-fade {
+    animation: vintageFade 1s ease-out forwards;
+  }
+
+  .animate-embossed-pulse {
+    animation: embossedPulse 4s ease-in-out infinite;
+  }
+
+  .animate-book-spine-reveal {
+    animation: bookSpineReveal 0.8s ease-out forwards;
+  }
+
+  .animate-ink-splatter {
+    animation: inkSplatter 1s ease-out forwards;
+  }
+
+  .animate-golden-foil {
+    animation: goldenFoil 4s ease-in-out infinite;
+  }
+}
+
+/* Premium Text Effects */
+.text-literary-gradient {
+  background: linear-gradient(
+    135deg,
+    #8b5cf6 0%,
+    #ec4899 25%,
+    #f59e0b 50%,
+    #8b5cf6 75%,
+    #ec4899 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-golden-foil {
+  background: linear-gradient(
+    135deg,
+    #ffd700 0%,
+    #ffed4e 25%,
+    #ffd700 50%,
+    #b8860b 75%,
+    #ffd700 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-embossed {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
+    -1px -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Glass Morphism Effects */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.glass-morphism-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Parchment Background */
+.bg-parchment {
+  background: linear-gradient(
+    135deg,
+    #fdf6e3 0%,
+    #f5e6d3 25%,
+    #fdf6e3 50%,
+    #ede1ca 75%,
+    #fdf6e3 100%
+  );
+  background-size: 400% 400%;
+  position: relative;
+}
+
+.bg-parchment::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(139, 92, 246, 0.03) 2px,
+    rgba(139, 92, 246, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Ornate Border */
+.border-ornate {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b) border-box;
+  position: relative;
+}
+
+.border-ornate::before,
+.border-ornate::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #8b5cf6;
+}
+
+.border-ornate::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.border-ornate::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
