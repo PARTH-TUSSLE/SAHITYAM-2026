@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundElements from "@/components/ui/BackgroundElements";
+import toast from "react-hot-toast";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,15 +16,10 @@ export default function Contact() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
 
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
@@ -37,10 +33,14 @@ export default function Contact() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitStatus({
-          type: "success",
-          message: data.message || "Message sent successfully!",
-        });
+        toast.success(
+          data.message ||
+            "Message sent successfully! We'll get back to you soon.",
+          {
+            duration: 5000,
+            icon: "✉️",
+          }
+        );
         // Clear form on success
         setFormData({
           name: "",
@@ -50,16 +50,17 @@ export default function Contact() {
           message: "",
         });
       } else {
-        setSubmitStatus({
-          type: "error",
-          message: data.error || "Failed to send message. Please try again.",
+        toast.error(data.error || "Failed to send message. Please try again.", {
+          duration: 5000,
         });
       }
     } catch (error) {
-      setSubmitStatus({
-        type: "error",
-        message: "Network error. Please check your connection and try again.",
-      });
+      toast.error(
+        "Network error. Please check your connection and try again.",
+        {
+          duration: 5000,
+        }
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -205,46 +206,6 @@ export default function Contact() {
               <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
                 Send us a Message
               </h2>
-
-              {/* Success/Error Message */}
-              {submitStatus.type && (
-                <div
-                  className={`mb-6 p-4 rounded-xl border-2 ${
-                    submitStatus.type === "success"
-                      ? "bg-green-50 border-green-200 text-green-800"
-                      : "bg-red-50 border-red-200 text-red-800"
-                  } animate-in fade-in slide-in-from-top-2 duration-500`}
-                >
-                  <div className="flex items-start gap-3">
-                    {submitStatus.type === "success" ? (
-                      <svg
-                        className="w-6 h-6 flex-shrink-0 mt-0.5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        className="w-6 h-6 flex-shrink-0 mt-0.5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
-                    <p className="font-medium">{submitStatus.message}</p>
-                  </div>
-                </div>
-              )}
 
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
