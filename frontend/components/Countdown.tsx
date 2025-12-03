@@ -16,7 +16,7 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-02-03T00:00:00").getTime();
+    const targetDate = new Date("2026-02-05T00:00:00").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -84,7 +84,7 @@ function FlipCard({ value, label }: { value: number; label: string }) {
       >
         {/* Static top half - shows current value */}
         <div
-          className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl overflow-hidden shadow-2xl"
+          className="absolute top-0 left-0 right-0 h-1/2 bg-gray-800 rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl overflow-hidden shadow-2xl"
           style={{ zIndex: 1 }}
         >
           <div
@@ -96,7 +96,7 @@ function FlipCard({ value, label }: { value: number; label: string }) {
           >
             {currentDisplay}
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-800"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-300"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent pointer-events-none"></div>
         </div>
 
@@ -120,7 +120,7 @@ function FlipCard({ value, label }: { value: number; label: string }) {
         {/* Flipping top half - shows previous value and flips down */}
         {isFlipping && (
           <div
-            className="absolute top-0 left-0 right-0 h-1/2 bg-black rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl overflow-hidden shadow-2xl"
+            className="absolute top-0 left-0 right-0 h-1/2 bg-gray-800 rounded-t-lg sm:rounded-t-xl md:rounded-t-2xl overflow-hidden shadow-2xl"
             style={{
               transformOrigin: "bottom center",
               animation:
@@ -137,7 +137,7 @@ function FlipCard({ value, label }: { value: number; label: string }) {
             >
               {previousDisplay}
             </div>
-            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-800"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gray-700"></div>
           </div>
         )}
 

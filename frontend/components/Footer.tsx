@@ -32,7 +32,7 @@ function Footer() {
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Celebrating the convergence of art and literature. Join us for an
-              unforgettable cultural experience from February 3-5, 2026.
+              unforgettable cultural experience from 5th - 6th Feb, 2026.
             </p>
             {/* Social Media Icons */}
             <div className="flex gap-3">
@@ -161,7 +161,7 @@ function Footer() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-sm">February 3-5, 2026</span>
+                <span className="text-sm">5th - 6th Feb, 2026</span>
               </li>
               <li className="flex items-start gap-3 text-gray-400">
                 <svg

@@ -56,6 +56,7 @@ export default function PendingPaymentsModal({
   const [verifyingId, setVerifyingId] = useState<string | null>(null);
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [successModal, setSuccessModal] = useState<{
     isOpen: boolean;
     title: string;
@@ -66,6 +67,32 @@ export default function PendingPaymentsModal({
     title: "",
     message: "",
     type: "success",
+  });
+
+  // Filter pending payments based on search query
+  const filteredPayments = pendingPayments.filter((payment) => {
+    if (!searchQuery) return true;
+
+    const query = searchQuery.toLowerCase();
+    const name = (
+      payment.registrantName ||
+      payment.user.name ||
+      ""
+    ).toLowerCase();
+    const email = (
+      payment.registrantEmail ||
+      payment.user.email ||
+      ""
+    ).toLowerCase();
+    const mobile = (
+      payment.registrantMobile ||
+      payment.user.mobileNumber ||
+      ""
+    ).toLowerCase();
+
+    return (
+      name.includes(query) || email.includes(query) || mobile.includes(query)
+    );
   });
 
   const handleVerifyPayment = async (
@@ -81,10 +108,12 @@ export default function PendingPaymentsModal({
 
       setSuccessModal({
         isOpen: true,
-        title: verified ? "Payment Verified!" : "Payment Rejected",
+        title: verified
+          ? "Payment Verified!"
+          : "Payment Rejected & User Unregistered",
         message: verified
           ? "The payment has been verified successfully. The user can now access the event."
-          : "The payment has been rejected. The user can see this status in their profile and may register again with a valid payment.",
+          : "The payment has been rejected and the user has been automatically unregistered from the event. They can register again with a valid payment.",
         type: verified ? "success" : "error",
       });
 
@@ -134,9 +163,11 @@ export default function PendingPaymentsModal({
                       Pending Payment Verifications
                     </h2>
                     <p className="text-sm sm:text-base text-gray-600 mt-1">
-                      {pendingPayments.length} payment
-                      {pendingPayments.length !== 1 ? "s" : ""} awaiting
+                      {filteredPayments.length} payment
+                      {filteredPayments.length !== 1 ? "s" : ""} awaiting
                       verification
+                      {searchQuery &&
+                        ` (filtered from ${pendingPayments.length})`}
                     </p>
                   </div>
                   <button
@@ -158,11 +189,57 @@ export default function PendingPaymentsModal({
                     </svg>
                   </button>
                 </div>
+
+                {/* Search Bar */}
+                <div className="mt-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search by name, email, or mobile number..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full px-4 py-2.5 sm:py-3 pl-11 sm:pl-12 pr-10 text-sm sm:text-base bg-white border-2 border-purple-200 rounded-lg sm:rounded-xl focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all placeholder:text-gray-400"
+                    />
+                    <svg
+                      className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Content */}
-              <div className="p-3 sm:p-4 lg:p-6 overflow-y-auto max-h-[calc(95vh-100px)] sm:max-h-[calc(90vh-120px)]">
-                {pendingPayments.length === 0 ? (
+              <div className="p-3 sm:p-4 lg:p-6 pb-6 sm:pb-8 overflow-y-auto max-h-[calc(95vh-100px)] sm:max-h-[calc(90vh-120px)]">
+                {filteredPayments.length === 0 ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg
@@ -180,18 +257,20 @@ export default function PendingPaymentsModal({
                       </svg>
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                      All Caught Up!
+                      {searchQuery ? "No Matching Payments" : "All Caught Up!"}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600">
-                      No pending payments to verify at the moment.
+                      {searchQuery
+                        ? `No pending payments match "${searchQuery}"`
+                        : "No pending payments to verify at the moment."}
                     </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
-                    {pendingPayments.map((payment) => (
+                    {filteredPayments.map((payment) => (
                       <div
                         key={payment.id}
-                        className="bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border-2 border-purple-200 hover:border-purple-300 transition-all ring-1 ring-purple-100/50"
+                        className="bg-linear-to-br from-purple-50 via-pink-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border-2 border-purple-200 hover:border-purple-300 transition-all ring-1 ring-purple-100/50"
                       >
                         {/* Event Info */}
                         <div className="mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-purple-200">
@@ -199,7 +278,7 @@ export default function PendingPaymentsModal({
                             <h3 className="font-bold text-gray-900 text-base sm:text-lg flex-1 min-w-0">
                               {payment.event.title}
                             </h3>
-                            <span className="px-2 sm:px-3 py-1 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white text-xs font-bold rounded-full whitespace-nowrap shadow-md shadow-purple-300/50">
+                            <span className="px-2 sm:px-3 py-1 bg-linear-to-r from-pink-500 via-purple-600 to-indigo-600 text-white text-xs font-bold rounded-full whitespace-nowrap shadow-md shadow-purple-300/50">
                               PENDING
                             </span>
                           </div>
@@ -304,7 +383,7 @@ export default function PendingPaymentsModal({
                               handleVerifyPayment(payment.id, true)
                             }
                             disabled={verifying}
-                            className={`flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
+                            className={`flex-1 bg-linear-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
                               verifying && verifyingId === payment.id
                                 ? "opacity-50 cursor-not-allowed"
                                 : ""
@@ -312,7 +391,10 @@ export default function PendingPaymentsModal({
                           >
                             {verifying && verifyingId === payment.id ? (
                               <>
-                                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <span className="relative inline-flex h-4 w-4 sm:h-5 sm:w-5">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
+                                  <span className="relative inline-flex rounded-full h-full w-full border-2 border-white border-t-transparent animate-spin"></span>
+                                </span>
                                 <span className="hidden sm:inline">
                                   Verifying...
                                 </span>

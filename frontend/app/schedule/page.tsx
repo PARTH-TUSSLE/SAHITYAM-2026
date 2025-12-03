@@ -15,7 +15,7 @@ interface TimelineEvent {
 }
 
 const scheduleData: { [key: string]: TimelineEvent[] } = {
-  "Day 1 - February 3rd": [
+  "Day 1 - February 5th": [
     {
       id: 1,
       time: "09:00 AM",
@@ -52,7 +52,7 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "cultural",
     },
   ],
-  "Day 2 - February 4th": [
+  "Day 2 - February 6th": [
     {
       id: 5,
       time: "10:00 AM",
@@ -86,40 +86,6 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "cultural",
     },
   ],
-  "Day 3 - February 5th": [
-    {
-      id: 9,
-      time: "09:30 AM",
-      title: "Panel Discussion",
-      description: "Literature in the Digital Age - featuring eminent writers",
-      venue: "Conference Hall",
-      category: "literary",
-    },
-    {
-      id: 10,
-      time: "11:30 AM",
-      title: "Theatre Workshop",
-      description: "Interactive session on acting and stage presence",
-      venue: "Drama Studio",
-      category: "workshop",
-    },
-    {
-      id: 11,
-      time: "02:00 PM",
-      title: "Grand Finale",
-      description: "Prize distribution and cultural extravaganza",
-      venue: "Main Auditorium",
-      category: "cultural",
-    },
-    {
-      id: 12,
-      time: "04:00 PM",
-      title: "Closing Ceremony",
-      description: "Farewell and vote of thanks",
-      venue: "Main Auditorium",
-      category: "cultural",
-    },
-  ],
 };
 
 const categoryColors = {
@@ -130,7 +96,7 @@ const categoryColors = {
 };
 
 function Schedule() {
-  const [selectedDay, setSelectedDay] = useState("Day 1 - February 3rd");
+  const [selectedDay, setSelectedDay] = useState("Day 1 - February 5th");
 
   return (
     <>
@@ -148,7 +114,7 @@ function Schedule() {
                 Event Schedule
               </h1>
               <p className="text-lg md:text-xl text-gray-700 font-medium">
-                February 3rd - 5th, 2026
+                5th - 6th Feb, 2026
               </p>
             </div>
 
@@ -161,7 +127,7 @@ function Schedule() {
                   className={`px-6 py-3 rounded-full font-bold transition-all duration-300 transform hover:scale-105 ${
                     selectedDay === day
                       ? "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/40"
-                      : "bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white"
+                      : "bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white border-2 border-purple-200"
                   }`}
                   style={{
                     animation: `fade-in 0.5s ease-out ${index * 0.1}s both`,

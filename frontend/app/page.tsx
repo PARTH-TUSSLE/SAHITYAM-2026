@@ -468,7 +468,7 @@ export default function HomePage() {
                 <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mt-1 sm:mt-2 mx-auto shadow-lg shadow-purple-200"></div>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto px-2">
                   Welcome to SAHITYAM 2026, where art and literature converge.
-                  Join us from 3rd to 5th February 2026 for an unforgettable
+                  Join us from 5th - 6th Feb 2026 for an unforgettable
                   celebration of creativity.
                 </p>
 

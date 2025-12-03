@@ -188,7 +188,17 @@ function Events() {
             {/* Events Grid */}
             {loading ? (
               <div className="flex justify-center items-center py-20">
-                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-full border-4 border-purple-100 animate-pulse"></div>
+                  <div className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-t-purple-500 border-r-pink-500 animate-spin"></div>
+                  <div
+                    className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-b-indigo-500 animate-spin"
+                    style={{
+                      animationDirection: "reverse",
+                      animationDuration: "1s",
+                    }}
+                  ></div>
+                </div>
               </div>
             ) : error ? (
               <div className="text-center py-20">

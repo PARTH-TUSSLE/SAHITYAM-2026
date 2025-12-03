@@ -282,12 +282,42 @@ export const verifyPayment = async (
       return;
     }
 
-    // Update payment status based on verification
+    // If payment is rejected, delete the registration (unregister the user)
+    if (!verified) {
+      const deletedRegistration = await prisma.registration.delete({
+        where: { id: registrationId },
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          },
+          event: {
+            select: {
+              id: true,
+              title: true,
+            },
+          },
+        },
+      });
+
+      res.json({
+        message:
+          "Payment rejected and user has been unregistered from the event",
+        registration: deletedRegistration,
+        unregistered: true,
+      });
+      return;
+    }
+
+    // If payment is verified, update the registration
     const updatedRegistration = await prisma.registration.update({
       where: { id: registrationId },
       data: {
         paymentVerified: verified,
-        paymentStatus: verified ? "VERIFIED" : "REJECTED",
+        paymentStatus: "VERIFIED",
       },
       include: {
         user: {
@@ -307,7 +337,7 @@ export const verifyPayment = async (
     });
 
     res.json({
-      message: verified ? "Payment verified successfully" : "Payment rejected",
+      message: "Payment verified successfully",
       registration: updatedRegistration,
     });
   } catch (error) {
