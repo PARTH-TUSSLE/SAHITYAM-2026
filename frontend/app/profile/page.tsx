@@ -44,9 +44,18 @@ export default function ProfilePage() {
       try {
         setLoadingRegistrations(true);
         const response = await apiClient.get("/registrations/my-registrations");
+
+        if (!response.data || !Array.isArray(response.data)) {
+          console.warn("Invalid registrations response format");
+          setRegistrations([]);
+          return;
+        }
+
         setRegistrations(response.data);
-      } catch (err) {
+      } catch (err: any) {
         console.error("Error fetching registrations:", err);
+        // Set empty array instead of keeping loading state
+        setRegistrations([]);
       } finally {
         setLoadingRegistrations(false);
       }
@@ -58,12 +67,29 @@ export default function ProfilePage() {
   }, [isAuthenticated]);
 
   const handleUnregister = async (eventId: string) => {
+    if (!eventId) {
+      console.error("Invalid event ID");
+      return;
+    }
+
+    // Confirm before unregistering
+    const confirmed = window.confirm(
+      "Are you sure you want to unregister from this event? This action cannot be undone."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
     try {
       setUnregisteringEventId(eventId);
       await apiClient.delete(`/registrations/${eventId}`);
       setRegistrations((prev) => prev.filter((reg) => reg.eventId !== eventId));
     } catch (err: any) {
-      alert(err.response?.data?.error || "Failed to unregister");
+      console.error("Error unregistering:", err);
+      const errorMessage =
+        err.response?.data?.error || "Failed to unregister. Please try again.";
+      alert(errorMessage);
     } finally {
       setUnregisteringEventId(null);
     }

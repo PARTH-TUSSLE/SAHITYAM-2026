@@ -55,9 +55,16 @@ function Events() {
   const fetchEvents = async () => {
     try {
       const response = await apiClient.get("/events");
+      if (!response.data || !Array.isArray(response.data)) {
+        throw new Error("Invalid response format");
+      }
       setEvents(response.data);
+      setError(null);
     } catch (err: any) {
       console.error("Error fetching events:", err);
+      const errorMessage =
+        err.response?.data?.error || "Failed to load events. Please try again.";
+      setError(errorMessage);
       throw err;
     }
   };
@@ -65,12 +72,16 @@ function Events() {
   const fetchUserRegistrations = async () => {
     try {
       const response = await apiClient.get("/registrations/my-registrations");
+      if (!response.data || !Array.isArray(response.data)) {
+        console.warn("Invalid registrations response format");
+        return;
+      }
       const registrations: Registration[] = response.data;
       const eventIds = new Set(registrations.map((reg) => reg.eventId));
       setRegisteredEventIds(eventIds);
     } catch (err: any) {
       console.error("Error fetching registrations:", err);
-      // Don't throw - user might not be authenticated
+      // Don't throw - user might not be authenticated or have no registrations
     }
   };
 
@@ -78,12 +89,18 @@ function Events() {
     const loadData = async () => {
       try {
         setLoading(true);
+        setError(null);
         await fetchEvents();
         if (isAuthenticated) {
           await fetchUserRegistrations();
         }
       } catch (err: any) {
-        setError(err.response?.data?.error || "Failed to load events");
+        console.error("Error loading data:", err);
+        const errorMessage =
+          err.response?.data?.error ||
+          err.message ||
+          "Failed to load events. Please refresh the page.";
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }

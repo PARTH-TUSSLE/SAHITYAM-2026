@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -87,9 +88,11 @@ export default function RootLayout({
           }}
         />
 
-        <AuthProvider>
-          <div className="relative z-10">{children}</div>
-        </AuthProvider>
+        <ErrorBoundary>
+          <AuthProvider>
+            <div className="relative z-10">{children}</div>
+          </AuthProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

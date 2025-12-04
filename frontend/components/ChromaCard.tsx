@@ -119,12 +119,12 @@ export default function ChromaCard({
                     e.stopPropagation();
                     setIsModalOpen(true);
                   }}
-                  className="relative px-3.5 py-2 sm:px-6 sm:py-3 bg-white/95 backdrop-blur-sm border-2 border-white/50 hover:border-orange-400 text-gray-700 hover:text-orange-600 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 overflow-hidden group/btn text-sm sm:text-base"
+                  className="relative px-4 py-2 sm:px-5 sm:py-2.5 bg-white/95 backdrop-blur-sm border-2 border-white/50 hover:border-orange-400 text-gray-700 hover:text-orange-600 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 overflow-hidden group/btn text-sm sm:text-base whitespace-nowrap"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-2">
+                  <span className="relative z-10 inline-flex items-center gap-2">
                     See More
                     <svg
-                      className="w-4 h-4 sm:w-4 sm:h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
+                      className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -147,23 +147,23 @@ export default function ChromaCard({
                       handleRegisterClick();
                     }}
                     disabled={isLoading}
-                    className={`relative px-3.5 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm sm:text-base ${
+                    className={`relative px-4 py-2 sm:px-5 sm:py-2.5 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm sm:text-base whitespace-nowrap ${
                       isRegistered
                         ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white"
-                        : "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 ring-1 ring-white/20"
+                        : "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white shadow-md shadow-purple-500/40 hover:shadow-lg hover:shadow-purple-600/50 ring-1 ring-white/20"
                     } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-2">
+                    <span className="relative z-10 inline-flex items-center gap-2">
                       {isLoading ? (
                         <>
                           <PremiumSpinner size="sm" variant="inline" />
-                          <span className="text-sm">Loading...</span>
+                          <span className="text-xs">Loading...</span>
                         </>
                       ) : (
                         <>
                           {isRegistered ? "Unregister" : "Register"}
                           <svg
-                            className="w-4 h-4 sm:w-4 sm:h-4 transition-transform duration-300 group-hover/btn:rotate-12"
+                            className="w-4 h-4 transition-transform duration-300 group-hover/btn:rotate-12"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -201,12 +201,12 @@ export default function ChromaCard({
                       e.stopPropagation();
                       window.location.href = "/login";
                     }}
-                    className="relative px-3.5 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-600/50 hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm sm:text-base ring-1 ring-white/20"
+                    className="relative px-4 py-2 sm:px-5 sm:py-2.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 hover:-translate-y-1 active:scale-95 overflow-hidden group/btn text-sm sm:text-base ring-1 ring-white/20 whitespace-nowrap"
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-1.5 sm:gap-2">
+                    <span className="relative z-10 inline-flex items-center gap-2">
                       Login to Register
                       <svg
-                        className="w-4 h-4 sm:w-4 sm:h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
+                        className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

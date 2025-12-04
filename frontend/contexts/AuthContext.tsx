@@ -40,26 +40,57 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Load user from localStorage on mount
   useEffect(() => {
-    const token = getToken();
-    const savedUser = getUser();
+    try {
+      const token = getToken();
+      const savedUser = getUser();
 
-    if (token && savedUser) {
-      setUserState(savedUser);
+      if (token && savedUser) {
+        // Validate token structure (basic check)
+        if (token.split(".").length === 3) {
+          setUserState(savedUser);
+        } else {
+          console.warn("Invalid token format, clearing auth data");
+          clearAuth();
+        }
+      }
+    } catch (error) {
+      console.error("Error loading user from storage:", error);
+      clearAuth();
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }, []);
 
   const login = async (email: string, password: string): Promise<void> => {
     try {
+      // Validate inputs
+      if (!email || !password) {
+        throw new Error("Email and password are required");
+      }
+
       const response = await apiClient.post("/auth/login", { email, password });
       const { user: userData, token } = response.data;
+
+      if (!userData || !token) {
+        throw new Error("Invalid response from server");
+      }
 
       setToken(token);
       setUser(userData);
       setUserState(userData);
     } catch (error: any) {
-      throw new Error(error.response?.data?.error || "Login failed");
+      console.error("Login error:", error);
+
+      // Extract meaningful error message
+      let errorMessage = "Login failed. Please try again.";
+
+      if (error.response?.data?.error) {
+        errorMessage = error.response.data.error;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+
+      throw new Error(errorMessage);
     }
   };
 
@@ -71,6 +102,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     mobileNumber: string
   ): Promise<void> => {
     try {
+      // Validate inputs
+      if (!name || !username || !email || !password || !mobileNumber) {
+        throw new Error("All fields are required");
+      }
+
       const response = await apiClient.post("/auth/register", {
         name,
         username,
@@ -80,11 +116,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
       const { user: userData, token } = response.data;
 
+      if (!userData || !token) {
+        throw new Error("Invalid response from server");
+      }
+
       setToken(token);
       setUser(userData);
       setUserState(userData);
     } catch (error: any) {
-      throw new Error(error.response?.data?.error || "Registration failed");
+      console.error("Registration error:", error);
+
+      // Extract meaningful error message
+      let errorMessage = "Registration failed. Please try again.";
+
+      if (error.response?.data?.error) {
+        errorMessage = error.response.data.error;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+
+      throw new Error(errorMessage);
     }
   };
 

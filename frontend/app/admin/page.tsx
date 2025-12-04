@@ -96,10 +96,26 @@ export default function AdminDashboard() {
           apiClient.get("/admin/events"),
           apiClient.get("/admin/pending-payments"),
         ]);
-        setEvents(eventsResponse.data);
-        setPendingPayments(pendingResponse.data);
-      } catch (err) {
-        console.error("Error fetching events:", err);
+
+        // Validate response data
+        if (Array.isArray(eventsResponse.data)) {
+          setEvents(eventsResponse.data);
+        } else {
+          console.warn("Invalid events response format");
+          setEvents([]);
+        }
+
+        if (Array.isArray(pendingResponse.data)) {
+          setPendingPayments(pendingResponse.data);
+        } else {
+          console.warn("Invalid pending payments response format");
+          setPendingPayments([]);
+        }
+      } catch (err: any) {
+        console.error("Error fetching admin data:", err);
+        // Set empty arrays to prevent UI crashes
+        setEvents([]);
+        setPendingPayments([]);
       } finally {
         setLoadingData(false);
       }
@@ -113,8 +129,13 @@ export default function AdminDashboard() {
   const refreshPendingPayments = async () => {
     try {
       const response = await apiClient.get("/admin/pending-payments");
-      setPendingPayments(response.data);
-    } catch (err) {
+
+      if (Array.isArray(response.data)) {
+        setPendingPayments(response.data);
+      } else {
+        console.warn("Invalid pending payments response format");
+      }
+    } catch (err: any) {
       console.error("Error refreshing pending payments:", err);
     }
   };
