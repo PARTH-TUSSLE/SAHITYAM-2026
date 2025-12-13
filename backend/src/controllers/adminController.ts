@@ -263,6 +263,88 @@ export const getPendingPayments = async (
   }
 };
 
+// Get all verified payments
+export const getVerifiedPayments = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const verifiedRegistrations = await prisma.registration.findMany({
+      where: {
+        paymentStatus: "VERIFIED",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            email: true,
+            mobileNumber: true,
+            createdAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            title: true,
+            subtitle: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.json(verifiedRegistrations);
+  } catch (error) {
+    console.error("Get verified payments error:", error);
+    res.status(500).json({ error: "Failed to fetch verified payments" });
+  }
+};
+
+// Get all rejected payments
+export const getRejectedPayments = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const rejectedRegistrations = await prisma.registration.findMany({
+      where: {
+        paymentStatus: "REJECTED",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            email: true,
+            mobileNumber: true,
+            createdAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            title: true,
+            subtitle: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.json(rejectedRegistrations);
+  } catch (error) {
+    console.error("Get rejected payments error:", error);
+    res.status(500).json({ error: "Failed to fetch rejected payments" });
+  }
+};
+
 // Verify payment
 export const verifyPayment = async (
   req: Request,

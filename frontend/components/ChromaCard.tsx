@@ -14,6 +14,7 @@ interface ChromaCardProps {
   subtitle?: string;
   description?: string;
   rules?: string[];
+  registrationFee?: number;
   isRegistered?: boolean;
   onRegister?: (eventId: string) => void;
   onUnregister?: (eventId: string) => void;
@@ -34,6 +35,7 @@ export default function ChromaCard({
     "Follow the event schedule and guidelines",
     "Respect all participants and organizers",
   ],
+  registrationFee = 999,
   isRegistered = false,
   onRegister,
   onUnregister,
@@ -80,7 +82,17 @@ export default function ChromaCard({
 
         {/* Fee Badge */}
         <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-full shadow-lg shadow-purple-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
-          ₹200
+          {title === "Literature Quiz" ? (
+            <span className="text-xs sm:text-sm">
+              ₹{registrationFee} per team
+            </span>
+          ) : title === "Inter-College Youth Parliament" ? (
+            <span className="text-xs sm:text-sm">
+              ₹{registrationFee} per delegate
+            </span>
+          ) : (
+            <span>₹{registrationFee}</span>
+          )}
         </div>
 
         {/* Inner Card */}

@@ -1,5 +1,6 @@
 // Homepage - Server Component for SEO
 import { Metadata } from "next";
+import Image from "next/image";
 import BackgroundElements from "../components/ui/BackgroundElements";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -47,7 +48,7 @@ export default function HomePage() {
         <div className="relative z-20 h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-6">
           <div className="max-w-6xl w-full space-y-4 sm:space-y-6 lg:space-y-8 text-center animate-fade-in">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl pt-16 sm:pt-20 font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
-              Kala aur Sahit ka Sangam
+              कला aur साहित्य ka Sangam
             </h1>
             <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mt-1 sm:mt-2 mx-auto shadow-lg shadow-purple-200"></div>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto px-2">
@@ -167,21 +168,15 @@ export default function HomePage() {
 
               <div className="relative bg-white/95 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-purple-100 ring-1 ring-purple-200/50 hover:shadow-purple-200 transition-all duration-300 hover:scale-[1.02]">
                 <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 md:space-y-6">
-                  {/* Club Logo/Icon */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl md:rounded-3xl flex items-center justify-center shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/50">
-                    <svg
-                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                      />
-                    </svg>
+                  {/* Club Logo */}
+                  <div className="w-48 h-32 sm:w-56 sm:h-36 md:w-64 md:h-40 lg:w-72 lg:h-44 relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/50 bg-white">
+                    <Image
+                      src="/mindbenders.jpg"
+                      alt="Mind Benders Club Logo"
+                      fill
+                      className="object-contain p-3 sm:p-4"
+                      priority
+                    />
                   </div>
 
                   {/* Club Name */}
@@ -194,10 +189,16 @@ export default function HomePage() {
 
                   {/* Description */}
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl font-medium px-2">
-                    A passionate community of creative minds dedicated to
-                    fostering artistic expression and literary excellence. Mind
-                    Benders brings together innovators, artists, and thinkers to
-                    create memorable cultural experiences.
+                    Mind Benders Club, the Literary & Creative Society of CGC
+                    University, Mohali, is dedicated to fostering intellectual
+                    excellence, creative expression, and confident communication
+                    among students. The club actively promotes debate, creative
+                    writing, poetry, public speaking, theatre, and quizzes,
+                    offering a refined platform for young minds to explore ideas
+                    and sharpen perspectives. With a strong focus on leadership
+                    and innovation, Mind Benders continues to nurture future
+                    thinkers and performers—as proudly showcased through its
+                    contributions to SAHITYAM.
                   </p>
 
                   {/* Stats/Highlights */}
@@ -212,7 +213,7 @@ export default function HomePage() {
                     </div>
                     <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 border border-purple-200 shadow-md shadow-purple-100/50">
                       <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-0.5 sm:mb-1 md:mb-2">
-                        50+
+                        100+
                       </div>
                       <div className="text-xs sm:text-sm md:text-base text-gray-700 font-semibold">
                         Events Organized
@@ -220,11 +221,43 @@ export default function HomePage() {
                     </div>
                     <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 border border-purple-200 shadow-md shadow-purple-100/50">
                       <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-0.5 sm:mb-1 md:mb-2">
-                        1000+
+                        3000+
                       </div>
                       <div className="text-xs sm:text-sm md:text-base text-gray-700 font-semibold">
                         Participants Reached
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Contact Officials */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full max-w-3xl mt-6 sm:mt-8">
+                    <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-white rounded-lg sm:rounded-xl p-4 sm:p-5 border border-purple-200 shadow-md">
+                      <h4 className="text-sm sm:text-base font-bold text-purple-900 mb-2">
+                        Manager, DSA
+                      </h4>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+                        Ms. Manbir Kaur Brar
+                      </p>
+                      <p className="text-xs text-gray-600 mb-0.5">
+                        📞 +91-98550 81229
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        ✉️ Manbir.j1082@cgcuniversity.in
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-white rounded-lg sm:rounded-xl p-4 sm:p-5 border border-purple-200 shadow-md">
+                      <h4 className="text-sm sm:text-base font-bold text-purple-900 mb-2">
+                        President, Mind Benders Club
+                      </h4>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+                        Diwansh
+                      </p>
+                      <p className="text-xs text-gray-600 mb-0.5">
+                        📞 +91-7681951539
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        ✉️ Sohaldiwansh01@gmail.com
+                      </p>
                     </div>
                   </div>
 

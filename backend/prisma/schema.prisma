@@ -21,15 +21,16 @@ model User {
 }
 
 model Event {
-  id            String         @id @default(cuid())
-  title         String
-  subtitle      String?
-  description   String
-  image         String
-  rules         String[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  registrations Registration[]
+  id              String         @id @default(cuid())
+  title           String
+  subtitle        String?
+  description     String
+  image           String
+  rules           String[]
+  registrationFee Int
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  registrations   Registration[]
 }
 
 model Registration {

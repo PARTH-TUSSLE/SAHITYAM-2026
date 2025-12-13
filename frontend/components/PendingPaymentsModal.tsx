@@ -41,6 +41,8 @@ interface PendingPaymentsModalProps {
   isOpen: boolean;
   onClose: () => void;
   pendingPayments: PendingPayment[];
+  verifiedPayments: PendingPayment[];
+  rejectedPayments: PendingPayment[];
   onPaymentVerified: () => void;
 }
 
@@ -48,11 +50,16 @@ export default function PendingPaymentsModal({
   isOpen,
   onClose,
   pendingPayments,
+  verifiedPayments,
+  rejectedPayments,
   onPaymentVerified,
 }: PendingPaymentsModalProps) {
   const [selectedPayment, setSelectedPayment] = useState<PendingPayment | null>(
     null
   );
+  const [activeTab, setActiveTab] = useState<
+    "pending" | "verified" | "rejected"
+  >("pending");
   const [verifying, setVerifying] = useState(false);
   const [verifyingId, setVerifyingId] = useState<string | null>(null);
   const [imageModalOpen, setImageModalOpen] = useState(false);
@@ -70,8 +77,16 @@ export default function PendingPaymentsModal({
     type: "success",
   });
 
-  // Filter pending payments based on search query
-  const filteredPayments = pendingPayments.filter((payment) => {
+  // Get current payments based on active tab
+  const currentPayments =
+    activeTab === "pending"
+      ? pendingPayments
+      : activeTab === "verified"
+      ? verifiedPayments
+      : rejectedPayments;
+
+  // Filter payments based on search query
+  const filteredPayments = currentPayments.filter((payment) => {
     if (!searchQuery) return true;
 
     const query = searchQuery.toLowerCase();
@@ -157,18 +172,22 @@ export default function PendingPaymentsModal({
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50">
+              <div className="p-4 sm:p-5 lg:p-6 border-b border-gray-200 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-gray-900 truncate">
-                      Pending Payment Verifications
+                      Payment Verifications
                     </h2>
                     <p className="text-sm sm:text-base text-gray-600 mt-1">
                       {filteredPayments.length} payment
-                      {filteredPayments.length !== 1 ? "s" : ""} awaiting
-                      verification
+                      {filteredPayments.length !== 1 ? "s" : ""}{" "}
+                      {activeTab === "pending"
+                        ? "awaiting verification"
+                        : activeTab === "verified"
+                        ? "verified"
+                        : "rejected"}
                       {searchQuery &&
-                        ` (filtered from ${pendingPayments.length})`}
+                        ` (filtered from ${currentPayments.length})`}
                     </p>
                   </div>
                   <button
@@ -188,6 +207,82 @@ export default function PendingPaymentsModal({
                         d="M6 18L18 6M6 6l12 12"
                       />
                     </svg>
+                  </button>
+                </div>
+
+                {/* Tabs */}
+                <div className="mt-4 flex gap-2 sm:gap-3 border-b border-purple-200">
+                  <button
+                    onClick={() => {
+                      setActiveTab("pending");
+                      setSearchQuery("");
+                    }}
+                    className={`px-4 py-2 font-bold text-sm sm:text-base transition-all relative ${
+                      activeTab === "pending"
+                        ? "text-purple-600 border-b-2 border-purple-600"
+                        : "text-gray-600 hover:text-purple-600"
+                    }`}
+                  >
+                    Pending
+                    {pendingPayments.length > 0 && (
+                      <span
+                        className={`ml-2 px-2 py-0.5 rounded-full text-xs font-black ${
+                          activeTab === "pending"
+                            ? "bg-purple-600 text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                      >
+                        {pendingPayments.length}
+                      </span>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveTab("verified");
+                      setSearchQuery("");
+                    }}
+                    className={`px-4 py-2 font-bold text-sm sm:text-base transition-all relative ${
+                      activeTab === "verified"
+                        ? "text-green-600 border-b-2 border-green-600"
+                        : "text-gray-600 hover:text-green-600"
+                    }`}
+                  >
+                    Verified
+                    {verifiedPayments.length > 0 && (
+                      <span
+                        className={`ml-2 px-2 py-0.5 rounded-full text-xs font-black ${
+                          activeTab === "verified"
+                            ? "bg-green-600 text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                      >
+                        {verifiedPayments.length}
+                      </span>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveTab("rejected");
+                      setSearchQuery("");
+                    }}
+                    className={`px-4 py-2 font-bold text-sm sm:text-base transition-all relative ${
+                      activeTab === "rejected"
+                        ? "text-red-600 border-b-2 border-red-600"
+                        : "text-gray-600 hover:text-red-600"
+                    }`}
+                  >
+                    Rejected
+                    {rejectedPayments.length > 0 && (
+                      <span
+                        className={`ml-2 px-2 py-0.5 rounded-full text-xs font-black ${
+                          activeTab === "rejected"
+                            ? "bg-red-600 text-white"
+                            : "bg-gray-200 text-gray-700"
+                        }`}
+                      >
+                        {rejectedPayments.length}
+                      </span>
+                    )}
                   </button>
                 </div>
 
@@ -239,7 +334,7 @@ export default function PendingPaymentsModal({
               </div>
 
               {/* Content */}
-              <div className="p-3 sm:p-4 lg:p-6 pb-12 sm:pb-16 lg:pb-20 overflow-y-auto max-h-[calc(95vh-100px)] sm:max-h-[calc(90vh-120px)]">
+              <div className="p-4 sm:p-5 lg:p-6 overflow-y-auto max-h-[calc(95vh-200px)] sm:max-h-[calc(90vh-220px)]">
                 {filteredPayments.length === 0 ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -258,20 +353,30 @@ export default function PendingPaymentsModal({
                       </svg>
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                      {searchQuery ? "No Matching Payments" : "All Caught Up!"}
+                      {searchQuery
+                        ? "No Matching Payments"
+                        : activeTab === "pending"
+                        ? "All Caught Up!"
+                        : activeTab === "verified"
+                        ? "No Verified Payments"
+                        : "No Rejected Payments"}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600">
                       {searchQuery
-                        ? `No pending payments match "${searchQuery}"`
-                        : "No pending payments to verify at the moment."}
+                        ? `No ${activeTab} payments match "${searchQuery}"`
+                        : activeTab === "pending"
+                        ? "No pending payments to verify at the moment."
+                        : activeTab === "verified"
+                        ? "No payments have been verified yet."
+                        : "No payments have been rejected yet."}
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 pb-8">
                     {filteredPayments.map((payment) => (
                       <div
                         key={payment.id}
-                        className="bg-linear-to-br from-purple-50 via-pink-50 to-purple-50 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 border-2 border-purple-200 hover:border-purple-300 transition-all ring-1 ring-purple-100/50"
+                        className="bg-linear-to-br from-purple-50 via-pink-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-5 lg:p-6 border-2 border-purple-200 hover:border-purple-300 transition-all ring-1 ring-purple-100/50"
                       >
                         {/* Event Info */}
                         <div className="mb-3 sm:mb-4 pb-3 sm:pb-4 border-b border-purple-200">
@@ -279,8 +384,16 @@ export default function PendingPaymentsModal({
                             <h3 className="font-bold text-gray-900 text-base sm:text-lg flex-1 min-w-0">
                               {payment.event.title}
                             </h3>
-                            <span className="px-2 sm:px-3 py-1 bg-linear-to-r from-pink-500 via-purple-600 to-indigo-600 text-white text-xs font-bold rounded-full whitespace-nowrap shadow-md shadow-purple-300/50">
-                              PENDING
+                            <span
+                              className={`px-2.5 sm:px-3 py-1 text-white text-xs font-bold rounded-full whitespace-nowrap shadow-md ${
+                                payment.paymentStatus === "PENDING"
+                                  ? "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 shadow-purple-300/50"
+                                  : payment.paymentStatus === "VERIFIED"
+                                  ? "bg-gradient-to-r from-green-500 to-green-600 shadow-green-300/50"
+                                  : "bg-gradient-to-r from-red-500 to-red-600 shadow-red-300/50"
+                              }`}
+                            >
+                              {payment.paymentStatus}
                             </span>
                           </div>
                           <p className="text-xs sm:text-sm text-gray-600">
@@ -299,7 +412,7 @@ export default function PendingPaymentsModal({
                         </div>
 
                         {/* User Details */}
-                        <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
+                        <div className="space-y-2.5 sm:space-y-3 mb-3 sm:mb-4">
                           <div>
                             <p className="text-xs text-gray-500 font-medium mb-1">
                               User Name
@@ -378,84 +491,86 @@ export default function PendingPaymentsModal({
                         )}
 
                         {/* Actions */}
-                        <div className="flex gap-2 sm:gap-3 mt-4">
-                          <button
-                            onClick={() =>
-                              handleVerifyPayment(payment.id, true)
-                            }
-                            disabled={verifying}
-                            className={`flex-1 bg-linear-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
-                              verifying && verifyingId === payment.id
-                                ? "opacity-50 cursor-not-allowed"
-                                : ""
-                            }`}
-                          >
-                            {verifying && verifyingId === payment.id ? (
-                              <>
-                                <PremiumSpinner size="sm" variant="inline" />
-                                <span className="hidden sm:inline">
-                                  Verifying...
-                                </span>
-                                <span className="sm:hidden">...</span>
-                              </>
-                            ) : (
-                              <>
-                                <svg
-                                  className="w-4 h-4 sm:w-5 sm:h-5"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                  />
-                                </svg>
-                                Verify
-                              </>
-                            )}
-                          </button>
-                          <button
-                            onClick={() =>
-                              handleVerifyPayment(payment.id, false)
-                            }
-                            disabled={verifying}
-                            className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
-                              verifying && verifyingId === payment.id
-                                ? "opacity-50 cursor-not-allowed"
-                                : ""
-                            }`}
-                          >
-                            {verifying && verifyingId === payment.id ? (
-                              <>
-                                <PremiumSpinner size="sm" variant="inline" />
-                                <span className="hidden sm:inline">
-                                  Processing...
-                                </span>
-                                <span className="sm:hidden">...</span>
-                              </>
-                            ) : (
-                              <>
-                                <svg
-                                  className="w-4 h-4 sm:w-5 sm:h-5"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                  />
-                                </svg>
-                                Reject
-                              </>
-                            )}
-                          </button>
-                        </div>
+                        {payment.paymentStatus === "PENDING" && (
+                          <div className="flex gap-2 sm:gap-3 mt-4">
+                            <button
+                              onClick={() =>
+                                handleVerifyPayment(payment.id, true)
+                              }
+                              disabled={verifying}
+                              className={`flex-1 bg-linear-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
+                                verifying && verifyingId === payment.id
+                                  ? "opacity-50 cursor-not-allowed"
+                                  : ""
+                              }`}
+                            >
+                              {verifying && verifyingId === payment.id ? (
+                                <>
+                                  <PremiumSpinner size="sm" variant="inline" />
+                                  <span className="hidden sm:inline">
+                                    Verifying...
+                                  </span>
+                                  <span className="sm:hidden">...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg
+                                    className="w-4 h-4 sm:w-5 sm:h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                  </svg>
+                                  Verify
+                                </>
+                              )}
+                            </button>
+                            <button
+                              onClick={() =>
+                                handleVerifyPayment(payment.id, false)
+                              }
+                              disabled={verifying}
+                              className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
+                                verifying && verifyingId === payment.id
+                                  ? "opacity-50 cursor-not-allowed"
+                                  : ""
+                              }`}
+                            >
+                              {verifying && verifyingId === payment.id ? (
+                                <>
+                                  <PremiumSpinner size="sm" variant="inline" />
+                                  <span className="hidden sm:inline">
+                                    Processing...
+                                  </span>
+                                  <span className="sm:hidden">...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg
+                                    className="w-4 h-4 sm:w-5 sm:h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                  </svg>
+                                  Reject
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>

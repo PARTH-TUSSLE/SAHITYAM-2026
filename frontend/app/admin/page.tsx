@@ -73,8 +73,17 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<"events" | "users">("events");
   const [searchQuery, setSearchQuery] = useState("");
   const [pendingPayments, setPendingPayments] = useState<PendingPayment[]>([]);
+  const [verifiedPayments, setVerifiedPayments] = useState<PendingPayment[]>(
+    []
+  );
+  const [rejectedPayments, setRejectedPayments] = useState<PendingPayment[]>(
+    []
+  );
   const [pendingPaymentsModalOpen, setPendingPaymentsModalOpen] =
     useState(false);
+  const [paymentStatusTab, setPaymentStatusTab] = useState<
+    "pending" | "verified" | "rejected"
+  >("pending");
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -92,9 +101,16 @@ export default function AdminDashboard() {
     const fetchData = async () => {
       try {
         setLoadingData(true);
-        const [eventsResponse, pendingResponse] = await Promise.all([
+        const [
+          eventsResponse,
+          pendingResponse,
+          verifiedResponse,
+          rejectedResponse,
+        ] = await Promise.all([
           apiClient.get("/admin/events"),
           apiClient.get("/admin/pending-payments"),
+          apiClient.get("/admin/verified-payments"),
+          apiClient.get("/admin/rejected-payments"),
         ]);
 
         // Validate response data
@@ -111,11 +127,27 @@ export default function AdminDashboard() {
           console.warn("Invalid pending payments response format");
           setPendingPayments([]);
         }
+
+        if (Array.isArray(verifiedResponse.data)) {
+          setVerifiedPayments(verifiedResponse.data);
+        } else {
+          console.warn("Invalid verified payments response format");
+          setVerifiedPayments([]);
+        }
+
+        if (Array.isArray(rejectedResponse.data)) {
+          setRejectedPayments(rejectedResponse.data);
+        } else {
+          console.warn("Invalid rejected payments response format");
+          setRejectedPayments([]);
+        }
       } catch (err: any) {
         console.error("Error fetching admin data:", err);
         // Set empty arrays to prevent UI crashes
         setEvents([]);
         setPendingPayments([]);
+        setVerifiedPayments([]);
+        setRejectedPayments([]);
       } finally {
         setLoadingData(false);
       }
@@ -128,15 +160,32 @@ export default function AdminDashboard() {
 
   const refreshPendingPayments = async () => {
     try {
-      const response = await apiClient.get("/admin/pending-payments");
+      const [pendingResponse, verifiedResponse, rejectedResponse] =
+        await Promise.all([
+          apiClient.get("/admin/pending-payments"),
+          apiClient.get("/admin/verified-payments"),
+          apiClient.get("/admin/rejected-payments"),
+        ]);
 
-      if (Array.isArray(response.data)) {
-        setPendingPayments(response.data);
+      if (Array.isArray(pendingResponse.data)) {
+        setPendingPayments(pendingResponse.data);
       } else {
         console.warn("Invalid pending payments response format");
       }
+
+      if (Array.isArray(verifiedResponse.data)) {
+        setVerifiedPayments(verifiedResponse.data);
+      } else {
+        console.warn("Invalid verified payments response format");
+      }
+
+      if (Array.isArray(rejectedResponse.data)) {
+        setRejectedPayments(rejectedResponse.data);
+      } else {
+        console.warn("Invalid rejected payments response format");
+      }
     } catch (err: any) {
-      console.error("Error refreshing pending payments:", err);
+      console.error("Error refreshing payment data:", err);
     }
   };
 
@@ -232,7 +281,7 @@ export default function AdminDashboard() {
                   />
                 </svg>
                 <span className="text-sm sm:text-base">
-                  <span className="hidden sm:inline">Pending Payments</span>
+                  <span className="hidden sm:inline">Payment Status</span>
                   <span className="sm:hidden">Payments</span>
                   {pendingPayments.length > 0 && (
                     <span className="ml-2 px-2 sm:px-2.5 py-0.5 bg-white text-purple-600 text-xs sm:text-sm font-black rounded-full">
@@ -663,6 +712,8 @@ export default function AdminDashboard() {
         isOpen={pendingPaymentsModalOpen}
         onClose={() => setPendingPaymentsModalOpen(false)}
         pendingPayments={pendingPayments}
+        verifiedPayments={verifiedPayments}
+        rejectedPayments={rejectedPayments}
         onPaymentVerified={refreshPendingPayments}
       />
 

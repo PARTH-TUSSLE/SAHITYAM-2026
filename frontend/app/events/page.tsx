@@ -20,13 +20,12 @@ interface Event {
   description: string;
   image: string;
   rules: string[];
+  registrationFee: number;
 }
 
 interface Registration {
   eventId: string;
 }
-
-const EVENT_FEE = 200; // Registration fee in rupees
 
 function Events() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -255,6 +254,7 @@ function Events() {
                     subtitle={event.subtitle || ""}
                     description={event.description}
                     rules={event.rules}
+                    registrationFee={event.registrationFee}
                     isRegistered={registeredEventIds.has(event.id)}
                     onRegister={handleRegister}
                     onUnregister={handleUnregister}
@@ -279,7 +279,7 @@ function Events() {
             setSelectedEventForPayment(null);
           }}
           eventTitle={selectedEventForPayment.title}
-          eventFee={EVENT_FEE}
+          eventFee={selectedEventForPayment.registrationFee}
           onSubmit={handlePaymentSubmit}
           isLoading={loadingEventId === selectedEventForPayment.id}
           userEmail={user?.email || ""}
