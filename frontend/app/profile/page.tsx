@@ -15,6 +15,7 @@ interface Registration {
   createdAt: string;
   paymentVerified: boolean;
   paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
+  rejectionReason?: string | null;
   event: {
     id: string;
     title: string;
@@ -374,9 +375,8 @@ export default function ProfilePage() {
                                     Payment Rejected
                                   </p>
                                   <p className="text-[10px] sm:text-xs text-red-700 leading-tight sm:leading-normal">
-                                    Your payment verification was rejected.
-                                    Please verify your payment details and
-                                    register again with correct information.
+                                    {registration.rejectionReason ||
+                                      "Your payment verification was rejected. Please verify your payment details and register again with correct information."}
                                   </p>
                                 </div>
                               </div>

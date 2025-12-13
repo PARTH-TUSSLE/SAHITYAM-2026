@@ -164,10 +164,10 @@ export default function Contact() {
                   Email
                 </h3>
                 <a
-                  href="mailto:contact@sahityam2026.com"
+                  href="mindbenders@cgcuniversity.in"
                   className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block break-words"
                 >
-                  contact@sahityam2026.com
+                  mindbenders@cgcuniversity.in
                 </a>
               </div>
             </div>
@@ -195,10 +195,10 @@ export default function Contact() {
                   Phone
                 </h3>
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+917681951539"
                   className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block"
                 >
-                  +91 123 456 7890
+                  +91 7681951539
                 </a>
               </div>
             </div>

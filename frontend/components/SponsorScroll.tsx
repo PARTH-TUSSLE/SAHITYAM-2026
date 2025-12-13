@@ -1,52 +1,52 @@
 "use client";
 
-interface Sponsor {
+interface MysterySponsor {
   id: number;
-  name: string;
-  logo: string;
+  gradient: string;
+  animation: string;
 }
 
-// Dummy sponsor logos using Unsplash
-const sponsors: Sponsor[] = [
+// Mystery sponsor placeholders with different gradients
+const mysterySponsors: MysterySponsor[] = [
   {
     id: 1,
-    name: "Tech Corp",
-    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=200&fit=crop",
+    gradient: "from-purple-500 via-pink-500 to-purple-600",
+    animation: "animate-pulse",
   },
   {
     id: 2,
-    name: "Innovation Labs",
-    logo: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=200&fit=crop",
+    gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    animation: "animate-bounce",
   },
   {
     id: 3,
-    name: "Digital Solutions",
-    logo: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=200&h=200&fit=crop",
+    gradient: "from-pink-500 via-purple-600 to-indigo-500",
+    animation: "animate-pulse",
   },
   {
     id: 4,
-    name: "Creative Studio",
-    logo: "https://images.unsplash.com/photo-1611926653670-6c18ff0d8497?w=200&h=200&fit=crop",
+    gradient: "from-purple-600 via-indigo-500 to-pink-600",
+    animation: "animate-bounce",
   },
   {
     id: 5,
-    name: "Media Group",
-    logo: "https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?w=200&h=200&fit=crop",
+    gradient: "from-pink-600 via-purple-500 to-indigo-600",
+    animation: "animate-pulse",
   },
   {
     id: 6,
-    name: "Enterprise Co",
-    logo: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=200&h=200&fit=crop",
+    gradient: "from-indigo-600 via-purple-600 to-pink-500",
+    animation: "animate-bounce",
   },
   {
     id: 7,
-    name: "Global Partners",
-    logo: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=200&h=200&fit=crop",
+    gradient: "from-purple-500 via-pink-600 to-indigo-500",
+    animation: "animate-pulse",
   },
   {
     id: 8,
-    name: "Future Tech",
-    logo: "https://images.unsplash.com/photo-1614680376739-414d95ff43df?w=200&h=200&fit=crop",
+    gradient: "from-pink-500 via-indigo-500 to-purple-600",
+    animation: "animate-bounce",
   },
 ];
 
@@ -60,46 +60,103 @@ export default function SponsorScroll() {
             Our Sponsors
           </h2>
           <div className="h-1.5 w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mx-auto shadow-lg shadow-purple-300/50"></div>
+          <p className="text-gray-600 mt-4 text-sm md:text-base flex items-center justify-center gap-2">
+            <svg
+              className="w-5 h-5 text-purple-500 animate-pulse"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="font-semibold">
+              It's a surprise! Stay tuned...
+            </span>
+          </p>
         </div>
 
-        {/* Infinite Scroll Container */}
+        {/* Mystery Sponsor Carousel */}
         <div className="relative overflow-hidden py-4 pb-12">
-          {/* Gradient overlays for fade effect - more subtle */}
+          {/* Gradient overlays for fade effect */}
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-pink-50 via-pink-50/50 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-pink-50 via-pink-50/50 to-transparent z-10 pointer-events-none"></div>
 
-          {/* Scrolling content with animation */}
+          {/* Scrolling mystery cards */}
           <div className="flex animate-scroll-left hover:pause">
-            {/* Duplicate the sponsors array for seamless infinite scroll */}
-            {[...sponsors, ...sponsors].map((sponsor, index) => (
-              <div
-                key={`${sponsor.id}-${index}`}
-                className="flex-shrink-0 group mx-4 md:mx-6"
-              >
-                <div className="relative w-36 h-36 md:w-44 md:h-44 bg-white/60 backdrop-blur-sm rounded-2xl transition-all duration-300 flex items-center justify-center p-6 group-hover:scale-110 group-hover:bg-white/80 border border-gray-200/50 group-hover:border-orange-300/50">
-                  {/* Sponsor logo */}
-                  <div className="w-full h-full relative flex items-center justify-center">
-                    <img
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      className="object-contain w-full h-full rounded-lg"
-                    />
-                  </div>
-                  {/* Sponsor name on hover - positioned outside the card */}
-                  <div className="absolute -bottom-8 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full inline-block shadow-sm">
-                      {sponsor.name}
-                    </p>
+            {/* Duplicate the mystery sponsors array for seamless infinite scroll */}
+            {[...mysterySponsors, ...mysterySponsors, ...mysterySponsors].map(
+              (mystery, index) => (
+                <div
+                  key={`${mystery.id}-${index}`}
+                  className="flex-shrink-0 group mx-4 md:mx-6"
+                >
+                  <div className="relative w-36 h-36 md:w-44 md:h-44 bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-sm rounded-2xl transition-all duration-500 flex items-center justify-center group-hover:scale-110 border-2 border-dashed border-gray-300 group-hover:border-purple-400 group-hover:shadow-2xl group-hover:shadow-purple-300/50 overflow-hidden">
+                    {/* Animated gradient background on hover */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${mystery.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                    ></div>
+
+                    {/* Mystery Question Mark */}
+                    <div className="relative z-10 flex flex-col items-center justify-center">
+                      <div
+                        className={`text-6xl md:text-7xl font-black bg-gradient-to-br ${mystery.gradient} bg-clip-text text-transparent ${mystery.animation} group-hover:scale-125 transition-transform duration-300`}
+                      >
+                        ?
+                      </div>
+                      <div className="mt-2 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
+                        <p className="text-xs font-bold text-gray-600">
+                          Coming Soon
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Sparkle effects on hover */}
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <svg
+                        className="w-4 h-4 text-yellow-400 animate-ping"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                    <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      <svg
+                        className="w-3 h-3 text-purple-400 animate-ping"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+
+                    {/* Mystery message on hover */}
+                    <div className="absolute -bottom-8 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                      <p className="text-xs md:text-sm font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full inline-block shadow-md">
+                        Mystery Sponsor #{mystery.id}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
 
-        {/* Optional: Add sponsor tier labels */}
-        <div className="mt-12 text-center text-sm text-gray-600">
-          <p>Thank you to all our sponsors for making SAHITYAM 2026 possible</p>
+        {/* Call to Action */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex flex-col items-center gap-3 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 px-8 py-4 rounded-2xl border border-purple-200/50 shadow-lg">
+            <p className="text-sm md:text-base text-gray-700 font-semibold">
+              🎉 Exciting partnerships coming soon!
+            </p>
+            <p className="text-xs text-gray-600">
+              We're finalizing amazing collaborations to make SAHITYAM 2026
+              unforgettable
+            </p>
+          </div>
         </div>
       </div>
     </div>

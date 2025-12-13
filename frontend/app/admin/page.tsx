@@ -31,6 +31,7 @@ interface Registration {
   registrantEmail?: string | null;
   registrantMobile?: string | null;
   paymentVerified?: boolean;
+  paymentStatus?: "PENDING" | "VERIFIED" | "REJECTED";
 }
 
 interface Event {
@@ -460,48 +461,59 @@ export default function AdminDashboard() {
 
       {/* Loading Modal for Event Details */}
       {loadingEventDetails && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
-          <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl shadow-2xl p-4 sm:p-6 lg:p-8 max-w-md w-full">
-            <div className="flex flex-col items-center space-y-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
+            <div className="flex flex-col items-center space-y-6">
+              {/* Premium Spinner */}
               <div className="relative">
-                <div className="w-16 h-16 rounded-full border-4 border-purple-100 animate-pulse"></div>
-                <div className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-t-purple-500 border-r-pink-500 animate-spin"></div>
-                <div
-                  className="absolute top-0 left-0 w-16 h-16 rounded-full border-4 border-transparent border-b-indigo-500 animate-spin"
-                  style={{
-                    animationDirection: "reverse",
-                    animationDuration: "1s",
-                  }}
-                ></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-purple-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+                <div className="w-20 h-20 relative">
+                  {/* Middle rotating ring */}
+                  <div
+                    className="absolute inset-2 rounded-full border-4 border-transparent border-b-indigo-500 border-l-purple-400 animate-spin"
+                    style={{
+                      animationDirection: "reverse",
+                      animationDuration: "1.5s",
+                    }}
+                  ></div>
+                  {/* Inner pulsing circle */}
+                  <div className="absolute inset-4 rounded-full bg-gradient-to-br from-purple-400 via-pink-500 to-indigo-500 animate-pulse"></div>
+                  {/* Center icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                  </div>
                 </div>
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 opacity-20 blur-xl animate-pulse"></div>
               </div>
-              <div className="text-center">
-                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2">
+
+              {/* Text content */}
+              <div className="text-center space-y-2">
+                <h3 className="text-xl font-black text-gray-900 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
                   Loading Registration Details
                 </h3>
-                <p className="text-gray-600 text-xs sm:text-sm lg:text-base">
+                <p className="text-gray-600 text-sm">
                   Please wait while we fetch the registrations...
                 </p>
               </div>
+
+              {/* Animated dots */}
               <div className="flex gap-2">
                 {[...Array(3)].map((_, i) => (
                   <div
                     key={i}
-                    className="w-2 h-2 rounded-full bg-purple-500 animate-bounce"
+                    className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 animate-bounce shadow-lg shadow-purple-300/50"
                     style={{ animationDelay: `${i * 150}ms` }}
                   ></div>
                 ))}
@@ -681,19 +693,66 @@ export default function AdminDashboard() {
                                 </p>
                               </div>
                             </div>
-                            <div className="text-left sm:text-right">
-                              <p className="text-xs text-gray-500">
-                                Registered on
-                              </p>
-                              <p className="text-xs sm:text-sm font-medium text-gray-700">
-                                {new Date(
-                                  registration.createdAt
-                                ).toLocaleDateString("en-US", {
-                                  year: "numeric",
-                                  month: "short",
-                                  day: "numeric",
-                                })}
-                              </p>
+                            <div className="text-left sm:text-right space-y-2">
+                              {/* Payment Status Badge */}
+                              {registration.paymentStatus && (
+                                <div className="flex sm:justify-end">
+                                  <span
+                                    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold ${
+                                      registration.paymentStatus === "VERIFIED"
+                                        ? "bg-green-100 text-green-700 ring-1 ring-green-600/20"
+                                        : registration.paymentStatus ===
+                                          "PENDING"
+                                        ? "bg-yellow-100 text-yellow-700 ring-1 ring-yellow-600/20"
+                                        : "bg-gray-100 text-gray-700 ring-1 ring-gray-600/20"
+                                    }`}
+                                  >
+                                    {registration.paymentStatus ===
+                                      "VERIFIED" && (
+                                      <svg
+                                        className="w-3 h-3 mr-1"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    )}
+                                    {registration.paymentStatus ===
+                                      "PENDING" && (
+                                      <svg
+                                        className="w-3 h-3 mr-1"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    )}
+                                    {registration.paymentStatus}
+                                  </span>
+                                </div>
+                              )}
+                              <div>
+                                <p className="text-xs text-gray-500">
+                                  Registered on
+                                </p>
+                                <p className="text-xs sm:text-sm font-medium text-gray-700">
+                                  {new Date(
+                                    registration.createdAt
+                                  ).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                  })}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>

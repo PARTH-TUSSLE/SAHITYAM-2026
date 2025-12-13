@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface Panelist {
   id: number;
   name: string;
@@ -7,114 +9,79 @@ interface Panelist {
   image: string;
 }
 
-// Dummy panelists
+// Panelists for Sahityam 2026
 const panelists: Panelist[] = [
   {
     id: 1,
-    name: "Dr. Anjali Sharma",
-    role: "Literary Critic",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+    name: "Anurag Dixit",
+    role: "Award-winning music educator and founder of Musicology School of Music",
+    image: "/AnuragDixit.webp",
   },
   {
     id: 2,
-    name: "Rajesh Kumar",
-    role: "Poet & Author",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    name: "Rana Ranbir",
+    role: "Indian actor and screenplay writer",
+    image: "/RanaRanbir.jpg",
   },
   {
     id: 3,
-    name: "Priya Mehta",
-    role: "Art Director",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+    name: "Bunty Bains",
+    role: "Punjabi lyricist, composer, producer, and entrepreneur",
+    image: "/BuntyBains.jpeg",
   },
   {
     id: 4,
-    name: "Arjun Desai",
-    role: "Cultural Historian",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+    name: "Umang Jindal",
+    role: "CEO, Homeland Group • Visionary Speaker at Build X Punjab 2025",
+    image: "/UmangJindal.jpg",
   },
   {
     id: 5,
-    name: "Kavita Singh",
-    role: "Theatre Artist",
-    image:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop",
-  },
-  {
-    id: 6,
-    name: "Vikram Bhatia",
-    role: "Music Composer",
-    image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
-  },
-  {
-    id: 7,
-    name: "Neha Kapoor",
-    role: "Dance Choreographer",
-    image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
-  },
-  {
-    id: 8,
-    name: "Aditya Verma",
-    role: "Film Director",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+    name: "Gagan Ajit Singh",
+    role: "Indian former field hockey player and captain of the India national under-21 team that won the 2001 Junior World Cup",
+    image: "/GaganAjitSingh.jpeg",
   },
 ];
 
 export default function PanelistsGrid() {
   return (
-    <div className="w-full relative">
+    <div className="w-full relative py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Announcement Section */}
-        <div className="relative">
-          {/* Decorative Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl opacity-50"></div>
+        {/* Panelists Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {panelists.map((panelist) => (
+            <div key={panelist.id} className="group relative">
+              {/* Persistent Glowing Effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl opacity-60 group-hover:opacity-90 blur-lg transition-all duration-500"></div>
 
-          {/* Content Card */}
-          <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 border-2 border-purple-200/50 ring-1 ring-purple-100/30 shadow-2xl shadow-purple-500/10">
-            {/* Icon */}
-            <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-4 sm:mb-5 md:mb-6 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-purple-300/50 ring-2 ring-purple-200/30">
-              <svg
-                className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              {/* Card */}
+              <div className="relative bg-white rounded-3xl p-6 transition-all duration-300 h-full flex flex-col">
+                {/* Image Container - Fixed Aspect Ratio */}
+                <div className="relative w-full aspect-square mb-5 overflow-hidden rounded-2xl">
+                  <Image
+                    src={panelist.image}
+                    alt={panelist.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+
+                  {/* Corner Dot */}
+                  <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-500 to-purple-600"></div>
+                </div>
+
+                {/* Content - Fixed Height */}
+                <div className="space-y-2 flex-1 flex flex-col">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
+                    {panelist.name}
+                  </h3>
+                  <p className="text-xs md:text-sm lg:text-base text-gray-700 font-medium leading-relaxed min-h-[80px]">
+                    {panelist.role}
+                  </p>
+                </div>
+              </div>
             </div>
-
-            {/* Title */}
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:mb-4 text-center p-1 sm:p-2">
-              Coming Soon
-            </h3>
-
-            {/* Message */}
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 font-semibold text-center max-w-2xl mx-auto leading-relaxed">
-              The names of the panelists will be announced on{" "}
-              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent pb-1 inline-block">
-                15th January
-              </span>
-            </p>
-
-            {/* Decorative Elements */}
-            <div className="flex justify-center gap-1.5 sm:gap-2 mt-5 sm:mt-6 md:mt-8">
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-400 animate-pulse"></div>
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-400 animate-pulse delay-100"></div>
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-indigo-400 animate-pulse delay-200"></div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@ interface PendingPayment {
   registrantMobile: string | null;
   paymentVerified: boolean;
   paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
+  rejectionReason: string | null;
   createdAt: string;
   user: User;
   event: Event;
@@ -65,6 +66,9 @@ export default function PendingPaymentsModal({
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [rejectionModalOpen, setRejectionModalOpen] = useState(false);
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [paymentToReject, setPaymentToReject] = useState<string | null>(null);
   const [successModal, setSuccessModal] = useState<{
     isOpen: boolean;
     title: string;
@@ -113,13 +117,15 @@ export default function PendingPaymentsModal({
 
   const handleVerifyPayment = async (
     registrationId: string,
-    verified: boolean
+    verified: boolean,
+    rejectionReasonText?: string
   ) => {
     try {
       setVerifying(true);
       setVerifyingId(registrationId);
       await apiClient.patch(`/admin/verify-payment/${registrationId}`, {
         verified,
+        rejectionReason: rejectionReasonText || null,
       });
 
       setSuccessModal({
@@ -153,6 +159,24 @@ export default function PendingPaymentsModal({
   const openImageModal = (imageUrl: string) => {
     setSelectedImageUrl(imageUrl);
     setImageModalOpen(true);
+  };
+
+  const handleRejectClick = (paymentId: string) => {
+    setPaymentToReject(paymentId);
+    setRejectionReason("");
+    setRejectionModalOpen(true);
+  };
+
+  const handleRejectConfirm = async () => {
+    if (!paymentToReject) return;
+    setRejectionModalOpen(false);
+    await handleVerifyPayment(
+      paymentToReject,
+      false,
+      rejectionReason.trim() || undefined
+    );
+    setPaymentToReject(null);
+    setRejectionReason("");
   };
 
   return (
@@ -449,6 +473,34 @@ export default function PendingPaymentsModal({
                           </div>
                         </div>
 
+                        {/* Rejection Reason */}
+                        {payment.paymentStatus === "REJECTED" &&
+                          payment.rejectionReason && (
+                            <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
+                              <div className="flex items-start gap-2">
+                                <svg
+                                  className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                                <div className="flex-1">
+                                  <p className="text-xs sm:text-sm font-bold text-red-800 mb-1">
+                                    Rejection Reason:
+                                  </p>
+                                  <p className="text-xs sm:text-sm text-red-700 leading-relaxed">
+                                    {payment.rejectionReason}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
                         {/* Payment Screenshot */}
                         {payment.paymentScreenshotUrl && (
                           <div className="mb-3 sm:mb-4">
@@ -532,9 +584,7 @@ export default function PendingPaymentsModal({
                               )}
                             </button>
                             <button
-                              onClick={() =>
-                                handleVerifyPayment(payment.id, false)
-                              }
+                              onClick={() => handleRejectClick(payment.id)}
                               disabled={verifying}
                               className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
                                 verifying && verifyingId === payment.id
@@ -591,6 +641,60 @@ export default function PendingPaymentsModal({
         message={successModal.message}
         type={successModal.type}
       />
+
+      {/* Rejection Reason Modal */}
+      <AnimatePresence>
+        {rejectionModalOpen && (
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[70] flex items-center justify-center p-4"
+            onClick={() => setRejectionModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-red-50 to-pink-50">
+                <h3 className="text-xl font-black text-gray-900">
+                  Reject Payment
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  Provide a reason for rejecting this payment (optional)
+                </p>
+              </div>
+              <div className="p-6">
+                <textarea
+                  value={rejectionReason}
+                  onChange={(e) => setRejectionReason(e.target.value)}
+                  placeholder="e.g., Invalid transaction ID, blurry screenshot, payment amount mismatch, etc."
+                  className="w-full h-32 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200 resize-none text-sm"
+                  maxLength={500}
+                />
+                <p className="text-xs text-gray-500 mt-2">
+                  {rejectionReason.length}/500 characters
+                </p>
+              </div>
+              <div className="p-6 pt-0 flex gap-3">
+                <button
+                  onClick={() => setRejectionModalOpen(false)}
+                  className="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleRejectConfirm}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all"
+                >
+                  Reject Payment
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Image Zoom Modal */}
       <AnimatePresence>

@@ -14,6 +14,11 @@ export const getAllEventRegistrations = async (
       events = await prisma.event.findMany({
         include: {
           registrations: {
+            where: {
+              paymentStatus: {
+                not: "REJECTED",
+              },
+            },
             include: {
               user: {
                 select: {
@@ -41,6 +46,11 @@ export const getAllEventRegistrations = async (
       events = await prisma.event.findMany({
         include: {
           registrations: {
+            where: {
+              paymentStatus: {
+                not: "REJECTED",
+              },
+            },
             include: {
               user: {
                 select: {
@@ -86,6 +96,11 @@ export const getEventRegistrations = async (
         where: { id: eventId },
         include: {
           registrations: {
+            where: {
+              paymentStatus: {
+                not: "REJECTED",
+              },
+            },
             include: {
               user: {
                 select: {
@@ -113,6 +128,11 @@ export const getEventRegistrations = async (
         where: { id: eventId },
         include: {
           registrations: {
+            where: {
+              paymentStatus: {
+                not: "REJECTED",
+              },
+            },
             include: {
               user: {
                 select: {
@@ -352,7 +372,7 @@ export const verifyPayment = async (
 ): Promise<void> => {
   try {
     const { registrationId } = req.params;
-    const { verified } = req.body;
+    const { verified, rejectionReason } = req.body;
 
     const registration = await prisma.registration.findUnique({
       where: { id: registrationId },
@@ -370,6 +390,7 @@ export const verifyPayment = async (
         data: {
           paymentVerified: false,
           paymentStatus: "REJECTED",
+          rejectionReason: rejectionReason || null,
         },
         include: {
           user: {
