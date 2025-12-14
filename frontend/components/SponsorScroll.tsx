@@ -91,9 +91,9 @@ export default function SponsorScroll() {
               (mystery, index) => (
                 <div
                   key={`${mystery.id}-${index}`}
-                  className="flex-shrink-0 group mx-4 md:mx-6"
+                  className="flex-shrink-0 group mx-2 sm:mx-4 md:mx-6"
                 >
-                  <div className="relative w-36 h-36 md:w-44 md:h-44 bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-sm rounded-2xl transition-all duration-500 flex items-center justify-center group-hover:scale-110 border-2 border-dashed border-gray-300 group-hover:border-purple-400 group-hover:shadow-2xl group-hover:shadow-purple-300/50 overflow-hidden">
+                  <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-sm rounded-2xl transition-all duration-500 flex items-center justify-center group-hover:scale-110 border-2 border-dashed border-gray-300 group-hover:border-purple-400 group-hover:shadow-2xl group-hover:shadow-purple-300/50 overflow-hidden">
                     {/* Animated gradient background on hover */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${mystery.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
@@ -102,30 +102,30 @@ export default function SponsorScroll() {
                     {/* Mystery Question Mark */}
                     <div className="relative z-10 flex flex-col items-center justify-center">
                       <div
-                        className={`text-6xl md:text-7xl font-black bg-gradient-to-br ${mystery.gradient} bg-clip-text text-transparent ${mystery.animation} group-hover:scale-125 transition-transform duration-300`}
+                        className={`text-5xl sm:text-6xl md:text-7xl font-black bg-gradient-to-br ${mystery.gradient} bg-clip-text text-transparent ${mystery.animation} group-hover:scale-125 transition-transform duration-300`}
                       >
                         ?
                       </div>
-                      <div className="mt-2 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
-                        <p className="text-xs font-bold text-gray-600">
+                      <div className="mt-1 sm:mt-2 px-2 sm:px-3 py-0.5 sm:py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
+                        <p className="text-[10px] sm:text-xs font-bold text-gray-600">
                           Coming Soon
                         </p>
                       </div>
                     </div>
 
                     {/* Sparkle effects on hover */}
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute top-1 sm:top-2 right-1 sm:right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <svg
-                        className="w-4 h-4 text-yellow-400 animate-ping"
+                        className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 animate-ping"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     </div>
-                    <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                    <div className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                       <svg
-                        className="w-3 h-3 text-purple-400 animate-ping"
+                        className="w-2 h-2 sm:w-3 sm:h-3 text-purple-400 animate-ping"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -134,8 +134,8 @@ export default function SponsorScroll() {
                     </div>
 
                     {/* Mystery message on hover */}
-                    <div className="absolute -bottom-8 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                      <p className="text-xs md:text-sm font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full inline-block shadow-md">
+                    <div className="absolute -bottom-6 sm:-bottom-8 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                      <p className="text-[10px] sm:text-xs md:text-sm font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent bg-white/95 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block shadow-md">
                         Mystery Sponsor #{mystery.id}
                       </p>
                     </div>

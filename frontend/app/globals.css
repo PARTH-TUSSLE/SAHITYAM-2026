@@ -143,6 +143,49 @@ html {
   animation: scroll-left 60s linear infinite;
 }
 
+/* Faster animations for mobile */
+.animate-scroll-left-mobile {
+  animation: scroll-left 20s linear infinite;
+}
+
+.animate-scroll-right-mobile {
+  animation: scroll-right 20s linear infinite;
+}
+
+/* Scrollbar utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.hover\:scrollbar-default:hover {
+  -ms-overflow-style: auto;
+  scrollbar-width: thin;
+}
+
+.hover\:scrollbar-default:hover::-webkit-scrollbar {
+  display: block;
+  height: 8px;
+}
+
+.hover\:scrollbar-default:hover::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.hover\:scrollbar-default:hover::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #ec4899, #a855f7, #6366f1);
+  border-radius: 10px;
+}
+
+.hover\:scrollbar-default:hover::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #db2777, #9333ea, #4f46e5);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

@@ -20,154 +20,154 @@ const galleryImages: GalleryImage[] = [
     src: "/IMG_5632.JPG",
     title: "SAHITYAM Event",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 2,
     src: "/IMG_5639.JPG",
     title: "Event Highlights",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 3,
     src: "/IMG_5640.JPG",
     title: "Performance",
     category: "Performance",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 4,
     src: "/IMG_5641.JPG",
     title: "Literary Session",
     category: "Literary",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 5,
     src: "/IMG_5642.JPG",
     title: "Creative Expression",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 6,
     src: "/IMG_5643.JPG",
     title: "Event Moments",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 7,
     src: "/IMG_5644.JPG",
     title: "Participants",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 8,
     src: "/IMG_5648.JPG",
     title: "Stage Performance",
     category: "Performance",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 9,
     src: "/IMG_5650.JPG",
     title: "Cultural Event",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 10,
     src: "/IMG_5653.JPG",
     title: "Event Ceremony",
     category: "Celebration",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 11,
     src: "/IMG_5656.JPG",
     title: "SAHITYAM Moments",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 12,
     src: "/IMG_5659.JPG",
     title: "Creative Arts",
     category: "Visual Arts",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 13,
     src: "/IMG_5660.JPG",
     title: "Literary Gathering",
     category: "Literary",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 14,
     src: "/IMG_5661.JPG",
     title: "Event Highlights",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 15,
     src: "/IMG_5663.JPG",
     title: "Performance Art",
     category: "Performance",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 16,
     src: "/IMG_5664.JPG",
     title: "Cultural Program",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 17,
     src: "/IMG_5665.JPG",
     title: "SAHITYAM Activities",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 18,
     src: "/IMG_5666.JPG",
     title: "Event Workshop",
     category: "Workshop",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 19,
     src: "/IMG_5667.JPG",
     title: "Creative Session",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 20,
     src: "/IMG_5670.JPG",
     title: "Literary Event",
     category: "Literary",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 21,
     src: "/IMG_5671.JPG",
     title: "Cultural Celebration",
     category: "Celebration",
-    year: "2025",
+    year: "2024",
   },
   {
     id: 22,
     src: "/IMG_5673.JPG",
     title: "SAHITYAM Grand Event",
     category: "Cultural",
-    year: "2025",
+    year: "2024",
   },
 ];
 
@@ -202,10 +202,10 @@ function Gallery() {
         <div className="relative z-10 py-24">
           {/* Header */}
           <div className="text-center mb-16 px-6">
-            <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4">
               Event Gallery
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 font-medium">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 font-medium">
               Memories from SAHITYAM through the years
             </p>
           </div>
@@ -213,8 +213,8 @@ function Gallery() {
           {/* Infinite Scroll Rows */}
           <div className="space-y-4 sm:space-y-8">
             {/* Row 1 - Left to Right */}
-            <div className="relative overflow-hidden">
-              <div className="flex gap-3 sm:gap-6 animate-scroll-left">
+            <div className="relative overflow-x-auto overflow-y-hidden scrollbar-hide hover:scrollbar-default">
+              <div className="flex gap-3 sm:gap-6 animate-scroll-left-mobile sm:animate-scroll-left">
                 {[...galleryImages, ...galleryImages].map((image, index) => (
                   <div
                     key={`row1-${index}`}
@@ -275,8 +275,8 @@ function Gallery() {
             </div>
 
             {/* Row 2 - Right to Left */}
-            <div className="relative overflow-hidden">
-              <div className="flex gap-3 sm:gap-6 animate-scroll-right">
+            <div className="relative overflow-x-auto overflow-y-hidden scrollbar-hide hover:scrollbar-default">
+              <div className="flex gap-3 sm:gap-6 animate-scroll-right-mobile sm:animate-scroll-right">
                 {[
                   ...galleryImages.slice().reverse(),
                   ...galleryImages.slice().reverse(),
@@ -337,8 +337,8 @@ function Gallery() {
             </div>
 
             {/* Row 3 - Left to Right (Slower) */}
-            <div className="relative overflow-hidden">
-              <div className="flex gap-3 sm:gap-6 animate-scroll-left-slow">
+            <div className="relative overflow-x-auto overflow-y-hidden scrollbar-hide hover:scrollbar-default">
+              <div className="flex gap-3 sm:gap-6 animate-scroll-left-mobile sm:animate-scroll-left-slow">
                 {[...galleryImages.slice(3), ...galleryImages.slice(3)].map(
                   (image, index) => (
                     <div

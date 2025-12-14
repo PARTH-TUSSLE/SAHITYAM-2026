@@ -18,71 +18,228 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
   "Day 1 - February 5th": [
     {
       id: 1,
-      time: "09:00 AM",
-      title: "Opening Ceremony",
-      description:
-        "Grand inauguration of SAHITYAM 2026 with cultural performances",
-      venue: "Main Auditorium",
-      category: "cultural",
+      time: "10:00 AM",
+      title: "Opening of Youth Parliament",
+      description: "Inauguration of Youth Parliament session",
+      venue: "Block-4 Convention Hall",
+      category: "literary",
     },
     {
       id: 2,
       time: "11:00 AM",
-      title: "Poetry Recitation",
-      description:
-        "Express your thoughts through poetry in Hindi, English, and regional languages",
-      venue: "Hall A",
+      title: "Youth Parliament Session Start",
+      description: "Parliamentary proceedings begin",
+      venue: "Moot Court Block 4",
       category: "literary",
     },
     {
       id: 3,
-      time: "02:00 PM",
-      title: "Creative Writing Workshop",
-      description: "Learn the art of storytelling from renowned authors",
-      venue: "Conference Room 1",
-      category: "workshop",
+      time: "11:30 AM",
+      title: "Launching / Inauguration of Sahityam 2026",
+      description: "Grand inauguration ceremony",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
     },
     {
       id: 4,
-      time: "04:30 PM",
-      title: "Classical Dance Performance",
-      description:
-        "Mesmerizing performances of Bharatanatyam, Kathak, and Odissi",
-      venue: "Open Air Theatre",
-      category: "cultural",
+      time: "11:30 AM",
+      title: "Book Signing",
+      description: "Meet authors and get your books signed",
+      venue: "Block-4, 2nd Gate Passage",
+      category: "literary",
     },
-  ],
-  "Day 2 - February 6th": [
     {
       id: 5,
-      time: "10:00 AM",
-      title: "Debate Competition",
-      description: "Engage in intellectual discussions on contemporary topics",
-      venue: "Debate Hall",
-      category: "competition",
+      time: "11:30 AM",
+      title: "Poster Making and Face Painting",
+      description: "Creative activities for all",
+      venue: "Buddha Ground",
+      category: "cultural",
     },
     {
       id: 6,
-      time: "12:00 PM",
-      title: "Art Exhibition",
-      description: "Showcase of paintings, sculptures, and digital art",
-      venue: "Gallery Wing",
+      time: "11:30 AM",
+      title: "Open Mic",
+      description: "Express yourself on stage",
+      venue: "Main Stage (Buddha Ground)",
       category: "cultural",
     },
     {
       id: 7,
-      time: "02:30 PM",
-      title: "Short Story Competition",
-      description: "Craft compelling narratives within word limits",
-      venue: "Hall B",
-      category: "competition",
+      time: "11:45 AM",
+      title: "Welcoming Guest 1 on Stage",
+      description: "Guest 1 speech and address",
+      venue: "Block 2 Auditorium",
+      category: "literary",
     },
     {
       id: 8,
-      time: "05:00 PM",
-      title: "Musical Evening",
-      description: "Classical and fusion music performances",
-      venue: "Main Stage",
+      time: "12:45 PM",
+      title: "Honour to Guest 1",
+      description: "Felicitation ceremony",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 9,
+      time: "01:00 PM - 01:45 PM",
+      title: "Lunch",
+      description: "Break for lunch",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 10,
+      time: "01:45 PM",
+      title: "Arrival and Welcoming of Guest 2 (Anu Kapoor)",
+      description: "Welcome ceremony for renowned artist Anu Kapoor",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 11,
+      time: "02:00 PM",
+      title: "Author Talk Show",
+      description: "Interactive session with authors",
+      venue: "Convention Hall Block-4",
+      category: "literary",
+    },
+    {
+      id: 12,
+      time: "02:00 PM",
+      title: "Poetry",
+      description: "Poetic expressions and recitations",
+      venue: "Main Stage (Buddha Ground)",
+      category: "literary",
+    },
+    {
+      id: 13,
+      time: "03:00 PM",
+      title: "Honouring of Guest 2 (Anu Kapoor)",
+      description: "Felicitation of Guest 2",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 14,
+      time: "03:00 PM",
+      title: "Solo Dance",
+      description: "Individual dance performances",
+      venue: "Main Stage (Buddha Ground)",
+      category: "cultural",
+    },
+    {
+      id: 15,
+      time: "03:30 PM",
+      title: "Arrival and Welcoming of Guest 3 (Yashpal Sharma)",
+      description: "Welcome ceremony for acclaimed actor Yashpal Sharma",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 16,
+      time: "04:00 PM",
+      title: "Crew Dance",
+      description: "Group dance performances",
+      venue: "Main Stage (Buddha Ground)",
+      category: "cultural",
+    },
+    {
+      id: 17,
+      time: "04:45 PM",
+      title: "Honouring of Guest 3 (Yashpal Sharma)",
+      description: "Felicitation of Guest 3",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 18,
+      time: "05:00 PM - 07:00 PM",
+      title: "कवि सम्मेलन",
+      description: "Poetic gathering and recitations",
+      venue: "Block 2 Auditorium",
+      category: "literary",
+    },
+  ],
+  "Day 2 - February 6th": [
+    {
+      id: 19,
+      time: "11:30 AM",
+      title: "Arrival and Welcome of Guest 4 (Imtiaz Ali)",
+      description: "Welcome ceremony for renowned director Imtiaz Ali",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 20,
+      time: "11:30 AM",
+      title: "Literature Quiz",
+      description: "Test your literary knowledge",
+      venue: "Convention Hall",
+      category: "competition",
+    },
+    {
+      id: 21,
+      time: "12:00 PM",
+      title: "Fashion Show",
+      description: "Showcase of style and creativity",
+      venue: "Main Stage Buddha Ground",
+      category: "cultural",
+    },
+    {
+      id: 22,
+      time: "12:30 PM",
+      title: "Honouring of Guest 4 (Imtiaz Ali)",
+      description: "Felicitation ceremony",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 23,
+      time: "12:30 PM - 01:30 PM",
+      title: "Lunch",
+      description: "Break for lunch",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 24,
+      time: "01:30 PM - 03:00 PM",
+      title: "Panel Discussion",
+      description: "Insightful discussion with experts",
+      venue: "Block 2 Auditorium",
+      category: "literary",
+    },
+    {
+      id: 25,
+      time: "03:00 PM",
+      title: "Chief Guest Speech + Valedictory",
+      description: "Concluding speech by Chief Guest",
+      venue: "Block 2 Auditorium",
+      category: "literary",
+    },
+    {
+      id: 26,
+      time: "03:30 PM",
+      title: "Prize Distribution",
+      description: "Awards and recognition ceremony",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 27,
+      time: "04:30 PM",
+      title: "Honouring to Chief Guest",
+      description: "Felicitation of Chief Guest",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
+    },
+    {
+      id: 28,
+      time: "07:30 PM",
+      title: "Sufi Night",
+      description: "Evening of soulful Sufi music",
+      venue: "Buddha Ground",
       category: "cultural",
     },
   ],
@@ -171,7 +328,11 @@ function Schedule() {
                         }`}
                       >
                         <div
-                          className={`bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-purple-200/50 sm:border-2 relative ${
+                          className={`backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative ${
+                            index % 2 === 0
+                              ? "bg-gradient-to-br from-white/95 to-purple-50/90 border-2 border-purple-300/60 md:border-purple-200/50"
+                              : "bg-gradient-to-br from-white/95 to-pink-50/90 border-2 border-pink-300/60 md:border-purple-200/50"
+                          } ${
                             index % 2 === 0 ? "slide-in-left" : "slide-in-right"
                           }`}
                           style={{
@@ -191,8 +352,10 @@ function Schedule() {
                               index % 2 === 0
                                 ? "md:right-0 left-0 md:rounded-l-full rounded-r-full"
                                 : "left-0 rounded-r-full"
-                            } top-1/2 -translate-y-1/2 h-8 sm:h-10 md:h-12 lg:h-16 w-1 sm:w-1.5 md:w-2 bg-gradient-to-b ${
-                              categoryColors[event.category]
+                            } top-1/2 -translate-y-1/2 h-8 sm:h-10 md:h-12 lg:h-16 w-1 sm:w-1.5 md:w-2 ${
+                              index % 2 === 0
+                                ? "bg-gradient-to-b from-purple-500 via-purple-600 to-indigo-600"
+                                : "bg-gradient-to-b from-pink-500 via-pink-600 to-rose-600"
                             }`}
                           ></div>
 
@@ -204,7 +367,13 @@ function Schedule() {
                                 : "justify-start"
                             } mb-2 sm:mb-3 md:mb-4`}
                           >
-                            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full bg-gradient-to-r from-pink-500 to-pink-500 text-white shadow-lg">
+                            <div
+                              className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-white shadow-lg ${
+                                index % 2 === 0
+                                  ? "bg-gradient-to-r from-purple-500 to-indigo-600"
+                                  : "bg-gradient-to-r from-pink-500 to-rose-600"
+                              }`}
+                            >
                               <svg
                                 className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
                                 fill="none"
@@ -233,9 +402,11 @@ function Schedule() {
                             } mb-2 sm:mb-2.5 md:mb-3`}
                           >
                             <span
-                              className={`px-2.5 sm:px-3 md:px-4 py-0.5 sm:py-1 md:py-1.5 text-[10px] sm:text-xs font-bold uppercase rounded-full bg-gradient-to-r ${
-                                categoryColors[event.category]
-                              } text-white shadow-md`}
+                              className={`px-2.5 sm:px-3 md:px-4 py-0.5 sm:py-1 md:py-1.5 text-[10px] sm:text-xs font-bold uppercase rounded-full text-white shadow-md ${
+                                index % 2 === 0
+                                  ? "bg-gradient-to-r from-purple-600 to-indigo-700"
+                                  : "bg-gradient-to-r from-pink-600 to-rose-700"
+                              }`}
                             >
                               {event.category}
                             </span>
@@ -243,10 +414,10 @@ function Schedule() {
 
                           {/* Title */}
                           <h3
-                            className={`text-lg sm:text-xl md:text-2xl font-black text-gray-900 mb-1.5 sm:mb-2 md:mb-3 ${
+                            className={`text-lg sm:text-xl md:text-2xl font-black mb-1.5 sm:mb-2 md:mb-3 ${
                               index % 2 === 0
-                                ? "text-left md:text-right"
-                                : "text-left"
+                                ? "text-left md:text-right text-gray-900"
+                                : "text-left text-gray-900"
                             }`}
                           >
                             {event.title}
@@ -272,7 +443,11 @@ function Schedule() {
                             }`}
                           >
                             <svg
-                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-purple-500"
+                              className={`w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 ${
+                                index % 2 === 0
+                                  ? "text-purple-600"
+                                  : "text-pink-600"
+                              }`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
