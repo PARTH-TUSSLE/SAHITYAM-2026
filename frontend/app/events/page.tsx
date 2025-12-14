@@ -21,6 +21,7 @@ interface Event {
   image: string;
   rules: string[];
   registrationFee: number;
+  prizeAmount?: string;
 }
 
 interface Registration {
@@ -255,6 +256,7 @@ function Events() {
                     description={event.description}
                     rules={event.rules}
                     registrationFee={event.registrationFee}
+                    prizeAmount={event.prizeAmount}
                     isRegistered={registeredEventIds.has(event.id)}
                     onRegister={handleRegister}
                     onUnregister={handleUnregister}

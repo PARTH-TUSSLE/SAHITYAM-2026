@@ -7,12 +7,61 @@ const prisma = new PrismaClient();
 
 const events = [
   {
+    title: "Poster Making",
+    subtitle: "Create Visual Impact",
+    description:
+      "Express your creativity through visual art. Design and create posters on cultural and literary themes. Showcase your artistic skills and make a statement through your artwork.",
+    image: "/PosterMaking.jpg",
+    registrationFee: 0,
+    prizeAmount: "10,000",
+    rules: [
+      "The poster making competition is open to all registered participants of SAHITYAM.",
+      "This is an individual event - only one participant per poster.",
+      "The theme will be announced on the spot at the event.",
+      "Duration: 2-3 hours will be provided to complete the poster.",
+      "Size: Posters should be made on A2 size sheet (to be provided by the organizers).",
+      "Materials: Basic materials like chart paper and some colors will be provided. Participants may bring their own materials if required.",
+      "The poster must be original work created during the competition time.",
+      "Content must be decent, creative, and relevant to the theme. Obscene or offensive content will lead to disqualification.",
+      "Posters will be judged on creativity, relevance to theme, visual impact, and overall presentation.",
+      "The decision of the judges will be final and binding.",
+      "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
+      "The organizing committee reserves the right to modify the rules if required.",
+      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+    ],
+  },
+  {
+    title: "Face Painting",
+    subtitle: "Art on Canvas of Life",
+    description:
+      "Transform faces into works of art. Create stunning face paint designs on cultural, traditional, or creative themes. Showcase your artistic talent on the most unique canvas - the human face.",
+    image: "/FacePainting.jpg",
+    registrationFee: 0,
+    prizeAmount: "10,000",
+    rules: [
+      "The face painting competition is open to all registered participants of SAHITYAM.",
+      "Participants can work in pairs (one artist and one model) or solo.",
+      "The theme will be announced on the spot at the event.",
+      "Duration: 1-2 hours will be provided to complete the face painting.",
+      "Materials: Basic face painting materials will be provided. Participants may bring their own professional materials if preferred.",
+      "All materials used must be skin-safe and non-toxic.",
+      "The design must be original and created during the competition time.",
+      "Content must be decent, creative, and culturally appropriate. Obscene or offensive designs will lead to disqualification.",
+      "Designs will be judged on creativity, technique, relevance to theme, and overall visual impact.",
+      "The decision of the judges will be final and binding.",
+      "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
+      "The organizing committee reserves the right to modify the rules if required.",
+      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+    ],
+  },
+  {
     title: "Open Mic",
     subtitle: "Express Yourself",
     description:
       "A platform for free expression through poetry, storytelling, stand-up comedy, or any form of spoken word art. Share your voice, your stories, and your creativity with an enthusiastic audience.",
     image: "/OpenMic.jpg",
     registrationFee: 999,
+    prizeAmount: "15,000",
     rules: [
       "The Open Mic is open to all registered participants of SAHITYAM.",
       "Each participant will be allotted a maximum of 3–5 minutes of stage time.",
@@ -33,6 +82,7 @@ const events = [
       "A celebration of poetic expression where participants recite self-written or published poems. Share your verses, emotions, and creativity through the art of poetry in any language.",
     image: "/Poetry.jpg",
     registrationFee: 999,
+    prizeAmount: "10,000",
     rules: [
       "The poetry event is open to all registered participants of SAHITYAM.",
       "Each participant will be given a maximum of 5–6 minutes to recite their poem.",
@@ -54,6 +104,7 @@ const events = [
       "Showcase your individual dancing prowess in traditional and heritage dance forms. Celebrate India's rich cultural diversity through folk, classical, and regional dance styles.",
     image: "/SoloDance.jpg",
     registrationFee: 999,
+    prizeAmount: "15,000",
     rules: [
       "The solo dance competition is open to all registered participants of SAHITYAM.",
       "Each participant will be given a maximum of 5–6 minutes for their performance.",
@@ -76,6 +127,7 @@ const events = [
       "Team dance performance celebrating India's traditional and heritage dance forms. Groups showcase coordination, creativity, and cultural richness through folk, classical, and regional dance styles.",
     image: "/CrewDance.jpg",
     registrationFee: 4999,
+    prizeAmount: "75,000",
     rules: [
       "The crew/group dance competition is open to all registered teams of SAHITYAM.",
       "A team must consist of a minimum of 4 and a maximum of 16 members.",
@@ -97,6 +149,7 @@ const events = [
       "A comprehensive quiz testing knowledge of English and regional literature. Teams compete through multiple rounds showcasing their literary expertise on authors, poets, books, and literary movements.",
     image: "/LiteratureQuiz.jpg",
     registrationFee: 800,
+    prizeAmount: "15,000",
     rules: [
       "The Literature Quiz is open to all registered participants of SAHITYAM.",
       "The quiz will be conducted in team format. Each team must consist of 4 members only.",
@@ -117,6 +170,7 @@ const events = [
       "Walk the ramp showcasing India's diverse cultural heritage through traditional attire. Solo or duo participants present state-specific or folk costumes with confidence, creativity, and cultural authenticity.",
     image: "/FashionShow.jpg",
     registrationFee: 999,
+    prizeAmount: "40,000",
     rules: [
       "The fashion show is open to all registered participants of SAHITYAM.",
       "Participation is allowed only in Solo or Duo format.",
@@ -137,6 +191,7 @@ const events = [
       "A team debate competition conducted in Hindi where participants argue for and against thought-provoking motions. Teams showcase persuasive abilities, critical thinking, and eloquence in Hindi language.",
     image: "/DebateCompetition.jpg",
     registrationFee: 999,
+    prizeAmount: "15,000",
     rules: [
       "The debate competition is open to all registered participants of SAHITYAM.",
       "This is a team event.",
@@ -159,6 +214,7 @@ const events = [
       "A prestigious inter-college parliamentary debate simulating real parliamentary sessions. Students represent portfolios, engage in structured debates, and experience parliamentary procedures with proper decorum and discipline.",
     image: "/YouthParliament.jpg",
     registrationFee: 1999,
+    prizeAmount: "15,000",
     rules: [
       "Eligibility: Open to students from all participating colleges and universities. A valid college ID is mandatory on the event day.",
       "Registration: Prior registration is compulsory. No on-spot registrations will be accepted.",

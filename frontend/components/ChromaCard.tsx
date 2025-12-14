@@ -15,6 +15,7 @@ interface ChromaCardProps {
   description?: string;
   rules?: string[];
   registrationFee?: number;
+  prizeAmount?: string;
   isRegistered?: boolean;
   onRegister?: (eventId: string) => void;
   onUnregister?: (eventId: string) => void;
@@ -36,6 +37,7 @@ export default function ChromaCard({
     "Respect all participants and organizers",
   ],
   registrationFee = 999,
+  prizeAmount,
   isRegistered = false,
   onRegister,
   onUnregister,
@@ -80,7 +82,7 @@ export default function ChromaCard({
           />
         </div>
 
-        {/* Fee Badge */}
+        {/* Fee Badge - top left */}
         <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-full shadow-lg shadow-purple-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
           {title === "Literature Quiz" ? (
             <span className="text-xs sm:text-sm">
@@ -90,10 +92,26 @@ export default function ChromaCard({
             <span className="text-xs sm:text-sm">
               ₹{registrationFee} per delegate
             </span>
+          ) : registrationFee === 0 ? (
+            <span className="text-xs sm:text-sm">FREE</span>
           ) : (
             <span>₹{registrationFee}</span>
           )}
         </div>
+
+        {/* Prize Badge - top right below share button */}
+        {prizeAmount && (
+          <div className="absolute top-16 right-4 z-20 px-4 py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white rounded-full shadow-lg shadow-orange-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-xs sm:text-sm">₹{prizeAmount}</span>
+          </div>
+        )}
 
         {/* Inner Card */}
         <div className="relative overflow-hidden">
