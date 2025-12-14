@@ -39,7 +39,7 @@ function Footer() {
             {/* Social Media Icons */}
             <div className="flex gap-2 sm:gap-3 justify-center md:justify-start">
               <a
-                href="https://www.instagram.com/sahityam_official/"
+                href="https://www.instagram.com/mindbenders.cgc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 flex items-center justify-center transition-all duration-300 hover:scale-110 ring-1 ring-white/10"

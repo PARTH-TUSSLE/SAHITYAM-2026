@@ -28,7 +28,7 @@ export function ShareButtons({
 
   const shareLinks = {
     whatsapp: `https://wa.me/?text=${encodedTitle}%0A%0A${encodedDescription}%0A%0A${encodedUrl}`,
-    instagram: `https://www.instagram.com/sahityam_official/`,
+    instagram: `https://www.instagram.com/mindbenders.cgc`,
     telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
     email: `mailto:?subject=${encodedTitle}&body=${encodedDescription}%0A%0A${encodedUrl}`,
   };
@@ -315,11 +315,11 @@ export function ShareButton({
       <button
         ref={buttonRef}
         onClick={() => setShowModal(true)}
-        className="p-2 hover:bg-white/90 bg-white/70 backdrop-blur-sm rounded-lg transition-all duration-300 group shadow-md hover:shadow-lg"
+        className="p-2 hover:bg-white/90 bg-white/70 backdrop-blur-sm rounded-lg transition-all duration-300 group shadow-md hover:shadow-lg flex items-center justify-center"
         title="Share event"
       >
         <svg
-          className="w-5 h-5 text-gray-700 group-hover:text-purple-600 transition-colors"
+          className="w-3.5 h-3.5 text-gray-700 group-hover:text-purple-600 transition-colors flex-shrink-0"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

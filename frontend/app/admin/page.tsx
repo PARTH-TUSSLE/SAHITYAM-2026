@@ -55,6 +55,7 @@ interface PendingPayment {
   registrantMobile: string | null;
   paymentVerified: boolean;
   paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
+  rejectionReason: string | null;
   createdAt: string;
   user: User;
   event: {

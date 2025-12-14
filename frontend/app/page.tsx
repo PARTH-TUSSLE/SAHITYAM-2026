@@ -9,7 +9,6 @@ import PanelistsGrid from "@/components/PanelistsGrid";
 import HomeClient, { CountdownWrapper } from "@/components/HomeClient";
 import PremiumBackground from "@/components/PremiumBackground";
 import LiteraryBackground from "@/components/LiteraryBackground";
-import BackgroundMusicPlayer from "@/components/BackgroundMusicPlayer";
 
 export const metadata: Metadata = {
   title: "SAHITYAM 2026 - Kala aur Sahit ka Sangam | Mind Benders",
@@ -43,9 +42,6 @@ export default function HomePage() {
 
       <Navbar />
       <BackgroundElements />
-
-      {/* Background Music Player */}
-      <BackgroundMusicPlayer />
 
       <div className="w-full relative min-h-screen text-gray-800">
         {/* Hero Section */}
@@ -115,7 +111,7 @@ export default function HomePage() {
             </div>
 
             {/* Status Indicators */}
-            <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-6 lg:mt-8 justify-center">
+            <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 mt-6 sm:mt-8 lg:mt-10 justify-center">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-ping"></div>
                 <span className="text-sm sm:text-sm font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">

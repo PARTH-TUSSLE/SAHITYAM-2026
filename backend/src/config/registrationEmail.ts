@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const createTransporter = () => {
+const createRegistrationTransporter = () => {
   return nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -20,7 +20,7 @@ export const sendRegistrationConfirmation = async (
   registrationId: string,
   totalFee: number
 ) => {
-  const transporter = createTransporter();
+  const transporter = createRegistrationTransporter();
 
   const eventsList = eventTitles
     .map((title, index) => `${index + 1}. ${title}`)
@@ -152,7 +152,7 @@ export const sendPaymentVerificationEmail = async (
   registrationId: string,
   isVerified: boolean
 ) => {
-  const transporter = createTransporter();
+  const transporter = createRegistrationTransporter();
 
   const eventsList = eventTitles
     .map((title, index) => `${index + 1}. ${title}`)
