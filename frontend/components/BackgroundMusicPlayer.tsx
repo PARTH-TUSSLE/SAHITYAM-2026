@@ -19,30 +19,57 @@ export default function BackgroundMusicPlayer() {
       }
     };
 
-    // Try to autoplay immediately
+    // Try to autoplay immediately and aggressively
     const attemptAutoplay = () => {
       if (audioRef.current) {
-        audioRef.current.play().catch((error) => {
-          console.log(
-            "Autoplay prevented, waiting for user interaction:",
-            error
-          );
-          // If autoplay fails, set up listeners for first interaction
-          document.addEventListener("click", handleFirstInteraction, {
-            once: true,
-          });
-          document.addEventListener("keydown", handleFirstInteraction, {
-            once: true,
-          });
-        });
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log("Music started playing automatically");
+              setIsPlaying(true);
+              setHasInteracted(true);
+            })
+            .catch((error) => {
+              console.log(
+                "Autoplay prevented, waiting for user interaction:",
+                error
+              );
+              setIsPlaying(false);
+              // If autoplay fails, set up listeners for first interaction
+              document.addEventListener("click", handleFirstInteraction, {
+                once: true,
+              });
+              document.addEventListener("keydown", handleFirstInteraction, {
+                once: true,
+              });
+              document.addEventListener("touchstart", handleFirstInteraction, {
+                once: true,
+              });
+              document.addEventListener("scroll", handleFirstInteraction, {
+                once: true,
+              });
+            });
+        }
       }
     };
 
+    // Attempt to play immediately
     attemptAutoplay();
 
+    // Also try again after a short delay (after gate animation starts)
+    const retryTimer = setTimeout(() => {
+      if (!hasInteracted && audioRef.current) {
+        attemptAutoplay();
+      }
+    }, 100);
+
     return () => {
+      clearTimeout(retryTimer);
       document.removeEventListener("click", handleFirstInteraction);
       document.removeEventListener("keydown", handleFirstInteraction);
+      document.removeEventListener("touchstart", handleFirstInteraction);
+      document.removeEventListener("scroll", handleFirstInteraction);
     };
   }, [hasInteracted]);
 
@@ -60,7 +87,7 @@ export default function BackgroundMusicPlayer() {
   return (
     <>
       {/* Hidden Audio Element */}
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop autoPlay muted={false}>
         <source src="/SahityamBGM.mpeg" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>

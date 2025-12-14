@@ -78,7 +78,7 @@ export const handleContactForm = async (req: Request, res: Response) => {
     return res.status(500).json({
       success: false,
       error:
-        "Failed to send message. Please try again later or contact us directly at parthgartan26feb@gmail.com",
+        "Failed to send message. Please try again later or contact us directly at mindbenders@cgcuniversity.org",
     });
   }
 };

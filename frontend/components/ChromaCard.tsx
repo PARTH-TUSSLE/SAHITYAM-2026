@@ -70,18 +70,6 @@ export default function ChromaCard({
         {/* Decorative corner accent */}
         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-3xl z-10"></div>
 
-        {/* Share Button - top right */}
-        <div
-          className="absolute top-4 right-4 z-20"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <ShareButton
-            url={getEventShareUrl(eventId)}
-            title={title}
-            description={getShareDescription(description)}
-          />
-        </div>
-
         {/* Fee Badge - top left */}
         <div className="absolute top-4 left-4 z-20 px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white rounded-full shadow-lg shadow-purple-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
           {title === "Literature Quiz" ? (
@@ -99,15 +87,11 @@ export default function ChromaCard({
           )}
         </div>
 
-        {/* Prize Badge - top right below share button */}
+        {/* Prize Badge - top right */}
         {prizeAmount && (
-          <div className="absolute top-16 right-4 z-20 px-4 py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white rounded-full shadow-lg shadow-orange-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
-                clipRule="evenodd"
-              />
+          <div className="absolute top-4 right-4 z-20 px-4 py-2 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 text-white rounded-full shadow-lg shadow-orange-500/40 font-bold text-sm flex items-center gap-2 ring-1 ring-white/20">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 576 512">
+              <path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z" />
             </svg>
             <span className="text-xs sm:text-sm">₹{prizeAmount}</span>
           </div>
@@ -143,7 +127,7 @@ export default function ChromaCard({
               )}
 
               {/* Action Buttons */}
-              <div className="flex gap-3 sm:gap-4 justify-center items-center">
+              <div className="flex gap-2 sm:gap-3 justify-center items-center">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -252,6 +236,15 @@ export default function ChromaCard({
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-700 to-indigo-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 )}
+
+                {/* Share Button */}
+                <div onClick={(e) => e.stopPropagation()}>
+                  <ShareButton
+                    url={getEventShareUrl(eventId)}
+                    title={title}
+                    description={getShareDescription(description)}
+                  />
+                </div>
               </div>
             </div>
           </div>

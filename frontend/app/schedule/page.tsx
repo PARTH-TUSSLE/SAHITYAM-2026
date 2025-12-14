@@ -26,7 +26,7 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
     },
     {
       id: 2,
-      time: "11:00 AM",
+      time: "10:30 AM",
       title: "Youth Parliament Session Start",
       description: "Parliamentary proceedings begin",
       venue: "Moot Court Block 4",
@@ -58,10 +58,10 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
     },
     {
       id: 6,
-      time: "11:30 AM",
+      time: "10:30 AM",
       title: "Open Mic",
       description: "Express yourself on stage",
-      venue: "Main Stage (Buddha Ground)",
+      venue: "Convention Hall Block 4",
       category: "cultural",
     },
     {
@@ -79,6 +79,14 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       description: "Felicitation ceremony",
       venue: "Block 2 Auditorium",
       category: "cultural",
+    },
+    {
+      id: 30,
+      time: "12:00 PM",
+      title: "Literature Quiz",
+      description: "Test your literary knowledge",
+      venue: "Convention Hall Block 4",
+      category: "competition",
     },
     {
       id: 9,
@@ -109,7 +117,7 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       time: "02:00 PM",
       title: "Poetry",
       description: "Poetic expressions and recitations",
-      venue: "Main Stage (Buddha Ground)",
+      venue: "Convention Hall Block 4",
       category: "literary",
     },
     {
@@ -163,6 +171,14 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
   ],
   "Day 2 - February 6th": [
     {
+      id: 29,
+      time: "11:00 AM",
+      title: "Youth Parliament Session",
+      description: "Continuation of parliamentary proceedings",
+      venue: "Moot Court Block 4",
+      category: "literary",
+    },
+    {
       id: 19,
       time: "11:30 AM",
       title: "Arrival and Welcome of Guest 4 (Imtiaz Ali)",
@@ -171,20 +187,20 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "cultural",
     },
     {
-      id: 20,
-      time: "11:30 AM",
-      title: "Literature Quiz",
-      description: "Test your literary knowledge",
-      venue: "Convention Hall",
-      category: "competition",
-    },
-    {
       id: 21,
-      time: "12:00 PM",
+      time: "11:30 AM",
       title: "Fashion Show",
       description: "Showcase of style and creativity",
-      venue: "Main Stage Buddha Ground",
+      venue: "Buddha Ground",
       category: "cultural",
+    },
+    {
+      id: 31,
+      time: "12:00 PM",
+      title: "Book Signing Ceremony",
+      description: "Meet authors and get your books signed",
+      venue: "Block-4, 2nd Gate Passage",
+      category: "literary",
     },
     {
       id: 22,
@@ -211,6 +227,14 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "literary",
     },
     {
+      id: 32,
+      time: "02:00 PM",
+      title: "Author Talk Show",
+      description: "Interactive session with renowned authors",
+      venue: "Convention Hall Block 4",
+      category: "literary",
+    },
+    {
       id: 25,
       time: "03:00 PM",
       title: "Chief Guest Speech + Valedictory",
@@ -220,8 +244,8 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
     },
     {
       id: 26,
-      time: "03:30 PM",
-      title: "Prize Distribution",
+      time: "04:30 PM",
+      title: "Prize Distribution and Valedictory Ceremony",
       description: "Awards and recognition ceremony",
       venue: "Block 2 Auditorium",
       category: "cultural",

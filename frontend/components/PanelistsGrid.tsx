@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 interface Panelist {
   id: number;
@@ -44,46 +45,82 @@ const panelists: Panelist[] = [
 ];
 
 export default function PanelistsGrid() {
+  // Duplicate panelists twice for seamless infinite scroll
+  const duplicatedPanelists = [...panelists, ...panelists];
+
   return (
-    <div className="w-full relative py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Panelists Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {panelists.map((panelist) => (
-            <div key={panelist.id} className="group relative">
-              {/* Persistent Glowing Effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl opacity-60 group-hover:opacity-90 blur-lg transition-all duration-500"></div>
+    <div className="w-full relative py-8 sm:py-12 overflow-hidden">
+      <div className="w-full">
+        {/* Infinite Scrolling Carousel */}
+        <div className="relative flex">
+          <div className="flex gap-4 sm:gap-6 md:gap-8 animate-scroll">
+            {duplicatedPanelists.map((panelist, index) => (
+              <div
+                key={`${panelist.id}-${index}`}
+                className="group relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px]"
+              >
+                {/* Persistent Glowing Effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl opacity-60 group-hover:opacity-90 blur-lg transition-all duration-500"></div>
 
-              {/* Card */}
-              <div className="relative bg-white rounded-3xl p-6 transition-all duration-300 h-full flex flex-col">
-                {/* Image Container - Fixed Aspect Ratio */}
-                <div className="relative w-full aspect-square mb-5 overflow-hidden rounded-2xl">
-                  <Image
-                    src={panelist.image}
-                    alt={panelist.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
+                {/* Card */}
+                <div className="relative bg-white rounded-3xl p-4 sm:p-5 md:p-6 transition-all duration-300 h-full flex flex-col">
+                  {/* Image Container - Fixed Aspect Ratio */}
+                  <div className="relative w-full aspect-square mb-4 sm:mb-5 overflow-hidden rounded-2xl">
+                    <Image
+                      src={panelist.image}
+                      alt={panelist.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 360px"
+                    />
 
-                  {/* Corner Dot */}
-                  <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-500 to-purple-600"></div>
-                </div>
+                    {/* Corner Dot */}
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-gradient-to-br from-pink-500 to-purple-600"></div>
+                  </div>
 
-                {/* Content - Fixed Height */}
-                <div className="space-y-2 flex-1 flex flex-col">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
-                    {panelist.name}
-                  </h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-700 font-medium leading-relaxed min-h-[80px]">
-                    {panelist.role}
-                  </p>
+                  {/* Content - Fixed Height */}
+                  <div className="space-y-1.5 sm:space-y-2 flex-1 flex flex-col">
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
+                      {panelist.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-700 font-medium leading-relaxed min-h-[60px] sm:min-h-[70px] md:min-h-[80px]">
+                      {panelist.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* CSS Animation */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% / 2));
+          }
+        }
+
+        .animate-scroll {
+          animation: scroll 40s linear infinite;
+        }
+
+        @media (max-width: 640px) {
+          .animate-scroll {
+            animation: scroll 35s linear infinite;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+          .animate-scroll {
+            animation: scroll 38s linear infinite;
+          }
+        }
+      `}</style>
     </div>
   );
 }

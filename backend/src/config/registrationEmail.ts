@@ -112,18 +112,18 @@ export const sendRegistrationConfirmation = async (
             </div>
             
             <div style="text-align: center; margin-top: 30px;">
-              <a href="http://localhost:3000/profile" class="button">View Your Profile</a>
+              <a href="${process.env.FRONTEND_URL}/profile" class="button">View Your Profile</a>
             </div>
             
             <div class="footer">
               <p><strong>SAHITYAM 2026</strong></p>
               <p>Where Art and Literature Converge</p>
               <p style="margin-top: 10px;">
-                📧 parthgartan26feb@gmail.com<br>
-                🌐 <a href="http://localhost:3000" style="color: #8b5cf6;">Visit Website</a>
+                📧 mindbenders@cgcuniversity.org<br>
+                🌐 <a href="${process.env.FRONTEND_URL}" style="color: #8b5cf6;">Visit Website</a>
               </p>
               <p style="margin-top: 20px; font-size: 12px;">
-                If you have any questions, please don't hesitate to <a href="http://localhost:3000/contact" style="color: #8b5cf6;">contact us</a>.
+                If you have any questions, please don't hesitate to <a href="${process.env.FRONTEND_URL}/contact" style="color: #8b5cf6;">contact us</a>.
               </p>
             </div>
           </div>
@@ -212,7 +212,7 @@ export const sendPaymentVerificationEmail = async (
             </div>
             
             <div style="text-align: center; margin-top: 30px;">
-              <a href="http://localhost:3000/schedule" class="button">View Event Schedule</a>
+              <a href="${process.env.FRONTEND_URL}/schedule" class="button">View Event Schedule</a>
             </div>
             
             <div class="footer">
@@ -271,13 +271,13 @@ export const sendPaymentVerificationEmail = async (
             </div>
             
             <div style="text-align: center; margin-top: 30px;">
-              <a href="http://localhost:3000/register" class="button">Register Again</a>
-              <a href="http://localhost:3000/contact" class="button" style="background: #6b7280; margin-left: 10px;">Contact Us</a>
+              <a href="${process.env.FRONTEND_URL}/register" class="button">Register Again</a>
+              <a href="${process.env.FRONTEND_URL}/contact" class="button" style="background: #6b7280; margin-left: 10px;">Contact Us</a>
             </div>
             
             <div class="footer">
               <p><strong>SAHITYAM 2026</strong></p>
-              <p>📧 parthgartan26feb@gmail.com</p>
+              <p>📧 mindbenders@cgcuniversity.org</p>
               <p style="margin-top: 10px;">We're here to help!</p>
             </div>
           </div>

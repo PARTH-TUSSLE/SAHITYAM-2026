@@ -164,10 +164,10 @@ export default function Contact() {
                   Email
                 </h3>
                 <a
-                  href="mindbenders@cgcuniversity.in"
+                  href="mindbenders@cgcuniversity.org"
                   className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block break-words"
                 >
-                  mindbenders@cgcuniversity.in
+                  mindbenders@cgcuniversity.org
                 </a>
               </div>
             </div>
@@ -232,9 +232,9 @@ export default function Contact() {
                   Location
                 </h3>
                 <p className="text-gray-700 font-semibold text-sm sm:text-base leading-relaxed">
-                  University Campus
+                  CGC University
                   <br />
-                  New Delhi, India
+                  Mohali
                 </p>
               </div>
             </div>

@@ -517,23 +517,22 @@ export default function HomePage() {
                 </div>
 
                 {/* 8. Kavi Sammelan */}
-                <div className="sm:col-span-2 lg:col-span-1 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
-                  <div className="relative h-64 sm:h-72 lg:h-60">
-                    <Image
-                      src="/Kavi Sammelan.jpeg"
-                      alt="Kavi Sammelan"
-                      fill
-                      className="object-fill transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
-                        कवि सम्मेलन
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-200 font-medium">
-                        Poetry congregation
-                      </p>
-                    </div>
+                <div className="sm:col-span-2 lg:col-span-1 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-purple-200/50 hover:ring-purple-400/70 h-64 sm:h-72 lg:h-60">
+                  <Image
+                    src="/Kavi Sammelan.jpeg"
+                    alt="Kavi Sammelan"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
+                      कवि सम्मेलन
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-200 font-medium">
+                      Poetry congregation
+                    </p>
                   </div>
                 </div>
 

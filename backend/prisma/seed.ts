@@ -12,11 +12,12 @@ const events = [
     description:
       "Express your creativity through visual art. Design and create posters on cultural and literary themes. Showcase your artistic skills and make a statement through your artwork.",
     image: "/PosterMaking.jpg",
-    registrationFee: 0,
+    registrationFee: 200,
     prizeAmount: "10,000",
     rules: [
       "The poster making competition is open to all registered participants of SAHITYAM.",
       "This is an individual event - only one participant per poster.",
+      "Prize Distribution: 1st Place - ₹3,100, 2nd Place - ₹2,100, 3rd Place - ₹1,100. Winners will receive cash prizes along with trophies and certificates.",
       "The theme will be announced on the spot at the event.",
       "Duration: 2-3 hours will be provided to complete the poster.",
       "Size: Posters should be made on A2 size sheet (to be provided by the organizers).",
@@ -36,11 +37,12 @@ const events = [
     description:
       "Transform faces into works of art. Create stunning face paint designs on cultural, traditional, or creative themes. Showcase your artistic talent on the most unique canvas - the human face.",
     image: "/FacePainting.jpg",
-    registrationFee: 0,
+    registrationFee: 200,
     prizeAmount: "10,000",
     rules: [
       "The face painting competition is open to all registered participants of SAHITYAM.",
       "Participants can work in pairs (one artist and one model) or solo.",
+      "Prize Distribution: 1st Place - ₹3,100, 2nd Place - ₹2,100, 3rd Place - ₹1,100. Winners will receive cash prizes along with trophies and certificates.",
       "The theme will be announced on the spot at the event.",
       "Duration: 1-2 hours will be provided to complete the face painting.",
       "Materials: Basic face painting materials will be provided. Participants may bring their own professional materials if preferred.",
@@ -60,11 +62,12 @@ const events = [
     description:
       "A platform for free expression through poetry, storytelling, stand-up comedy, or any form of spoken word art. Share your voice, your stories, and your creativity with an enthusiastic audience.",
     image: "/OpenMic.jpg",
-    registrationFee: 999,
+    registrationFee: 499,
     prizeAmount: "15,000",
     rules: [
       "The Open Mic is open to all registered participants of SAHITYAM.",
       "Each participant will be allotted a maximum of 3–5 minutes of stage time.",
+      "Prize Distribution: 1st Place - ₹5,100, 2nd Place - ₹3,100, 3rd Place - ₹2,100. Winners will receive cash prizes along with trophies and certificates.",
       "Performance can include anything, such as poetry, storytelling, stand-up comedy, singing, rap, shayari, dance, instrumental, or any other creative act.",
       "Content must be original or properly credited. Plagiarism will lead to direct disqualification.",
       "Performances containing obscene, abusive, political, or hate content are strictly prohibited.",
@@ -86,6 +89,7 @@ const events = [
     rules: [
       "The poetry event is open to all registered participants of SAHITYAM.",
       "Each participant will be given a maximum of 5–6 minutes to recite their poem.",
+      "Prize Distribution: 1st Place - ₹3,100, 2nd Place - ₹2,100, 3rd Place - ₹1,100. Winners will receive cash prizes along with trophies and certificates.",
       "Both self-written and published poems are allowed; however, proper credit must be given for non-original work.",
       "Poems may be recited in any language.",
       "Content must be decent, respectful, and non-offensive. Obscene, abusive, political, or hate content is strictly prohibited.",
@@ -108,6 +112,7 @@ const events = [
     rules: [
       "The solo dance competition is open to all registered participants of SAHITYAM.",
       "Each participant will be given a maximum of 5–6 minutes for their performance.",
+      "Prize Distribution: 1st Place - ₹5,100, 2nd Place - ₹3,100, 3rd Place - ₹2,100. Winners will receive cash prizes along with trophies and certificates.",
       "The performance must strictly follow the Traditional/Heritage theme (folk, classical, regional, or cultural dance forms).",
       "Use of film or fusion songs is allowed only if they are based on traditional or cultural styles.",
       "Participants must bring their own costume, makeup, and necessary props (if any).",
@@ -126,12 +131,13 @@ const events = [
     description:
       "Team dance performance celebrating India's traditional and heritage dance forms. Groups showcase coordination, creativity, and cultural richness through folk, classical, and regional dance styles.",
     image: "/CrewDance.jpg",
-    registrationFee: 4999,
+    registrationFee: 3999,
     prizeAmount: "75,000",
     rules: [
       "The crew/group dance competition is open to all registered teams of SAHITYAM.",
       "A team must consist of a minimum of 4 and a maximum of 16 members.",
       "Each team will be given a maximum of 8–10 minutes for their performance (including stage setup).",
+      "Prize Distribution: 1st Place - ₹31,000, 2nd Place - ₹21,000, 3rd Place - ₹11,000. Winners will receive cash prizes along with trophies and certificates.",
       "The performance must strictly follow the Traditional/Heritage theme (folk, classical, regional, or cultural dance forms).",
       "Use of film or fusion songs is allowed only if they are based on traditional or cultural styles.",
       "All participants must arrange their own costumes, makeup, and props.",
@@ -153,6 +159,7 @@ const events = [
     rules: [
       "The Literature Quiz is open to all registered participants of SAHITYAM.",
       "The quiz will be conducted in team format. Each team must consist of 4 members only.",
+      "Prize Distribution: 1st Place - ₹5,100, 2nd Place - ₹3,100, 3rd Place - ₹2,100. Winners will receive cash prizes along with trophies and certificates.",
       "The quiz will be conducted in multiple rounds, including preliminary and final rounds.",
       "Questions will be based on English & regional literature, authors, poets, books, literary movements, and general literary awareness.",
       "The quiz will be time-bound, and teams must answer within the given time limit.",
@@ -174,6 +181,7 @@ const events = [
     rules: [
       "The fashion show is open to all registered participants of SAHITYAM.",
       "Participation is allowed only in Solo or Duo format.",
+      "Prize Distribution: Four prestigious titles will be awarded - Mr. Sahityam (₹11,000), Ms. Sahityam (₹11,000), Mr. State Style Star (₹5,100), and Ms. State Style Star (₹5,100). All winners will receive cash prizes along with trophies and certificates.",
       "The theme must strictly follow State Representation or Cultural Folk (attire should reflect a specific Indian state or folk culture).",
       "Outfits should be traditional, innovative, and culturally appropriate. Vulgar or inappropriate styling will lead to direct disqualification.",
       "Participants must arrange their own costumes, makeup, props, and accessories.",
@@ -190,12 +198,13 @@ const events = [
     description:
       "A team debate competition conducted in Hindi where participants argue for and against thought-provoking motions. Teams showcase persuasive abilities, critical thinking, and eloquence in Hindi language.",
     image: "/DebateCompetition.jpg",
-    registrationFee: 999,
+    registrationFee: 499,
     prizeAmount: "15,000",
     rules: [
       "The debate competition is open to all registered participants of SAHITYAM.",
       "This is a team event.",
       "Each team shall consist of 2 members (one speaking for the motion and one against the motion).",
+      "Prize Distribution: 1st Place - ₹5,100, 2nd Place - ₹3,100, 3rd Place - ₹2,100. Winners will receive cash prizes along with trophies and certificates.",
       "The topic/motion will be revealed on 10th January 2026.",
       "The language of the debate will be Hindi only.",
       "Each speaker will be given a maximum of 4–5 minutes to present their arguments.",
@@ -218,6 +227,7 @@ const events = [
     rules: [
       "Eligibility: Open to students from all participating colleges and universities. A valid college ID is mandatory on the event day.",
       "Registration: Prior registration is compulsory. No on-spot registrations will be accepted.",
+      "Awards: Winners will receive trophies and certificates of excellence along with recognition.",
       "Dress Code - Day 1: Western Formals, Day 2: Traditional/Formal Indian Attire. Proper decorum must be maintained at all times.",
       "Portfolio Allotment: For portfolio allotment, kindly call the undersigned and get your portfolio locked. Once allotted, no changes will be allowed.",
       "Punctuality: Participants must report at least 30 minutes before the scheduled time. Late arrival may lead to disqualification.",

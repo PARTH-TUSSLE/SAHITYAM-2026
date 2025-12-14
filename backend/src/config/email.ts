@@ -2,12 +2,13 @@ import nodemailer from "nodemailer";
 
 // Create email transporter
 const createTransporter = () => {
-  // Using Gmail SMTP (you can change to any other email service)
-  return nodemailer.createTransport({
+  // Using Gmail SMTP for sending emails
+  // Emails are sent FROM mindbendersclub01@gmail.com but TO mindbenders@cgcuniversity.org
+  return nodemailer.createTransporter({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD, // Use App Password for Gmail
+      user: process.env.EMAIL_USER, // mindbendersclub01@gmail.com
+      pass: process.env.EMAIL_PASSWORD, // Gmail App Password
     },
   });
 };
@@ -24,7 +25,7 @@ export const sendContactEmail = async (
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "parthgartan26feb@gmail.com",
+    to: "mindbenders@cgcuniversity.org",
     subject: `SAHITYAM 2026 - Contact Form: ${subject}`,
     html: `
       <!DOCTYPE html>
@@ -121,16 +122,16 @@ export const sendConfirmationEmail = async (name: string, email: string) => {
             <p style="font-size: 18px; color: #333;">Dear ${name},</p>
             <div class="message">
               <p>Thank you for contacting SAHITYAM 2026! We've received your message and our team will review it shortly.</p>
-              <p>We typically respond within 24-48 hours. If your inquiry is urgent, please feel free to reach out to us directly at parthgartan26feb@gmail.com.</p>
+              <p>We typically respond within 24-48 hours. If your inquiry is urgent, please feel free to reach out to us directly at mindbenders@cgcuniversity.org.</p>
               <p style="margin-top: 20px;">We look forward to connecting with you at <strong>SAHITYAM 2026</strong> from <strong>5th - 6th Feb 2026</strong>!</p>
             </div>
             <div style="text-align: center;">
-              <a href="http://localhost:3000" class="button">Visit Our Website</a>
+              <a href="${process.env.FRONTEND_URL}" class="button">Visit Our Website</a>
             </div>
             <div class="footer">
               <p><strong>SAHITYAM 2026</strong></p>
               <p>Where Art and Literature Converge</p>
-              <p style="margin-top: 10px;">📧 parthgartan26feb@gmail.com</p>
+              <p style="margin-top: 10px;">📧 mindbenders@cgcuniversity.org</p>
             </div>
           </div>
         </div>
