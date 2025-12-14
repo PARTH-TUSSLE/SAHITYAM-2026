@@ -142,11 +142,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Sponsors Section */}
-        <div className="relative z-20 py-6 sm:py-8 lg:py-10">
-          <SponsorScroll />
-        </div>
-
         {/* Organised and Managed By Section */}
         <div className="relative z-20 py-8 sm:py-12 lg:py-16 px-4 sm:px-6 md:px-12 lg:px-20">
           <div className="max-w-6xl mx-auto">
@@ -282,6 +277,11 @@ export default function HomePage() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Sponsors Section */}
+        <div className="relative z-20 py-6 sm:py-8 lg:py-10">
+          <SponsorScroll />
         </div>
       </div>
       <Footer />

@@ -11,8 +11,7 @@ const events = [
     subtitle: "Express Yourself",
     description:
       "A platform for free expression through poetry, storytelling, stand-up comedy, or any form of spoken word art. Share your voice, your stories, and your creativity with an enthusiastic audience.",
-    image:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200",
+    image: "/OpenMic.jpg",
     registrationFee: 999,
     rules: [
       "The Open Mic is open to all registered participants of SAHITYAM.",
@@ -32,8 +31,7 @@ const events = [
     subtitle: "Words that Touch the Soul",
     description:
       "A celebration of poetic expression where participants recite self-written or published poems. Share your verses, emotions, and creativity through the art of poetry in any language.",
-    image:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200",
+    image: "/Poetry.jpg",
     registrationFee: 999,
     rules: [
       "The poetry event is open to all registered participants of SAHITYAM.",
@@ -54,8 +52,7 @@ const events = [
     subtitle: "Traditional & Heritage",
     description:
       "Showcase your individual dancing prowess in traditional and heritage dance forms. Celebrate India's rich cultural diversity through folk, classical, and regional dance styles.",
-    image:
-      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1200",
+    image: "/SoloDance.jpg",
     registrationFee: 999,
     rules: [
       "The solo dance competition is open to all registered participants of SAHITYAM.",
@@ -77,8 +74,7 @@ const events = [
     subtitle: "Traditional & Heritage",
     description:
       "Team dance performance celebrating India's traditional and heritage dance forms. Groups showcase coordination, creativity, and cultural richness through folk, classical, and regional dance styles.",
-    image:
-      "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?q=80&w=1200",
+    image: "/CrewDance.jpg",
     registrationFee: 4999,
     rules: [
       "The crew/group dance competition is open to all registered teams of SAHITYAM.",
@@ -99,8 +95,7 @@ const events = [
     subtitle: "Battle of Bookworms",
     description:
       "A comprehensive quiz testing knowledge of English and regional literature. Teams compete through multiple rounds showcasing their literary expertise on authors, poets, books, and literary movements.",
-    image:
-      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1200",
+    image: "/LiteratureQuiz.jpg",
     registrationFee: 800,
     rules: [
       "The Literature Quiz is open to all registered participants of SAHITYAM.",
@@ -120,8 +115,7 @@ const events = [
     subtitle: "State Representation / Cultural Folk",
     description:
       "Walk the ramp showcasing India's diverse cultural heritage through traditional attire. Solo or duo participants present state-specific or folk costumes with confidence, creativity, and cultural authenticity.",
-    image:
-      "https://images.unsplash.com/photo-1558769132-cb1aea1f1c77?q=80&w=1200",
+    image: "/FashionShow.jpg",
     registrationFee: 999,
     rules: [
       "The fashion show is open to all registered participants of SAHITYAM.",
@@ -141,8 +135,7 @@ const events = [
     subtitle: "Hindi Debate",
     description:
       "A team debate competition conducted in Hindi where participants argue for and against thought-provoking motions. Teams showcase persuasive abilities, critical thinking, and eloquence in Hindi language.",
-    image:
-      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1200",
+    image: "/DebateCompetition.jpg",
     registrationFee: 999,
     rules: [
       "The debate competition is open to all registered participants of SAHITYAM.",
@@ -164,8 +157,7 @@ const events = [
     subtitle: "Parliamentary Debate",
     description:
       "A prestigious inter-college parliamentary debate simulating real parliamentary sessions. Students represent portfolios, engage in structured debates, and experience parliamentary procedures with proper decorum and discipline.",
-    image:
-      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=1200",
+    image: "/YouthParliament.jpg",
     registrationFee: 1999,
     rules: [
       "Eligibility: Open to students from all participating colleges and universities. A valid college ID is mandatory on the event day.",

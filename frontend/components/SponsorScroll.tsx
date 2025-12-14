@@ -93,10 +93,10 @@ export default function SponsorScroll() {
                   key={`${mystery.id}-${index}`}
                   className="flex-shrink-0 group mx-2 sm:mx-4 md:mx-6"
                 >
-                  <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-sm rounded-2xl transition-all duration-500 flex items-center justify-center group-hover:scale-110 border-2 border-dashed border-gray-300 group-hover:border-purple-400 group-hover:shadow-2xl group-hover:shadow-purple-300/50 overflow-hidden">
+                  <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-sm rounded-2xl transition-all duration-500 flex items-center justify-center group-hover:scale-110 border-2 border-dashed border-gray-300 group-hover:border-purple-400 group-hover:shadow-2xl group-hover:shadow-purple-300/50 overflow-visible">
                     {/* Animated gradient background on hover */}
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br ${mystery.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                      className={`absolute inset-0 bg-gradient-to-br ${mystery.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}
                     ></div>
 
                     {/* Mystery Question Mark */}
@@ -133,9 +133,9 @@ export default function SponsorScroll() {
                       </svg>
                     </div>
 
-                    {/* Mystery message on hover */}
-                    <div className="absolute -bottom-6 sm:-bottom-8 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                      <p className="text-[10px] sm:text-xs md:text-sm font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent bg-white/95 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block shadow-md">
+                    {/* Mystery message on hover - Now positioned outside but visibly below */}
+                    <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 text-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 whitespace-nowrap">
+                      <p className="text-[10px] sm:text-xs md:text-sm font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent bg-white/95 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-md">
                         Mystery Sponsor #{mystery.id}
                       </p>
                     </div>
