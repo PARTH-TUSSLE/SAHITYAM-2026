@@ -64,7 +64,7 @@ const events = [
     description:
       "A platform for free expression through poetry, storytelling, stand-up comedy, or any form of spoken word art. Share your voice, your stories, and your creativity with an enthusiastic audience.",
     image: "/OpenMic.jpg",
-    registrationFee: 499,
+    registrationFee: 500,
     prizeAmount: "15,000",
     rules: [
       "The Open Mic is open to all registered participants of SAHITYAM.",
@@ -111,7 +111,7 @@ const events = [
     description:
       "Showcase your individual dancing prowess in traditional and heritage dance forms. Celebrate India's rich cultural diversity through folk, classical, and regional dance styles.",
     image: "/SoloDance.jpeg",
-    registrationFee: 999,
+    registrationFee: 1000,
     prizeAmount: "15,000",
     rules: [
       "The solo dance competition is open to all registered participants of SAHITYAM.",
@@ -136,7 +136,7 @@ const events = [
     description:
       "Team dance performance celebrating India's traditional and heritage dance forms. Groups showcase coordination, creativity, and cultural richness through folk, classical, and regional dance styles.",
     image: "/CrewDance.jpeg",
-    registrationFee: 3999,
+    registrationFee: 4000,
     prizeAmount: "75,000",
     rules: [
       "The crew/group dance competition is open to all registered teams of SAHITYAM.",
@@ -183,7 +183,7 @@ const events = [
     description:
       "Walk the ramp showcasing India's diverse cultural heritage through traditional attire. Solo participants present state-specific or folk costumes with confidence, creativity, and cultural authenticity.",
     image: "/FashionShow.jpeg",
-    registrationFee: 999,
+    registrationFee: 1000,
     prizeAmount: "40,000",
     rules: [
       "The fashion show is open to all registered participants of SAHITYAM.",
@@ -206,7 +206,7 @@ const events = [
     description:
       "A team debate competition conducted in Hindi where participants argue for and against thought-provoking motions. Teams showcase persuasive abilities, critical thinking, and eloquence in Hindi language.",
     image: "/DebateCompetition.jpg",
-    registrationFee: 499,
+    registrationFee: 500,
     prizeAmount: "15,000",
     rules: [
       "The debate competition is open to all registered participants of SAHITYAM.",
@@ -231,7 +231,7 @@ const events = [
     description:
       "A prestigious inter-college parliamentary debate simulating real parliamentary sessions. Students represent portfolios, engage in structured debates, and experience parliamentary procedures with proper decorum and discipline.",
     image: "/YouthParliament.jpg",
-    registrationFee: 1999,
+    registrationFee: 2000,
     prizeAmount: "50,000",
     rules: [
       "Eligibility: Open to students from all participating colleges and universities. A valid college ID is mandatory on the event day.",

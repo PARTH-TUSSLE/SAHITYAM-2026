@@ -21,10 +21,16 @@ npm install
 
 ### 2. Configure Environment Variables
 
-Update the `.env` file with your database credentials:
+Update the `.env` file with your database credentials. Use connection pooling parameters to prevent idle timeout errors:
 
 ```env
-DATABASE_URL="postgresql://username:password@localhost:5432/sahityam_db"
+# DATABASE_URL with connection pooling parameters
+# connection_limit: max connections (10 recommended)
+# pool_timeout: max time to get connection from pool (20s)
+# connect_timeout: max time to establish initial connection (30s)
+# socket_timeout: max time connection can be idle (60s)
+DATABASE_URL="postgresql://username:password@localhost:5432/sahityam_db?connection_limit=10&pool_timeout=20&connect_timeout=30&socket_timeout=60"
+
 JWT_SECRET="your-super-secret-jwt-key"
 PORT=5000
 NODE_ENV=development

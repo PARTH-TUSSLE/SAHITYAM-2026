@@ -293,7 +293,7 @@ function Schedule() {
                 Event Schedule
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-gray-700 font-medium">
-                5th - 6th Feb, 2026
+                3rd and 4th Feb, 2026
               </p>
             </div>
 

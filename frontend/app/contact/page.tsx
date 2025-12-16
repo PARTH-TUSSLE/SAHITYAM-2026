@@ -139,15 +139,15 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Contact Info Cards - Modern 3D Style */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16 items-stretch">
+          {/* Contact Info Cards - Uniform Height */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8 sm:mb-10">
             {/* Email Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-xl p-5 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-lg text-center h-full flex flex-col justify-center">
+                <div className="w-14 h-14 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-md shadow-purple-300/50 group-hover:shadow-lg transition-all duration-300">
                   <svg
-                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
+                    className="w-7 h-7 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -160,25 +160,20 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
-                  Email
-                </h3>
-                <a
-                  href="mindbenders@cgcuniversity.org"
-                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block break-words"
-                >
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Email</h3>
+                <span className="text-purple-600 font-semibold text-sm break-words cursor-default select-all">
                   mindbenders@cgcuniversity.org
-                </a>
+                </span>
               </div>
             </div>
 
             {/* Phone Card */}
             <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative bg-white rounded-xl p-5 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-lg text-center h-full flex flex-col justify-center">
+                <div className="w-14 h-14 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-md shadow-purple-300/50 group-hover:shadow-lg transition-all duration-300">
                   <svg
-                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
+                    className="w-7 h-7 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -191,53 +186,85 @@ export default function Contact() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
-                  Phone
-                </h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Phone</h3>
                 <a
                   href="tel:+917681951539"
-                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm sm:text-base transition-colors inline-block"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm transition-colors"
                 >
                   +91 7681951539
                 </a>
               </div>
             </div>
 
-            {/* Location Card */}
-            <div className="group relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl sm:rounded-2xl blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-200/50 text-center h-full flex flex-col justify-center items-center ring-1 ring-transparent hover:ring-purple-100/50">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 shadow-lg shadow-purple-300/50 group-hover:shadow-xl group-hover:shadow-purple-400/60 transition-all duration-300 ring-2 ring-purple-200/30">
-                  <svg
-                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+            {/* Location Card with Background Map */}
+            <a
+              href="https://www.google.com/maps/place/CGC+University,+Mohali/@30.6809077,76.6031912,17z/data=!4m14!1m7!3m6!1s0x390fe5b795735cfd:0xb287b4430b6720fb!2sCGC+University,+Mohali!8m2!3d30.6809077!4d76.6057661!16s%2Fg%2F11b60w2w8f!3m5!1s0x390fe5b795735cfd:0xb287b4430b6720fb!8m2!3d30.6809077!4d76.6057661!16s%2Fg%2F11b60w2w8f?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative sm:col-span-2 lg:col-span-1 h-full block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 rounded-xl blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-lg h-full">
+                {/* Map Background - Visible */}
+                <div className="absolute inset-0 pointer-events-none z-0">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.0773837662404!2d76.6031912!3d30.6809077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe5b795735cfd%3A0xb287b4430b6720fb!2sCGC%20University%2C%20Mohali!5e0!3m2!1sen!2sin!4v1639999999999!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
-                  Location
-                </h3>
-                <p className="text-gray-700 font-semibold text-sm sm:text-base leading-relaxed">
-                  CGC University
-                  <br />
-                  Mohali
-                </p>
+                {/* Content Overlay - Semi-transparent */}
+                <div className="relative z-10 bg-white/20 backdrop-blur-sm p-5 text-center h-full flex flex-col justify-center transition-all duration-300 group-hover:bg-white/15">
+                  <div className="w-14 h-14 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-md shadow-purple-300/50 group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                    <svg
+                      className="w-7 h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    Location
+                  </h3>
+                  <p className="text-gray-700 font-semibold text-sm mb-2">
+                    CGC University, Mohali
+                  </p>
+                  <span className="flex items-center justify-center gap-1 text-xs text-purple-600 group-hover:text-purple-700 font-medium underline transition-colors">
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                    View on Google Maps
+                  </span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* Contact Form */}
@@ -440,6 +467,36 @@ export default function Contact() {
                     viewBox="0 0 24 24"
                   >
                     <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.facebook.com/share/1GgMfe5fhc/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-blue-400 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-blue-200/50"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <svg
+                    className="w-6 h-6 relative z-10 group-hover:text-white transition-colors duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com/cgcuniversity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-14 h-14 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:border-gray-700 transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg hover:shadow-gray-200/50"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <svg
+                    className="w-6 h-6 relative z-10 group-hover:text-white transition-colors duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
               </div>

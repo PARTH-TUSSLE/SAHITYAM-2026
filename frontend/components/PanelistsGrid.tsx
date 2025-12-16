@@ -40,20 +40,20 @@ const panelists: Panelist[] = [
     id: 5,
     name: "Gagan Ajit Singh",
     role: "Indian former field hockey player and captain of the India national under-21 team that won the 2001 Junior World Cup",
-    image: "/GaganAjitSingh.jpeg",
+    image: "/GaganAjit2.jpeg",
   },
 ];
 
 export default function PanelistsGrid() {
-  // Duplicate panelists twice for seamless infinite scroll
-  const duplicatedPanelists = [...panelists, ...panelists];
+  // Triple panelists for seamless infinite scroll
+  const duplicatedPanelists = [...panelists, ...panelists, ...panelists];
 
   return (
-    <div className="w-full relative py-8 sm:py-12 overflow-hidden">
-      <div className="w-full">
-        {/* Infinite Scrolling Carousel */}
-        <div className="relative flex">
-          <div className="flex gap-4 sm:gap-6 md:gap-8 animate-scroll">
+    <div className="w-full relative overflow-hidden">
+      <div className="w-full py-4 sm:py-6">
+        {/* Infinite Auto-Scrolling + Manual Scrollable Carousel */}
+        <div className="relative flex overflow-x-auto scrollbar-hide">
+          <div className="flex gap-4 sm:gap-6 md:gap-8 animate-scroll-infinite">
             {duplicatedPanelists.map((panelist, index) => (
               <div
                 key={`${panelist.id}-${index}`}
@@ -94,31 +94,41 @@ export default function PanelistsGrid() {
         </div>
       </div>
 
-      {/* CSS Animation */}
+      {/* CSS Animation + Scrollbar Hide */}
       <style jsx>{`
-        @keyframes scroll {
-          0% {
+        @keyframes scroll-infinite {
+          from {
             transform: translateX(0);
           }
-          100% {
-            transform: translateX(calc(-100% / 2));
+          to {
+            transform: translateX(calc(-100% / 3));
           }
         }
 
-        .animate-scroll {
-          animation: scroll 40s linear infinite;
+        .animate-scroll-infinite {
+          animation: scroll-infinite 40s linear infinite;
+          will-change: transform;
         }
 
         @media (max-width: 640px) {
-          .animate-scroll {
-            animation: scroll 35s linear infinite;
+          .animate-scroll-infinite {
+            animation: scroll-infinite 30s linear infinite;
           }
         }
 
         @media (min-width: 641px) and (max-width: 768px) {
-          .animate-scroll {
-            animation: scroll 38s linear infinite;
+          .animate-scroll-infinite {
+            animation: scroll-infinite 35s linear infinite;
           }
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>

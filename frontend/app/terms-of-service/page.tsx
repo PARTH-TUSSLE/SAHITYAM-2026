@@ -250,7 +250,7 @@ function TermsOfService() {
                   </p>
                   <div className="mt-3 sm:mt-4 ml-0 sm:ml-13 p-4 sm:p-5 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200/50">
                     <p className="text-sm sm:text-base">
-                      <strong>Email:</strong> mindbenders@cgcuniversity.in
+                      <strong>Email:</strong> mindbenders@cgcuniversity.org
                     </p>
                     <p className="text-sm sm:text-base mt-1 sm:mt-2">
                       <strong>Phone:</strong> +91 7681951539

@@ -123,7 +123,7 @@ export const sendConfirmationEmail = async (name: string, email: string) => {
             <div class="message">
               <p>Thank you for contacting SAHITYAM 2026! We've received your message and our team will review it shortly.</p>
               <p>We typically respond within 24-48 hours. If your inquiry is urgent, please feel free to reach out to us directly at mindbenders@cgcuniversity.org.</p>
-              <p style="margin-top: 20px;">We look forward to connecting with you at <strong>SAHITYAM 2026</strong> from <strong>5th - 6th Feb 2026</strong>!</p>
+              <p style="margin-top: 20px;">We look forward to connecting with you at <strong>SAHITYAM 2026</strong> from <strong>3rd and 4th Feb 2026</strong>!</p>
             </div>
             <div style="text-align: center;">
               <a href="${process.env.FRONTEND_URL}" class="button">Visit Our Website</a>

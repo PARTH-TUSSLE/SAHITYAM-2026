@@ -13,7 +13,7 @@ import LiteraryBackground from "@/components/LiteraryBackground";
 export const metadata: Metadata = {
   title: "SAHITYAM 2026 - Kala aur Sahit ka Sangam | Mind Benders",
   description:
-    "Welcome to SAHITYAM 2026, where art and literature converge. Join us from 5th - 6th Feb 2026 for an unforgettable celebration of creativity at Mind Benders.",
+    "Welcome to SAHITYAM 2026, where art and literature converge. Join us from 3rd and 4th Feb 2026 for an unforgettable celebration of creativity at Mind Benders.",
   keywords: [
     "SAHITYAM",
     "2026",
@@ -53,7 +53,7 @@ export default function HomePage() {
             <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mt-1 sm:mt-2 mx-auto shadow-lg shadow-purple-200"></div>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto px-2">
               Welcome to SAHITYAM 2026, where art and literature converge. Join
-              us from 5th - 6th Feb 2026 for an unforgettable celebration of
+              us from 3rd and 4th Feb 2026 for an unforgettable celebration of
               creativity.
             </p>
 
@@ -129,8 +129,8 @@ export default function HomePage() {
         </div>
 
         {/* Panelists Section */}
-        <div className="relative z-20 py-8 sm:py-12 lg:py-16 px-4 sm:px-6 md:px-12 lg:px-20">
-          <div className="max-w-6xl mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8">
+        <div className="relative z-20 py-4 sm:py-6 lg:py-8">
+          <div className="max-w-6xl mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8 px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
               Meet Our Panelists
             </h2>
@@ -138,6 +138,8 @@ export default function HomePage() {
               Distinguished artists, scholars, and cultural icons who will guide
               and inspire at SAHITYAM 2026.
             </p>
+          </div>
+          <div className="mt-6 sm:mt-8">
             <PanelistsGrid />
           </div>
         </div>
@@ -640,7 +642,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Contact Officials */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full max-w-3xl mt-6 sm:mt-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full max-w-5xl mt-6 sm:mt-8">
                     <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-white rounded-lg sm:rounded-xl p-4 sm:p-5 border border-purple-200 shadow-md">
                       <h4 className="text-sm sm:text-base font-bold text-purple-900 mb-2">
                         Manager, DSA
@@ -667,6 +669,20 @@ export default function HomePage() {
                       </p>
                       <p className="text-xs text-gray-600">
                         ✉️ Sohaldiwansh01@gmail.com
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-white rounded-lg sm:rounded-xl p-4 sm:p-5 border border-purple-200 shadow-md">
+                      <h4 className="text-sm sm:text-base font-bold text-purple-900 mb-2">
+                        Librarian
+                      </h4>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+                        Dr. Shivani Kaushal
+                      </p>
+                      <p className="text-xs text-gray-600 mb-0.5">
+                        📞 +91-99143 21507
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        ✉️ Librarian@cgcuniversity.in
                       </p>
                     </div>
                   </div>
