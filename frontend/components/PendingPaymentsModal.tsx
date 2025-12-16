@@ -235,13 +235,13 @@ export default function PendingPaymentsModal({
                 </div>
 
                 {/* Tabs */}
-                <div className="mt-4 flex gap-2 sm:gap-3 border-b border-purple-200">
+                <div className="mt-4 flex gap-1 sm:gap-2 border-b border-purple-200 overflow-x-auto scrollbar-hide">
                   <button
                     onClick={() => {
                       setActiveTab("pending");
                       setSearchQuery("");
                     }}
-                    className={`px-4 py-2 font-bold text-sm sm:text-base transition-all relative ${
+                    className={`px-3 sm:px-4 py-2 font-bold text-sm sm:text-base transition-all relative whitespace-nowrap flex-shrink-0 ${
                       activeTab === "pending"
                         ? "text-purple-600 border-b-2 border-purple-600"
                         : "text-gray-600 hover:text-purple-600"
@@ -265,7 +265,7 @@ export default function PendingPaymentsModal({
                       setActiveTab("verified");
                       setSearchQuery("");
                     }}
-                    className={`px-4 py-2 font-bold text-sm sm:text-base transition-all relative ${
+                    className={`px-3 sm:px-4 py-2 font-bold text-sm sm:text-base transition-all relative whitespace-nowrap flex-shrink-0 ${
                       activeTab === "verified"
                         ? "text-green-600 border-b-2 border-green-600"
                         : "text-gray-600 hover:text-green-600"
@@ -289,19 +289,19 @@ export default function PendingPaymentsModal({
                       setActiveTab("rejected");
                       setSearchQuery("");
                     }}
-                    className={`px-4 py-2 font-bold text-sm sm:text-base transition-all relative ${
+                    className={`px-3 sm:px-4 py-2 font-bold text-sm sm:text-base transition-all relative flex items-center gap-1 sm:gap-2 whitespace-nowrap flex-shrink-0 ${
                       activeTab === "rejected"
                         ? "text-red-600 border-b-2 border-red-600"
                         : "text-gray-600 hover:text-red-600"
                     }`}
                   >
-                    Rejected
+                    <span>Rejected</span>
                     {rejectedPayments.length > 0 && (
                       <span
-                        className={`ml-2 px-2 py-0.5 rounded-full text-xs font-black ${
+                        className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-black shadow-sm ${
                           activeTab === "rejected"
                             ? "bg-red-600 text-white"
-                            : "bg-gray-200 text-gray-700"
+                            : "bg-red-500 text-white"
                         }`}
                       >
                         {rejectedPayments.length}

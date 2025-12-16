@@ -1,10 +1,10 @@
 import nodemailer from "nodemailer";
 
 // Create email transporter
-const createTransporter = () => {
+const createEmailTransporter = () => {
   // Using Gmail SMTP for sending emails
   // Emails are sent FROM mindbendersclub01@gmail.com but TO mindbenders@cgcuniversity.org
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER, // mindbendersclub01@gmail.com
@@ -21,7 +21,7 @@ export const sendContactEmail = async (
   subject: string,
   message: string
 ) => {
-  const transporter = createTransporter();
+  const transporter = createEmailTransporter();
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -92,7 +92,7 @@ export const sendContactEmail = async (
 
 // Send confirmation email to user
 export const sendConfirmationEmail = async (name: string, email: string) => {
-  const transporter = createTransporter();
+  const transporter = createEmailTransporter();
 
   const mailOptions = {
     from: process.env.EMAIL_USER,

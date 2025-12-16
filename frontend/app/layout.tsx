@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import BackgroundMusicPlayer from "@/components/BackgroundMusicPlayer";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -90,6 +91,7 @@ export default function RootLayout({
 
         <ErrorBoundary>
           <AuthProvider>
+            <BackgroundMusicPlayer />
             <div className="relative z-10">{children}</div>
           </AuthProvider>
         </ErrorBoundary>

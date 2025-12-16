@@ -4,83 +4,155 @@ import { useState, useRef, useEffect } from "react";
 
 export default function BackgroundMusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Auto-play on first user interaction due to browser policies
-    const handleFirstInteraction = () => {
-      if (!hasInteracted && audioRef.current) {
-        audioRef.current.play().catch((error) => {
-          console.log("Autoplay prevented:", error);
-        });
-        setIsPlaying(true);
-        setHasInteracted(true);
-      }
-    };
+    setIsMounted(true);
 
-    // Try to autoplay immediately and aggressively
+    // Check if music was previously stopped by user
+    const musicStopped = localStorage.getItem("musicStopped");
+    const shouldPlay = musicStopped !== "true";
+
+    if (shouldPlay) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+
+    // Aggressive autoplay strategy
     const attemptAutoplay = () => {
-      if (audioRef.current) {
+      if (audioRef.current && shouldPlay) {
+        // Set current time to saved position if exists
+        const savedTime = localStorage.getItem("musicTime");
+        if (savedTime) {
+          audioRef.current.currentTime = parseFloat(savedTime);
+        }
+
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
               console.log("Music started playing automatically");
               setIsPlaying(true);
-              setHasInteracted(true);
+              localStorage.setItem("musicStopped", "false");
             })
             .catch((error) => {
               console.log(
-                "Autoplay prevented, waiting for user interaction:",
+                "Autoplay prevented, will try on interaction:",
                 error
               );
               setIsPlaying(false);
-              // If autoplay fails, set up listeners for first interaction
-              document.addEventListener("click", handleFirstInteraction, {
+
+              // Set up one-time listeners for ANY user interaction
+              const playOnInteraction = () => {
+                if (audioRef.current && shouldPlay) {
+                  audioRef.current
+                    .play()
+                    .then(() => {
+                      setIsPlaying(true);
+                      localStorage.setItem("musicStopped", "false");
+                    })
+                    .catch((err) => console.log("Play failed:", err));
+                }
+              };
+
+              document.addEventListener("click", playOnInteraction, {
                 once: true,
               });
-              document.addEventListener("keydown", handleFirstInteraction, {
+              document.addEventListener("keydown", playOnInteraction, {
                 once: true,
               });
-              document.addEventListener("touchstart", handleFirstInteraction, {
+              document.addEventListener("touchstart", playOnInteraction, {
                 once: true,
               });
-              document.addEventListener("scroll", handleFirstInteraction, {
+              document.addEventListener("scroll", playOnInteraction, {
                 once: true,
+                passive: true,
               });
             });
         }
       }
     };
 
-    // Attempt to play immediately
-    attemptAutoplay();
+    // Try to play immediately
+    const immediateTimer = setTimeout(attemptAutoplay, 100);
 
-    // Also try again after a short delay (after gate animation starts)
-    const retryTimer = setTimeout(() => {
-      if (!hasInteracted && audioRef.current) {
-        attemptAutoplay();
+    // Try again after a short delay
+    const retryTimer = setTimeout(attemptAutoplay, 500);
+
+    // Try one more time after longer delay (for slow page loads)
+    const finalRetryTimer = setTimeout(attemptAutoplay, 1500);
+
+    // Save playback position periodically
+    const saveInterval = setInterval(() => {
+      if (audioRef.current && isPlaying) {
+        localStorage.setItem(
+          "musicTime",
+          audioRef.current.currentTime.toString()
+        );
       }
-    }, 100);
+    }, 2000);
 
     return () => {
+      clearTimeout(immediateTimer);
       clearTimeout(retryTimer);
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("keydown", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
-      document.removeEventListener("scroll", handleFirstInteraction);
+      clearTimeout(finalRetryTimer);
+      clearInterval(saveInterval);
     };
-  }, [hasInteracted]);
+  }, []);
+
+  // Restore playing state when navigating between pages
+  useEffect(() => {
+    if (isMounted && audioRef.current) {
+      const musicStopped = localStorage.getItem("musicStopped");
+      if (musicStopped !== "true" && audioRef.current.paused) {
+        audioRef.current
+          .play()
+          .catch((err) => console.log("Resume failed:", err));
+      }
+    }
+  }, [isMounted]);
+
+  // Sync state with actual audio playback
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handlePlay = () => {
+      setIsPlaying(true);
+      localStorage.setItem("musicStopped", "false");
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+      localStorage.setItem("musicStopped", "true");
+    };
+
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+    };
+  }, []);
 
   const toggleMusic = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        setIsPlaying(false);
+        localStorage.setItem("musicStopped", "true");
       } else {
-        audioRef.current.play();
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            localStorage.setItem("musicStopped", "false");
+          })
+          .catch((err) => console.log("Play failed:", err));
       }
-      setIsPlaying(!isPlaying);
     }
   };
 

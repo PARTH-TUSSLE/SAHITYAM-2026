@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackgroundElements from "@/components/ui/BackgroundElements";
@@ -33,6 +33,14 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "literary",
     },
     {
+      id: 4,
+      time: "10:30 AM",
+      title: "Open Mic",
+      description: "Express yourself on stage",
+      venue: "Convention Hall Block 4",
+      category: "cultural",
+    },
+    {
       id: 3,
       time: "11:30 AM",
       title: "Launching / Inauguration of Sahityam 2026",
@@ -41,7 +49,7 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "cultural",
     },
     {
-      id: 4,
+      id: 5,
       time: "11:30 AM",
       title: "Book Signing",
       description: "Meet authors and get your books signed",
@@ -49,19 +57,11 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "literary",
     },
     {
-      id: 5,
+      id: 6,
       time: "11:30 AM",
       title: "Poster Making and Face Painting",
       description: "Creative activities for all",
       venue: "Buddha Ground",
-      category: "cultural",
-    },
-    {
-      id: 6,
-      time: "10:30 AM",
-      title: "Open Mic",
-      description: "Express yourself on stage",
-      venue: "Convention Hall Block 4",
       category: "cultural",
     },
     {
@@ -73,20 +73,20 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "literary",
     },
     {
-      id: 8,
-      time: "12:45 PM",
-      title: "Honour to Guest 1",
-      description: "Felicitation ceremony",
-      venue: "Block 2 Auditorium",
-      category: "cultural",
-    },
-    {
       id: 30,
       time: "12:00 PM",
       title: "Literature Quiz",
       description: "Test your literary knowledge",
       venue: "Convention Hall Block 4",
       category: "competition",
+    },
+    {
+      id: 8,
+      time: "12:45 PM",
+      title: "Honour to Guest 1",
+      description: "Felicitation ceremony",
+      venue: "Block 2 Auditorium",
+      category: "cultural",
     },
     {
       id: 9,
@@ -181,7 +181,7 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
     {
       id: 19,
       time: "11:30 AM",
-      title: "Arrival and Welcome of Guest 4 (Imtiaz Ali)",
+      title: "Arrival and Welcome of Guest 1 (Imtiaz Ali)",
       description: "Welcome ceremony for renowned director Imtiaz Ali",
       venue: "Block 2 Auditorium",
       category: "cultural",
@@ -195,17 +195,9 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "cultural",
     },
     {
-      id: 31,
-      time: "12:00 PM",
-      title: "Book Signing Ceremony",
-      description: "Meet authors and get your books signed",
-      venue: "Block-4, 2nd Gate Passage",
-      category: "literary",
-    },
-    {
       id: 22,
       time: "12:30 PM",
-      title: "Honouring of Guest 4 (Imtiaz Ali)",
+      title: "Honouring of Guest 1 (Imtiaz Ali)",
       description: "Felicitation ceremony",
       venue: "Block 2 Auditorium",
       category: "cultural",
@@ -224,14 +216,6 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       title: "Panel Discussion",
       description: "Insightful discussion with experts",
       venue: "Block 2 Auditorium",
-      category: "literary",
-    },
-    {
-      id: 32,
-      time: "02:00 PM",
-      title: "Author Talk Show",
-      description: "Interactive session with renowned authors",
-      venue: "Convention Hall Block 4",
       category: "literary",
     },
     {
@@ -278,6 +262,20 @@ const categoryColors = {
 
 function Schedule() {
   const [selectedDay, setSelectedDay] = useState("Day 1 - February 5th");
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -503,6 +501,30 @@ function Schedule() {
 
         {/* Decorative pattern overlay */}
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-20 right-4 z-40 w-12 h-12 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 rounded-full shadow-xl hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center group hover:scale-110 active:scale-95"
+          aria-label="Scroll to top"
+        >
+          <svg
+            className="w-6 h-6 text-white transform group-hover:-translate-y-0.5 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
+        </button>
+      )}
+
       <Footer />
     </>
   );
