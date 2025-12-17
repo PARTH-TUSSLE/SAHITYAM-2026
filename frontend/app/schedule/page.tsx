@@ -15,7 +15,7 @@ interface TimelineEvent {
 }
 
 const scheduleData: { [key: string]: TimelineEvent[] } = {
-  "Day 1 - February 5th": [
+  "Day 1 - February 3rd": [
     {
       id: 1,
       time: "10:00 AM",
@@ -169,7 +169,7 @@ const scheduleData: { [key: string]: TimelineEvent[] } = {
       category: "literary",
     },
   ],
-  "Day 2 - February 6th": [
+  "Day 2 - February 4th": [
     {
       id: 29,
       time: "11:00 AM",
@@ -261,7 +261,7 @@ const categoryColors = {
 };
 
 function Schedule() {
-  const [selectedDay, setSelectedDay] = useState("Day 1 - February 5th");
+  const [selectedDay, setSelectedDay] = useState("Day 1 - February 3rd");
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
