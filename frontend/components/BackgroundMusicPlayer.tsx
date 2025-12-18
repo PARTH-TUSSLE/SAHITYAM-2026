@@ -10,51 +10,53 @@ export default function BackgroundMusicPlayer() {
   useEffect(() => {
     setIsMounted(true);
 
-    // Check if music was previously stopped by user
-    const musicStopped = localStorage.getItem("musicStopped");
-    const shouldPlay = musicStopped !== "true";
+    // Always try to play music automatically
+    // Only respect user pause if they clicked pause in THIS session
+    const sessionPaused = sessionStorage.getItem("musicPaused");
+    const shouldPlay = sessionPaused !== "true";
 
-    if (shouldPlay) {
-      setIsPlaying(true);
-    } else {
-      setIsPlaying(false);
+    // Set current time to saved position if exists
+    const savedTime = localStorage.getItem("musicTime");
+    if (audioRef.current && savedTime) {
+      audioRef.current.currentTime = parseFloat(savedTime);
     }
 
     // Aggressive autoplay strategy
     const attemptAutoplay = () => {
       if (audioRef.current && shouldPlay) {
-        // Set current time to saved position if exists
-        const savedTime = localStorage.getItem("musicTime");
-        if (savedTime) {
-          audioRef.current.currentTime = parseFloat(savedTime);
-        }
+        // Set volume to ensure it's not muted
+        audioRef.current.volume = 1.0;
 
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log("Music started playing automatically");
+              console.log("✓ Music started playing automatically");
               setIsPlaying(true);
-              localStorage.setItem("musicStopped", "false");
             })
             .catch((error) => {
               console.log(
-                "Autoplay prevented, will try on interaction:",
+                "⚠ Autoplay blocked by browser, will start on first interaction:",
                 error
               );
-              setIsPlaying(false);
 
               // Set up one-time listeners for ANY user interaction
               const playOnInteraction = () => {
-                if (audioRef.current && shouldPlay) {
+                if (audioRef.current) {
                   audioRef.current
                     .play()
                     .then(() => {
                       setIsPlaying(true);
-                      localStorage.setItem("musicStopped", "false");
+                      console.log("✓ Music started after user interaction");
                     })
-                    .catch((err) => console.log("Play failed:", err));
+                    .catch((err) => console.log("✗ Play failed:", err));
                 }
+                // Remove all listeners after first interaction attempt
+                document.removeEventListener("click", playOnInteraction);
+                document.removeEventListener("keydown", playOnInteraction);
+                document.removeEventListener("touchstart", playOnInteraction);
+                document.removeEventListener("scroll", playOnInteraction);
+                document.removeEventListener("mousemove", playOnInteraction);
               };
 
               document.addEventListener("click", playOnInteraction, {
@@ -70,23 +72,28 @@ export default function BackgroundMusicPlayer() {
                 once: true,
                 passive: true,
               });
+              document.addEventListener("mousemove", playOnInteraction, {
+                once: true,
+                passive: true,
+              });
             });
         }
+      } else if (!shouldPlay) {
+        setIsPlaying(false);
       }
     };
 
     // Try to play immediately
-    const immediateTimer = setTimeout(attemptAutoplay, 100);
+    const immediateTimer = setTimeout(attemptAutoplay, 50);
 
-    // Try again after a short delay
-    const retryTimer = setTimeout(attemptAutoplay, 500);
-
-    // Try one more time after longer delay (for slow page loads)
-    const finalRetryTimer = setTimeout(attemptAutoplay, 1500);
+    // Try again with multiple retries
+    const retryTimer1 = setTimeout(attemptAutoplay, 200);
+    const retryTimer2 = setTimeout(attemptAutoplay, 500);
+    const retryTimer3 = setTimeout(attemptAutoplay, 1000);
 
     // Save playback position periodically
     const saveInterval = setInterval(() => {
-      if (audioRef.current && isPlaying) {
+      if (audioRef.current && !audioRef.current.paused) {
         localStorage.setItem(
           "musicTime",
           audioRef.current.currentTime.toString()
@@ -96,8 +103,9 @@ export default function BackgroundMusicPlayer() {
 
     return () => {
       clearTimeout(immediateTimer);
-      clearTimeout(retryTimer);
-      clearTimeout(finalRetryTimer);
+      clearTimeout(retryTimer1);
+      clearTimeout(retryTimer2);
+      clearTimeout(retryTimer3);
       clearInterval(saveInterval);
     };
   }, []);
@@ -105,11 +113,17 @@ export default function BackgroundMusicPlayer() {
   // Restore playing state when navigating between pages
   useEffect(() => {
     if (isMounted && audioRef.current) {
-      const musicStopped = localStorage.getItem("musicStopped");
-      if (musicStopped !== "true" && audioRef.current.paused) {
+      const sessionPaused = sessionStorage.getItem("musicPaused");
+
+      // Always try to play unless user explicitly paused in this session
+      if (sessionPaused !== "true" && audioRef.current.paused) {
         audioRef.current
           .play()
-          .catch((err) => console.log("Resume failed:", err));
+          .then(() => {
+            setIsPlaying(true);
+            console.log("✓ Music resumed on navigation");
+          })
+          .catch((err) => console.log("✗ Resume failed:", err));
       }
     }
   }, [isMounted]);
@@ -121,37 +135,47 @@ export default function BackgroundMusicPlayer() {
 
     const handlePlay = () => {
       setIsPlaying(true);
-      localStorage.setItem("musicStopped", "false");
+      sessionStorage.removeItem("musicPaused");
     };
 
     const handlePause = () => {
       setIsPlaying(false);
-      localStorage.setItem("musicStopped", "true");
+    };
+
+    const handleEnded = () => {
+      // Loop is already set, but just in case
+      audio.play().catch((err) => console.log("✗ Replay failed:", err));
     };
 
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
+    audio.addEventListener("ended", handleEnded);
 
     return () => {
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("ended", handleEnded);
     };
   }, []);
 
   const toggleMusic = () => {
     if (audioRef.current) {
       if (isPlaying) {
+        // User explicitly paused
         audioRef.current.pause();
         setIsPlaying(false);
-        localStorage.setItem("musicStopped", "true");
+        sessionStorage.setItem("musicPaused", "true");
+        console.log("⏸ Music paused by user");
       } else {
+        // User explicitly played
         audioRef.current
           .play()
           .then(() => {
             setIsPlaying(true);
-            localStorage.setItem("musicStopped", "false");
+            sessionStorage.removeItem("musicPaused");
+            console.log("▶ Music resumed by user");
           })
-          .catch((err) => console.log("Play failed:", err));
+          .catch((err) => console.log("✗ Play failed:", err));
       }
     }
   };
