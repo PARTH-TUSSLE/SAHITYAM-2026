@@ -29,7 +29,7 @@ const events = [
       "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -55,7 +55,7 @@ const events = [
       "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -78,7 +78,7 @@ const events = [
       "Any form of indiscipline or misbehavior will result in immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -102,7 +102,7 @@ const events = [
       "Any form of misconduct or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -127,7 +127,7 @@ const events = [
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
       "Any form of misbehavior, damage to stage/property, or violation of rules will result in immediate disqualification.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -151,7 +151,7 @@ const events = [
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
       "The decision of the judges will be final and binding.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -174,7 +174,7 @@ const events = [
       "Any form of unfair means or indiscipline will lead to immediate disqualification.",
       "The decision of the quiz master and judges will be final and binding.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -197,7 +197,7 @@ const events = [
       "Any form of misbehavior, indiscipline, or damage to stage/property will lead to immediate disqualification.",
       "The decision of the judges will be final and binding.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -222,7 +222,7 @@ const events = [
       "Any form of misconduct, indiscipline, or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
   {
@@ -249,7 +249,7 @@ const events = [
       "Disqualification Criteria: The organizing committee reserves the right to disqualify any participant on grounds of misconduct, indiscipline, violation of rules, or providing false information.",
       "Organizing Authority Rights: The organizing committee holds the right to modify the rules, prize pool, schedule, or format of the event if necessary.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a 2-day stay, and access to all cultural events of SAHITYAM 2026.",
-      "For more queries: Ms. Suhani - +91-8168360485, Ms. Urvi - +91-8968453061",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
     ],
   },
 ];

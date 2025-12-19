@@ -15,7 +15,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "SAHITYAM 2026 - Where Art and Literature Converge",
   description:
-    "Join us for SAHITYAM 2026, a premier literature festival celebrating the confluence of art and literature. Experience workshops, performances, and engaging discussions from February 5-6, 2026.",
+    "Join us for SAHITYAM 2026, a premier literature festival celebrating the confluence of art and literature. Experience workshops, performances, and engaging discussions on February 3, 2026.",
   keywords: [
     "SAHITYAM",
     "literature festival",

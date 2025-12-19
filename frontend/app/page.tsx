@@ -13,7 +13,7 @@ import LiteraryBackground from "@/components/LiteraryBackground";
 export const metadata: Metadata = {
   title: "SAHITYAM 2026 - Kala aur Sahit ka Sangam | Mind Benders",
   description:
-    "Welcome to SAHITYAM 2026, where art and literature converge. Join us from 3rd and 4th Feb 2026 for an unforgettable celebration of creativity at Mind Benders.",
+    "Welcome to SAHITYAM 2026, where art and literature converge. Join us on 3rd Feb 2026 for an unforgettable celebration of creativity at Mind Benders.",
   keywords: [
     "SAHITYAM",
     "2026",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SAHITYAM 2026 - Kala aur Sahit ka Sangam",
     description:
-      "Join us from 5th - 6th Feb 2026 for an unforgettable celebration of creativity.",
+      "Join us on 3rd Feb 2026 for an unforgettable celebration of creativity.",
     type: "website",
   },
 };
@@ -53,8 +53,7 @@ export default function HomePage() {
             <div className="h-1.5 sm:h-2 w-20 sm:w-28 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full mt-1 sm:mt-2 mx-auto shadow-lg shadow-purple-200"></div>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl leading-relaxed font-semibold max-w-3xl mx-auto px-2">
               Welcome to SAHITYAM 2026, where art and literature converge. Join
-              us from 3rd and 4th Feb 2026 for an unforgettable celebration of
-              creativity.
+              us on 3rd Feb 2026 for an unforgettable celebration of creativity.
             </p>
 
             {/* Countdown Section */}
@@ -146,22 +145,6 @@ export default function HomePage() {
 
         {/* SAHITYAM 2026 Attractions Section */}
         <div className="relative z-20 py-8 sm:py-12 lg:py-16 px-4 sm:px-6 md:px-12 lg:px-20">
-          {/* Decorative Background Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-pink-200/20 rounded-full blur-3xl animate-pulse"></div>
-            <div
-              className="absolute top-40 right-20 w-40 h-40 bg-purple-200/20 rounded-full blur-3xl animate-pulse"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute bottom-20 left-1/4 w-36 h-36 bg-indigo-200/20 rounded-full blur-3xl animate-pulse"
-              style={{ animationDelay: "2s" }}
-            ></div>
-            <div
-              className="absolute bottom-40 right-1/3 w-28 h-28 bg-pink-200/20 rounded-full blur-3xl animate-pulse"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
-          </div>
           <div className="max-w-6xl mx-auto relative z-10">
             {/* Section Header */}
             <div className="text-center mb-8 sm:mb-12 lg:mb-16">
@@ -175,383 +158,195 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Bento Grid */}
-            <div className="relative">
-              {/* Decorative Corner Elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-4 border-t-4 border-purple-400/30 rounded-tl-2xl"></div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-4 border-t-4 border-pink-400/30 rounded-tr-2xl"></div>
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-4 border-b-4 border-indigo-400/30 rounded-bl-2xl"></div>
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-4 border-b-4 border-purple-400/30 rounded-br-2xl"></div>
-
-              {/* Floating Sparkles */}
-              <div className="absolute top-10 left-10 w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
-              <div
-                className="absolute top-1/4 right-20 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping opacity-75"
-                style={{ animationDelay: "0.5s" }}
-              ></div>
-              <div
-                className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping opacity-75"
-                style={{ animationDelay: "1s" }}
-              ></div>
-              <div
-                className="absolute bottom-20 right-1/3 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-ping opacity-75"
-                style={{ animationDelay: "1.5s" }}
-              ></div>
-
-              {/* Flowing Decorative Elements in Grid Gaps */}
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                style={{ zIndex: 5 }}
-              >
-                {/* Flowing curved lines between cards */}
-                <path
-                  d="M 33% 25% Q 50% 30%, 66% 25%"
-                  stroke="url(#gradient1)"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.3"
-                  className="animate-pulse"
-                />
-                <path
-                  d="M 33% 50% Q 50% 55%, 66% 50%"
-                  stroke="url(#gradient2)"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.3"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                <path
-                  d="M 33% 75% Q 50% 80%, 66% 75%"
-                  stroke="url(#gradient3)"
-                  strokeWidth="2"
-                  fill="none"
-                  opacity="0.3"
-                  className="animate-pulse"
-                  style={{ animationDelay: "1s" }}
-                />
-
-                {/* Vertical flowing lines */}
-                <path
-                  d="M 33% 20% Q 35% 50%, 33% 80%"
-                  stroke="url(#gradient4)"
-                  strokeWidth="1.5"
-                  fill="none"
-                  opacity="0.25"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <path
-                  d="M 66% 20% Q 64% 50%, 66% 80%"
-                  stroke="url(#gradient5)"
-                  strokeWidth="1.5"
-                  fill="none"
-                  opacity="0.25"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.8s" }}
-                />
-
-                {/* Gradient definitions */}
-                <defs>
-                  <linearGradient
-                    id="gradient1"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="#ec4899" stopOpacity="0.6" />
-                    <stop offset="50%" stopColor="#a855f7" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0.6" />
-                  </linearGradient>
-                  <linearGradient
-                    id="gradient2"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="#a855f7" stopOpacity="0.6" />
-                    <stop offset="50%" stopColor="#ec4899" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0.6" />
-                  </linearGradient>
-                  <linearGradient
-                    id="gradient3"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0.6" />
-                    <stop offset="50%" stopColor="#ec4899" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0.6" />
-                  </linearGradient>
-                  <linearGradient
-                    id="gradient4"
-                    x1="0%"
-                    y1="0%"
-                    x2="0%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#ec4899" stopOpacity="0.4" />
-                    <stop offset="50%" stopColor="#a855f7" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#ec4899" stopOpacity="0.4" />
-                  </linearGradient>
-                  <linearGradient
-                    id="gradient5"
-                    x1="0%"
-                    y1="0%"
-                    x2="0%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
-                    <stop offset="50%" stopColor="#ec4899" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0.4" />
-                  </linearGradient>
-                </defs>
-
-                {/* Decorative dots at intersections */}
-                <circle
-                  cx="33%"
-                  cy="25%"
-                  r="3"
-                  fill="#a855f7"
-                  opacity="0.5"
-                  className="animate-pulse"
-                />
-                <circle
-                  cx="66%"
-                  cy="25%"
-                  r="3"
-                  fill="#ec4899"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <circle
-                  cx="33%"
-                  cy="50%"
-                  r="3"
-                  fill="#6366f1"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <circle
-                  cx="66%"
-                  cy="50%"
-                  r="3"
-                  fill="#a855f7"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.9s" }}
-                />
-                <circle
-                  cx="33%"
-                  cy="75%"
-                  r="3"
-                  fill="#ec4899"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "1.2s" }}
-                />
-                <circle
-                  cx="66%"
-                  cy="75%"
-                  r="3"
-                  fill="#6366f1"
-                  opacity="0.5"
-                  className="animate-pulse"
-                  style={{ animationDelay: "1.5s" }}
-                />
-              </svg>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-                {/* 1. Chai aur Kalam - Large Card */}
-                <div className="sm:col-span-2 lg:col-span-2 lg:row-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
-                  <div className="relative h-64 sm:h-80 lg:h-full min-h-[400px] lg:min-h-[500px]">
-                    <Image
-                      src="/Chai aur Kalam.jpg"
-                      alt="Chai aur Kalam - Live Library"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-2 sm:mb-3">
-                        चाय और कलम
-                      </h3>
-                      <p className="text-sm sm:text-base lg:text-lg text-gray-200 font-medium">
-                        A live library experience
-                      </p>
-                    </div>
+            {/* Grid Layout */}
+            <div className="grid grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+              {/* Top Row: 3 Cards */}
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-purple-200/50 hover:ring-purple-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/Chai aur Kalam.jpg"
+                    alt="Chai aur Kalam - Live Library"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      चाय और कलम
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Live Library
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 2. Digital Gyan Kosh */}
-                <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-indigo-200/50 hover:ring-indigo-400/70">
-                  <div className="relative h-64 sm:h-80 lg:h-60">
-                    <Image
-                      src="/DigitalLibrary.avif"
-                      alt="Digital Gyan Kosh - Digital Library"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
-                        डिजिटल ज्ञान कोष
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-200 font-medium">
-                        Digital Library
-                      </p>
-                    </div>
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-indigo-200/50 hover:ring-indigo-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/DigitalLibrary.avif"
+                    alt="Digital Gyan Kosh - Digital Library"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      डिजिटल ज्ञान कोष
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Digital Library
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 3. Mitti ki Kala */}
-                <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-pink-200/50 hover:ring-pink-400/70">
-                  <div className="relative h-64 sm:h-80 lg:h-60">
-                    <Image
-                      src="/ClayModelling.jpg"
-                      alt="Mitti ki Kala - Clay Modelling"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
-                        मिट्टी की कला
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-200 font-medium">
-                        Clay Modelling
-                      </p>
-                    </div>
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-pink-200/50 hover:ring-pink-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/ClayModelling.jpg"
+                    alt="Mitti ki Kala - Clay Modelling"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      मिट्टी की कला
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Clay Modelling
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 4. Virasat Bazar */}
-                <div className="sm:col-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
-                  <div className="relative h-64 sm:h-72">
-                    <Image
-                      src="/VirasatBazar.jpg"
-                      alt="Virasat Bazar"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-1 sm:mb-2">
-                        Virasat Bazar
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-200 font-medium">
-                        Heritage marketplace
-                      </p>
-                    </div>
+              {/* Middle Row: Left Card, Sufi Night (Centered), Right Card */}
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-indigo-200/50 hover:ring-indigo-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/AuthorTalkShow.jpg"
+                    alt="Author Talk Show"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      Author Talk Show
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Literary Conversations
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 5. Author Talk Show */}
-                <div className="lg:row-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-indigo-200/50 hover:ring-indigo-400/70">
-                  <div className="relative h-64 sm:h-80 lg:h-full lg:min-h-[420px]">
-                    <Image
-                      src="/AuthorTalkShow.jpg"
-                      alt="Author Talk Show"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
-                        Author Talk Show
-                      </h3>
-                      <p className="text-xs sm:text-sm lg:text-base text-gray-200 font-medium">
-                        Conversations with literary minds
-                      </p>
+              {/* Sufi Night: Centered, Big Square */}
+              <div className="col-span-3 row-span-3 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] ring-4 ring-purple-400/60 hover:ring-purple-500 aspect-square">
+                <div className="relative w-full h-full bg-gradient-to-br from-purple-950 via-indigo-950 to-black">
+                  <Image
+                    src="/ArmaanMalik.jpeg"
+                    alt="Sufi Night - Mystical Music Evening"
+                    fill
+                    className="object-cover blur-[8px] opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 sm:p-12 lg:p-16">
+                    <h3 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-4 sm:mb-6 lg:mb-8 text-center drop-shadow-2xl tracking-tight">
+                      Sufi Night
+                    </h3>
+                    <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 font-bold text-center drop-shadow-xl mb-6 sm:mb-8 lg:mb-10">
+                      Mystical Music Evening
+                    </p>
+                    <div className="text-7xl sm:text-8xl lg:text-9xl animate-pulse mb-6 sm:mb-8 lg:mb-10">
+                      🎵
                     </div>
+                    <p className="text-sm sm:text-base lg:text-lg text-yellow-300 font-semibold text-center drop-shadow-lg animate-pulse">
+                      ⭐ Star to be revealed on 3rd Feb ⭐
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 6. Riwayat-e-Bharat */}
-                <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-pink-200/50 hover:ring-pink-400/70">
-                  <div className="relative h-64 sm:h-80 lg:h-52">
-                    <Image
-                      src="/Riwayat-e-Bharat.webp"
-                      alt="Riwayat-e-Bharat - India's Heritage Stories"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
-                        Riwayat-e-Bharat
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-200 font-medium">
-                        India's heritage stories
-                      </p>
-                    </div>
+              {/* Riwayat-e-Bharat: Right Card */}
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-pink-200/50 hover:ring-pink-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/Riwayat-e-Bharat.webp"
+                    alt="Riwayat-e-Bharat - India's Heritage Stories"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      Riwayat-e-Bharat
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Heritage Stories
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 7. Sufi Night */}
-                <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
-                  <div className="relative h-64 sm:h-80 lg:h-52">
-                    <Image
-                      src="/SufiNight.jpeg"
-                      alt="Sufi Night"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
-                        Sufi Night
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-200 font-medium">
-                        Mystical music evening
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 8. Kavi Sammelan */}
-                <div className="sm:col-span-2 lg:col-span-1 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-purple-200/50 hover:ring-purple-400/70 h-64 sm:h-72 lg:h-60">
+              {/* Bottom Row: 3 Cards */}
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-purple-200/50 hover:ring-purple-400/70 aspect-square">
+                <div className="relative w-full h-full">
                   <Image
                     src="/Kavi Sammelan.jpeg"
                     alt="Kavi Sammelan"
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1 sm:mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
                       कवि सम्मेलन
                     </h3>
-                    <p className="text-xs sm:text-sm text-gray-200 font-medium">
-                      Poetry congregation
+                    <p className="text-sm text-gray-200 font-medium">
+                      Poetry Congregation
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* 9. Swar Sangam */}
-                <div className="sm:col-span-2 lg:col-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] ring-2 ring-indigo-200/50 hover:ring-indigo-400/70">
-                  <div className="relative h-64 sm:h-72">
-                    <Image
-                      src="/SwarSangam.jpeg"
-                      alt="Swar Sangam - Live Jamming"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-1 sm:mb-2">
-                        स्वर संगम
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-200 font-medium">
-                        Live Jamming Sessions
-                      </p>
-                    </div>
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-indigo-200/50 hover:ring-indigo-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/SwarSangam.jpeg"
+                    alt="Swar Sangam - Live Jamming"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      स्वर संगम
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Live Jamming Sessions
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-purple-200/50 hover:ring-purple-400/70 aspect-square">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/VirasatBazar.jpg"
+                    alt="Virasat Bazar"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                      Virasat Bazar
+                    </h3>
+                    <p className="text-sm text-gray-200 font-medium">
+                      Heritage Marketplace
+                    </p>
                   </div>
                 </div>
               </div>

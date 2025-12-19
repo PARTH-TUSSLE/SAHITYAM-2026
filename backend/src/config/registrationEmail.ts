@@ -62,7 +62,7 @@ export const sendRegistrationConfirmation = async (
             
             <div class="highlight">
               <h2 style="margin: 0;">📅 Event Dates</h2>
-              <p style="margin: 5px 0 0 0; font-size: 20px;"><strong>February 5-6, 2026</strong></p>
+              <p style="margin: 5px 0 0 0; font-size: 20px;"><strong>February 3, 2026</strong></p>
             </div>
             
             <div class="event-box">
@@ -207,7 +207,7 @@ export const sendPaymentVerificationEmail = async (
             
             <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #1f2937; margin-top: 0;">📅 Save the Date</h3>
-              <p style="font-size: 18px; color: #8b5cf6;"><strong>February 5-6, 2026</strong></p>
+              <p style="font-size: 18px; color: #8b5cf6;"><strong>February 3, 2026</strong></p>
               <p>Please bring a valid ID and your registration ID: <strong>${registrationId}</strong></p>
             </div>
             

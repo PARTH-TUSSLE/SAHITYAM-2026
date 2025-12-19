@@ -3,7 +3,7 @@
 
 export const config = {
   // Frontend URL - Update after Vercel/Netlify deployment
-  frontendUrl: process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000",
+  frontendUrl: process.env.NEXT_PUBLIC_FRONTEND_URL || "https://sahityam.info",
 
   // Backend API URL - Already configured
   apiUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000",
@@ -25,7 +25,7 @@ export const config = {
     // Base URL for event pages
     getEventUrl: (eventId: string | number) =>
       `${
-        process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000"
+        process.env.NEXT_PUBLIC_FRONTEND_URL || "https://sahityam.info"
       }/events?id=${eventId}`,
 
     // Event image fallback
