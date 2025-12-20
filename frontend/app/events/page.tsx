@@ -26,6 +26,7 @@ interface Event {
 
 interface Registration {
   eventId: string;
+  isActive: boolean;
 }
 
 function Events() {
@@ -77,7 +78,10 @@ function Events() {
         return;
       }
       const registrations: Registration[] = response.data;
-      const eventIds = new Set(registrations.map((reg) => reg.eventId));
+      // Only include active registrations
+      const eventIds = new Set(
+        registrations.filter((reg) => reg.isActive).map((reg) => reg.eventId)
+      );
       setRegisteredEventIds(eventIds);
     } catch (err: any) {
       console.error("Error fetching registrations:", err);

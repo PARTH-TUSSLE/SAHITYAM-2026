@@ -81,6 +81,9 @@ export default function AdminDashboard() {
   const [rejectedPayments, setRejectedPayments] = useState<PendingPayment[]>(
     []
   );
+  const [inactiveRegistrations, setInactiveRegistrations] = useState<
+    PendingPayment[]
+  >([]);
   const [pendingPaymentsModalOpen, setPendingPaymentsModalOpen] =
     useState(false);
   const [paymentStatusTab, setPaymentStatusTab] = useState<
@@ -108,11 +111,13 @@ export default function AdminDashboard() {
           pendingResponse,
           verifiedResponse,
           rejectedResponse,
+          inactiveResponse,
         ] = await Promise.all([
           apiClient.get("/admin/events"),
           apiClient.get("/admin/pending-payments"),
           apiClient.get("/admin/verified-payments"),
           apiClient.get("/admin/rejected-payments"),
+          apiClient.get("/admin/inactive-registrations"),
         ]);
 
         // Validate response data
@@ -143,6 +148,13 @@ export default function AdminDashboard() {
           console.warn("Invalid rejected payments response format");
           setRejectedPayments([]);
         }
+
+        if (Array.isArray(inactiveResponse.data)) {
+          setInactiveRegistrations(inactiveResponse.data);
+        } else {
+          console.warn("Invalid inactive registrations response format");
+          setInactiveRegistrations([]);
+        }
       } catch (err: any) {
         console.error("Error fetching admin data:", err);
         // Set empty arrays to prevent UI crashes
@@ -150,6 +162,7 @@ export default function AdminDashboard() {
         setPendingPayments([]);
         setVerifiedPayments([]);
         setRejectedPayments([]);
+        setInactiveRegistrations([]);
       } finally {
         setLoadingData(false);
       }
@@ -162,12 +175,17 @@ export default function AdminDashboard() {
 
   const refreshPendingPayments = async () => {
     try {
-      const [pendingResponse, verifiedResponse, rejectedResponse] =
-        await Promise.all([
-          apiClient.get("/admin/pending-payments"),
-          apiClient.get("/admin/verified-payments"),
-          apiClient.get("/admin/rejected-payments"),
-        ]);
+      const [
+        pendingResponse,
+        verifiedResponse,
+        rejectedResponse,
+        inactiveResponse,
+      ] = await Promise.all([
+        apiClient.get("/admin/pending-payments"),
+        apiClient.get("/admin/verified-payments"),
+        apiClient.get("/admin/rejected-payments"),
+        apiClient.get("/admin/inactive-registrations"),
+      ]);
 
       if (Array.isArray(pendingResponse.data)) {
         setPendingPayments(pendingResponse.data);
@@ -185,6 +203,12 @@ export default function AdminDashboard() {
         setRejectedPayments(rejectedResponse.data);
       } else {
         console.warn("Invalid rejected payments response format");
+      }
+
+      if (Array.isArray(inactiveResponse.data)) {
+        setInactiveRegistrations(inactiveResponse.data);
+      } else {
+        console.warn("Invalid inactive registrations response format");
       }
     } catch (err: any) {
       console.error("Error refreshing payment data:", err);
@@ -237,40 +261,10 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-6 py-8 relative z-10">
           {/* Header */}
           <div className="mb-8">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ring-2 ring-purple-200/50">
-                  <svg
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                    Admin Dashboard
-                  </h1>
-                  <p className="text-sm sm:text-base text-gray-700 font-medium">
-                    Manage events and view registrations
-                  </p>
-                </div>
-              </div>
-
-              {/* Pending Payments Notification Button */}
-              <button
-                onClick={() => setPendingPaymentsModalOpen(true)}
-                className="relative px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/40 transition-all transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 group w-full lg:w-auto ring-1 ring-white/20"
-              >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ring-2 ring-purple-200/50">
                 <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce flex-shrink-0"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -279,25 +273,18 @@ export default function AdminDashboard() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
-                <span className="text-sm sm:text-base">
-                  <span className="hidden sm:inline">Payment Status</span>
-                  <span className="sm:hidden">Payments</span>
-                  {pendingPayments.length > 0 && (
-                    <span className="ml-2 px-2 sm:px-2.5 py-0.5 bg-white text-purple-600 text-xs sm:text-sm font-black rounded-full">
-                      {pendingPayments.length}
-                    </span>
-                  )}
-                </span>
-                {pendingPayments.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-purple-400 rounded-full animate-ping"></span>
-                )}
-                {pendingPayments.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-purple-400 rounded-full"></span>
-                )}
-              </button>
+              </div>
+              <div>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                  Admin Dashboard
+                </h1>
+                <p className="text-sm sm:text-base text-gray-700 font-medium">
+                  Manage events and view registrations
+                </p>
+              </div>
             </div>
           </div>
 
@@ -396,6 +383,43 @@ export default function AdminDashboard() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 mb-4 sm:mb-6 lg:mb-8">
+            {/* Pending Payments Notification Button */}
+            <button
+              onClick={() => setPendingPaymentsModalOpen(true)}
+              className="relative flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/40 transition-all transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3 group ring-1 ring-white/20"
+            >
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+              </svg>
+              <span className="text-sm sm:text-base">
+                Payment Status
+                {pendingPayments.length > 0 && (
+                  <span className="ml-2 px-2 sm:px-2.5 py-0.5 bg-white text-purple-600 text-xs sm:text-sm font-black rounded-full">
+                    {pendingPayments.length}
+                  </span>
+                )}
+              </span>
+              {pendingPayments.length > 0 && (
+                <>
+                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-purple-400 rounded-full animate-ping"></span>
+                  <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-purple-400 rounded-full"></span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Events List */}
@@ -774,6 +798,7 @@ export default function AdminDashboard() {
         pendingPayments={pendingPayments}
         verifiedPayments={verifiedPayments}
         rejectedPayments={rejectedPayments}
+        inactiveRegistrations={inactiveRegistrations}
         onPaymentVerified={refreshPendingPayments}
       />
 

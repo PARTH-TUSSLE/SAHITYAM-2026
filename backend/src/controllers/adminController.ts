@@ -18,6 +18,7 @@ export const getAllEventRegistrations = async (
               paymentStatus: {
                 not: "REJECTED",
               },
+              isActive: true,
             },
             include: {
               user: {
@@ -50,6 +51,7 @@ export const getAllEventRegistrations = async (
               paymentStatus: {
                 not: "REJECTED",
               },
+              isActive: true,
             },
             include: {
               user: {
@@ -100,6 +102,7 @@ export const getEventRegistrations = async (
               paymentStatus: {
                 not: "REJECTED",
               },
+              isActive: true,
             },
             include: {
               user: {
@@ -132,6 +135,7 @@ export const getEventRegistrations = async (
               paymentStatus: {
                 not: "REJECTED",
               },
+              isActive: true,
             },
             include: {
               user: {
@@ -251,6 +255,7 @@ export const getPendingPayments = async (
         paymentScreenshotUrl: {
           not: null,
         },
+        isActive: true,
       },
       include: {
         user: {
@@ -292,6 +297,7 @@ export const getVerifiedPayments = async (
     const verifiedRegistrations = await prisma.registration.findMany({
       where: {
         paymentStatus: "VERIFIED",
+        isActive: true,
       },
       include: {
         user: {
@@ -383,7 +389,16 @@ export const verifyPayment = async (
       return;
     }
 
-    // If payment is rejected, update status to REJECTED
+    // Check if registration is still active
+    if (!registration.isActive) {
+      res.status(400).json({
+        error:
+          "Cannot verify payment for inactive registration. User has unregistered from this event.",
+      });
+      return;
+    }
+
+    // If payment is rejected, update status to REJECTED and mark as inactive
     if (!verified) {
       const rejectedRegistration = await prisma.registration.update({
         where: { id: registrationId },
@@ -391,6 +406,7 @@ export const verifyPayment = async (
           paymentVerified: false,
           paymentStatus: "REJECTED",
           rejectionReason: rejectionReason || null,
+          isActive: false, // Automatically unregister user
         },
         include: {
           user: {
@@ -475,5 +491,49 @@ export const verifyPayment = async (
   } catch (error) {
     console.error("Verify payment error:", error);
     res.status(500).json({ error: "Failed to verify payment" });
+  }
+};
+
+// Get all inactive registrations
+export const getInactiveRegistrations = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const inactiveRegistrations = await prisma.registration.findMany({
+      where: {
+        isActive: false,
+        paymentStatus: {
+          not: "REJECTED", // Exclude rejected payments from inactive list
+        },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            email: true,
+            mobileNumber: true,
+            createdAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            title: true,
+            subtitle: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.json(inactiveRegistrations);
+  } catch (error) {
+    console.error("Get inactive registrations error:", error);
+    res.status(500).json({ error: "Failed to fetch inactive registrations" });
   }
 };

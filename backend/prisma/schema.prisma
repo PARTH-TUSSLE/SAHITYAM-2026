@@ -48,6 +48,7 @@ model Registration {
   registrantName       String?
   transactionId        String?
   rejectionReason      String?
+  isActive             Boolean       @default(true)
   event                Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
   user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 

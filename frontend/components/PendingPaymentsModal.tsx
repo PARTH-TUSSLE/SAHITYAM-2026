@@ -44,6 +44,7 @@ interface PendingPaymentsModalProps {
   pendingPayments: PendingPayment[];
   verifiedPayments: PendingPayment[];
   rejectedPayments: PendingPayment[];
+  inactiveRegistrations?: PendingPayment[];
   onPaymentVerified: () => void;
 }
 
@@ -53,13 +54,14 @@ export default function PendingPaymentsModal({
   pendingPayments,
   verifiedPayments,
   rejectedPayments,
+  inactiveRegistrations = [],
   onPaymentVerified,
 }: PendingPaymentsModalProps) {
   const [selectedPayment, setSelectedPayment] = useState<PendingPayment | null>(
     null
   );
   const [activeTab, setActiveTab] = useState<
-    "pending" | "verified" | "rejected"
+    "pending" | "verified" | "rejected" | "inactive"
   >("pending");
   const [verifying, setVerifying] = useState(false);
   const [verifyingId, setVerifyingId] = useState<string | null>(null);
@@ -87,7 +89,9 @@ export default function PendingPaymentsModal({
       ? pendingPayments
       : activeTab === "verified"
       ? verifiedPayments
-      : rejectedPayments;
+      : activeTab === "rejected"
+      ? rejectedPayments
+      : inactiveRegistrations;
 
   // Filter payments based on search query
   const filteredPayments = currentPayments.filter((payment) => {
@@ -209,7 +213,9 @@ export default function PendingPaymentsModal({
                         ? "awaiting verification"
                         : activeTab === "verified"
                         ? "verified"
-                        : "rejected"}
+                        : activeTab === "rejected"
+                        ? "rejected"
+                        : "inactive"}
                       {searchQuery &&
                         ` (filtered from ${currentPayments.length})`}
                     </p>
@@ -305,6 +311,30 @@ export default function PendingPaymentsModal({
                         }`}
                       >
                         {rejectedPayments.length}
+                      </span>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveTab("inactive");
+                      setSearchQuery("");
+                    }}
+                    className={`px-3 sm:px-4 py-2 font-bold text-sm sm:text-base transition-all relative flex items-center gap-1 sm:gap-2 whitespace-nowrap flex-shrink-0 ${
+                      activeTab === "inactive"
+                        ? "text-gray-700 border-b-2 border-gray-700"
+                        : "text-gray-600 hover:text-gray-700"
+                    }`}
+                  >
+                    <span>Inactive</span>
+                    {inactiveRegistrations.length > 0 && (
+                      <span
+                        className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-black shadow-sm ${
+                          activeTab === "inactive"
+                            ? "bg-gray-700 text-white"
+                            : "bg-gray-500 text-white"
+                        }`}
+                      >
+                        {inactiveRegistrations.length}
                       </span>
                     )}
                   </button>

@@ -8,6 +8,7 @@ import {
   getPendingPayments,
   getVerifiedPayments,
   getRejectedPayments,
+  getInactiveRegistrations,
   verifyPayment,
 } from "../controllers/adminController";
 
@@ -36,6 +37,9 @@ router.get("/verified-payments", getVerifiedPayments);
 
 // Get all rejected payments
 router.get("/rejected-payments", getRejectedPayments);
+
+// Get all inactive registrations
+router.get("/inactive-registrations", getInactiveRegistrations);
 
 // Verify or unverify a payment
 router.patch("/verify-payment/:registrationId", verifyPayment);

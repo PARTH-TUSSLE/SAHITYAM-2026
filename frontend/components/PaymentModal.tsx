@@ -189,7 +189,7 @@ export default function PaymentModal({
                     <div className="bg-white rounded-xl p-4 flex items-center justify-center">
                       <div className="relative w-64 h-64 bg-gray-100 rounded-xl flex items-center justify-center border-4 border-purple-200 ring-1 ring-purple-100/30">
                         <Image
-                          src="/QRCode2.jpeg"
+                          src="/QfixQRCode.png"
                           alt="Payment QR Code"
                           fill
                           className="object-contain"
@@ -210,7 +210,8 @@ export default function PaymentModal({
                           •
                         </span>
                         <span className="font-semibold">
-                          Accommodation: ₹999 for 2 days (optional)
+                          Accommodation: ₹350 for 1 day or ₹700 for 2 days
+                          (optional)
                         </span>
                       </p>
                       <p className="flex items-start gap-2">

@@ -66,6 +66,7 @@ export const registerWithPayment = async (
       where: {
         userId,
         eventId,
+        isActive: true,
       },
     });
 
@@ -178,6 +179,7 @@ export const registerForEvent = async (
       where: {
         userId,
         eventId,
+        isActive: true,
       },
     });
 
@@ -216,6 +218,7 @@ export const unregisterFromEvent = async (
       where: {
         userId,
         eventId,
+        isActive: true,
       },
     });
 
@@ -224,19 +227,13 @@ export const unregisterFromEvent = async (
       return;
     }
 
-    // Delete image from Cloudinary if exists
-    if (registration.paymentScreenshotId) {
-      try {
-        await deleteFromCloudinary(registration.paymentScreenshotId);
-      } catch (error) {
-        console.error("Error deleting image from Cloudinary:", error);
-        // Continue with deletion even if Cloudinary deletion fails
-      }
-    }
-
-    await prisma.registration.delete({
+    // Mark registration as inactive instead of deleting
+    await prisma.registration.update({
       where: {
         id: registration.id,
+      },
+      data: {
+        isActive: false,
       },
     });
 
@@ -255,7 +252,9 @@ export const getUserRegistrations = async (
     const userId = (req as any).userId;
 
     const registrations = await prisma.registration.findMany({
-      where: { userId },
+      where: {
+        userId,
+      },
       include: {
         event: true,
       },
