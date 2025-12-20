@@ -158,10 +158,246 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Grid Layout */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-              {/* Top Row: 3 Cards */}
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-purple-200/50 hover:ring-purple-400/70 aspect-square">
+            {/* Attractions Layout (mobile-friendly, Sufi Night centered) */}
+            <div className="relative isolate flex flex-col items-center gap-4 sm:grid sm:grid-cols-3 sm:gap-6 lg:gap-8 place-items-center overflow-visible mx-auto w-full max-w-[340px] sm:max-w-[560px] md:max-w-[760px] lg:max-w-[860px] before:content-[''] before:absolute before:-inset-10 before:rounded-[48px] before:bg-gradient-to-r before:from-pink-500/10 before:via-purple-500/10 before:to-indigo-500/10 before:blur-2xl before:opacity-80 before:-z-10 after:content-[''] after:absolute after:-inset-16 after:rounded-[56px] after:bg-gradient-to-br after:from-pink-500/10 after:via-purple-500/10 after:to-indigo-500/10 after:blur-3xl after:opacity-70 after:animate-pulse after:-z-10">
+              {/* Live Elements (decorative accents between cards) */}
+              <div className="pointer-events-none absolute inset-0 z-0 hidden sm:block">
+                {/* Soft glow anchors */}
+                <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-pink-400/35 via-purple-400/35 to-indigo-400/35 blur-md animate-pulse"></div>
+                <div className="absolute left-[16%] top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-400/30 via-indigo-400/30 to-purple-400/30 blur-md animate-pulse"></div>
+                <div className="absolute right-[16%] top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-pink-400/30 via-purple-400/30 to-pink-400/30 blur-md animate-pulse"></div>
+                <div className="absolute left-1/2 bottom-[18%] -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-indigo-400/35 via-purple-400/35 to-pink-400/35 blur-md animate-pulse"></div>
+
+                {/* Connector web (behind cards) */}
+                {/* Glow layer */}
+                <svg
+                  className="absolute inset-0 h-full w-full text-purple-400/10 blur-[1.5px]"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <g className="opacity-90 motion-safe:animate-[pulse_2.6s_ease-in-out_infinite]">
+                    <path
+                      d="M50 50 C 50 44 50 38 50 16.7"
+                      stroke="currentColor"
+                      strokeWidth="3.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50 50 C 56 50 62 50 83.3 50"
+                      stroke="currentColor"
+                      strokeWidth="3.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50 50 C 50 56 50 62 50 83.3"
+                      stroke="currentColor"
+                      strokeWidth="3.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50 50 C 44 50 38 50 16.7 50"
+                      stroke="currentColor"
+                      strokeWidth="3.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+
+                    <path
+                      d="M50 50 C 46 46 40 40 16.7 16.7"
+                      stroke="currentColor"
+                      strokeWidth="2.6"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 6"
+                    />
+                    <path
+                      d="M50 50 C 54 46 60 40 83.3 16.7"
+                      stroke="currentColor"
+                      strokeWidth="2.6"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 6"
+                    />
+                    <path
+                      d="M50 50 C 54 54 60 60 83.3 83.3"
+                      stroke="currentColor"
+                      strokeWidth="2.6"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 6"
+                    />
+                    <path
+                      d="M50 50 C 46 54 40 60 16.7 83.3"
+                      stroke="currentColor"
+                      strokeWidth="2.6"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 6"
+                    />
+                  </g>
+                </svg>
+
+                <svg
+                  className="absolute inset-0 h-full w-full text-purple-400/25 blur-[0.35px]"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <g className="motion-safe:animate-[pulse_2.2s_ease-in-out_infinite]">
+                    <path
+                      d="M50 50 C 50 44 50 38 50 16.7"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50 50 C 56 50 62 50 83.3 50"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50 50 C 50 56 50 62 50 83.3"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M50 50 C 44 50 38 50 16.7 50"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+
+                    <path
+                      d="M50 50 C 46 46 40 40 16.7 16.7"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 4"
+                    />
+                    <path
+                      d="M50 50 C 54 46 60 40 83.3 16.7"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 4"
+                    />
+                    <path
+                      d="M50 50 C 54 54 60 60 83.3 83.3"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 4"
+                    />
+                    <path
+                      d="M50 50 C 46 54 40 60 16.7 83.3"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="2 4"
+                    />
+                  </g>
+                </svg>
+
+                {/* Animated nodes at intersections */}
+                <span className="absolute left-1/2 top-[33.5%] -translate-x-1/2 -translate-y-1/2">
+                  <span className="absolute inset-0 w-3 h-3 rounded-full bg-purple-400/30 blur-[2px] animate-ping"></span>
+                  <span className="block w-2 h-2 rounded-full bg-white/70 ring-2 ring-purple-300/40"></span>
+                </span>
+                <span className="absolute left-1/2 top-[66.5%] -translate-x-1/2 -translate-y-1/2">
+                  <span className="absolute inset-0 w-3 h-3 rounded-full bg-pink-400/30 blur-[2px] animate-ping"></span>
+                  <span className="block w-2 h-2 rounded-full bg-white/70 ring-2 ring-pink-300/40"></span>
+                </span>
+                <span className="absolute left-[33.5%] top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span className="absolute inset-0 w-3 h-3 rounded-full bg-indigo-400/30 blur-[2px] animate-ping"></span>
+                  <span className="block w-2 h-2 rounded-full bg-white/70 ring-2 ring-indigo-300/40"></span>
+                </span>
+                <span className="absolute left-[66.5%] top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span className="absolute inset-0 w-3 h-3 rounded-full bg-purple-400/30 blur-[2px] animate-ping"></span>
+                  <span className="block w-2 h-2 rounded-full bg-white/70 ring-2 ring-purple-300/40"></span>
+                </span>
+
+                {/* Extra micro-nodes (spark points along connectors) */}
+                <span className="absolute left-1/2 top-[25%] -translate-x-1/2 -translate-y-1/2">
+                  <span
+                    className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-indigo-400/25 blur-[2px] motion-safe:animate-[ping_2.4s_ease-in-out_infinite]"
+                    style={{ animationDelay: "120ms" }}
+                  ></span>
+                  <span className="block w-1.5 h-1.5 rounded-full bg-white/60 ring-1 ring-indigo-300/40"></span>
+                </span>
+                <span className="absolute left-[25%] top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span
+                    className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-purple-400/25 blur-[2px] motion-safe:animate-[ping_2.8s_ease-in-out_infinite]"
+                    style={{ animationDelay: "260ms" }}
+                  ></span>
+                  <span className="block w-1.5 h-1.5 rounded-full bg-white/60 ring-1 ring-purple-300/40"></span>
+                </span>
+                <span className="absolute left-[75%] top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span
+                    className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-pink-400/25 blur-[2px] motion-safe:animate-[ping_2.6s_ease-in-out_infinite]"
+                    style={{ animationDelay: "420ms" }}
+                  ></span>
+                  <span className="block w-1.5 h-1.5 rounded-full bg-white/60 ring-1 ring-pink-300/40"></span>
+                </span>
+                <span className="absolute left-1/2 top-[75%] -translate-x-1/2 -translate-y-1/2">
+                  <span
+                    className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-purple-400/25 blur-[2px] motion-safe:animate-[ping_2.7s_ease-in-out_infinite]"
+                    style={{ animationDelay: "560ms" }}
+                  ></span>
+                  <span className="block w-1.5 h-1.5 rounded-full bg-white/60 ring-1 ring-purple-300/40"></span>
+                </span>
+
+                {/* Theme sparkles */}
+                <div className="absolute left-[28%] top-[30%] text-white/60 text-lg sm:text-xl drop-shadow-lg animate-pulse">
+                  ✦
+                </div>
+                <div className="absolute right-[28%] top-[32%] text-white/50 text-sm sm:text-base drop-shadow-lg animate-pulse">
+                  ✧
+                </div>
+                <div className="absolute left-[30%] bottom-[28%] text-white/50 text-sm sm:text-base drop-shadow-lg animate-pulse">
+                  ✧
+                </div>
+                <div className="absolute right-[28%] bottom-[30%] text-white/60 text-lg sm:text-xl drop-shadow-lg animate-pulse">
+                  ✦
+                </div>
+
+                {/* Musical glyphs in the gaps */}
+                <div className="absolute left-1/2 top-[12%] -translate-x-1/2 text-white/35 text-base sm:text-lg drop-shadow-lg mix-blend-screen motion-safe:animate-[pulse_2.2s_ease-in-out_infinite]">
+                  ♪
+                </div>
+                <div
+                  className="absolute left-[12%] top-1/2 -translate-y-1/2 text-white/30 text-lg sm:text-xl drop-shadow-lg mix-blend-screen motion-safe:animate-[pulse_2.6s_ease-in-out_infinite]"
+                  style={{ animationDelay: "180ms" }}
+                >
+                  ♫
+                </div>
+                <div
+                  className="absolute right-[12%] top-1/2 -translate-y-1/2 text-white/30 text-lg sm:text-xl drop-shadow-lg mix-blend-screen motion-safe:animate-[pulse_2.6s_ease-in-out_infinite]"
+                  style={{ animationDelay: "420ms" }}
+                >
+                  ♫
+                </div>
+                <div
+                  className="absolute left-1/2 bottom-[12%] -translate-x-1/2 text-white/35 text-base sm:text-lg drop-shadow-lg mix-blend-screen motion-safe:animate-[pulse_2.2s_ease-in-out_infinite]"
+                  style={{ animationDelay: "300ms" }}
+                >
+                  ♪
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="group relative z-10 order-1 sm:order-none w-full h-48 sm:w-40 sm:h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/Chai aur Kalam.jpg"
@@ -170,18 +406,19 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       चाय और कलम
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Live Library
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-indigo-200/50 hover:ring-indigo-400/70 aspect-square">
+              {/* Card 3 */}
+              <div className="group relative z-10 order-2 sm:order-none w-full h-48 sm:w-40 sm:h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-indigo-200/50 hover:ring-indigo-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/DigitalLibrary.avif"
@@ -190,18 +427,19 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       डिजिटल ज्ञान कोष
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Digital Library
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-pink-200/50 hover:ring-pink-400/70 aspect-square">
+              {/* Card 4 */}
+              <div className="group relative z-10 order-4 sm:order-none w-full h-48 sm:w-40 sm:h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-pink-200/50 hover:ring-pink-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/ClayModelling.jpg"
@@ -210,19 +448,19 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       मिट्टी की कला
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Clay Modelling
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Middle Row: Left Card, Sufi Night (Centered), Right Card */}
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-indigo-200/50 hover:ring-indigo-400/70 aspect-square">
+              {/* Card 5 */}
+              <div className="group relative z-10 order-5 sm:order-none w-full h-56 sm:w-40 sm:h-56 md:w-52 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-indigo-200/50 hover:ring-indigo-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/AuthorTalkShow.jpg"
@@ -231,46 +469,51 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       Author Talk Show
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Literary Conversations
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Sufi Night: Centered, Big Square */}
-              <div className="col-span-3 row-span-3 group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] ring-4 ring-purple-400/60 hover:ring-purple-500 aspect-square">
-                <div className="relative w-full h-full bg-gradient-to-br from-purple-950 via-indigo-950 to-black">
-                  <Image
-                    src="/ArmaanMalik.jpeg"
-                    alt="Sufi Night - Mystical Music Evening"
-                    fill
-                    className="object-cover blur-[8px] opacity-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50"></div>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 sm:p-12 lg:p-16">
-                    <h3 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white mb-4 sm:mb-6 lg:mb-8 text-center drop-shadow-2xl tracking-tight">
-                      Sufi Night
-                    </h3>
-                    <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 font-bold text-center drop-shadow-xl mb-6 sm:mb-8 lg:mb-10">
-                      Mystical Music Evening
-                    </p>
-                    <div className="text-7xl sm:text-8xl lg:text-9xl animate-pulse mb-6 sm:mb-8 lg:mb-10">
-                      🎵
+              {/* Center (Big) - Sufi Night */}
+              <div className="relative z-20 order-3 sm:order-none w-full sm:w-auto sm:col-span-1">
+                {/* Outer aura (extends into gaps) */}
+                <div className="pointer-events-none absolute -inset-6 rounded-[44px] bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-indigo-500/25 blur-2xl opacity-70 motion-safe:animate-[pulse_2.8s_ease-in-out_infinite]"></div>
+                <div className="pointer-events-none absolute -inset-8 rounded-[56px] bg-gradient-to-r from-indigo-500/15 via-purple-500/15 to-pink-500/15 blur-3xl opacity-60 motion-safe:animate-[spin_14s_linear_infinite]"></div>
+
+                <div className="group relative w-full h-64 sm:w-64 sm:h-64 md:w-80 md:h-80 overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.03] ring-4 ring-purple-400/60 hover:ring-purple-500">
+                  <div className="relative w-full h-full bg-gradient-to-br from-purple-950 via-indigo-950 to-black">
+                    <Image
+                      src="/ArmaanMalik.jpeg"
+                      alt="Sufi Night - Mystical Music Evening"
+                      fill
+                      className="object-cover blur-[8px] opacity-90"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-60"></div>
+
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+                      <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-2 sm:mb-3 text-center drop-shadow-2xl tracking-tight leading-none">
+                        Sufi Night
+                      </h3>
+                      <p className="text-xs sm:text-sm md:text-base text-gray-100 font-bold text-center drop-shadow-xl mb-3 sm:mb-4">
+                        Mystical Music Evening
+                      </p>
+                      <p className="text-xs sm:text-sm text-yellow-300 font-semibold text-center drop-shadow-lg animate-pulse">
+                        ⭐ Star to be revealed soon ⭐
+                      </p>
                     </div>
-                    <p className="text-sm sm:text-base lg:text-lg text-yellow-300 font-semibold text-center drop-shadow-lg animate-pulse">
-                      ⭐ Star to be revealed on 3rd Feb ⭐
-                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Riwayat-e-Bharat: Right Card */}
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-pink-200/50 hover:ring-pink-400/70 aspect-square">
+              {/* Card 6 */}
+              <div className="group relative z-10 order-6 sm:order-none w-full h-56 sm:w-40 sm:h-56 md:w-52 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-pink-200/50 hover:ring-pink-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/Riwayat-e-Bharat.webp"
@@ -279,19 +522,19 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       Riwayat-e-Bharat
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Heritage Stories
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Row: 3 Cards */}
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-purple-200/50 hover:ring-purple-400/70 aspect-square">
+              {/* Card 7 */}
+              <div className="group relative z-10 order-7 sm:order-none w-full h-48 sm:w-40 sm:h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/Kavi Sammelan.jpeg"
@@ -300,18 +543,19 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       कवि सम्मेलन
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Poetry Congregation
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-indigo-200/50 hover:ring-indigo-400/70 aspect-square">
+              {/* Card 8 */}
+              <div className="group relative z-10 order-8 sm:order-none w-full h-48 sm:w-40 sm:h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-indigo-200/50 hover:ring-indigo-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/SwarSangam.jpeg"
@@ -320,18 +564,19 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       स्वर संगम
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Live Jamming Sessions
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 ring-2 ring-purple-200/50 hover:ring-purple-400/70 aspect-square">
+              {/* Card 9 */}
+              <div className="group relative z-10 order-9 sm:order-none w-full h-48 sm:w-40 sm:h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:scale-[1.03] ring-2 ring-purple-200/50 hover:ring-purple-400/70">
                 <div className="relative w-full h-full">
                   <Image
                     src="/VirasatBazar.jpg"
@@ -340,11 +585,11 @@ export default function HomePage() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-white mb-1 leading-tight drop-shadow-lg">
                       Virasat Bazar
                     </h3>
-                    <p className="text-sm text-gray-200 font-medium">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium">
                       Heritage Marketplace
                     </p>
                   </div>
@@ -499,7 +744,8 @@ export default function HomePage() {
             {/* Additional Info */}
             <div className="text-center mt-6 sm:mt-8 md:mt-12">
               <p className="text-gray-600 text-[10px] sm:text-xs md:text-sm italic px-2">
-                "Creativity knows no bounds when minds come together"
+                &ldquo;Creativity knows no bounds when minds come
+                together&rdquo;
               </p>
             </div>
           </div>
