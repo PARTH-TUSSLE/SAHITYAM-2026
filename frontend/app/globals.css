@@ -3,6 +3,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 * {
   font-family: var(--font-poppins), "Segoe UI", Tahoma, Geneva, Verdana,
     sans-serif;
