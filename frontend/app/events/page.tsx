@@ -27,6 +27,8 @@ interface Event {
 interface Registration {
   eventId: string;
   isActive: boolean;
+  paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
+  rejectionReason?: string | null;
 }
 
 function Events() {
@@ -34,6 +36,9 @@ function Events() {
   const [registeredEventIds, setRegisteredEventIds] = useState<Set<string>>(
     new Set()
   );
+  const [registrationsMap, setRegistrationsMap] = useState<
+    Map<string, Registration>
+  >(new Map());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loadingEventId, setLoadingEventId] = useState<string | null>(null);
@@ -78,9 +83,19 @@ function Events() {
         return;
       }
       const registrations: Registration[] = response.data;
-      // Only include active registrations
+
+      // Create a map of all registrations for detailed status checking
+      const regMap = new Map<string, Registration>();
+      registrations.forEach((reg) => {
+        regMap.set(reg.eventId, reg);
+      });
+      setRegistrationsMap(regMap);
+
+      // Only include active registrations with non-rejected payment status
       const eventIds = new Set(
-        registrations.filter((reg) => reg.isActive).map((reg) => reg.eventId)
+        registrations
+          .filter((reg) => reg.isActive && reg.paymentStatus !== "REJECTED")
+          .map((reg) => reg.eventId)
       );
       setRegisteredEventIds(eventIds);
     } catch (err: any) {
@@ -453,24 +468,28 @@ function Events() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {events.map((event) => (
-                  <ChromaCard
-                    key={event.id}
-                    eventId={event.id}
-                    image={event.image}
-                    title={event.title}
-                    subtitle={event.subtitle || ""}
-                    description={event.description}
-                    rules={event.rules}
-                    registrationFee={event.registrationFee}
-                    prizeAmount={event.prizeAmount}
-                    isRegistered={registeredEventIds.has(event.id)}
-                    onRegister={handleRegister}
-                    onUnregister={handleUnregister}
-                    isAuthenticated={isAuthenticated}
-                    isLoading={loadingEventId === event.id}
-                  />
-                ))}
+                {events.map((event) => {
+                  const registration = registrationsMap.get(event.id);
+                  return (
+                    <ChromaCard
+                      key={event.id}
+                      eventId={event.id}
+                      image={event.image}
+                      title={event.title}
+                      subtitle={event.subtitle || ""}
+                      description={event.description}
+                      rules={event.rules}
+                      registrationFee={event.registrationFee}
+                      prizeAmount={event.prizeAmount}
+                      isRegistered={registeredEventIds.has(event.id)}
+                      registrationStatus={registration}
+                      onRegister={handleRegister}
+                      onUnregister={handleUnregister}
+                      isAuthenticated={isAuthenticated}
+                      isLoading={loadingEventId === event.id}
+                    />
+                  );
+                })}
               </div>
             )}
           </div>

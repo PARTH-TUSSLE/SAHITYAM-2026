@@ -315,11 +315,11 @@ export function ShareButton({
       <button
         ref={buttonRef}
         onClick={() => setShowModal(true)}
-        className="p-2 hover:bg-white/90 bg-white/70 backdrop-blur-sm rounded-lg transition-all duration-300 group shadow-md hover:shadow-lg flex items-center justify-center"
+        className="px-3 py-3 hover:bg-white/90 bg-white/70 backdrop-blur-sm border-2 border-white/50 hover:border-purple-400 rounded-lg transition-all duration-300 group shadow-md hover:shadow-lg flex items-center justify-center min-h-[42px]"
         title="Share event"
       >
         <svg
-          className="w-3.5 h-3.5 text-gray-700 group-hover:text-purple-600 transition-colors flex-shrink-0"
+          className="w-4 h-4 text-gray-700 group-hover:text-purple-600 transition-colors flex-shrink-0"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

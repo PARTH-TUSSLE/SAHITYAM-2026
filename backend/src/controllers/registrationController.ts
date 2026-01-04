@@ -263,7 +263,16 @@ export const getUserRegistrations = async (
       },
     });
 
-    res.json(registrations);
+    // Map registrations to include necessary fields
+    const formattedRegistrations = registrations.map((reg) => ({
+      eventId: reg.eventId,
+      isActive: reg.isActive,
+      paymentStatus: reg.paymentStatus,
+      rejectionReason: reg.rejectionReason,
+      event: reg.event,
+    }));
+
+    res.json(formattedRegistrations);
   } catch (error) {
     console.error("Get registrations error:", error);
     res.status(500).json({ error: "Failed to fetch registrations" });
