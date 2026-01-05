@@ -10,6 +10,7 @@ import {
   getRejectedPayments,
   getInactiveRegistrations,
   verifyPayment,
+  reactivateRegistration,
 } from "../controllers/adminController";
 
 const router = Router();
@@ -43,5 +44,11 @@ router.get("/inactive-registrations", getInactiveRegistrations);
 
 // Verify or unverify a payment
 router.patch("/verify-payment/:registrationId", verifyPayment);
+
+// Reactivate an inactive registration
+router.patch(
+  "/reactivate-registration/:registrationId",
+  reactivateRegistration
+);
 
 export default router;

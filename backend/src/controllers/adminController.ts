@@ -537,3 +537,78 @@ export const getInactiveRegistrations = async (
     res.status(500).json({ error: "Failed to fetch inactive registrations" });
   }
 };
+
+// Reactivate an inactive registration
+export const reactivateRegistration = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { registrationId } = req.params;
+
+    // Check if registration exists and is inactive
+    const registration = await prisma.registration.findUnique({
+      where: { id: registrationId },
+      include: {
+        event: {
+          select: {
+            title: true,
+          },
+        },
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    if (!registration) {
+      res.status(404).json({ error: "Registration not found" });
+      return;
+    }
+
+    if (registration.isActive) {
+      res.status(400).json({ error: "Registration is already active" });
+      return;
+    }
+
+    // Reactivate the registration
+    const updatedRegistration = await prisma.registration.update({
+      where: { id: registrationId },
+      data: {
+        isActive: true,
+        // Reset payment status to PENDING so admin can verify again
+        paymentStatus: "PENDING",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            email: true,
+            mobileNumber: true,
+            createdAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            title: true,
+            subtitle: true,
+          },
+        },
+      },
+    });
+
+    res.json({
+      message: "Registration reactivated successfully",
+      registration: updatedRegistration,
+    });
+  } catch (error) {
+    console.error("Reactivate registration error:", error);
+    res.status(500).json({ error: "Failed to reactivate registration" });
+  }
+};

@@ -28,6 +28,10 @@ export const metadata: Metadata = {
     "performances",
   ],
   authors: [{ name: "SAHITYAM Team" }],
+  icons: {
+    icon: [{ url: "/sahityamlogo.png" }, { url: "/favicon.ico" }],
+    apple: "/sahityamlogo.png",
+  },
   openGraph: {
     title: "SAHITYAM 2026 - Where Art and Literature Converge",
     description:
@@ -35,11 +39,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "SAHITYAM 2026",
+    images: ["/sahityamlogo.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "SAHITYAM 2026 - Where Art and Literature Converge",
     description: "Join us for SAHITYAM 2026, a premier literature festival.",
+    images: ["/sahityamlogo.png"],
   },
   robots: {
     index: true,

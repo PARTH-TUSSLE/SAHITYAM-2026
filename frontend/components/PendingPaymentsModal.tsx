@@ -183,6 +183,36 @@ export default function PendingPaymentsModal({
     setRejectionReason("");
   };
 
+  const handleReactivateRegistration = async (registrationId: string) => {
+    try {
+      setVerifying(true);
+      setVerifyingId(registrationId);
+      await apiClient.patch(`/admin/reactivate-registration/${registrationId}`);
+
+      setSuccessModal({
+        isOpen: true,
+        title: "Registration Reactivated!",
+        message:
+          "The registration has been reactivated successfully. It will now appear in pending payments for verification.",
+        type: "success",
+      });
+
+      onPaymentVerified();
+    } catch (error: any) {
+      setSuccessModal({
+        isOpen: true,
+        title: "Reactivation Failed",
+        message:
+          error.response?.data?.error ||
+          "Failed to reactivate registration. Please try again.",
+        type: "error",
+      });
+    } finally {
+      setVerifying(false);
+      setVerifyingId(null);
+    }
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -413,7 +443,9 @@ export default function PendingPaymentsModal({
                         ? "All Caught Up!"
                         : activeTab === "verified"
                         ? "No Verified Payments"
-                        : "No Rejected Payments"}
+                        : activeTab === "rejected"
+                        ? "No Rejected Payments"
+                        : "No Inactive Registrations"}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600">
                       {searchQuery
@@ -422,7 +454,9 @@ export default function PendingPaymentsModal({
                         ? "No pending payments to verify at the moment."
                         : activeTab === "verified"
                         ? "No payments have been verified yet."
-                        : "No payments have been rejected yet."}
+                        : activeTab === "rejected"
+                        ? "No payments have been rejected yet."
+                        : "No inactive registrations found."}
                     </p>
                   </div>
                 ) : (
@@ -573,14 +607,101 @@ export default function PendingPaymentsModal({
                         )}
 
                         {/* Actions */}
-                        {payment.paymentStatus === "PENDING" && (
-                          <div className="flex gap-2 sm:gap-3 mt-4">
+                        {payment.paymentStatus === "PENDING" &&
+                          activeTab !== "inactive" && (
+                            <div className="flex gap-2 sm:gap-3 mt-4">
+                              <button
+                                onClick={() =>
+                                  handleVerifyPayment(payment.id, true)
+                                }
+                                disabled={verifying}
+                                className={`flex-1 bg-linear-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
+                                  verifying && verifyingId === payment.id
+                                    ? "opacity-50 cursor-not-allowed"
+                                    : ""
+                                }`}
+                              >
+                                {verifying && verifyingId === payment.id ? (
+                                  <>
+                                    <PremiumSpinner
+                                      size="sm"
+                                      variant="inline"
+                                    />
+                                    <span className="hidden sm:inline">
+                                      Verifying...
+                                    </span>
+                                    <span className="sm:hidden">...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <svg
+                                      className="w-4 h-4 sm:w-5 sm:h-5"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      />
+                                    </svg>
+                                    Verify
+                                  </>
+                                )}
+                              </button>
+                              <button
+                                onClick={() => handleRejectClick(payment.id)}
+                                disabled={verifying}
+                                className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
+                                  verifying && verifyingId === payment.id
+                                    ? "opacity-50 cursor-not-allowed"
+                                    : ""
+                                }`}
+                              >
+                                {verifying && verifyingId === payment.id ? (
+                                  <>
+                                    <PremiumSpinner
+                                      size="sm"
+                                      variant="inline"
+                                    />
+                                    <span className="hidden sm:inline">
+                                      Processing...
+                                    </span>
+                                    <span className="sm:hidden">...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <svg
+                                      className="w-4 h-4 sm:w-5 sm:h-5"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      />
+                                    </svg>
+                                    Reject
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          )}
+
+                        {/* Reactivate button for inactive registrations */}
+                        {activeTab === "inactive" && (
+                          <div className="mt-4">
                             <button
                               onClick={() =>
-                                handleVerifyPayment(payment.id, true)
+                                handleReactivateRegistration(payment.id)
                               }
                               disabled={verifying}
-                              className={`flex-1 bg-linear-to-r from-green-500 to-green-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
+                              className={`w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
                                 verifying && verifyingId === payment.id
                                   ? "opacity-50 cursor-not-allowed"
                                   : ""
@@ -590,7 +711,7 @@ export default function PendingPaymentsModal({
                                 <>
                                   <PremiumSpinner size="sm" variant="inline" />
                                   <span className="hidden sm:inline">
-                                    Verifying...
+                                    Reactivating...
                                   </span>
                                   <span className="sm:hidden">...</span>
                                 </>
@@ -606,46 +727,10 @@ export default function PendingPaymentsModal({
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
                                       strokeWidth={2}
-                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                                     />
                                   </svg>
-                                  Verify
-                                </>
-                              )}
-                            </button>
-                            <button
-                              onClick={() => handleRejectClick(payment.id)}
-                              disabled={verifying}
-                              className={`flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base ${
-                                verifying && verifyingId === payment.id
-                                  ? "opacity-50 cursor-not-allowed"
-                                  : ""
-                              }`}
-                            >
-                              {verifying && verifyingId === payment.id ? (
-                                <>
-                                  <PremiumSpinner size="sm" variant="inline" />
-                                  <span className="hidden sm:inline">
-                                    Processing...
-                                  </span>
-                                  <span className="sm:hidden">...</span>
-                                </>
-                              ) : (
-                                <>
-                                  <svg
-                                    className="w-4 h-4 sm:w-5 sm:h-5"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
-                                  </svg>
-                                  Reject
+                                  Reactivate Registration
                                 </>
                               )}
                             </button>

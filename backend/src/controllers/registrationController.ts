@@ -174,7 +174,7 @@ export const registerForEvent = async (
       return;
     }
 
-    // Check if already registered
+    // Check if already registered with an active registration
     const existingRegistration = await prisma.registration.findFirst({
       where: {
         userId,
@@ -188,16 +188,50 @@ export const registerForEvent = async (
       return;
     }
 
-    // Create registration
-    const registration = await prisma.registration.create({
-      data: {
+    // Check if there's an inactive or rejected registration that we should reactivate
+    const inactiveRegistration = await prisma.registration.findFirst({
+      where: {
         userId,
         eventId,
-      },
-      include: {
-        event: true,
+        isActive: false,
       },
     });
+
+    let registration;
+
+    if (inactiveRegistration) {
+      // Reactivate the existing registration and reset status
+      registration = await prisma.registration.update({
+        where: {
+          id: inactiveRegistration.id,
+        },
+        data: {
+          isActive: true,
+          paymentStatus: "PENDING",
+          paymentVerified: false,
+          rejectionReason: null,
+          transactionId: null,
+          paymentScreenshotUrl: null,
+          registrantName: null,
+          registrantEmail: null,
+          registrantMobile: null,
+        },
+        include: {
+          event: true,
+        },
+      });
+    } else {
+      // Create new registration
+      registration = await prisma.registration.create({
+        data: {
+          userId,
+          eventId,
+        },
+        include: {
+          event: true,
+        },
+      });
+    }
 
     res.status(201).json(registration);
   } catch (error) {
@@ -218,7 +252,6 @@ export const unregisterFromEvent = async (
       where: {
         userId,
         eventId,
-        isActive: true,
       },
     });
 
@@ -227,15 +260,25 @@ export const unregisterFromEvent = async (
       return;
     }
 
-    // Mark registration as inactive instead of deleting
-    await prisma.registration.update({
-      where: {
-        id: registration.id,
-      },
-      data: {
-        isActive: false,
-      },
-    });
+    // If registration is already inactive (rejected/unregistered), delete it completely
+    // This allows the user to register again for the event
+    // For active registrations, just mark as inactive
+    if (!registration.isActive) {
+      await prisma.registration.delete({
+        where: {
+          id: registration.id,
+        },
+      });
+    } else {
+      await prisma.registration.update({
+        where: {
+          id: registration.id,
+        },
+        data: {
+          isActive: false,
+        },
+      });
+    }
 
     res.json({ message: "Successfully unregistered from event" });
   } catch (error) {

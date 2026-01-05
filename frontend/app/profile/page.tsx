@@ -76,7 +76,7 @@ export default function ProfilePage() {
 
     // Confirm before unregistering
     const confirmed = window.confirm(
-      "Are you sure you want to unregister from this event? This action cannot be undone."
+      "Are you sure you want to remove this event from your profile? This action cannot be undone."
     );
 
     if (!confirmed) {
@@ -86,16 +86,13 @@ export default function ProfilePage() {
     try {
       setUnregisteringEventId(eventId);
       await apiClient.delete(`/registrations/${eventId}`);
-      // Update the registration to mark it as inactive instead of removing it
-      setRegistrations((prev) =>
-        prev.map((reg) =>
-          reg.eventId === eventId ? { ...reg, isActive: false } : reg
-        )
-      );
+      // Remove the registration from the state completely
+      setRegistrations((prev) => prev.filter((reg) => reg.eventId !== eventId));
     } catch (err: any) {
       console.error("Error unregistering:", err);
       const errorMessage =
-        err.response?.data?.error || "Failed to unregister. Please try again.";
+        err.response?.data?.error ||
+        "Failed to remove event. Please try again.";
       alert(errorMessage);
     } finally {
       setUnregisteringEventId(null);
@@ -327,7 +324,10 @@ export default function ProfilePage() {
                   {registrations
                     .filter((r) => r.isActive && r.paymentStatus !== "REJECTED")
                     .map((registration) => (
-                      <div key={registration.id} className="group relative">
+                      <div
+                        key={`active-${registration.id}`}
+                        className="group relative"
+                      >
                         {/* Card Glow Effect */}
                         <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
 
@@ -484,14 +484,14 @@ export default function ProfilePage() {
                                       unregisteringEventId ===
                                       registration.eventId
                                     }
-                                    className={`relative flex-1 sm:flex-none px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white text-[10px] sm:text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1 sm:gap-2 shadow-md hover:shadow-lg overflow-hidden group ${
+                                    className={`relative flex-1 sm:flex-none px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-[10px] sm:text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1 sm:gap-2 shadow-md shadow-red-500/40 hover:shadow-lg hover:shadow-red-600/50 overflow-hidden group ring-1 ring-white/20 ${
                                       unregisteringEventId ===
                                       registration.eventId
                                         ? "opacity-70 cursor-not-allowed"
                                         : ""
                                     }`}
                                   >
-                                    <span className="relative z-10">
+                                    <span className="relative z-10 flex items-center gap-1">
                                       {unregisteringEventId ===
                                       registration.eventId ? (
                                         <PremiumSpinner
@@ -499,9 +499,23 @@ export default function ProfilePage() {
                                           variant="inline"
                                         />
                                       ) : (
-                                        "Remove"
+                                        <>
+                                          <svg
+                                            className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                          >
+                                            <path
+                                              fillRule="evenodd"
+                                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                              clipRule="evenodd"
+                                            />
+                                          </svg>
+                                          <span>Remove</span>
+                                        </>
                                       )}
                                     </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-500 skew-x-12"></div>
                                   </button>
                                 </div>
                               ) : (
@@ -587,7 +601,7 @@ export default function ProfilePage() {
                     )
                     .map((registration) => (
                       <div
-                        key={registration.id}
+                        key={`inactive-${registration.id}`}
                         className="group relative opacity-75"
                       >
                         {/* Card Glow Effect */}
@@ -706,7 +720,7 @@ export default function ProfilePage() {
                     .filter((r) => r.paymentStatus === "REJECTED")
                     .map((registration) => (
                       <div
-                        key={registration.id}
+                        key={`rejected-${registration.id}`}
                         className="group relative opacity-90"
                       >
                         {/* Card Glow Effect */}
@@ -776,7 +790,7 @@ export default function ProfilePage() {
                               </div>
                             </div>
 
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between gap-2">
                               <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
                                 <svg
                                   className="w-4 h-4 text-gray-400"
@@ -794,25 +808,66 @@ export default function ProfilePage() {
                                 ).toLocaleDateString()}
                               </div>
 
-                              <button
-                                onClick={() => router.push(`/events`)}
-                                className="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-2 shadow-md shadow-green-500/40 hover:shadow-lg hover:shadow-green-600/50"
-                              >
-                                <svg
-                                  className="w-3.5 h-3.5"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => router.push(`/events`)}
+                                  className="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-2 shadow-md shadow-green-500/40 hover:shadow-lg hover:shadow-green-600/50"
                                 >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                                  />
-                                </svg>
-                                Re-register
-                              </button>
+                                  <svg
+                                    className="w-3.5 h-3.5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                    />
+                                  </svg>
+                                  Re-register
+                                </button>
+
+                                <button
+                                  onClick={() =>
+                                    handleUnregister(registration.eventId)
+                                  }
+                                  disabled={
+                                    unregisteringEventId ===
+                                    registration.eventId
+                                  }
+                                  className={`px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-2 shadow-md shadow-red-500/40 hover:shadow-lg hover:shadow-red-600/50 ${
+                                    unregisteringEventId ===
+                                    registration.eventId
+                                      ? "opacity-70 cursor-not-allowed"
+                                      : ""
+                                  }`}
+                                >
+                                  {unregisteringEventId ===
+                                  registration.eventId ? (
+                                    <PremiumSpinner
+                                      size="sm"
+                                      variant="inline"
+                                    />
+                                  ) : (
+                                    <>
+                                      <svg
+                                        className="w-3.5 h-3.5"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                      Remove
+                                    </>
+                                  )}
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
