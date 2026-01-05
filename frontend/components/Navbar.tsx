@@ -255,12 +255,18 @@ function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2.5 rounded-xl bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 shadow-md hover:shadow-lg ring-1 ring-purple-200/30"
+            className="md:hidden relative p-2.5 rounded-xl bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 shadow-md hover:shadow-lg ring-1 ring-purple-200/30"
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
+            {/* Rippling glow effect */}
+            <div className="absolute inset-0 rounded-xl">
+              <div className="absolute inset-0 rounded-xl bg-purple-400 animate-ping opacity-20"></div>
+              <div className="absolute inset-0 rounded-xl bg-pink-400 animate-pulse opacity-30"></div>
+            </div>
+
             <svg
-              className="w-6 h-6 text-purple-600"
+              className="w-6 h-6 text-purple-600 relative z-10"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
