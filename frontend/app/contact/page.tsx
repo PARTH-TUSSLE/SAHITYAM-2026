@@ -162,7 +162,7 @@ export default function Contact() {
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Email</h3>
                 <span className="text-purple-600 font-semibold text-sm break-words cursor-default select-all">
-                  mindbenders@cgcuniversity.org
+                  sahityam@cgcuniversity.in
                 </span>
               </div>
             </div>

@@ -170,7 +170,7 @@ export default function ChromaCard({
                     registrationStatus.paymentStatus === "REJECTED") ? (
                     <div
                       onClick={(e) => e.stopPropagation()}
-                      className="relative px-3 py-2.5 bg-red-100 border-2 border-red-300 text-red-700 font-semibold rounded-lg text-xs sm:text-sm flex items-center justify-center cursor-not-allowed"
+                      className="relative px-2 py-2.5 bg-red-100 border-2 border-red-300 text-red-700 font-semibold rounded-lg text-xs sm:text-sm flex items-center justify-center cursor-not-allowed"
                       title={
                         registrationStatus.paymentStatus === "REJECTED" &&
                         registrationStatus.rejectionReason
@@ -180,8 +180,8 @@ export default function ChromaCard({
                     >
                       <span className="whitespace-nowrap">
                         {registrationStatus.paymentStatus === "REJECTED"
-                          ? "❌ Payment Rejected"
-                          : "⚠️ Registration Inactive"}
+                          ? "Payment Rejected"
+                          : "Registration Inactive"}
                       </span>
                     </div>
                   ) : (
