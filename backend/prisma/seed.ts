@@ -29,7 +29,7 @@ const events = [
       "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -55,7 +55,7 @@ const events = [
       "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -78,7 +78,7 @@ const events = [
       "Any form of indiscipline or misbehavior will result in immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   // {
@@ -102,7 +102,7 @@ const events = [
   //     "Any form of misconduct or violation of rules will lead to immediate disqualification.",
   //     "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
   //     "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-  //     "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+  //     "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
   //   ],
   // },
   {
@@ -127,7 +127,7 @@ const events = [
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "Any form of misbehavior, damage to stage/property, or violation of rules will result in immediate disqualification.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -151,7 +151,7 @@ const events = [
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The decision of the judges will be final and binding.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -174,7 +174,7 @@ const events = [
       "Any form of unfair means or indiscipline will lead to immediate disqualification.",
       "The decision of the quiz master and judges will be final and binding.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   // {
@@ -197,7 +197,7 @@ const events = [
   //     "Any form of misbehavior, indiscipline, or damage to stage/property will lead to immediate disqualification.",
   //     "The decision of the judges will be final and binding.",
   //     "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-  //     "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+  //     "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
   //   ],
   // },
   {
@@ -215,7 +215,6 @@ const events = [
       "Prize Distribution: 1st Place - ₹5,100, 2nd Place - ₹3,100, 3rd Place - ₹2,100. Winners will receive cash prizes along with trophies and certificates.",
       "**Debate Topic: Are digital platforms redefining the future of literature for the better?**",
       "The topic/motion will be revealed on 10th January 2026.",
-      "The language of the debate will be Hindi only.",
       "Each speaker will be given a maximum of 4–5 minutes to present their arguments.",
       "Use of mobile phones, notes, or any electronic gadgets during the speech is not allowed.",
       "The content must be respectful, factual, and relevant to the topic. Personal attacks, abusive language, or offensive remarks are strictly prohibited.",
@@ -223,7 +222,7 @@ const events = [
       "Any form of misconduct, indiscipline, or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -235,11 +234,11 @@ const events = [
     registrationFee: 300,
     prizeAmount: "30,000",
     rules: [
-      "Eligibility: Open to students from all participating colleges and universities. A valid college ID is mandatory on the event day.",
+      "Eligibility: Open to students from all participating schools, colleges and universities. A valid college ID is mandatory on the event day.",
       "Registration: Prior registration is compulsory. No on-spot registrations will be accepted.",
       "Prize Distribution: Best Parliamentarian - ₹11,000, Best Commendation - ₹5,100, Best Photographer - ₹5,100. Winners will receive cash prizes along with trophies and certificates of excellence.",
       "Awards: Winners will receive trophies and certificates of excellence along with recognition.",
-      "Dress Code - Day 1: Western Formals, Day 2: Traditional/Formal Indian Attire. Proper decorum must be maintained at all times.",
+      "Dress Code - Indian formals. Proper decorum must be maintained at all times.",
       "Portfolio Allotment: For portfolio allotment, kindly call the undersigned and get your portfolio locked. Once allotted, no changes will be allowed.",
       "Punctuality: Participants must report at least 30 minutes before the scheduled time. Late arrival may lead to disqualification.",
       "Code of Conduct: Parliamentary language, discipline, and respectful behavior are mandatory. Use of unparliamentary words or misconduct will lead to immediate disqualification.",
@@ -250,7 +249,7 @@ const events = [
       "Disqualification Criteria: The organizing committee reserves the right to disqualify any participant on grounds of misconduct, indiscipline, violation of rules, or providing false information.",
       "Organizing Authority Rights: The organizing committee holds the right to modify the rules, prize pool, schedule, or format of the event if necessary.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Komalpreet Kaur - +91-84379 09176, Mr. Ansh - +91-788 899 0294",
     ],
   },
   {
@@ -277,7 +276,7 @@ const events = [
       "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -304,7 +303,7 @@ const events = [
       "Any form of misbehavior or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
   {
@@ -333,7 +332,7 @@ const events = [
       "Any form of misbehavior, misconduct, or violation of rules will lead to immediate disqualification.",
       "Accommodation Benefits: Participants who have opted for accommodation will receive breakfast, lunch, dinner, a stay, and access to all cultural events of SAHITYAM 2026.",
       "The organizing committee reserves the right to modify the rules and prize pool of all the events if required.",
-      "For more queries: Ms. Suhani - +91-8168360485, Mr. Ashish - +91-9350843234",
+      "For more queries: Ms. Suhani - +91-8168360485, Mr. Diwansh - +91-7681951539",
     ],
   },
 ];
