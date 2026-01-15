@@ -49,6 +49,12 @@ model Registration {
   transactionId        String?
   rejectionReason      String?
   isActive             Boolean       @default(true)
+  college              String?
+  state                String?
+  verifiedAt           DateTime?
+  verifiedById         String?
+  verifiedByName       String?
+  verifiedByEmail      String?
   event                Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
   user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 

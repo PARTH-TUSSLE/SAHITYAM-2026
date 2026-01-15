@@ -21,6 +21,8 @@ export interface PaymentData {
   name: string;
   email: string;
   mobileNumber: string;
+  college: string;
+  state: string;
   transactionId: string;
   paymentScreenshot: File | null;
 }
@@ -39,6 +41,8 @@ export default function PaymentModal({
     name: "",
     email: userEmail,
     mobileNumber: userMobile,
+    college: "",
+    state: "",
     transactionId: "",
   });
   const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
@@ -83,6 +87,9 @@ export default function PaymentModal({
       newErrors.mobileNumber = "Mobile number is required";
     else if (!/\d{10}$/.test(formData.mobileNumber))
       newErrors.mobileNumber = "Invalid mobile number (10 digits required)";
+    if (!formData.college.trim())
+      newErrors.college = "College/University is required";
+    if (!formData.state.trim()) newErrors.state = "State is required";
     if (!paymentScreenshot)
       newErrors.screenshot = "Payment screenshot is required";
 
@@ -99,6 +106,8 @@ export default function PaymentModal({
         name: formData.name,
         email: formData.email,
         mobileNumber: formData.mobileNumber,
+        college: formData.college,
+        state: formData.state,
         transactionId: formData.transactionId,
         paymentScreenshot,
       };
@@ -108,7 +117,14 @@ export default function PaymentModal({
 
   const handleClose = () => {
     if (!isLoading) {
-      setFormData({ name: "", email: "", mobileNumber: "", transactionId: "" });
+      setFormData({
+        name: "",
+        email: "",
+        mobileNumber: "",
+        college: "",
+        state: "",
+        transactionId: "",
+      });
       setPaymentScreenshot(null);
       setPreviewUrl(null);
       setErrors({});
@@ -166,9 +182,41 @@ export default function PaymentModal({
 
             {/* Content */}
             <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(90vh-200px)] scrollbar-hide">
+              {/* Instruction Banner */}
+              <div className="mb-6 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 border-l-4 border-indigo-500 rounded-lg p-4 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <svg
+                    className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-bold text-gray-900 mb-1">
+                      How to Complete Your Registration
+                    </h4>
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      <span className="font-semibold">Step 1:</span> Fill in
+                      your details in the form below. <br />
+                      <span className="font-semibold">Step 2:</span> Scroll down
+                      to find the QR code for payment.{" "}
+                      <span className="font-semibold">Step 3:</span> Upload
+                      payment screenshot and submit!
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* QR Code Section */}
-                <div className="space-y-4">
+                {/* QR Code Section - appears second on mobile (order-2), first on desktop (lg:order-1) */}
+                <div className="space-y-4 order-2 lg:order-1">
                   <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 rounded-2xl p-6 border-2 border-purple-200 ring-1 ring-purple-100/50">
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                       <svg
@@ -220,14 +268,14 @@ export default function PaymentModal({
                       </p>
                       <p className="flex items-start gap-2">
                         <span className="text-purple-500 mt-1">•</span>
-                        <span>Upload the screenshot below</span>
+                        <span>Upload the screenshot above</span>
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Form Section */}
-                <div className="space-y-4">
+                {/* Form Section - appears first on mobile (order-1), second on desktop (lg:order-2) */}
+                <div className="space-y-4 order-1 lg:order-2">
                   <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Name */}
                     <div>
@@ -295,6 +343,50 @@ export default function PaymentModal({
                       {errors.mobileNumber && (
                         <p className="text-red-500 text-sm mt-1">
                           {errors.mobileNumber}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* College/University */}
+                    <div>
+                      <label className="block text-sm font-bold text-gray-900 mb-2">
+                        College/University *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.college}
+                        onChange={(e) =>
+                          setFormData({ ...formData, college: e.target.value })
+                        }
+                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium ring-1 ring-transparent focus:ring-purple-200/50"
+                        placeholder="Enter your college or university name"
+                        disabled={isLoading}
+                      />
+                      {errors.college && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.college}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* State */}
+                    <div>
+                      <label className="block text-sm font-bold text-gray-900 mb-2">
+                        State *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.state}
+                        onChange={(e) =>
+                          setFormData({ ...formData, state: e.target.value })
+                        }
+                        className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-purple-400 focus:bg-white transition-all outline-none font-medium ring-1 ring-transparent focus:ring-purple-200/50"
+                        placeholder="Enter your state"
+                        disabled={isLoading}
+                      />
+                      {errors.state && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.state}
                         </p>
                       )}
                     </div>
@@ -383,41 +475,43 @@ export default function PaymentModal({
                         </div>
                       )}
                     </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={isLoading}
-                      className="w-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group ring-1 ring-white/20"
-                    >
-                      <span className="relative z-10 flex items-center justify-center gap-2">
-                        {isLoading ? (
-                          <>
-                            <PremiumSpinner size="sm" variant="inline" />
-                            <span>Processing...</span>
-                          </>
-                        ) : (
-                          <>
-                            Complete Registration
-                            <svg
-                              className="w-5 h-5"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                          </>
-                        )}
-                      </span>
-                    </button>
                   </form>
                 </div>
+              </div>
+
+              {/* Submit Button - Appears at the bottom after both sections */}
+              <div className="mt-6">
+                <button
+                  onClick={handleSubmit}
+                  disabled={isLoading}
+                  className="w-full bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group ring-1 ring-white/20"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {isLoading ? (
+                      <>
+                        <PremiumSpinner size="sm" variant="inline" />
+                        <span>Processing...</span>
+                      </>
+                    ) : (
+                      <>
+                        Complete Registration
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </>
+                    )}
+                  </span>
+                </button>
               </div>
             </div>
           </motion.div>

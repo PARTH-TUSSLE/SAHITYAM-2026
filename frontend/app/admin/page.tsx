@@ -53,6 +53,8 @@ interface PendingPayment {
   registrantName: string | null;
   registrantEmail: string | null;
   registrantMobile: string | null;
+  college: string | null;
+  state: string | null;
   paymentVerified: boolean;
   paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
   rejectionReason: string | null;

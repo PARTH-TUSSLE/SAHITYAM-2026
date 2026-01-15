@@ -149,6 +149,8 @@ function Events() {
       formData.append("name", paymentData.name);
       formData.append("email", paymentData.email);
       formData.append("mobileNumber", paymentData.mobileNumber);
+      formData.append("college", paymentData.college);
+      formData.append("state", paymentData.state);
       formData.append("transactionId", paymentData.transactionId);
       if (paymentData.paymentScreenshot) {
         formData.append("paymentScreenshot", paymentData.paymentScreenshot);
@@ -342,7 +344,7 @@ function Events() {
                             className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-black bg-gradient-to-r from-amber-600 via-orange-600 via-40% via-yellow-600 via-60% to-amber-700 bg-clip-text text-transparent drop-shadow-[0_4px_15px_rgba(251,146,60,0.6)] animate-pulse leading-tight"
                             style={{ animationDuration: "3s" }}
                           >
-                            Upto ₹2,00,000
+                            Upto ₹5,00,000
                           </p>
                           {/* Shimmer effect overlay */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1500"></div>

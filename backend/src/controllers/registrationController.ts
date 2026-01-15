@@ -14,11 +14,19 @@ export const registerWithPayment = async (
 ): Promise<void> => {
   try {
     const userId = (req as any).userId;
-    const { eventId, transactionId, name, email, mobileNumber } = req.body;
+    const {
+      eventId,
+      transactionId,
+      name,
+      email,
+      mobileNumber,
+      college,
+      state,
+    } = req.body;
     const file = req.file;
 
     // Validate required fields
-    if (!eventId || !name || !email || !mobileNumber) {
+    if (!eventId || !name || !email || !mobileNumber || !college || !state) {
       res.status(400).json({ error: "All fields are required" });
       return;
     }
@@ -92,6 +100,8 @@ export const registerWithPayment = async (
         registrantName: name,
         registrantEmail: email,
         registrantMobile: mobileNumber,
+        college,
+        state,
         paymentVerified: false, // Admin will verify later
       },
       include: {

@@ -30,6 +30,8 @@ interface PendingPayment {
   registrantName: string | null;
   registrantEmail: string | null;
   registrantMobile: string | null;
+  college: string | null;
+  state: string | null;
   paymentVerified: boolean;
   paymentStatus: "PENDING" | "VERIFIED" | "REJECTED";
   rejectionReason: string | null;
@@ -113,9 +115,15 @@ export default function PendingPaymentsModal({
       payment.user.mobileNumber ||
       ""
     ).toLowerCase();
+    const college = (payment.college || "").toLowerCase();
+    const state = (payment.state || "").toLowerCase();
 
     return (
-      name.includes(query) || email.includes(query) || mobile.includes(query)
+      name.includes(query) ||
+      email.includes(query) ||
+      mobile.includes(query) ||
+      college.includes(query) ||
+      state.includes(query)
     );
   });
 
@@ -525,6 +533,22 @@ export default function PendingPaymentsModal({
                               {payment.registrantMobile ||
                                 payment.user.mobileNumber ||
                                 "N/A"}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-500 font-medium mb-1">
+                              College/University
+                            </p>
+                            <p className="text-sm sm:text-base text-gray-900">
+                              {payment.college || "N/A"}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-500 font-medium mb-1">
+                              State
+                            </p>
+                            <p className="text-sm sm:text-base text-gray-900">
+                              {payment.state || "N/A"}
                             </p>
                           </div>
                           <div>

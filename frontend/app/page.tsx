@@ -486,25 +486,25 @@ export default function HomePage() {
                 <div className="pointer-events-none absolute -inset-6 rounded-[44px] bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-indigo-500/25 blur-2xl opacity-70 motion-safe:animate-[pulse_2.8s_ease-in-out_infinite]"></div>
                 <div className="pointer-events-none absolute -inset-8 rounded-[56px] bg-gradient-to-r from-indigo-500/15 via-purple-500/15 to-pink-500/15 blur-3xl opacity-60 motion-safe:animate-[spin_14s_linear_infinite]"></div>
 
-                <div className="group relative w-full h-64 sm:w-64 sm:h-64 md:w-80 md:h-80 overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.03] ring-4 ring-purple-400/60 hover:ring-purple-500">
+                <div className="group relative w-full h-80 sm:w-64 sm:h-64 md:w-80 md:h-80 overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.03] ring-4 ring-purple-400/60 hover:ring-purple-500">
                   <div className="relative w-full h-full bg-gradient-to-br from-purple-950 via-indigo-950 to-black">
                     <Image
-                      src="/ArmaanMalik.jpeg"
+                      src="/AfsanaKhan.jpeg"
                       alt="Sufi Night - Mystical Music Evening"
                       fill
-                      className="object-cover blur-[8px] opacity-90"
+                      className="object-cover object-top blur-[4px] opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50"></div>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-60"></div>
 
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
-                      <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-2 sm:mb-3 text-center drop-shadow-2xl tracking-tight leading-none">
+                    <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 sm:pb-8 md:pb-10 p-4 sm:p-6 md:p-8">
+                      <h3 className="text-2xl sm:text-2xl md:text-3xl font-black text-white mb-2 sm:mb-3 text-center drop-shadow-2xl tracking-tight leading-none">
                         Sufi Night
                       </h3>
-                      <p className="text-xs sm:text-sm md:text-base text-gray-100 font-bold text-center drop-shadow-xl mb-3 sm:mb-4">
+                      <p className="text-xs sm:text-xs md:text-sm text-gray-100 font-bold text-center drop-shadow-xl mb-3 sm:mb-4">
                         Mystical Music Evening
                       </p>
-                      <p className="text-xs sm:text-sm text-yellow-300 font-semibold text-center drop-shadow-lg animate-pulse">
+                      <p className="text-xs sm:text-xs md:text-xs text-yellow-300 font-semibold text-center drop-shadow-lg animate-pulse">
                         ⭐ Star to be revealed soon ⭐
                       </p>
                     </div>
