@@ -297,8 +297,33 @@ function Schedule() {
               </p>
             </div>
 
-            {/* Day Selector */}
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12">
+            {/* Schedule Reveal Notice */}
+            <div className="text-center mb-8 sm:mb-10 md:mb-12 animate-fade-in">
+              <div className="inline-block bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 p-[2px] rounded-2xl shadow-2xl shadow-purple-500/50">
+                <div className="bg-white rounded-2xl px-6 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="text-5xl sm:text-6xl md:text-7xl animate-bounce">
+                      🎭
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                      Schedule Coming Soon!
+                    </h2>
+                    <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
+                      The complete event schedule will be revealed on
+                    </p>
+                    <div className="bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full font-bold text-xl sm:text-2xl md:text-3xl shadow-lg">
+                      25th January 2026
+                    </div>
+                    <p className="text-sm sm:text-base text-gray-600 mt-2">
+                      Stay tuned for exciting updates! ✨
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Day Selector - Blurred */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12 blur-sm pointer-events-none select-none">
               {Object.keys(scheduleData).map((day, index) => (
                 <button
                   key={day}
@@ -318,7 +343,7 @@ function Schedule() {
             </div>
 
             {/* Timeline */}
-            <div className="max-w-6xl mx-auto px-2 sm:px-4">
+            <div className="max-w-6xl mx-auto px-2 sm:px-4 blur-sm pointer-events-none select-none">
               <div className="relative pb-12 sm:pb-16 md:pb-20">
                 {/* Vertical line - centered on desktop, left on mobile */}
                 <div className="absolute left-6 sm:left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-pink-500 via-purple-600 to-indigo-600"></div>
