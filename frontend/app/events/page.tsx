@@ -469,7 +469,7 @@ function Events() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-2 sm:px-0">
                 {events.map((event) => {
                   const registration = registrationsMap.get(event.id);
                   return (
