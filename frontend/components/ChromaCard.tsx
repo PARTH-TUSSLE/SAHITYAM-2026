@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, memo } from "react";
 import EventModal from "./EventModal";
 import PremiumSpinner from "./PremiumSpinner";
 import { ShareButton } from "./ShareButtons";
@@ -31,7 +31,7 @@ interface ChromaCardProps {
   isLoading?: boolean;
 }
 
-export default function ChromaCard({
+const ChromaCard = memo(function ChromaCard({
   eventId,
   image,
   title,
@@ -75,7 +75,7 @@ export default function ChromaCard({
       <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-pink-500 to-pink-500 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
 
       {/* Card Container */}
-      <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 border border-gray-200/50 mx-auto max-w-[420px] sm:max-w-none">
+      <div className="relative overflow-hidden rounded-2xl bg-white/90 shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 border border-gray-200/50 mx-auto max-w-[420px] sm:max-w-none will-change-transform contain-paint">
         {/* Decorative corner accent */}
         <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-3xl z-10"></div>
 
@@ -126,11 +126,11 @@ export default function ChromaCard({
               {/* Decorative line */}
               <div className="w-16 h-1 bg-gradient-to-r from-pink-500 to-pink-500 rounded-full mb-4 transform transition-all duration-300 group-hover:w-24"></div>
 
-              <h3 className="text-2xl font-black text-white mb-2 drop-shadow-lg transform transition-transform duration-300 group-hover:translate-x-1">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 drop-shadow-lg transform transition-transform duration-300 group-hover:translate-x-1 break-words hyphens-auto">
                 {title}
               </h3>
               {subtitle && (
-                <p className="text-sm text-white/90 font-medium drop-shadow-md mb-6">
+                <p className="text-sm text-white/90 font-medium drop-shadow-md mb-6 break-words">
                   {subtitle}
                 </p>
               )}
@@ -142,7 +142,7 @@ export default function ChromaCard({
                     e.stopPropagation();
                     setIsModalOpen(true);
                   }}
-                  className="relative px-3 py-2.5 bg-white/95 backdrop-blur-sm border-2 border-white/50 hover:border-orange-400 text-gray-700 hover:text-orange-600 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 overflow-hidden group/btn text-xs sm:text-sm flex items-center justify-center"
+                  className="relative px-3 py-2.5 bg-white/95 border-2 border-white/50 hover:border-orange-400 text-gray-700 hover:text-orange-600 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 overflow-hidden group/btn text-xs sm:text-sm flex items-center justify-center will-change-transform"
                 >
                   <span className="relative z-10 inline-flex items-center gap-1">
                     <span className="whitespace-nowrap">See More</span>
@@ -310,4 +310,6 @@ export default function ChromaCard({
       />
     </div>
   );
-}
+});
+
+export default ChromaCard;

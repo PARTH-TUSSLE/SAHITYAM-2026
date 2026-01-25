@@ -76,7 +76,7 @@ export default function EventModal({
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
       {/* Backdrop - separate layer */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70"
         onClick={onClose}
         style={{
           animation: "fadeIn 350ms ease-out forwards",

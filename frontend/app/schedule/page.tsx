@@ -288,7 +288,7 @@ function Schedule() {
         <div className="relative z-10 py-20 sm:py-24 px-4 sm:px-6 md:px-12 lg:px-20">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12 mt-8 sm:mt-10 md:mt-12">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-2 sm:mb-3 md:mb-4">
                 Event Schedule
               </h1>
@@ -312,7 +312,7 @@ function Schedule() {
                       The complete event schedule will be revealed on
                     </p>
                     <div className="bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full font-bold text-xl sm:text-2xl md:text-3xl shadow-lg">
-                      25th January 2026
+                      28th January 2026
                     </div>
                     <p className="text-sm sm:text-base text-gray-600 mt-2">
                       Stay tuned for exciting updates! ✨
@@ -328,10 +328,10 @@ function Schedule() {
                 <button
                   key={day}
                   onClick={() => setSelectedDay(day)}
-                  className={`px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
+                  className={`px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-full font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 will-change-transform ${
                     selectedDay === day
                       ? "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/40"
-                      : "bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white border-2 border-purple-200"
+                      : "bg-white/90 text-gray-900 hover:bg-white border-2 border-purple-200"
                   }`}
                   style={{
                     animation: `fade-in 0.5s ease-out ${index * 0.1}s both`,
@@ -375,10 +375,10 @@ function Schedule() {
                         }`}
                       >
                         <div
-                          className={`backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative ${
+                          className={`rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative will-change-transform ${
                             index % 2 === 0
-                              ? "bg-gradient-to-br from-white/95 to-purple-50/90 border-2 border-purple-300/60 md:border-purple-200/50"
-                              : "bg-gradient-to-br from-white/95 to-pink-50/90 border-2 border-pink-300/60 md:border-purple-200/50"
+                              ? "bg-gradient-to-br from-white/98 to-purple-50/95 border-2 border-purple-300/60 md:border-purple-200/50"
+                              : "bg-gradient-to-br from-white/98 to-pink-50/95 border-2 border-pink-300/60 md:border-purple-200/50"
                           } ${
                             index % 2 === 0 ? "slide-in-left" : "slide-in-right"
                           }`}

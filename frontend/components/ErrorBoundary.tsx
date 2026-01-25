@@ -67,7 +67,7 @@ class ErrorBoundary extends Component<Props, State> {
       // Default fallback UI
       return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
-          <div className="max-w-2xl w-full bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-6 sm:p-8 md:p-12 text-center shadow-2xl">
+          <div className="max-w-2xl w-full bg-white/20 rounded-2xl border border-white/20 p-6 sm:p-8 md:p-12 text-center shadow-2xl">
             <div className="mb-6">
               <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto bg-red-500/20 rounded-full flex items-center justify-center mb-4">
                 <svg
@@ -116,7 +116,7 @@ class ErrorBoundary extends Component<Props, State> {
               </button>
               <button
                 onClick={() => (window.location.href = "/")}
-                className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 border border-white/30 text-sm sm:text-base"
+                className="px-6 py-3 bg-white/20 text-white rounded-lg font-semibold hover:bg-white/30 transition-all duration-300 border border-white/30 text-sm sm:text-base"
               >
                 Go to Home
               </button>

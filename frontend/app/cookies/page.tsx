@@ -27,7 +27,7 @@ function CookiesPolicy() {
             </div>
 
             {/* Content */}
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl border border-purple-200/50">
+            <div className="bg-white/98 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl border border-purple-200/50">
               <div className="space-y-6 sm:space-y-8 text-gray-700">
                 {/* What Are Cookies */}
                 <section>

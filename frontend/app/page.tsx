@@ -4,7 +4,7 @@ import Image from "next/image";
 import BackgroundElements from "../components/ui/BackgroundElements";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SponsorScroll from "@/components/SponsorScroll";
+import PartnerScroll from "@/components/PartnerScroll";
 import PanelistsGrid from "@/components/PanelistsGrid";
 import HomeClient, { CountdownWrapper } from "@/components/HomeClient";
 import PremiumBackground from "@/components/PremiumBackground";
@@ -58,7 +58,7 @@ export default function HomePage() {
 
             {/* Countdown Section */}
             <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8">
-              <div className="relative bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 shadow-2xl border border-purple-100 ring-1 ring-purple-200/50">
+              <div className="relative bg-white/95 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 shadow-2xl border border-purple-100 ring-1 ring-purple-200/50">
                 <CountdownWrapper />
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
               </a>
               <a
                 href="/schedule"
-                className="group px-6 sm:px-8 py-3 sm:py-4 bg-white/90 backdrop-blur-md text-gray-800 text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-purple-200 hover:border-purple-300 ring-1 ring-purple-100/50"
+                className="group px-6 sm:px-8 py-3 sm:py-4 bg-white/95 text-gray-800 text-base sm:text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-purple-200 hover:border-purple-300 ring-1 ring-purple-100/50 will-change-transform"
               >
                 <span className="flex items-center gap-2">
                   <svg
@@ -751,9 +751,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Sponsors Section */}
+        {/* Partners Section */}
         <div className="relative z-20 py-6 sm:py-8 lg:py-10">
-          <SponsorScroll />
+          <PartnerScroll />
         </div>
       </div>
       <Footer />

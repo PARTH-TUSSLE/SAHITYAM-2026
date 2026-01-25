@@ -60,7 +60,7 @@ export default function PendingPaymentsModal({
   onPaymentVerified,
 }: PendingPaymentsModalProps) {
   const [selectedPayment, setSelectedPayment] = useState<PendingPayment | null>(
-    null
+    null,
   );
   const [activeTab, setActiveTab] = useState<
     "pending" | "verified" | "rejected" | "inactive"
@@ -90,10 +90,10 @@ export default function PendingPaymentsModal({
     activeTab === "pending"
       ? pendingPayments
       : activeTab === "verified"
-      ? verifiedPayments
-      : activeTab === "rejected"
-      ? rejectedPayments
-      : inactiveRegistrations;
+        ? verifiedPayments
+        : activeTab === "rejected"
+          ? rejectedPayments
+          : inactiveRegistrations;
 
   // Filter payments based on search query
   const filteredPayments = currentPayments.filter((payment) => {
@@ -130,7 +130,7 @@ export default function PendingPaymentsModal({
   const handleVerifyPayment = async (
     registrationId: string,
     verified: boolean,
-    rejectionReasonText?: string
+    rejectionReasonText?: string,
   ) => {
     try {
       setVerifying(true);
@@ -185,7 +185,7 @@ export default function PendingPaymentsModal({
     await handleVerifyPayment(
       paymentToReject,
       false,
-      rejectionReason.trim() || undefined
+      rejectionReason.trim() || undefined,
     );
     setPaymentToReject(null);
     setRejectionReason("");
@@ -226,7 +226,7 @@ export default function PendingPaymentsModal({
       <AnimatePresence>
         {isOpen && (
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[55] flex items-center justify-center p-2 sm:p-3 lg:p-4"
+            className="fixed inset-0 bg-black/70 z-[55] flex items-center justify-center p-2 sm:p-3 lg:p-4"
             onClick={onClose}
           >
             <motion.div
@@ -250,10 +250,10 @@ export default function PendingPaymentsModal({
                       {activeTab === "pending"
                         ? "awaiting verification"
                         : activeTab === "verified"
-                        ? "verified"
-                        : activeTab === "rejected"
-                        ? "rejected"
-                        : "inactive"}
+                          ? "verified"
+                          : activeTab === "rejected"
+                            ? "rejected"
+                            : "inactive"}
                       {searchQuery &&
                         ` (filtered from ${currentPayments.length})`}
                     </p>
@@ -448,23 +448,23 @@ export default function PendingPaymentsModal({
                       {searchQuery
                         ? "No Matching Payments"
                         : activeTab === "pending"
-                        ? "All Caught Up!"
-                        : activeTab === "verified"
-                        ? "No Verified Payments"
-                        : activeTab === "rejected"
-                        ? "No Rejected Payments"
-                        : "No Inactive Registrations"}
+                          ? "All Caught Up!"
+                          : activeTab === "verified"
+                            ? "No Verified Payments"
+                            : activeTab === "rejected"
+                              ? "No Rejected Payments"
+                              : "No Inactive Registrations"}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600">
                       {searchQuery
                         ? `No ${activeTab} payments match "${searchQuery}"`
                         : activeTab === "pending"
-                        ? "No pending payments to verify at the moment."
-                        : activeTab === "verified"
-                        ? "No payments have been verified yet."
-                        : activeTab === "rejected"
-                        ? "No payments have been rejected yet."
-                        : "No inactive registrations found."}
+                          ? "No pending payments to verify at the moment."
+                          : activeTab === "verified"
+                            ? "No payments have been verified yet."
+                            : activeTab === "rejected"
+                              ? "No payments have been rejected yet."
+                              : "No inactive registrations found."}
                     </p>
                   </div>
                 ) : (
@@ -485,8 +485,8 @@ export default function PendingPaymentsModal({
                                 payment.paymentStatus === "PENDING"
                                   ? "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 shadow-purple-300/50"
                                   : payment.paymentStatus === "VERIFIED"
-                                  ? "bg-gradient-to-r from-green-500 to-green-600 shadow-green-300/50"
-                                  : "bg-gradient-to-r from-red-500 to-red-600 shadow-red-300/50"
+                                    ? "bg-gradient-to-r from-green-500 to-green-600 shadow-green-300/50"
+                                    : "bg-gradient-to-r from-red-500 to-red-600 shadow-red-300/50"
                               }`}
                             >
                               {payment.paymentStatus}
@@ -502,7 +502,7 @@ export default function PendingPaymentsModal({
                                 day: "numeric",
                                 hour: "2-digit",
                                 minute: "2-digit",
-                              }
+                              },
                             )}
                           </p>
                         </div>
@@ -785,7 +785,7 @@ export default function PendingPaymentsModal({
       <AnimatePresence>
         {rejectionModalOpen && (
           <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[70] flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/70 z-[70] flex items-center justify-center p-4"
             onClick={() => setRejectionModalOpen(false)}
           >
             <motion.div

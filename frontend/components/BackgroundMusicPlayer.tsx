@@ -37,7 +37,7 @@ export default function BackgroundMusicPlayer() {
       if (audioRef.current && !audioRef.current.paused) {
         localStorage.setItem(
           "musicTime",
-          audioRef.current.currentTime.toString()
+          audioRef.current.currentTime.toString(),
         );
       }
     }, 2000);
@@ -157,7 +157,7 @@ export default function BackgroundMusicPlayer() {
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60"
             style={{
               animation: "fadeIn 300ms ease-out forwards",
             }}

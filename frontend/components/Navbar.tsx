@@ -62,8 +62,8 @@ function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-gradient-to-r from-rose-50/95 via-white/95 to-purple-50/95 backdrop-blur-xl border-b border-purple-200/50 shadow-lg shadow-purple-100/50"
-          : "bg-gradient-to-r from-rose-50/60 via-white/60 to-purple-50/60 backdrop-blur-sm border-b border-purple-200/30"
+          ? "bg-gradient-to-r from-rose-50/98 via-white/98 to-purple-50/98 border-b border-purple-200/50 shadow-lg shadow-purple-100/50"
+          : "bg-gradient-to-r from-rose-50/80 via-white/80 to-purple-50/80 border-b border-purple-200/30"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-3">
@@ -142,7 +142,7 @@ function Navbar() {
 
                 {/* Dropdown Menu */}
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 mt-3 w-56 bg-white backdrop-blur-xl rounded-2xl shadow-2xl shadow-purple-200/50 border border-purple-200/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-[1000]">
+                  <div className="absolute right-0 mt-3 w-56 bg-white/98 rounded-2xl shadow-2xl shadow-purple-200/50 border border-purple-200/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-[1000]">
                     {/* User Info Section */}
                     <div className="px-4 py-4 bg-gradient-to-br from-purple-50/50 to-pink-50/50 border-b border-purple-200/50">
                       <div className="flex items-center gap-3">
@@ -292,7 +292,7 @@ function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 bg-gradient-to-br from-white/98 via-purple-50/95 to-pink-50/98 backdrop-blur-xl rounded-2xl shadow-2xl shadow-purple-200/50 animate-in slide-in-from-top duration-300 border border-purple-200/50">
+          <div className="md:hidden mt-4 pb-4 bg-gradient-to-br from-white/98 via-purple-50/95 to-pink-50/98 rounded-2xl shadow-2xl shadow-purple-200/50 animate-in slide-in-from-top duration-300 border border-purple-200/50">
             <div className="flex flex-col space-y-2 p-3">
               {allNavItems.map((item) => {
                 const isActive = pathname === `/${item.href}`;

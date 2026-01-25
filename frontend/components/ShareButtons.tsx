@@ -315,7 +315,7 @@ export function ShareButton({
       <button
         ref={buttonRef}
         onClick={() => setShowModal(true)}
-        className="px-3 py-3 hover:bg-white/90 bg-white/70 backdrop-blur-sm border-2 border-white/50 hover:border-purple-400 rounded-lg transition-all duration-300 group shadow-md hover:shadow-lg flex items-center justify-center min-h-[42px]"
+        className="px-3 py-3 hover:bg-white/95 bg-white/85 border-2 border-white/50 hover:border-purple-400 rounded-lg transition-all duration-300 group shadow-md hover:shadow-lg flex items-center justify-center min-h-[42px]"
         title="Share event"
       >
         <svg
@@ -341,7 +341,7 @@ export function ShareButton({
           <>
             {/* Backdrop */}
             <div
-              className="fixed inset-0 bg-black/30 backdrop-blur-[1px] z-[100]"
+              className="fixed inset-0 bg-black/40 z-[100]"
               onClick={() => setShowModal(false)}
             ></div>
 
@@ -353,20 +353,20 @@ export function ShareButton({
                   window.innerWidth < 640
                     ? `${Math.min(
                         buttonPosition.top + 40,
-                        window.innerHeight - 450
+                        window.innerHeight - 450,
                       )}px`
                     : `${Math.min(
                         buttonPosition.top + 40,
-                        window.innerHeight - 500
+                        window.innerHeight - 500,
                       )}px`,
                 left:
                   window.innerWidth < 640
                     ? "50%"
                     : window.innerWidth < 768
-                    ? "50%"
-                    : buttonPosition.right + 260 > window.innerWidth
-                    ? `${Math.max(10, buttonPosition.left - 260)}px`
-                    : `${buttonPosition.right + 10}px`,
+                      ? "50%"
+                      : buttonPosition.right + 260 > window.innerWidth
+                        ? `${Math.max(10, buttonPosition.left - 260)}px`
+                        : `${buttonPosition.right + 10}px`,
                 transform:
                   window.innerWidth < 768 ? "translateX(-50%)" : "none",
                 maxHeight:
@@ -376,7 +376,7 @@ export function ShareButton({
               }}
             >
               <div
-                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] w-[260px] xs:w-[280px] sm:w-[300px] animate-in fade-in zoom-in-95 duration-200 border border-purple-200/50 max-h-[400px] sm:max-h-[500px] overflow-hidden"
+                className="bg-white/98 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] w-[260px] xs:w-[280px] sm:w-[300px] animate-in fade-in zoom-in-95 duration-200 border border-purple-200/50 max-h-[400px] sm:max-h-[500px] overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Header - Compact */}
@@ -557,7 +557,7 @@ export function ShareButton({
               </div>
             </div>
           </>,
-          document.body
+          document.body,
         )}
     </>
   );
