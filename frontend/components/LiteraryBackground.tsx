@@ -8,15 +8,10 @@ const LiteraryBackground = () => {
 
   useEffect(() => {
     setMounted(true);
-
-    // Check initial screen size
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     checkMobile();
-
-    // Update on resize
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -24,46 +19,14 @@ const LiteraryBackground = () => {
   // Literary symbols and decorative elements
   const literarySymbols = ["❝", "❞", "✒", "📖", "✍", "🖋", "📜", "🎭", "🌿"];
   const floatingLetters = [
-    "A",
-    "S",
-    "H",
-    "I",
-    "T",
-    "Y",
-    "M",
-    "क",
-    "ल",
-    "ा",
-    "स",
-    "ह",
-    "त",
-    "य",
-    "म",
-    "न",
-    "प",
-    "र",
-    "व",
-    "ब",
-    "ग",
-    "द",
-    "क",
-    "ज",
-    "ख",
-    "च",
-    "थ",
-    "ध",
-    "भ",
-    "श",
+    "A", "S", "H", "I", "T", "Y", "M",
+    "क", "ल", "ा", "स", "ह", "त", "य", "म", "न", "प", "र", "व", "ब", "ग", "द", "क", "ज", "ख", "च", "थ", "ध", "भ", "श",
   ];
 
-  // Reduce elements on mobile
-  const bookPageCount = isMobile ? 3 : 8;
-  const visibleSymbols = isMobile
-    ? literarySymbols.slice(0, 4)
-    : literarySymbols;
-  const visibleLetters = isMobile
-    ? floatingLetters.slice(0, 12)
-    : floatingLetters;
+  // Reduce elements on mobile for performance
+  const bookPageCount = isMobile ? 5 : 8;
+  const visibleSymbols = isMobile ? literarySymbols.slice(0, 6) : literarySymbols;
+  const visibleLetters = isMobile ? floatingLetters.slice(0, 18) : floatingLetters;
 
   if (!mounted) return null;
 
@@ -78,10 +41,10 @@ const LiteraryBackground = () => {
           key={`page-${i}`}
           className="absolute animate-page-float opacity-30"
           style={{
-            left: `${Math.random() * 100}%`,
+            left: `${(i * 14 + 3) % 95}%`,
             top: `-10%`,
             animationDelay: `${i * 3}s`,
-            animationDuration: `${20 + Math.random() * 10}s`,
+            animationDuration: `${20 + i * 2}s`,
           }}
         >
           <svg
@@ -168,17 +131,16 @@ const LiteraryBackground = () => {
       </div>
 
       {/* Ink Drops */}
-      {[...Array(5)].map((_, i) => (
+      {[...Array(isMobile ? 3 : 5)].map((_, i) => (
         <div
           key={`ink-${i}`}
           className="absolute rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 animate-ink-drop"
           style={{
-            width: `${20 + Math.random() * 30}px`,
-            height: `${20 + Math.random() * 30}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            width: `${20 + i * 8}px`,
+            height: `${20 + i * 8}px`,
+            left: `${(i * 22 + 10) % 90}%`,
+            top: `${(i * 18 + 15) % 85}%`,
             animationDelay: `${i * 2}s`,
-            animationIterationCount: "infinite",
           }}
         />
       ))}
@@ -215,38 +177,10 @@ const LiteraryBackground = () => {
           viewBox="0 0 200 200"
           className="w-full h-full text-purple-500 animate-mandala-spin"
         >
-          <circle
-            cx="100"
-            cy="100"
-            r="80"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-          />
-          <circle
-            cx="100"
-            cy="100"
-            r="60"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-          />
-          <circle
-            cx="100"
-            cy="100"
-            r="40"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-          />
-          <circle
-            cx="100"
-            cy="100"
-            r="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-          />
+          <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="100" cy="100" r="20" fill="none" stroke="currentColor" strokeWidth="0.5" />
           {[...Array(12)].map((_, i) => (
             <line
               key={i}
@@ -263,6 +197,155 @@ const LiteraryBackground = () => {
 
       {/* Shimmer Effects */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-literary-shimmer"></div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes page-float {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.3;
+          }
+          90% {
+            opacity: 0.3;
+          }
+          100% {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes floating-letters {
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-10px) rotate(2deg);
+          }
+          50% {
+            transform: translateY(-18px) rotate(-1deg);
+          }
+          75% {
+            transform: translateY(-8px) rotate(1deg);
+          }
+        }
+
+        @keyframes ornate-glow {
+          0%, 100% {
+            opacity: 0.8;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        @keyframes quill-write {
+          0%, 100% {
+            transform: rotate(-5deg) translateY(0);
+          }
+          50% {
+            transform: rotate(5deg) translateY(-10px);
+          }
+        }
+
+        @keyframes ink-drop {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.2;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 0.35;
+          }
+        }
+
+        @keyframes parchment-wave {
+          0%, 100% {
+            opacity: 0.25;
+          }
+          50% {
+            opacity: 0.35;
+          }
+        }
+
+        @keyframes feather-float {
+          0%, 100% {
+            transform: translateY(0) rotate(-2deg);
+          }
+          50% {
+            transform: translateY(-15px) rotate(2deg);
+          }
+        }
+
+        @keyframes book-stack {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        @keyframes mandala-spin {
+          from {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+
+        @keyframes literary-shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+
+        .animate-page-float {
+          animation: page-float 20s linear infinite;
+        }
+
+        .animate-floating-letters {
+          animation: floating-letters 6s ease-in-out infinite;
+        }
+
+        .animate-ornate-glow {
+          animation: ornate-glow 3s ease-in-out infinite;
+        }
+
+        .animate-quill-write {
+          animation: quill-write 4s ease-in-out infinite;
+        }
+
+        .animate-ink-drop {
+          animation: ink-drop 5s ease-in-out infinite;
+        }
+
+        .animate-parchment-wave {
+          animation: parchment-wave 6s ease-in-out infinite;
+        }
+
+        .animate-feather-float {
+          animation: feather-float 5s ease-in-out infinite;
+        }
+
+        .animate-book-stack {
+          animation: book-stack 4s ease-in-out infinite;
+        }
+
+        .animate-mandala-spin {
+          animation: mandala-spin 60s linear infinite;
+        }
+
+        .animate-literary-shimmer {
+          animation: literary-shimmer 8s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

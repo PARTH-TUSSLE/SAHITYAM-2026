@@ -16,16 +16,8 @@ interface Partner {
 const partners: Partner[] = [
   {
     id: 1,
-    name: "Lahori Zeera",
-    type: "Beverage Partner",
-    link: "https://lahorizeera.com",
-    image: "/lahoriZeera.png",
-    gradient: "from-amber-500 via-orange-500 to-yellow-500",
-  },
-  {
-    id: 2,
     name: "The Little Hamper House",
-    type: "Gifts Partner",
+    type: "Gifting Partner",
     link: "https://www.instagram.com/the_little_hamper_house?igsh=MXJmem1xaWFpemFuZw%3D%3D&utm_source=qr",
     image: "/littleHamperHouse.jpeg",
     isInstagram: true,
