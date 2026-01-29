@@ -260,23 +260,34 @@ export default function HomePage() {
                   <div className="relative w-full h-full bg-gradient-to-br from-purple-950 via-indigo-950 to-black">
                     <Image
                       src="/AfsanaKhan.jpeg"
-                      alt="Sufi Night - Mystical Music Evening"
+                      alt="Afsana Khan - Sufi Night"
                       fill
-                      className="object-cover object-top blur-[4px] opacity-90"
+                      className="object-cover object-top"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50"></div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-60"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-60"></div>
 
-                    <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 sm:pb-8 md:pb-10 p-4 sm:p-6 md:p-8">
-                      <h3 className="text-2xl sm:text-2xl md:text-3xl font-black text-white mb-2 sm:mb-3 text-center drop-shadow-2xl tracking-tight leading-none">
+                    <div className="absolute inset-0 flex flex-col items-center justify-end pb-4 sm:pb-6 md:pb-8 p-4 sm:p-5 md:p-6">
+                      <h3 className="text-2xl sm:text-2xl md:text-3xl font-black text-white mb-1 sm:mb-2 text-center drop-shadow-2xl tracking-tight leading-none">
                         Sufi Night
                       </h3>
-                      <p className="text-xs sm:text-xs md:text-sm text-gray-100 font-bold text-center drop-shadow-xl mb-3 sm:mb-4">
+                      <p className="text-xs sm:text-xs md:text-sm text-gray-200 font-medium text-center drop-shadow-xl mb-2">
                         Mystical Music Evening
                       </p>
-                      <p className="text-xs sm:text-xs md:text-xs text-yellow-300 font-semibold text-center drop-shadow-lg animate-pulse">
-                        ⭐ Star to be revealed soon ⭐
+                      <p className="text-base sm:text-lg md:text-xl font-black bg-gradient-to-r from-yellow-300 via-amber-300 to-yellow-400 bg-clip-text text-transparent text-center drop-shadow-lg mb-2 sm:mb-3">
+                        ⭐ Afsana Khan ⭐
                       </p>
+                      <a
+                        href="https://www.instagram.com/itsafsanakhan/?hl=en"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white text-xs sm:text-sm font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                      >
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                        Follow
+                      </a>
                     </div>
                   </div>
                 </div>
