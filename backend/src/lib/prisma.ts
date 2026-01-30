@@ -30,38 +30,8 @@ export const prisma = globalForPrisma.prisma || createPrismaClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-// Connection keepalive mechanism
-let keepAliveInterval: NodeJS.Timeout | null = null;
-
-const startConnectionKeepalive = () => {
-  if (keepAliveInterval) return;
-
-  // Ping database every 30 seconds to keep connection alive
-  keepAliveInterval = setInterval(async () => {
-    try {
-      await prisma.$queryRaw`SELECT 1`;
-    } catch (error: any) {
-      console.error("Connection keepalive failed:", error.message);
-      // Attempt to reconnect
-      try {
-        await prisma.$connect();
-        console.log("✅ Reconnected to database");
-      } catch (reconnectError: any) {
-        console.error("Failed to reconnect:", reconnectError.message);
-      }
-    }
-  }, 30000); // 30 seconds
-};
-
-const stopConnectionKeepalive = () => {
-  if (keepAliveInterval) {
-    clearInterval(keepAliveInterval);
-    keepAliveInterval = null;
-  }
-};
-
-// Start keepalive on module load
-startConnectionKeepalive();
+// Note: Connection keepalive removed to allow Neon DB to scale to zero
+// Prisma handles reconnection automatically when needed
 
 // Test database connection with retry logic
 export const testDatabaseConnection = async (): Promise<boolean> => {
@@ -108,7 +78,6 @@ export const testDatabaseConnection = async (): Promise<boolean> => {
 // Graceful shutdown
 export const disconnectDatabase = async (): Promise<void> => {
   try {
-    stopConnectionKeepalive();
     await prisma.$disconnect();
     console.log("✅ Database disconnected successfully");
   } catch (error: any) {

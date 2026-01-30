@@ -163,45 +163,54 @@ export default function EventModal({
               </ul>
             </div>
 
-            {/* Register Button */}
+            {/* Register Button - Closed only for Youth Parliament */}
             <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
-              {isAuthenticated ? (
-                <button
-                  onClick={() => {
-                    if (isRegistered && onUnregister) {
-                      onUnregister(eventId);
-                    } else if (!isRegistered && onRegister) {
-                      onRegister(eventId);
-                    }
-                    onClose();
-                  }}
-                  disabled={isLoading}
-                  className={`w-full px-4 py-3 sm:px-6 sm:py-4 font-bold rounded-lg sm:rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base ${
-                    isRegistered
-                      ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg shadow-red-500/40 hover:shadow-xl hover:shadow-red-600/50 ring-1 ring-white/20"
-                      : "bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 ring-1 ring-white/20"
-                  } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
+              {title === "Inter-College Youth Parliament" ? (
+                <div
+                  className="w-full px-4 py-3 sm:px-6 sm:py-4 bg-gray-400 text-white font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base cursor-not-allowed opacity-80"
                 >
-                  {isLoading ? (
-                    <>
-                      <PremiumSpinner size="sm" variant="inline" />
-                      <span>Loading...</span>
-                    </>
-                  ) : isRegistered ? (
-                    "Unregister from this Event"
-                  ) : (
-                    "Register for this Event"
-                  )}
-                </button>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  Registrations Closed
+                </div>
+              ) : isAuthenticated ? (
+                isLoading ? (
+                  <div className="w-full px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <PremiumSpinner size="sm" />
+                    <span>Processing...</span>
+                  </div>
+                ) : isRegistered ? (
+                  <button
+                    onClick={() => onUnregister?.(eventId)}
+                    className="w-full px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base transition-all duration-300 hover:shadow-lg"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Registered ✓
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => onRegister?.(eventId)}
+                    className="w-full px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/40"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    Register Now
+                  </button>
+                )
               ) : (
-                <button
-                  onClick={() => {
-                    window.location.href = "/login";
-                  }}
-                  className="w-full px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:via-purple-700 hover:to-indigo-700 text-white font-bold rounded-lg sm:rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-600/50 hover:-translate-y-0.5 active:scale-95 ring-1 ring-white/20 text-sm sm:text-base"
+                <a
+                  href="/auth/login"
+                  className="w-full px-4 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/40"
                 >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
                   Login to Register
-                </button>
+                </a>
               )}
             </div>
           </div>

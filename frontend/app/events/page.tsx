@@ -214,6 +214,8 @@ function Events() {
         {/* Content */}
         <div className="relative z-10 py-24 px-6 md:px-12 lg:px-20">
           <div className="max-w-7xl mx-auto">
+
+
             {/* MINDBLOWING PRIZE POOL BANNER */}
             <div className="mb-12 sm:mb-16 lg:mb-20 px-2 sm:px-4">
               <div className="relative group">
