@@ -162,48 +162,21 @@ const ChromaCard = memo(function ChromaCard({
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-50 to-pink-50 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                 </button>
 
-                {/* Check if this is Youth Parliament - registrations closed for this event only */}
-                {title === "Inter-College Youth Parliament" ? (
+                {/* Registration closed for all events */}
+                {isRegistered ? (
+                  <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="relative px-3 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-lg text-xs sm:text-sm flex items-center justify-center cursor-default"
+                  >
+                    <span className="whitespace-nowrap">Registered ✓</span>
+                  </div>
+                ) : (
                   <div
                     onClick={(e) => e.stopPropagation()}
                     className="relative px-3 py-2.5 bg-gray-400 text-white font-semibold rounded-lg text-xs sm:text-sm flex items-center justify-center cursor-not-allowed opacity-80"
                   >
                     <span className="whitespace-nowrap">Closed</span>
                   </div>
-                ) : isAuthenticated ? (
-                  isLoading ? (
-                    <div className="relative px-3 py-2.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-semibold rounded-lg text-xs sm:text-sm flex items-center justify-center">
-                      <PremiumSpinner size="sm" />
-                    </div>
-                  ) : isRegistered ? (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRegisterClick();
-                      }}
-                      className="relative px-3 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg active:scale-95 text-xs sm:text-sm flex items-center justify-center will-change-transform"
-                    >
-                      <span className="whitespace-nowrap">Registered ✓</span>
-                    </button>
-                  ) : (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRegisterClick();
-                      }}
-                      className="relative px-3 py-2.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/40 active:scale-95 text-xs sm:text-sm flex items-center justify-center group/reg will-change-transform"
-                    >
-                      <span className="whitespace-nowrap">Register Now</span>
-                    </button>
-                  )
-                ) : (
-                  <a
-                    href="/auth/login"
-                    onClick={(e) => e.stopPropagation()}
-                    className="relative px-3 py-2.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/40 active:scale-95 text-xs sm:text-sm flex items-center justify-center will-change-transform"
-                  >
-                    <span className="whitespace-nowrap">Login to Register</span>
-                  </a>
                 )}
 
                 {/* Share Button */}

@@ -431,6 +431,36 @@ function Events() {
               </p>
             </div>
 
+            {/* Registration Closed Banner */}
+            <div className="mb-12 px-2 sm:px-4">
+              <div className="relative bg-gradient-to-br from-red-50 via-orange-50 to-red-50 rounded-2xl p-6 sm:p-8 border-2 border-red-300/60 shadow-lg ring-2 ring-red-200/40">
+                {/* Decorative corners */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-red-400/50 rounded-tl-xl"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red-400/50 rounded-tr-xl"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red-400/50 rounded-bl-xl"></div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-400/50 rounded-br-xl"></div>
+
+                <div className="text-center space-y-3">
+                  {/* Icon */}
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <h3 className="text-xl sm:text-2xl font-bold text-red-700">
+                    Online Registrations are Closed
+                  </h3>
+                  <p className="text-base sm:text-lg text-gray-700 max-w-xl mx-auto">
+                    For registering to any event contact - <span className="font-bold text-red-600">Mr. Sahil Bhandari (93172 98539)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Events Grid */}
             {loading ? (
               <div className="flex justify-center items-center py-20">
